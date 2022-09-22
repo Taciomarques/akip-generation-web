@@ -1,0 +1,23 @@
+{
+  "akipGenerationWebApp": {
+    "generationProcess": {
+      "home": {
+        "title": "Generation Processes",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Generation Process",
+        "createOrEditLabel": "Criar ou editar Generation Process",
+        "notFound": "Nenhum Generation Process encontrado"
+      },
+      "created": "Um novo Generation Process foi criado com o identificador {{ param }}",
+      "updated": "Um Generation Process foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Generation Process foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Generation Process {{ id }}?"
+      },
+      "detail": {
+        "title": "Generation Process"
+      },
+      "id": "ID"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "applications": "*",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "application",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "repositoryName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "properties",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Application",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "entidade",
+      "otherEntityRelationshipName": "application",
+      "relationshipName": "etities",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "process",
+      "otherEntityRelationshipName": "application",
+      "relationshipName": "processes",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass",
+  "skipFakeData": true,
+  "changelogDate": "20220919230155"
+}

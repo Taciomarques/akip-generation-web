@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20220919225039",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "process",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "percentageExecuted",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "StatusProcess",
+      "fieldValues": "WAITING_PROVIDE_DOMAIN_ENTITIES,WAITING_PROVIDE_PROCESS_BINDING,WAITING_PROVIDE_PROCESS_BPMN,WAITING_PROVIDE_START_FORM_AND_PROCESS_TASKS,FINISHED"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Process",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "entidade",
+      "otherEntityRelationshipName": "process",
+      "relationshipName": "etities",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "application",
+      "otherEntityRelationshipName": "processes",
+      "relationshipName": "application",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass",
+  "skipFakeData": true
+}

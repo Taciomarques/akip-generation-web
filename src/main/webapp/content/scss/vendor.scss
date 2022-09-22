@@ -1,0 +1,180 @@
+/* after changing this file run 'npm run webapp:build' */
+
+/***************************
+put Sass variables here:
+eg $input-color: red;
+****************************/
+// Override Boostrap variables
+// Import Bootstrap source files from node_modules
+
+$blue: #4285f4 !default;
+$primary: #009045 !default;
+$warning: #ff7f08 !default;
+
+$primary-color: $primary;
+$base-bg: #ffffff;
+$item-open-color: #ffffff;
+$mobile-item-color: #ffffff;
+@import '~vue-sidebar-menu/src/scss/vue-sidebar-menu.scss';
+
+@import '~bootswatch/dist/yeti/variables';
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-vue/src/index.scss';
+@import '~bootswatch/dist/yeti/bootswatch';
+/* Dirty fix on navbar active link with bootswatch theme */
+nav li.router-link-active .navbar-dropdown-menu {
+  color: $primary;
+}
+
+//Project Specific Styles
+.alert-warning {
+  //background-color: $warning;
+  color: #ffffff;
+}
+
+.table-data {
+  font-size: 80%;
+  color: gray;
+}
+
+.btn-group-xsm button,
+.btn-xsm {
+  font-size: 90%;
+}
+
+.shadow {
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+}
+
+.page-header {
+  margin-top: -18px;
+  margin-left: -18px;
+  margin-right: -18px;
+  border-radius: 0.35em 0.35em 0 0;
+  padding-top: 0.25em;
+  padding-bottom: 0;
+  //padding-left: 1em;
+  //padding-right: 1em;
+}
+
+.page-footer {
+  margin-bottom: -18px;
+  margin-left: -18px;
+  margin-right: -18px;
+  border-radius: 0.35em 0.35em 0 0;
+  padding-top: 0.25em;
+  padding-bottom: 0;
+  //padding-left: 1em;
+  //padding-right: 1em;
+}
+
+.text-gray-100 {
+  color: $gray-100;
+}
+
+.text-gray-200 {
+  color: $gray-200;
+}
+
+.text-gray-300 {
+  color: $gray-300;
+}
+
+.text-gray-400 {
+  color: $gray-400;
+}
+
+.text-gray-500 {
+  color: $gray-500;
+}
+
+.text-gray-600 {
+  color: $gray-600;
+}
+
+.text-gray-700 {
+  color: $gray-700;
+}
+
+.text-gray-800 {
+  color: $gray-800;
+}
+
+.text-gray-900 {
+  color: $gray-900;
+}
+
+.v-sidebar-menu .vsm--title {
+  color: #373a3c;
+}
+
+//.v-sidebar-menu.vsm_expanded {
+//  color: $primary;
+//
+//}
+//.v-sidebar-menu.vsm_collapsed {
+//  color: $primary;
+//
+//}
+//.v-sidebar-menu.vsm_rtl {
+//  color: #ffffff;
+//
+//}
+//.v-sidebar-menu .vsm--item {
+//  color: #ffffff;
+//
+//}
+//.v-sidebar-menu .vsm--link {
+//  color: #ffffff;
+//
+//}
+//.v-sidebar-menu .vsm--link_active {
+//  color: #ffffff;
+//
+//}
+//.v-sidebar-menu .vsm--link_open {
+//  color: #ffffff;
+//
+//}
+//.v-sidebar-menu .vsm--link_mobile {
+//  color: #ffffff;
+//
+//}
+//.v-sidebar-menu .vsm--link_level-[n] {
+//  color: #ffffff;
+//
+//}
+//.v-sidebar-menu .vsm--link_disabled {
+//  color: #ffffff;
+//
+//}
+//
+//.v-sidebar-menu .vsm--icon {
+//
+//}
+//.v-sidebar-menu .vsm--arrow {
+//
+//}
+//.v-sidebar-menu .vsm--arrow_open {
+//
+//}
+//.v-sidebar-menu .vsm--badge {
+//
+//}
+//.v-sidebar-menu .vsm--badge_default {
+//
+//}
+//.v-sidebar-menu .vsm--header {
+//
+//}
+//.v-sidebar-menu .vsm--dropdown {
+//
+//}
+//.v-sidebar-menu .vsm--mobile-bg {
+//
+//}
+//.v-sidebar-menu .vsm--toggle-btn {
+//
+//}
+
+/* jhipster-needle-scss-add-vendor JHipster will add new css style */

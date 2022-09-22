@@ -1,0 +1,23 @@
+{
+  "fields": [],
+  "relationships": [
+    {
+      "otherEntityName": "entidade",
+      "otherEntityRelationshipName": "process",
+      "relationshipName": "etities",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "entityType": "user-task-form",
+  "processBpmnId": "GenerationProcess",
+  "processEntityName": "GenerationProcess",
+  "taskBpmnId": "TaskProvideStartFormInformationAndProcessTasks",
+  "domainEntityName": "Process",
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "no",
+  "skipFakeData": true,
+  "name": "TaskProvideStartFormInformationAndProcessTasks"
+}

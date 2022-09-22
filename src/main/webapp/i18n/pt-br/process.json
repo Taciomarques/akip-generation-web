@@ -1,0 +1,29 @@
+{
+  "akipGenerationWebApp": {
+    "process": {
+      "home": {
+        "title": "Processes",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Process",
+        "initLabel": "Init a new Generation Process",
+        "createOrEditLabel": "Criar ou editar Process",
+        "notFound": "Nenhum Process encontrado"
+      },
+      "created": "Um novo Process foi criado com o identificador {{ param }}",
+      "updated": "Um Process foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Process foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Process {{ id }}?"
+      },
+      "detail": {
+        "title": "Process"
+      },
+      "id": "ID",
+      "name": "Name",
+      "percentageExecuted": "Percentage Executed",
+      "status": "Status",
+      "etities": "Etities",
+      "application": "Application"
+    }
+  }
+}

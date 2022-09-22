@@ -1,0 +1,29 @@
+{
+  "akipGenerationWebApp": {
+    "entidade": {
+      "home": {
+        "title": "Entidades",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Entidade",
+        "createOrEditLabel": "Criar ou editar Entidade",
+        "notFound": "Nenhum Entidade encontrado"
+      },
+      "created": "Um novo Entidade foi criado com o identificador {{ param }}",
+      "updated": "Um Entidade foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Entidade foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Entidade {{ id }}?"
+      },
+      "detail": {
+        "title": "Entidade"
+      },
+      "id": "ID",
+      "name": "Name",
+      "fields": "Fields",
+      "relations": "Relations",
+      "type": "Type",
+      "process": "Process",
+      "application": "Application"
+    }
+  }
+}

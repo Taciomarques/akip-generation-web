@@ -1,0 +1,28 @@
+{
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "Application",
+      "relationshipName": "application",
+      "otherEntityField": "name"
+    }
+  ],
+  "entityType": "start-form",
+  "processBpmnId": "GenerationProcess",
+  "processEntityName": "GenerationProcess",
+  "domainEntityName": "Process",
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "no",
+  "skipFakeData": true,
+  "name": "GenerationProcessStartForm",
+  "changelogDate": "20220922002737"
+}

@@ -1,0 +1,29 @@
+{
+  "akipGenerationWebApp": {
+    "application": {
+      "home": {
+        "title": "Applications",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Application",
+        "createOrEditLabel": "Criar ou editar Application",
+        "notFound": "Nenhum Application encontrado"
+      },
+      "created": "Um novo Application foi criado com o identificador {{ param }}",
+      "updated": "Um Application foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Application foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Application {{ id }}?"
+      },
+      "detail": {
+        "title": "Application"
+      },
+      "id": "ID",
+      "name": "Name",
+      "repositoryName": "Repository Name",
+      "createDate": "Create Date",
+      "properties": "Properties",
+      "etities": "Etities",
+      "processes": "Processes"
+    }
+  }
+}

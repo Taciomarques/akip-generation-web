@@ -1,0 +1,43 @@
+
+entity Application {
+	name String,
+    repositoryName String,
+    createDate LocalDate
+    properties String
+}
+
+entity Process {
+	name String,
+	percentageExecuted Integer,
+    status StatusProcess
+}
+
+entity Entity {
+	name String,
+    fields String,
+    relations String,
+    type TypeEntity
+}
+
+enum StatusProcess {
+	WAITING_PROVIDE_DOMAIN_ENTITIES, 
+    WAITING_PROVIDE_PROCESS_BINDING, 
+    WAITING_PROVIDE_PROCESS_BPMN, 
+    WAITING_PROVIDE_START_FORM_AND_PROCESS_TASKS, 
+    FINISHED
+}
+
+enum TypeEntity {
+    DOMAIN, PROCESS_BINDING, START_FORM, USER_TASK, SERVICE_TASK
+}
+
+relationship OneToMany {
+	Process{etities} to Entity{process}
+    Application{etities} to Entity
+    Application{processes} to Process
+}
+
+dto all with mapstruct
+
+paginate Application, Process with pagination
+

@@ -1,0 +1,15 @@
+{
+  "fields": [],
+  "relationships": [],
+  "entityType": "process-binding",
+  "processBpmnId": "GenerationProcess",
+  "domainEntityName": "Process",
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "no",
+  "skipFakeData": true,
+  "name": "GenerationProcess",
+  "changelogDate": "20220323231203"
+}

@@ -1,0 +1,58 @@
+{
+  "generator-jhipster": {
+    "blueprints": [
+      {
+        "name": "generator-jhipster-agilekip",
+        "version": "0.0.12"
+      }
+    ],
+    "otherModules": [
+      {
+        "name": "generator-jhipster-agilekip",
+        "version": "0.0.12"
+      }
+    ],
+    "applicationType": "monolith",
+    "baseName": "AkipGenerationWeb",
+    "jhipsterVersion": "7.0.1",
+    "skipClient": false,
+    "skipServer": false,
+    "skipUserManagement": false,
+    "skipCheckLengthOfIdentifier": false,
+    "skipFakeData": false,
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "testFrameworks": [],
+    "pages": [],
+    "creationTimestamp": 1663625906214,
+    "serviceDiscoveryType": false,
+    "reactive": false,
+    "authenticationType": "jwt",
+    "packageName": "com.akipgenerationweb",
+    "serverPort": "8080",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "buildTool": "maven",
+    "serverSideOptions": [],
+    "websocket": false,
+    "searchEngine": false,
+    "messageBroker": false,
+    "enableSwaggerCodegen": false,
+    "clientFramework": "vue",
+    "withAdminUi": true,
+    "clientTheme": "yeti",
+    "clientThemeVariant": "dark",
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "packageFolder": "com/akipgenerationweb",
+    "jwtSecretKey": "NjExNTg3M2Q2ZjkwZTg3YzMyNWQ1YTBkZjkzNzI1YTk5OGM5ODQyYjdhN2U2OWExYTIxMTM5NDhkYmZlMTQ3NjQ4OTc3MjFkYmMxYjI0NTkzZmVjNjRhYTIyNTVjNDk4ZmM4YWI1NTAzYTNmOWNkZDRhNDQyYmM5ZDI4ZTZiNmM=",
+    "clientPackageManager": "npm",
+    "languages": ["en", "pt-br"],
+    "lastLiquibaseTimestamp": 1663806946000,
+    "entities": []
+  }
+}

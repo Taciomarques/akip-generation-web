@@ -1,0 +1,11 @@
+export enum TypeEntity {
+  DOMAIN = 'DOMAIN',
+
+  PROCESS_BINDING = 'PROCESS_BINDING',
+
+  START_FORM = 'START_FORM',
+
+  USER_TASK = 'USER_TASK',
+
+  SERVICE_TASK = 'SERVICE_TASK',
+}

@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "entidade",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fields",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "relations",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TypeEntity",
+      "fieldValues": "DOMAIN,PROCESS_BINDING,START_FORM,USER_TASK,SERVICE_TASK"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Entidade",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "process",
+      "otherEntityRelationshipName": "etities",
+      "relationshipName": "process",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "application",
+      "otherEntityRelationshipName": "etities",
+      "relationshipName": "application",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass",
+  "skipFakeData": true,
+  "changelogDate": "20220919230156"
+}

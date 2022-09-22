@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1nw9sko" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.3.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:category id="Category_0md3wwk">
+    <bpmn:categoryValue id="CategoryValue_18o5ctu" value="Process Information" />
+  </bpmn:category>
+  <bpmn:category id="Category_11bgnjk">
+    <bpmn:categoryValue id="CategoryValue_0wl73yx" value="Process Information" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collaboration_0gg1plc">
+    <bpmn:participant id="Participant_123vcy4" name="GenerationProcess" processRef="GenerationProcess" />
+    <bpmn:group id="Group_06p4nj2" categoryValueRef="CategoryValue_0wl73yx" />
+  </bpmn:collaboration>
+  <bpmn:process id="GenerationProcess" name="Generation Process" isExecutable="true">
+    <bpmn:startEvent id="Event_12ayvmj">
+      <bpmn:outgoing>Flow_0d9wksf</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_11d4ax4">
+      <bpmn:incoming>Flow_1yfztqa</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="TaskProvideStartFormInformationAndProcessTasks" name="Provide Start Form Information and Process Tasks for generation">
+      <bpmn:incoming>Flow_1elt3x7</bpmn:incoming>
+      <bpmn:outgoing>Flow_1yfztqa</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="TaskProvideProcessBpmn" name="Provide Process BPMN for generation">
+      <bpmn:documentation>Read Tasks of BPMN for process</bpmn:documentation>
+      <bpmn:incoming>Flow_11ad8rf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1elt3x7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="TaskProvideProcessBindingInformation" name="Provide Process Binding Information for generation">
+      <bpmn:documentation>Generation Process Bind</bpmn:documentation>
+      <bpmn:incoming>Flow_1ukttfj</bpmn:incoming>
+      <bpmn:outgoing>Flow_11ad8rf</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="TaskProvideDomainEntities" name="Provide Domain Entities Information for generation">
+      <bpmn:documentation>Generation Domain Entities 
+
+</bpmn:documentation>
+      <bpmn:incoming>Flow_1vu7tep</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ukttfj</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:intermediateCatchEvent id="Event_1lyz2oe">
+      <bpmn:incoming>Flow_0d9wksf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vu7tep</bpmn:outgoing>
+      <bpmn:conditionalEventDefinition id="ConditionalEventDefinition_19bglz9">
+        <bpmn:condition xsi:type="bpmn:tFormalExpression">${processInstance.processInstance.id != null}</bpmn:condition>
+      </bpmn:conditionalEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_0d9wksf" sourceRef="Event_12ayvmj" targetRef="Event_1lyz2oe" />
+    <bpmn:sequenceFlow id="Flow_1yfztqa" sourceRef="TaskProvideStartFormInformationAndProcessTasks" targetRef="Event_11d4ax4" />
+    <bpmn:sequenceFlow id="Flow_1elt3x7" sourceRef="TaskProvideProcessBpmn" targetRef="TaskProvideStartFormInformationAndProcessTasks" />
+    <bpmn:sequenceFlow id="Flow_11ad8rf" sourceRef="TaskProvideProcessBindingInformation" targetRef="TaskProvideProcessBpmn" />
+    <bpmn:sequenceFlow id="Flow_1ukttfj" sourceRef="TaskProvideDomainEntities" targetRef="TaskProvideProcessBindingInformation" />
+    <bpmn:sequenceFlow id="Flow_1vu7tep" sourceRef="Event_1lyz2oe" targetRef="TaskProvideDomainEntities" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0gg1plc">
+      <bpmndi:BPMNShape id="Participant_123vcy4_di" bpmnElement="Participant_123vcy4" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1130" height="340" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0bpzmxa" bpmnElement="Event_12ayvmj">
+        <dc:Bounds x="212" y="232" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_19l7y2r" bpmnElement="Event_11d4ax4">
+        <dc:Bounds x="1232" y="232" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0f8voih" bpmnElement="TaskProvideStartFormInformationAndProcessTasks">
+        <dc:Bounds x="980" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1xzas1g" bpmnElement="TaskProvideProcessBpmn">
+        <dc:Bounds x="770" y="210" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1nyo9ap" bpmnElement="TaskProvideProcessBindingInformation">
+        <dc:Bounds x="570" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1udxakv" bpmnElement="TaskProvideDomainEntities">
+        <dc:Bounds x="380" y="210" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0w9hrrd_di" bpmnElement="Event_1lyz2oe">
+        <dc:Bounds x="302" y="232" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_0onv4wj" bpmnElement="Flow_0d9wksf">
+        <di:waypoint x="248" y="250" />
+        <di:waypoint x="302" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0svrb3m" bpmnElement="Flow_1yfztqa">
+        <di:waypoint x="1080" y="250" />
+        <di:waypoint x="1232" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_16exjup" bpmnElement="Flow_1elt3x7">
+        <di:waypoint x="870" y="250" />
+        <di:waypoint x="980" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_10yuwjx" bpmnElement="Flow_11ad8rf">
+        <di:waypoint x="670" y="250" />
+        <di:waypoint x="770" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_10hj03b" bpmnElement="Flow_1ukttfj">
+        <di:waypoint x="480" y="250" />
+        <di:waypoint x="570" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vu7tep_di" bpmnElement="Flow_1vu7tep">
+        <di:waypoint x="338" y="250" />
+        <di:waypoint x="380" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_13gesjd" bpmnElement="Group_06p4nj2">
+        <dc:Bounds x="520" y="100" width="630" height="300" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="807" y="107" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

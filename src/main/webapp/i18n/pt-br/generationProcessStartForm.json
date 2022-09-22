@@ -1,0 +1,25 @@
+{
+  "akipGenerationWebApp": {
+    "generationProcessStartForm": {
+      "home": {
+        "title": "Generation Process Start Forms",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Generation Process Start Form",
+        "createOrEditLabel": "Criar ou editar Generation Process Start Form",
+        "notFound": "Nenhum Generation Process Start Form encontrado"
+      },
+      "created": "Um novo Generation Process Start Form foi criado com o identificador {{ param }}",
+      "updated": "Um Generation Process Start Form foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Generation Process Start Form foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Generation Process Start Form {{ id }}?"
+      },
+      "detail": {
+        "title": "Generation Process Start Form"
+      },
+      "id": "ID",
+      "name": "Name",
+      "application": "Application"
+    }
+  }
+}

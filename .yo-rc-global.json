@@ -1,0 +1,12 @@
+{
+  "generator-jhipster-agilekip:0.0.12": {
+    "promptValues": {
+      "packageName": "com.akipgenerationweb"
+    }
+  },
+  "generator-jhipster:7.0.1": {
+    "promptValues": {
+      "nativeLanguage": "en"
+    }
+  }
+}
