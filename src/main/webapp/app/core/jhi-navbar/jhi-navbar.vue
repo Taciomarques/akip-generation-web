@@ -1,9 +1,9 @@
 <template>
-  <b-navbar data-cy="navbar" toggleable="md" class="bg-primary py-0">
+  <b-navbar data-cy="navbar" toggleable="md" class="bg-primary navbar-dark py-0" style="height: 70px">
     <b-navbar-brand class="logo" b-link to="/">
       <span class="logo-img"></span>
       <span v-text="$t('global.title')" class="navbar-title">Akip Generation Web</span>
-      <span class="navbar-version">{version}</span>
+      <span class="navbar-version">BETA</span>
     </b-navbar-brand>
     <b-navbar-toggle
       right
@@ -29,79 +29,79 @@
           <font-awesome-icon icon="tasks" />
           <span v-text="$t('global.menu.entities.myCandidateTasks')">My Candidate Tasks</span>
         </b-nav-item>
-        <b-nav-item-dropdown right id="entity-menu" v-if="authenticated" active-class="active" class="pointer" data-cy="entity">
-          <span slot="button-content" class="navbar-dropdown-menu">
-            <font-awesome-icon icon="th-list" />
-            <span class="no-bold" v-text="$t('global.menu.entities.main')">Entities</span>
-          </span>
-          <b-dropdown-item to="/application">
-            <font-awesome-icon icon="asterisk" />
-            <span v-text="$t('global.menu.entities.application')">Application</span>
-          </b-dropdown-item>
-          <b-dropdown-item to="/process">
-            <font-awesome-icon icon="asterisk" />
-            <span v-text="$t('global.menu.entities.process')">Process</span>
-          </b-dropdown-item>
-          <b-dropdown-item to="/entidade">
-            <font-awesome-icon icon="asterisk" />
-            <span v-text="$t('global.menu.entities.entidade')">Entidade</span>
-          </b-dropdown-item>
-          <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
-        </b-nav-item-dropdown>
-        <b-nav-item-dropdown
-          right
-          id="admin-menu"
-          v-if="hasAnyAuthority('ROLE_ADMIN') && authenticated"
-          :class="{ 'router-link-active': subIsActive('/admin') }"
-          active-class="active"
-          class="pointer"
-          data-cy="adminMenu"
-        >
-          <span slot="button-content" class="navbar-dropdown-menu">
-            <font-awesome-icon icon="users-cog" />
-            <span class="no-bold" v-text="$t('global.menu.admin.main')">Administration</span>
-          </span>
-          <b-dropdown-item to="/process-definitions">
-            <font-awesome-icon icon="asterisk" />
-            <span v-text="$t('global.menu.entities.processDefinition')">Process Definitions</span>
-          </b-dropdown-item>
-          <b-dropdown-item to="/process-instances">
-            <font-awesome-icon icon="asterisk" />
-            <span v-text="$t('global.menu.entities.processInstance')">Process Instances</span>
-          </b-dropdown-item>
-          <b-dropdown-item to="/task-instances">
-            <font-awesome-icon icon="asterisk" />
-            <span v-text="$t('global.menu.entities.taskInstance')">Task Instances</span>
-          </b-dropdown-item>
-          <b-dropdown-item to="/admin/user-management" active-class="active">
-            <font-awesome-icon icon="users" />
-            <span v-text="$t('global.menu.admin.userManagement')">User management</span>
-          </b-dropdown-item>
-          <b-dropdown-item to="/admin/metrics" active-class="active">
-            <font-awesome-icon icon="tachometer-alt" />
-            <span v-text="$t('global.menu.admin.metrics')">Metrics</span>
-          </b-dropdown-item>
-          <b-dropdown-item to="/admin/health" active-class="active">
-            <font-awesome-icon icon="heart" />
-            <span v-text="$t('global.menu.admin.health')">Health</span>
-          </b-dropdown-item>
-          <b-dropdown-item to="/admin/configuration" active-class="active">
-            <font-awesome-icon icon="cogs" />
-            <span v-text="$t('global.menu.admin.configuration')">Configuration</span>
-          </b-dropdown-item>
-          <b-dropdown-item to="/admin/logs" active-class="active">
-            <font-awesome-icon icon="tasks" />
-            <span v-text="$t('global.menu.admin.logs')">Logs</span>
-          </b-dropdown-item>
-          <b-dropdown-item v-if="openAPIEnabled" to="/admin/docs" active-class="active">
-            <font-awesome-icon icon="book" />
-            <span v-text="$t('global.menu.admin.apidocs')">API</span>
-          </b-dropdown-item>
-          <b-dropdown-item v-if="!inProduction" href="./h2-console/" target="_tab">
-            <font-awesome-icon icon="database" />
-            <span v-text="$t('global.menu.admin.database')">Database</span>
-          </b-dropdown-item>
-        </b-nav-item-dropdown>
+        <!--        <b-nav-item-dropdown right id="akipEntity-menu" v-if="authenticated" active-class="active" class="pointer" data-cy="akipEntity">-->
+        <!--          <span slot="button-content" class="navbar-dropdown-menu">-->
+        <!--            <font-awesome-icon icon="th-list" />-->
+        <!--            <span class="no-bold" v-text="$t('global.menu.entities.main')">Entities</span>-->
+        <!--          </span>-->
+        <!--          <b-dropdown-item to="/akip-application">-->
+        <!--            <font-awesome-icon icon="asterisk" />-->
+        <!--            <span v-text="$t('global.menu.entities.akipApplication')">AkipApplication</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--          <b-dropdown-item to="/akip-process">-->
+        <!--            <font-awesome-icon icon="asterisk" />-->
+        <!--            <span v-text="$t('global.menu.entities.akipProcess')">AkipProcess</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--          <b-dropdown-item to="/akip-entity">-->
+        <!--            <font-awesome-icon icon="asterisk" />-->
+        <!--            <span v-text="$t('global.menu.entities.akipEntity')">AkipEntity</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--          &lt;!&ndash; jhipster-needle-add-akipEntity-to-menu - JHipster will add entities to the menu here &ndash;&gt;-->
+        <!--        </b-nav-item-dropdown>-->
+        <!--        <b-nav-item-dropdown-->
+        <!--          right-->
+        <!--          id="admin-menu"-->
+        <!--          v-if="hasAnyAuthority('ROLE_ADMIN') && authenticated"-->
+        <!--          :class="{ 'router-link-active': subIsActive('/admin') }"-->
+        <!--          active-class="active"-->
+        <!--          class="pointer"-->
+        <!--          data-cy="adminMenu"-->
+        <!--        >-->
+        <!--          <span slot="button-content" class="navbar-dropdown-menu">-->
+        <!--            <font-awesome-icon icon="users-cog" />-->
+        <!--            <span class="no-bold" v-text="$t('global.menu.admin.main')">Administration</span>-->
+        <!--          </span>-->
+        <!--          <b-dropdown-item to="/process-definitions">-->
+        <!--            <font-awesome-icon icon="asterisk" />-->
+        <!--            <span v-text="$t('global.menu.entities.processDefinition')">Process Definitions</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--          <b-dropdown-item to="/process-instances">-->
+        <!--            <font-awesome-icon icon="asterisk" />-->
+        <!--            <span v-text="$t('global.menu.entities.processInstance')">Process Instances</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--          <b-dropdown-item to="/task-instances">-->
+        <!--            <font-awesome-icon icon="asterisk" />-->
+        <!--            <span v-text="$t('global.menu.entities.taskInstance')">Task Instances</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--          <b-dropdown-item to="/admin/user-management" active-class="active">-->
+        <!--            <font-awesome-icon icon="users" />-->
+        <!--            <span v-text="$t('global.menu.admin.userManagement')">User management</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--          <b-dropdown-item to="/admin/metrics" active-class="active">-->
+        <!--            <font-awesome-icon icon="tachometer-alt" />-->
+        <!--            <span v-text="$t('global.menu.admin.metrics')">Metrics</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--          <b-dropdown-item to="/admin/health" active-class="active">-->
+        <!--            <font-awesome-icon icon="heart" />-->
+        <!--            <span v-text="$t('global.menu.admin.health')">Health</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--          <b-dropdown-item to="/admin/configuration" active-class="active">-->
+        <!--            <font-awesome-icon icon="cogs" />-->
+        <!--            <span v-text="$t('global.menu.admin.configuration')">Configuration</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--          <b-dropdown-item to="/admin/logs" active-class="active">-->
+        <!--            <font-awesome-icon icon="tasks" />-->
+        <!--            <span v-text="$t('global.menu.admin.logs')">Logs</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--          <b-dropdown-item v-if="openAPIEnabled" to="/admin/docs" active-class="active">-->
+        <!--            <font-awesome-icon icon="book" />-->
+        <!--            <span v-text="$t('global.menu.admin.apidocs')">API</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--          <b-dropdown-item v-if="!inProduction" href="./h2-console/" target="_tab">-->
+        <!--            <font-awesome-icon icon="database" />-->
+        <!--            <span v-text="$t('global.menu.admin.database')">Database</span>-->
+        <!--          </b-dropdown-item>-->
+        <!--        </b-nav-item-dropdown>-->
         <b-nav-item-dropdown id="languagesnavBarDropdown" right v-if="languages && Object.keys(languages).length > 1">
           <span slot="button-content">
             <font-awesome-icon icon="flag" />
@@ -122,13 +122,14 @@
           id="account-menu"
           :class="{ 'router-link-active': subIsActive('/account') }"
           active-class="active"
-          class="pointer"
+          class="pointer bg-light"
+          style="border-radius: 10px"
           data-cy="accountMenu"
         >
           <span slot="button-content" class="navbar-dropdown-menu">
-            <font-awesome-icon icon="user" />
-            <span v-if="!authenticated" class="no-bold" v-text="$t('global.menu.account.main')"> Account </span>
-            <span v-else class="no-bold" v-text="$store.getters.account.login"></span>
+            <font-awesome-icon icon="user" style="color: #009045" />
+            <span v-if="!authenticated" class="no-bold text-primary" v-text="$t('global.menu.account.main')"> Account </span>
+            <span v-else class="no-bold text-primary" v-text="$store.getters.account.login"></span>
           </span>
           <b-dropdown-item data-cy="settings" to="/account/settings" tag="b-dropdown-item" v-if="authenticated" active-class="active">
             <font-awesome-icon icon="wrench" />

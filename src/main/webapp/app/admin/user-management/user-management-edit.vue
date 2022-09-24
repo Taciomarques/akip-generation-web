@@ -20,19 +20,19 @@
             />
 
             <div v-if="$v.userAccount.login.$anyDirty && $v.userAccount.login.$invalid">
-              <small class="form-text text-danger" v-if="!$v.userAccount.login.required" v-text="$t('entity.validation.required')">
+              <small class="form-text text-danger" v-if="!$v.userAccount.login.required" v-text="$t('akipEntity.validation.required')">
                 This field is required.
               </small>
 
               <small
                 class="form-text text-danger"
                 v-if="!$v.userAccount.login.maxLength"
-                v-text="$t('entity.validation.maxlength', { max: 50 })"
+                v-text="$t('akipEntity.validation.maxlength', { max: 50 })"
               >
                 This field cannot be longer than 50 characters.
               </small>
 
-              <small class="form-text text-danger" v-if="!$v.userAccount.login.pattern" v-text="$t('entity.validation.patternLogin')">
+              <small class="form-text text-danger" v-if="!$v.userAccount.login.pattern" v-text="$t('akipEntity.validation.patternLogin')">
                 This field can only contain letters, digits and e-mail addresses.
               </small>
             </div>
@@ -52,7 +52,7 @@
               <small
                 class="form-text text-danger"
                 v-if="!$v.userAccount.firstName.maxLength"
-                v-text="$t('entity.validation.maxlength', { max: 50 })"
+                v-text="$t('akipEntity.validation.maxlength', { max: 50 })"
               >
                 This field cannot be longer than 50 characters.
               </small>
@@ -73,7 +73,7 @@
               <small
                 class="form-text text-danger"
                 v-if="!$v.userAccount.lastName.maxLength"
-                v-text="$t('entity.validation.maxlength', { max: 50 })"
+                v-text="$t('akipEntity.validation.maxlength', { max: 50 })"
               >
                 This field cannot be longer than 50 characters.
               </small>

@@ -4,9 +4,9 @@ import sinon, { SinonStubbedInstance } from 'sinon';
 import VueRouter from 'vue-router';
 
 import * as config from '@/shared/config/config';
-import ApplicationDetailComponent from '@/entities/application/application-details.vue';
-import ApplicationClass from '@/entities/application/application-details.component';
-import ApplicationService from '@/entities/application/application.service';
+import ApplicationDetailComponent from '../../../../../../main/webapp/app/entities/akip-application/akip-application-details.vue';
+import ApplicationClass from '../../../../../../main/webapp/app/entities/akip-application/akip-application-details.component';
+import AkipApplicationService from '../../../../../../main/webapp/app/entities/akip-application/akip-application.service';
 import router from '@/router';
 
 const localVue = createLocalVue();
@@ -22,17 +22,17 @@ describe('Component Tests', () => {
   describe('Application Management Detail Component', () => {
     let wrapper: Wrapper<ApplicationClass>;
     let comp: ApplicationClass;
-    let applicationServiceStub: SinonStubbedInstance<ApplicationService>;
+    let applicationServiceStub: SinonStubbedInstance<AkipApplicationService>;
 
     beforeEach(() => {
-      applicationServiceStub = sinon.createStubInstance<ApplicationService>(ApplicationService);
+      applicationServiceStub = sinon.createStubInstance<AkipApplicationService>(AkipApplicationService);
 
       wrapper = shallowMount<ApplicationClass>(ApplicationDetailComponent, {
         store,
         i18n,
         localVue,
         router,
-        provide: { applicationService: () => applicationServiceStub },
+        provide: { akipApplicationService: () => applicationServiceStub },
       });
       comp = wrapper.vm;
     });

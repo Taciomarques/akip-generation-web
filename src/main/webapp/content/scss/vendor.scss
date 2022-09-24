@@ -16,6 +16,7 @@ $base-bg: #ffffff;
 $item-open-color: #ffffff;
 $mobile-item-color: #ffffff;
 @import '~vue-sidebar-menu/src/scss/vue-sidebar-menu.scss';
+@import '@fortawesome/fontawesome-free/css/all.css';
 
 @import '~bootswatch/dist/yeti/variables';
 @import '~bootstrap/scss/bootstrap';
@@ -113,8 +114,7 @@ nav li.router-link-active .navbar-dropdown-menu {
 //
 //}
 //.v-sidebar-menu.vsm_collapsed {
-//  color: $primary;
-//
+//  color: #ffffff;
 //}
 //.v-sidebar-menu.vsm_rtl {
 //  color: #ffffff;
@@ -149,15 +149,16 @@ nav li.router-link-active .navbar-dropdown-menu {
 //
 //}
 //
-//.v-sidebar-menu .vsm--icon {
-//
-//}
-//.v-sidebar-menu .vsm--arrow {
-//
-//}
-//.v-sidebar-menu .vsm--arrow_open {
-//
-//}
+.v-sidebar-menu .vsm--icon {
+  color: $primary;
+}
+
+.v-sidebar-menu .vsm--arrow {
+  color: $primary;
+}
+.v-sidebar-menu .vsm--arrow_open {
+  color: #ffffff;
+}
 //.v-sidebar-menu .vsm--badge {
 //
 //}
@@ -173,8 +174,8 @@ nav li.router-link-active .navbar-dropdown-menu {
 //.v-sidebar-menu .vsm--mobile-bg {
 //
 //}
-//.v-sidebar-menu .vsm--toggle-btn {
-//
-//}
+.v-sidebar-menu .vsm--toggle-btn {
+  color: $primary;
+}
 
 /* jhipster-needle-scss-add-vendor JHipster will add new css style */

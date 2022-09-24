@@ -1,18 +1,18 @@
 
-entity Application {
+akipEntity Application {
 	name String,
     repositoryName String,
     createDate LocalDate
     properties String
 }
 
-entity Process {
+akipEntity Process {
 	name String,
 	percentageExecuted Integer,
     status StatusProcess
 }
 
-entity Entity {
+akipEntity Entity {
 	name String,
     fields String,
     relations String,
@@ -20,10 +20,10 @@ entity Entity {
 }
 
 enum StatusProcess {
-	WAITING_PROVIDE_DOMAIN_ENTITIES, 
-    WAITING_PROVIDE_PROCESS_BINDING, 
-    WAITING_PROVIDE_PROCESS_BPMN, 
-    WAITING_PROVIDE_START_FORM_AND_PROCESS_TASKS, 
+	WAITING_PROVIDE_DOMAIN_ENTITIES,
+    WAITING_PROVIDE_PROCESS_BINDING,
+    WAITING_PROVIDE_PROCESS_BPMN,
+    WAITING_PROVIDE_START_FORM_AND_PROCESS_TASKS,
     FINISHED
 }
 

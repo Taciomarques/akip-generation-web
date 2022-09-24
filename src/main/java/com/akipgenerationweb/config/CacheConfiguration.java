@@ -1,5 +1,8 @@
 package com.akipgenerationweb.config;
 
+import com.akipgenerationweb.domain.AkipApplication;
+import com.akipgenerationweb.domain.AkipEntity;
+import com.akipgenerationweb.domain.AkipProcess;
 import java.time.Duration;
 import org.ehcache.config.builders.*;
 import org.ehcache.jsr107.Eh107Configuration;
@@ -48,12 +51,12 @@ public class CacheConfiguration {
             createCache(cm, com.akipgenerationweb.domain.User.class.getName());
             createCache(cm, com.akipgenerationweb.domain.Authority.class.getName());
             createCache(cm, com.akipgenerationweb.domain.User.class.getName() + ".authorities");
-            createCache(cm, com.akipgenerationweb.domain.Application.class.getName());
-            createCache(cm, com.akipgenerationweb.domain.Application.class.getName() + ".etities");
-            createCache(cm, com.akipgenerationweb.domain.Application.class.getName() + ".processes");
-            createCache(cm, com.akipgenerationweb.domain.Process.class.getName());
-            createCache(cm, com.akipgenerationweb.domain.Process.class.getName() + ".etities");
-            createCache(cm, com.akipgenerationweb.domain.Entidade.class.getName());
+            createCache(cm, AkipApplication.class.getName());
+            createCache(cm, AkipApplication.class.getName() + ".etities");
+            createCache(cm, AkipApplication.class.getName() + ".processes");
+            createCache(cm, AkipProcess.class.getName());
+            createCache(cm, AkipProcess.class.getName() + ".etities");
+            createCache(cm, AkipEntity.class.getName());
             createCache(cm, com.akipgenerationweb.domain.GenerationProcess.class.getName());
             // jhipster-needle-ehcache-add-entry
         };

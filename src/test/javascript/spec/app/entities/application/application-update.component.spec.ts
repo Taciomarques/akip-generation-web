@@ -4,13 +4,13 @@ import sinon, { SinonStubbedInstance } from 'sinon';
 import Router from 'vue-router';
 
 import * as config from '@/shared/config/config';
-import ApplicationUpdateComponent from '@/entities/application/application-update.vue';
-import ApplicationClass from '@/entities/application/application-update.component';
-import ApplicationService from '@/entities/application/application.service';
+import ApplicationUpdateComponent from '../../../../../../main/webapp/app/entities/akip-application/akip-application-update.vue';
+import ApplicationClass from '../../../../../../main/webapp/app/entities/akip-application/akip-application-update.component';
+import AkipApplicationService from '../../../../../../main/webapp/app/entities/akip-application/akip-application.service';
 
-import EntidadeService from '@/entities/entidade/entidade.service';
+import AkipEntityService from '../../../../../../main/webapp/app/entities/akip-entity/akip-entity.service';
 
-import ProcessService from '@/entities/process/process.service';
+import AkipProcessService from '../../../../../../main/webapp/app/entities/akip-process/akip-process.service';
 
 const localVue = createLocalVue();
 
@@ -29,10 +29,10 @@ describe('Component Tests', () => {
   describe('Application Management Update Component', () => {
     let wrapper: Wrapper<ApplicationClass>;
     let comp: ApplicationClass;
-    let applicationServiceStub: SinonStubbedInstance<ApplicationService>;
+    let applicationServiceStub: SinonStubbedInstance<AkipApplicationService>;
 
     beforeEach(() => {
-      applicationServiceStub = sinon.createStubInstance<ApplicationService>(ApplicationService);
+      applicationServiceStub = sinon.createStubInstance<AkipApplicationService>(AkipApplicationService);
 
       wrapper = shallowMount<ApplicationClass>(ApplicationUpdateComponent, {
         store,
@@ -40,11 +40,11 @@ describe('Component Tests', () => {
         localVue,
         router,
         provide: {
-          applicationService: () => applicationServiceStub,
+          akipApplicationService: () => applicationServiceStub,
 
-          entidadeService: () => new EntidadeService(),
+          akipEntityService: () => new AkipEntityService(),
 
-          processService: () => new ProcessService(),
+          akipProcessService: () => new AkipProcessService(),
         },
       });
       comp = wrapper.vm;

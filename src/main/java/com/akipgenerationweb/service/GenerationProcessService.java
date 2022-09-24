@@ -1,8 +1,8 @@
 package com.akipgenerationweb.service;
 
 import com.akipgenerationweb.domain.GenerationProcess;
+import com.akipgenerationweb.repository.AkipProcessRepository;
 import com.akipgenerationweb.repository.GenerationProcessRepository;
-import com.akipgenerationweb.repository.ProcessRepository;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
 import com.akipgenerationweb.service.mapper.GenerationProcessMapper;
 import java.util.LinkedList;
@@ -31,7 +31,7 @@ public class GenerationProcessService {
 
     private final ProcessInstanceService processInstanceService;
 
-    private final ProcessRepository processRepository;
+    private final AkipProcessRepository akipProcessRepository;
 
     private final GenerationProcessRepository generationProcessRepository;
 
@@ -40,13 +40,13 @@ public class GenerationProcessService {
 
     public GenerationProcessService(
         ProcessInstanceService processInstanceService,
-        ProcessRepository processRepository,
+        AkipProcessRepository akipProcessRepository,
         GenerationProcessRepository generationProcessRepository,
         GenerationProcessMapper generationProcessMapper,
         RuntimeService runtimeService
     ) {
         this.processInstanceService = processInstanceService;
-        this.processRepository = processRepository;
+        this.akipProcessRepository = akipProcessRepository;
         this.generationProcessRepository = generationProcessRepository;
         this.generationProcessMapper = generationProcessMapper;
         this.runtimeService = runtimeService;
@@ -64,12 +64,12 @@ public class GenerationProcessService {
         GenerationProcess generationProcess = generationProcessMapper.toEntity(generationProcessDTO);
 
         //Saving the domainEntity
-        processRepository.save(generationProcess.getProcess());
+        akipProcessRepository.save(generationProcess.getAkipProcess());
 
         //Creating the process instance in the Camunda and setting it in the process entity
         ProcessInstance processInstance = processInstanceService.create(
             BPMN_PROCESS_DEFINITION_ID,
-            "Process#" + generationProcess.getProcess().getId(),
+            "Process#" + generationProcess.getAkipProcess().getId(),
             generationProcessMapper.toDto(generationProcess)
         );
         generationProcess.setProcessInstance(processInstance);

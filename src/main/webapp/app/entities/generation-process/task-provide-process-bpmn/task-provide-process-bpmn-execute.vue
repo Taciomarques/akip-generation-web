@@ -21,10 +21,10 @@
                 id="task-provide-process-bpmn-bpmn"
                 data-cy="bpmn"
                 :class="{
-                  valid: !$v.taskContext.generationProcess.process.bpmn.$invalid,
-                  invalid: $v.taskContext.generationProcess.process.bpmn.$invalid,
+                  valid: !$v.taskContext.generationProcess.akipProcess.bpmn.$invalid,
+                  invalid: $v.taskContext.generationProcess.akipProcess.bpmn.$invalid,
                 }"
-                v-model="$v.taskContext.generationProcess.process.bpmn.$model"
+                v-model="$v.taskContext.generationProcess.akipProcess.bpmn.$model"
               ></textarea>
             </div>
           </template>

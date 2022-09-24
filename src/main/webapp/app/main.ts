@@ -35,9 +35,9 @@ import TranslationService from '@/locale/translation.service';
 import UserOAuth2Service from '@/entities/user/user.oauth2.service';
 /* tslint:disable */
 
-import ApplicationService from '@/entities/application/application.service';
-import ProcessService from '@/entities/process/process.service';
-import EntidadeService from '@/entities/entidade/entidade.service';
+import AkipApplicationService from '@/entities/akip-application/akip-application.service';
+import AkipProcessService from '@/entities/akip-process/akip-process.service';
+import AkipEntityService from '@/entities/akip-entity/akip-entity.service';
 import GenerationProcessService from '@/entities/generation-process/generation-process.service';
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
 
@@ -102,9 +102,9 @@ new Vue({
 
     userOAuth2Service: () => new UserOAuth2Service(),
     translationService: () => translationService,
-    applicationService: () => new ApplicationService(),
-    processService: () => new ProcessService(),
-    entidadeService: () => new EntidadeService(),
+    akipApplicationService: () => new AkipApplicationService(),
+    akipEntityService: () => new AkipEntityService(),
+    akipProcessService: () => new AkipProcessService(),
     generationProcessService: () => new GenerationProcessService(),
     // jhipster-needle-add-entity-service-to-main - JHipster will import entities services here
     accountService: () => accountService,

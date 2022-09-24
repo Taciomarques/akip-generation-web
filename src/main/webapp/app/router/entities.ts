@@ -3,23 +3,23 @@ import { Authority } from '@/shared/security/authority';
 // prettier-ignore
 
 // prettier-ignore
-const Application = () => import('@/entities/application/application.vue');
+const AkipApplication = () => import('@/entities/akip-application/akip-application.vue');
 // prettier-ignore
-const ApplicationUpdate = () => import('@/entities/application/application-update.vue');
+const AkipApplicationUpdate = () => import('@/entities/akip-application/akip-application-update.vue');
 // prettier-ignore
-const ApplicationDetails = () => import('@/entities/application/application-details.vue');
+const AkipApplicationDetails = () => import('@/entities/akip-application/akip-application-details.vue');
 // prettier-ignore
-const Process = () => import('@/entities/process/process.vue');
+const AkipProcess = () => import('@/entities/akip-process/akip-process.vue');
 // prettier-ignore
-const ProcessUpdate = () => import('@/entities/process/process-update.vue');
+const AkipProcessUpdate = () => import('@/entities/akip-process/akip-process-update.vue');
 // prettier-ignore
-const ProcessDetails = () => import('@/entities/process/process-details.vue');
+const AKipProcessDetails = () => import('@/entities/akip-process/akip-process-details.vue');
 // prettier-ignore
-const Entidade = () => import('@/entities/entidade/entidade.vue');
+const AkipEntity = () => import('@/entities/akip-entity/akip-entity.vue');
 // prettier-ignore
-const EntidadeUpdate = () => import('@/entities/entidade/entidade-update.vue');
+const AkipEntityUpdate = () => import('@/entities/akip-entity/akip-entity-update.vue');
 // prettier-ignore
-const EntidadeDetails = () => import('@/entities/entidade/entidade-details.vue');
+const AkipEntityDetails = () => import('@/entities/akip-entity/akip-entity-details.vue');
 // prettier-ignore
 const GenerationProcessDetails = () => import('@/entities/generation-process/generation-process-details.vue');
 // prettier-ignore
@@ -34,75 +34,75 @@ const GenerationProcess_TaskProvideProcessBpmnExecute = () => import('@/entities
 
 export default [
   {
-    path: '/application',
-    name: 'Application',
-    component: Application,
+    path: '/akip-application',
+    name: 'AkipApplication',
+    component: AkipApplication,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/application/new',
-    name: 'ApplicationCreate',
-    component: ApplicationUpdate,
+    path: '/akip-application/new',
+    name: 'AkipApplicationCreate',
+    component: AkipApplicationUpdate,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/application/:applicationId/edit',
-    name: 'ApplicationEdit',
-    component: ApplicationUpdate,
+    path: '/akip-application/:akipApplicationId/edit',
+    name: 'AkipApplicationEdit',
+    component: AkipApplicationUpdate,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/application/:applicationId/view',
-    name: 'ApplicationView',
-    component: ApplicationDetails,
+    path: '/akip-application/:akipApplicationId/view',
+    name: 'AkipApplicationView',
+    component: AkipApplicationDetails,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/process',
-    name: 'Process',
-    component: Process,
+    path: '/akip-process',
+    name: 'AkipProcess',
+    component: AkipProcess,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/process/new',
-    name: 'ProcessCreate',
-    component: ProcessUpdate,
+    path: '/akip-process/new',
+    name: 'AkipProcessCreate',
+    component: AkipProcessUpdate,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/process/:processId/edit',
-    name: 'ProcessEdit',
-    component: ProcessUpdate,
+    path: '/akip-process/:akipProcessId/edit',
+    name: 'AkipProcessEdit',
+    component: AkipProcessUpdate,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/process/:processId/view',
-    name: 'ProcessView',
-    component: ProcessDetails,
+    path: '/akip-process/:akipProcessId/view',
+    name: 'AkipProcessView',
+    component: AKipProcessDetails,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/entidade',
-    name: 'Entidade',
-    component: Entidade,
+    path: '/akip-entity',
+    name: 'AkipEntity',
+    component: AkipEntity,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/entidade/new',
-    name: 'EntidadeCreate',
-    component: EntidadeUpdate,
+    path: '/akip-entity/new',
+    name: 'AkipEntityCreate',
+    component: AkipEntityUpdate,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/entidade/:entidadeId/edit',
-    name: 'EntidadeEdit',
-    component: EntidadeUpdate,
+    path: '/akip-entity/:akipEntityId/edit',
+    name: 'AkipEntityEdit',
+    component: AkipEntityUpdate,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/entidade/:entidadeId/view',
-    name: 'EntidadeView',
-    component: EntidadeDetails,
+    path: '/akip-entity/:akipEntityId/view',
+    name: 'AkipEntityView',
+    component: AkipEntityDetails,
     meta: { authorities: [Authority.USER] },
   },
   {

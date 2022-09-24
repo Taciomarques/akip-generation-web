@@ -13,7 +13,7 @@ public class GenerationProcessDTO implements Serializable {
 
     private ProcessInstanceDTO processInstance;
 
-    private ProcessDTO process;
+    private AkipProcessDTO akipProcess;
 
     public Long getId() {
         return id;
@@ -31,12 +31,12 @@ public class GenerationProcessDTO implements Serializable {
         this.processInstance = processInstance;
     }
 
-    public ProcessDTO getProcess() {
-        return process;
+    public AkipProcessDTO getAkipProcess() {
+        return akipProcess;
     }
 
-    public void setProcess(ProcessDTO process) {
-        this.process = process;
+    public void setAkipProcess(AkipProcessDTO akipProcess) {
+        this.akipProcess = akipProcess;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class GenerationProcessDTO implements Serializable {
         return "GenerationProcessDTO{" +
             "id=" + getId() +
             ", processInstance=" + getProcessInstance() +
-            ", process=" + getProcess() +
+            ", akipProcess=" + getAkipProcess() +
             "}";
     }
 }

@@ -1,19 +1,19 @@
 import { Component, Vue, Inject } from 'vue-property-decorator';
 
-import ApplicationService from '@/entities/application/application.service'; //
-import { IApplication } from '@/shared/model/application.model';
+import AkipApplicationService from '@/entities/akip-application/akip-application.service'; //
+import { IAkipApplication } from '@/shared/model/akip-application.model';
 
 import { IGenerationProcess, GenerationProcess } from '@/shared/model/generation-process.model';
 
 import { ProcessInstance, ProcessDefinitionService } from 'akip-vue-community';
 
-import { Process } from '@/shared/model/process.model';
+import { AkipProcess } from '@/shared/model/akip-process.model';
 import GenerationProcessService from './generation-process.service';
 import { required } from 'vuelidate/lib/validators';
 
 const validations: any = {
   generationProcess: {
-    process: {
+    akipProcess: {
       name: { required },
       application: { required },
     },
@@ -31,9 +31,9 @@ export default class GenerationProcessStartFormInitComponent extends Vue {
   public bpmnProcessDefinitionId: string = 'GenerationProcess';
   public generationProcess: IGenerationProcess = new GenerationProcess();
 
-  @Inject('applicationService') private applicationService: () => ApplicationService;
+  @Inject('akipApplicationService') private akipApplicationService: () => AkipApplicationService;
 
-  public Applications: IApplication[] = [];
+  public akipApplications: IAkipApplication[] = [];
 
   public isSaving = false;
   public currentLanguage = '';
@@ -75,7 +75,7 @@ export default class GenerationProcessStartFormInitComponent extends Vue {
   }
 
   public initGenerationProcessStartForm(): void {
-    this.generationProcess.process = new Process();
+    this.generationProcess.akipProcess = new AkipProcess();
   }
 
   public previousState(): void {
@@ -87,10 +87,10 @@ export default class GenerationProcessStartFormInitComponent extends Vue {
       this.generationProcess.processInstance = new ProcessInstance();
       this.generationProcess.processInstance.processDefinition = res;
     });
-    this.applicationService()
+    this.akipApplicationService()
       .retrieve()
       .then(res => {
-        this.Applications = res.data;
+        this.akipApplications = res.data;
       });
   }
 }

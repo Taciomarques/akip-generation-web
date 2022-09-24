@@ -1,11 +1,11 @@
-import { IProcess } from '@/shared/model/process.model';
+import { IAkipProcess } from '@/shared/model/akip-process.model';
 
 export interface IGenerationProcess {
   id?: number;
   processInstance?: any | null;
-  process?: IProcess | null;
+  akipProcess?: IAkipProcess | null;
 }
 
 export class GenerationProcess implements IGenerationProcess {
-  constructor(public id?: number, public processInstance?: any | null, public process?: IProcess | null) {}
+  constructor(public id?: number, public processInstance?: any | null, public akipProcess?: IAkipProcess | null) {}
 }

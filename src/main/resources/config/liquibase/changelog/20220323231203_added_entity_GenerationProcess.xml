@@ -7,7 +7,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <!--
-        Added the entity GenerationProcess.
+        Added the akipEntity GenerationProcess.
     -->
     <changeSet id="20220323231203" author="jhipster">
         <createTable tableName="generation_process">
@@ -17,7 +17,7 @@
             <column name="process_instance_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="process_id" type="bigint">
+            <column name="akip_process_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->

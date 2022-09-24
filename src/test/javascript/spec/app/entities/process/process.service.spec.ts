@@ -2,8 +2,8 @@
 import axios from 'axios';
 import sinon from 'sinon';
 
-import ProcessService from '@/entities/process/process.service';
-import { Process } from '@/shared/model/process.model';
+import AkipProcessService from '../../../../../../main/webapp/app/entities/akip-process/akip-process.service';
+import { AkipProcess } from '@/shared/model/akip-process.model';
 import { StatusProcess } from '@/shared/model/enumerations/status-process.model';
 
 const error = {
@@ -25,12 +25,12 @@ const axiosStub = {
 
 describe('Service Tests', () => {
   describe('Process Service', () => {
-    let service: ProcessService;
+    let service: AkipProcessService;
     let elemDefault;
 
     beforeEach(() => {
-      service = new ProcessService();
-      elemDefault = new Process(0, 'AAAAAAA', 0, StatusProcess.WAITING_PROVIDE_DOMAIN_ENTITIES);
+      service = new AkipProcessService();
+      elemDefault = new AkipProcess(0, 'AAAAAAA', 0, StatusProcess.WAITING_PROVIDE_DOMAIN_ENTITIES);
     });
 
     describe('Service methods', () => {
@@ -113,7 +113,7 @@ describe('Service Tests', () => {
           {
             name: 'BBBBBB',
           },
-          new Process()
+          new AkipProcess()
         );
         const returnedFromService = Object.assign(patchObject, elemDefault);
 

@@ -10,9 +10,9 @@
             <span v-text="$t('akipGenerationWebApp.generationProcess.detail.title')">GenerationProcess</span> #{{ generationProcess.id }}
           </template>
           <template v-slot:details>
-            <div class="card" v-if="generationProcess.process">
+            <div class="card" v-if="generationProcess.akipProcess">
               <h5 class="card-header">
-                <span class="title"> Process #{{ generationProcess.process.id }} </span>
+                <span class="title"> Process #{{ generationProcess.akipProcess.id }} </span>
               </h5>
             </div>
           </template>

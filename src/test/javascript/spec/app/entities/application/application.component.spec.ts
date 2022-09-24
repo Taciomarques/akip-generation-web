@@ -3,9 +3,9 @@ import { shallowMount, createLocalVue, Wrapper } from '@vue/test-utils';
 import sinon, { SinonStubbedInstance } from 'sinon';
 
 import * as config from '@/shared/config/config';
-import ApplicationComponent from '@/entities/application/application.vue';
-import ApplicationClass from '@/entities/application/application.component';
-import ApplicationService from '@/entities/application/application.service';
+import ApplicationComponent from '../../../../../../main/webapp/app/entities/akip-application/akip-application.vue';
+import ApplicationClass from '../../../../../../main/webapp/app/entities/akip-application/akip-application.component';
+import AkipApplicationService from '../../../../../../main/webapp/app/entities/akip-application/akip-application.service';
 
 const localVue = createLocalVue();
 
@@ -30,10 +30,10 @@ describe('Component Tests', () => {
   describe('Application Management Component', () => {
     let wrapper: Wrapper<ApplicationClass>;
     let comp: ApplicationClass;
-    let applicationServiceStub: SinonStubbedInstance<ApplicationService>;
+    let applicationServiceStub: SinonStubbedInstance<AkipApplicationService>;
 
     beforeEach(() => {
-      applicationServiceStub = sinon.createStubInstance<ApplicationService>(ApplicationService);
+      applicationServiceStub = sinon.createStubInstance<AkipApplicationService>(AkipApplicationService);
       applicationServiceStub.retrieve.resolves({ headers: {} });
 
       wrapper = shallowMount<ApplicationClass>(ApplicationComponent, {
@@ -42,7 +42,7 @@ describe('Component Tests', () => {
         localVue,
         stubs: { bModal: bModalStub as any },
         provide: {
-          applicationService: () => applicationServiceStub,
+          akipApplicationService: () => applicationServiceStub,
         },
       });
       comp = wrapper.vm;

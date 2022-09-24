@@ -3,9 +3,9 @@ import { shallowMount, createLocalVue, Wrapper } from '@vue/test-utils';
 import sinon, { SinonStubbedInstance } from 'sinon';
 
 import * as config from '@/shared/config/config';
-import EntidadeComponent from '@/entities/entidade/entidade.vue';
-import EntidadeClass from '@/entities/entidade/entidade.component';
-import EntidadeService from '@/entities/entidade/entidade.service';
+import EntidadeComponent from '../../../../../../main/webapp/app/entities/akip-entity/akip-entity.vue';
+import EntidadeClass from '../../../../../../main/webapp/app/entities/akip-entity/akip-entity.component';
+import AkipEntityService from '../../../../../../main/webapp/app/entities/akip-entity/akip-entity.service';
 
 const localVue = createLocalVue();
 
@@ -30,10 +30,10 @@ describe('Component Tests', () => {
   describe('Entidade Management Component', () => {
     let wrapper: Wrapper<EntidadeClass>;
     let comp: EntidadeClass;
-    let entidadeServiceStub: SinonStubbedInstance<EntidadeService>;
+    let entidadeServiceStub: SinonStubbedInstance<AkipEntityService>;
 
     beforeEach(() => {
-      entidadeServiceStub = sinon.createStubInstance<EntidadeService>(EntidadeService);
+      entidadeServiceStub = sinon.createStubInstance<AkipEntityService>(AkipEntityService);
       entidadeServiceStub.retrieve.resolves({ headers: {} });
 
       wrapper = shallowMount<EntidadeClass>(EntidadeComponent, {
@@ -42,7 +42,7 @@ describe('Component Tests', () => {
         localVue,
         stubs: { bModal: bModalStub as any },
         provide: {
-          entidadeService: () => entidadeServiceStub,
+          akipEntityService: () => entidadeServiceStub,
         },
       });
       comp = wrapper.vm;

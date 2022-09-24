@@ -9,7 +9,7 @@
         "main": "Entidades",
         "application": "Application",
         "process": "Process",
-        "entidade": "Entidade",
+        "entity": "Entidade",
         "generationProcess": "Generation Process",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },

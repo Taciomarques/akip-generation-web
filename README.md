@@ -1,6 +1,6 @@
 # AkipGenerationWeb
 
-This application was generated using JHipster 7.0.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v7.0.1](https://www.jhipster.tech/documentation-archive/v7.0.1).
+This akipApplication was generated using JHipster 7.0.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v7.0.1](https://www.jhipster.tech/documentation-archive/v7.0.1).
 
 ## Development
 
@@ -26,7 +26,7 @@ auto-refreshes when files change on your hard drive.
 npm start
 ```
 
-Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
+Npm is also used to manage CSS and JavaScript dependencies used in this akipApplication. You can upgrade dependencies by
 specifying a newer version in [package.json](package.json). You can also run `npm update` and `npm install` to manage dependencies.
 Add the `help` flag on any command to see how you can use it. For example, `npm help update`.
 
@@ -52,7 +52,7 @@ Note: [Workbox](https://developers.google.com/web/tools/workbox/) powers JHipste
 
 ### Managing dependencies
 
-For example, to add [Leaflet][] library as a runtime dependency of your application, you would run following command:
+For example, to add [Leaflet][] library as a runtime dependency of your akipApplication, you would run following command:
 
 ```
 npm install --save --save-exact leaflet
@@ -73,7 +73,7 @@ For further instructions on how to develop with JHipster, have a look at [Using 
 
 ### Packaging as jar
 
-To build the final jar and optimize the AkipGenerationWeb application for production, run:
+To build the final jar and optimize the AkipGenerationWeb akipApplication for production, run:
 
 ```
 ./mvnw -Pprod clean verify
@@ -92,7 +92,7 @@ Refer to [Using JHipster in production][] for more details.
 
 ### Packaging as war
 
-To package your application as a war in order to deploy it to an application server, run:
+To package your akipApplication as a war in order to deploy it to an akipApplication server, run:
 
 ```
 ./mvnw -Pprod,war clean verify
@@ -100,7 +100,7 @@ To package your application as a war in order to deploy it to an application ser
 
 ## Testing
 
-To launch your application's tests, run:
+To launch your akipApplication's tests, run:
 
 ```
 ./mvnw verify
@@ -158,7 +158,7 @@ To stop it and remove the container, run:
 docker-compose -f src/main/docker/postgresql.yml down
 ```
 
-You can also fully dockerize your application and all the services that it depends on.
+You can also fully dockerize your akipApplication and all the services that it depends on.
 To achieve this, first build a docker image of your app by running:
 
 ```

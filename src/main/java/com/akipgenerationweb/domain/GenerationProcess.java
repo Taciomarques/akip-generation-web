@@ -27,7 +27,8 @@ public class GenerationProcess implements Serializable {
     private ProcessInstance processInstance;
 
     @OneToOne
-    private Process process;
+    @JoinColumn(name = "akip_process_id")
+    private AkipProcess akipProcess;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -56,16 +57,16 @@ public class GenerationProcess implements Serializable {
         return this;
     }
 
-    public Process getProcess() {
-        return this.process;
+    public AkipProcess getAkipProcess() {
+        return this.akipProcess;
     }
 
-    public void setProcess(Process process) {
-        this.process = process;
+    public void setAkipProcess(AkipProcess process) {
+        this.akipProcess = process;
     }
 
-    public GenerationProcess Process(Process process) {
-        this.setProcess(process);
+    public GenerationProcess Process(AkipProcess process) {
+        this.setAkipProcess(process);
         return this;
     }
 

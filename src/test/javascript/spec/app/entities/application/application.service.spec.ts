@@ -4,8 +4,8 @@ import sinon from 'sinon';
 import dayjs from 'dayjs';
 
 import { DATE_FORMAT } from '@/shared/date/filters';
-import ApplicationService from '@/entities/application/application.service';
-import { Application } from '@/shared/model/application.model';
+import AkipApplicationService from '../../../../../../main/webapp/app/entities/akip-application/akip-application.service';
+import { AkipApplication } from '@/shared/model/akip-application.model';
 
 const error = {
   response: {
@@ -26,14 +26,14 @@ const axiosStub = {
 
 describe('Service Tests', () => {
   describe('Application Service', () => {
-    let service: ApplicationService;
+    let service: AkipApplicationService;
     let elemDefault;
     let currentDate: Date;
 
     beforeEach(() => {
-      service = new ApplicationService();
+      service = new AkipApplicationService();
       currentDate = new Date();
-      elemDefault = new Application(0, 'AAAAAAA', 'AAAAAAA', currentDate, 'AAAAAAA');
+      elemDefault = new AkipApplication(0, 'AAAAAAA', 'AAAAAAA', currentDate, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -134,7 +134,7 @@ describe('Service Tests', () => {
             name: 'BBBBBB',
             properties: 'BBBBBB',
           },
-          new Application()
+          new AkipApplication()
         );
         const returnedFromService = Object.assign(patchObject, elemDefault);
 

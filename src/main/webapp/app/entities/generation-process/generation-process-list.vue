@@ -42,9 +42,9 @@
               </div>
             </td>
             <td>
-              <div v-if="generationProcess.process">
-                <router-link :to="{ name: 'ProcessView', params: { processId: generationProcess.process.id } }">{{
-                  generationProcess.process.id
+              <div v-if="generationProcess.akipProcess">
+                <router-link :to="{ name: 'ProcessView', params: { processId: generationProcess.akipProcess.id } }">{{
+                  generationProcess.akipProcess.id
                 }}</router-link>
               </div>
             </td>

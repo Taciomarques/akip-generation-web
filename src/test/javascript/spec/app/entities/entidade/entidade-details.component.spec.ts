@@ -4,9 +4,9 @@ import sinon, { SinonStubbedInstance } from 'sinon';
 import VueRouter from 'vue-router';
 
 import * as config from '@/shared/config/config';
-import EntidadeDetailComponent from '@/entities/entidade/entidade-details.vue';
-import EntidadeClass from '@/entities/entidade/entidade-details.component';
-import EntidadeService from '@/entities/entidade/entidade.service';
+import EntidadeDetailComponent from '../../../../../../main/webapp/app/entities/akip-entity/akip-entity-details.vue';
+import EntidadeClass from '../../../../../../main/webapp/app/entities/akip-entity/akip-entity-details.component';
+import AkipEntityService from '../../../../../../main/webapp/app/entities/akip-entity/akip-entity.service';
 import router from '@/router';
 
 const localVue = createLocalVue();
@@ -22,17 +22,17 @@ describe('Component Tests', () => {
   describe('Entidade Management Detail Component', () => {
     let wrapper: Wrapper<EntidadeClass>;
     let comp: EntidadeClass;
-    let entidadeServiceStub: SinonStubbedInstance<EntidadeService>;
+    let entidadeServiceStub: SinonStubbedInstance<AkipEntityService>;
 
     beforeEach(() => {
-      entidadeServiceStub = sinon.createStubInstance<EntidadeService>(EntidadeService);
+      entidadeServiceStub = sinon.createStubInstance<AkipEntityService>(AkipEntityService);
 
       wrapper = shallowMount<EntidadeClass>(EntidadeDetailComponent, {
         store,
         i18n,
         localVue,
         router,
-        provide: { entidadeService: () => entidadeServiceStub },
+        provide: { akipEntityService: () => entidadeServiceStub },
       });
       comp = wrapper.vm;
     });

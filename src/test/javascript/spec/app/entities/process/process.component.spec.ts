@@ -3,9 +3,9 @@ import { shallowMount, createLocalVue, Wrapper } from '@vue/test-utils';
 import sinon, { SinonStubbedInstance } from 'sinon';
 
 import * as config from '@/shared/config/config';
-import ProcessComponent from '@/entities/process/process.vue';
-import ProcessClass from '@/entities/process/process.component';
-import ProcessService from '@/entities/process/process.service';
+import ProcessComponent from '../../../../../../main/webapp/app/entities/akip-process/akip-process.vue';
+import ProcessClass from '../../../../../../main/webapp/app/entities/akip-process/akip-process.component';
+import AkipProcessService from '../../../../../../main/webapp/app/entities/akip-process/akip-process.service';
 
 const localVue = createLocalVue();
 
@@ -30,10 +30,10 @@ describe('Component Tests', () => {
   describe('Process Management Component', () => {
     let wrapper: Wrapper<ProcessClass>;
     let comp: ProcessClass;
-    let processServiceStub: SinonStubbedInstance<ProcessService>;
+    let processServiceStub: SinonStubbedInstance<AkipProcessService>;
 
     beforeEach(() => {
-      processServiceStub = sinon.createStubInstance<ProcessService>(ProcessService);
+      processServiceStub = sinon.createStubInstance<AkipProcessService>(AkipProcessService);
       processServiceStub.retrieve.resolves({ headers: {} });
 
       wrapper = shallowMount<ProcessClass>(ProcessComponent, {
@@ -42,7 +42,7 @@ describe('Component Tests', () => {
         localVue,
         stubs: { bModal: bModalStub as any },
         provide: {
-          processService: () => processServiceStub,
+          akipProcessService: () => processServiceStub,
         },
       });
       comp = wrapper.vm;

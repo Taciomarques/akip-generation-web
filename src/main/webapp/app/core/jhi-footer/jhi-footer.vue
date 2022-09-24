@@ -1,6 +1,8 @@
 <template>
   <div id="footer" class="footer">
-    <p>Powered by AgileKip Generator</p>
+    <div class="text-center">
+      <p>Powered by Tácio Marques</p>
+    </div>
   </div>
 </template>
 

@@ -35,7 +35,7 @@
   padding-left: 300px;
   transition: 0.3s ease;
   overflow: scroll;
-  margin-top: 50px;
+  margin-top: 70px;
 }
 
 #main-card {
@@ -54,7 +54,7 @@
 }
 
 .v-sidebar-menu {
-  margin-top: 50px;
+  margin-top: 70px;
   scroll-margin-top: 5px;
 }
 

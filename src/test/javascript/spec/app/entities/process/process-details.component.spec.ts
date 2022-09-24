@@ -4,9 +4,9 @@ import sinon, { SinonStubbedInstance } from 'sinon';
 import VueRouter from 'vue-router';
 
 import * as config from '@/shared/config/config';
-import ProcessDetailComponent from '@/entities/process/process-details.vue';
-import ProcessClass from '@/entities/process/process-details.component';
-import ProcessService from '@/entities/process/process.service';
+import ProcessDetailComponent from '../../../../../../main/webapp/app/entities/akip-process/akip-process-details.vue';
+import ProcessClass from '../../../../../../main/webapp/app/entities/akip-process/akip-process-details.component';
+import AkipProcessService from '../../../../../../main/webapp/app/entities/akip-process/akip-process.service';
 import router from '@/router';
 
 const localVue = createLocalVue();
@@ -22,17 +22,17 @@ describe('Component Tests', () => {
   describe('Process Management Detail Component', () => {
     let wrapper: Wrapper<ProcessClass>;
     let comp: ProcessClass;
-    let processServiceStub: SinonStubbedInstance<ProcessService>;
+    let processServiceStub: SinonStubbedInstance<AkipProcessService>;
 
     beforeEach(() => {
-      processServiceStub = sinon.createStubInstance<ProcessService>(ProcessService);
+      processServiceStub = sinon.createStubInstance<AkipProcessService>(AkipProcessService);
 
       wrapper = shallowMount<ProcessClass>(ProcessDetailComponent, {
         store,
         i18n,
         localVue,
         router,
-        provide: { processService: () => processServiceStub },
+        provide: { akipProcessService: () => processServiceStub },
       });
       comp = wrapper.vm;
     });

@@ -835,7 +835,7 @@
                         <mainClass>${start-class}</mainClass>
                         <fork>true</fork>
                         <!--
-                        Enable the line below to have remote debugging of your application on port 5005
+                        Enable the line below to have remote debugging of your akipApplication on port 5005
                         <jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>
                         -->
                     </configuration>
@@ -1052,7 +1052,7 @@
             <!--
                 Profile for applying IDE-specific configuration.
                 At the moment it configures MapStruct and Hibernate JPA Metamodel Generator, which you need when working
-                with DTOs and entity filtering.
+                with DTOs and akipEntity filtering.
             -->
             <id>IDE</id>
             <dependencies>

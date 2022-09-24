@@ -9,7 +9,7 @@
           <span v-text="$t('userManagement.home.refreshListLabel')">Refresh List</span>
         </button>
         <router-link custom v-slot="{ navigate }" :to="{ name: 'JhiUserCreate' }">
-          <button @click="navigate" class="btn btn-primary jh-create-entity">
+          <button @click="navigate" class="btn btn-primary jh-create-akipEntity">
             <font-awesome-icon icon="plus"></font-awesome-icon>
             <span v-text="$t('userManagement.home.createLabel')">Create a new User</span>
           </button>
@@ -113,7 +113,7 @@
           </tr>
         </tbody>
       </table>
-      <b-modal ref="removeUser" id="removeUser" v-bind:title="$t('entity.delete.title')" @ok="deleteUser()">
+      <b-modal ref="removeUser" id="removeUser" v-bind:title="$t('akipEntity.delete.title')" @ok="deleteUser()">
         <div class="modal-body">
           <p id="jhi-delete-user-heading" v-text="$t('userManagement.delete.question', { login: removeId })">
             Are you sure you want to delete this user?

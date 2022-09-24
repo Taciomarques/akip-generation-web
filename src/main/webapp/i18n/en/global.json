@@ -14,7 +14,7 @@
         "myCandidateTasks": "My Tasks",
         "application": "Application",
         "process": "Process",
-        "entidade": "Entidade",
+        "entity": "Entity",
         "generationProcess": "Generation Process",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },

@@ -46,19 +46,19 @@ export default class App extends Vue {
           icon: 'fa fa-th-list',
           child: [
             {
-              href: '/application',
+              href: '/akip-application',
               title: 'Appplication',
-              icon: '',
+              icon: 'fa fa-folder',
             },
             {
-              href: '/Process',
+              href: '/akip-process',
               title: 'Process',
-              icon: '',
+              icon: 'fa fa-arrows-rotate',
             },
             {
-              href: '/entity',
+              href: '/akip-entity',
               title: 'Entity',
-              icon: '',
+              icon: 'fa fa-diagram-project',
             },
             // {
             //   href: '/process-definition/TravelPlanProcess/instances',

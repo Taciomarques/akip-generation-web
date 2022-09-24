@@ -2,8 +2,8 @@
 import axios from 'axios';
 import sinon from 'sinon';
 
-import EntidadeService from '@/entities/entidade/entidade.service';
-import { Entidade } from '@/shared/model/entidade.model';
+import AkipEntityService from '../../../../../../main/webapp/app/entities/akip-entity/akip-entity.service';
+import { AkipEntity } from '@/shared/model/akip-entity.model';
 import { TypeEntity } from '@/shared/model/enumerations/type-entity.model';
 
 const error = {
@@ -25,12 +25,12 @@ const axiosStub = {
 
 describe('Service Tests', () => {
   describe('Entidade Service', () => {
-    let service: EntidadeService;
+    let service: AkipEntityService;
     let elemDefault;
 
     beforeEach(() => {
-      service = new EntidadeService();
-      elemDefault = new Entidade(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', TypeEntity.DOMAIN);
+      service = new AkipEntityService();
+      elemDefault = new AkipEntity(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', TypeEntity.DOMAIN);
     });
 
     describe('Service methods', () => {
@@ -115,7 +115,7 @@ describe('Service Tests', () => {
             name: 'BBBBBB',
             type: 'BBBBBB',
           },
-          new Entidade()
+          new AkipEntity()
         );
         const returnedFromService = Object.assign(patchObject, elemDefault);
 

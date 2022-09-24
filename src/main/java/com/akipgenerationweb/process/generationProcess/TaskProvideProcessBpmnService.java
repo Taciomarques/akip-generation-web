@@ -1,9 +1,9 @@
 package com.akipgenerationweb.process.generationProcess;
 
 import com.akipgenerationweb.repository.GenerationProcessRepository;
-import com.akipgenerationweb.service.ProcessService;
+import com.akipgenerationweb.service.AkipProcessService;
+import com.akipgenerationweb.service.dto.AkipProcessDTO;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
-import com.akipgenerationweb.service.dto.ProcessDTO;
 import com.akipgenerationweb.service.mapper.GenerationProcessMapper;
 import org.akip.repository.TaskInstanceRepository;
 import org.akip.service.TaskInstanceService;
@@ -16,7 +16,7 @@ public class TaskProvideProcessBpmnService {
 
     private final TaskInstanceService taskInstanceService;
 
-    private final ProcessService processService;
+    private final AkipProcessService akipProcessService;
 
     private final TaskInstanceRepository taskInstanceRepository;
 
@@ -30,7 +30,7 @@ public class TaskProvideProcessBpmnService {
 
     public TaskProvideProcessBpmnService(
         TaskInstanceService taskInstanceService,
-        ProcessService processService,
+        AkipProcessService akipProcessService,
         TaskInstanceRepository taskInstanceRepository,
         GenerationProcessRepository generationProcessRepository,
         TaskInstanceMapper taskInstanceMapper,
@@ -38,7 +38,7 @@ public class TaskProvideProcessBpmnService {
         GenerationProcessMapper generationProcessMapper
     ) {
         this.taskInstanceService = taskInstanceService;
-        this.processService = processService;
+        this.akipProcessService = akipProcessService;
         this.taskInstanceRepository = taskInstanceRepository;
         this.generationProcessRepository = generationProcessRepository;
         this.taskInstanceMapper = taskInstanceMapper;
@@ -70,11 +70,11 @@ public class TaskProvideProcessBpmnService {
     }
 
     public void save(TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContext) {
-        ProcessDTO processDTO = processService
-            .findOne(taskProvideProcessBpmnContext.getGenerationProcess().getProcess().getId())
+        AkipProcessDTO akipProcessDTO = akipProcessService
+            .findOne(taskProvideProcessBpmnContext.getGenerationProcess().getAkipProcess().getId())
             .orElseThrow();
         //        processDTO.setBpmn(taskProvideProcessBpmnContext.getGenerationProcess().getProcess().getBpmn());
-        processService.save(processDTO);
+        akipProcessService.save(akipProcessDTO);
     }
 
     public void complete(TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContext) {

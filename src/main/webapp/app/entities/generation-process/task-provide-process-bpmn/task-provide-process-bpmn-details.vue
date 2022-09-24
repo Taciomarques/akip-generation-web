@@ -17,7 +17,7 @@
                 name="bpmn"
                 id="process-bpmn"
                 data-cy="bpmn"
-                v-model="taskContext.generationProcess.process.bpmn"
+                v-model="taskContext.generationProcess.akipProcess.bpmn"
               />
             </div>
           </template>

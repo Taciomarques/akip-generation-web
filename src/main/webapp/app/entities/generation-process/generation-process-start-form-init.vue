@@ -17,7 +17,7 @@
                   <img src="content/images/home.png" class="img-fluid img-thumbnail" />
                 </div>
                 <hr />
-                <div class="col" v-if="generationProcess.process">
+                <div class="col" v-if="generationProcess.akipProcess">
                   <div class="form-group">
                     <label
                       class="form-control-label"
@@ -31,35 +31,38 @@
                       name="name"
                       id="generation-process-start-form-name"
                       data-cy="name"
-                      :class="{ valid: !$v.generationProcess.process.name.$invalid, invalid: $v.generationProcess.process.name.$invalid }"
-                      v-model="$v.generationProcess.process.name.$model"
+                      :class="{
+                        valid: !$v.generationProcess.akipProcess.name.$invalid,
+                        invalid: $v.generationProcess.akipProcess.name.$invalid,
+                      }"
+                      v-model="$v.generationProcess.akipProcess.name.$model"
                     />
                   </div>
                   <div class="form-group">
                     <label
                       class="form-control-label"
                       v-text="$t('akipGenerationWebApp.generationProcessStartForm.application')"
-                      for="generation-process-start-form-application"
+                      for="generation-process-start-form-akipApplication"
                       >Application</label
                     >
                     <select
                       class="form-control"
-                      id="generation-process-start-form-application"
-                      data-cy="application"
-                      name="application"
+                      id="generation-process-start-form-akipApplication"
+                      data-cy="akipApplication"
+                      name="akipApplication"
                       :class="{
-                        invalid: $v.generationProcess.process.application.$invalid,
+                        invalid: $v.generationProcess.akipProcess.application.$invalid,
                       }"
-                      v-model="generationProcess.process.application"
+                      v-model="generationProcess.akipProcess.application"
                     >
                       <option v-bind:value="null"></option>
                       <option
                         v-bind:value="
-                          generationProcess.process.application && ApplicationOption.id === generationProcess.process.application.id
-                            ? generationProcess.process.application
+                          generationProcess.akipProcess.application && ApplicationOption.id === generationProcess.akipProcess.application.id
+                            ? generationProcess.akipProcess.application
                             : ApplicationOption
                         "
-                        v-for="ApplicationOption in Applications"
+                        v-for="ApplicationOption in akipApplications"
                         :key="ApplicationOption.id"
                       >
                         {{ ApplicationOption.name }}
@@ -76,7 +79,7 @@
           </button>
           <button
             type="submit"
-            id="save-entity"
+            id="save-akipEntity"
             data-cy="entityCreateSaveButton"
             :disabled="$v.generationProcess.$invalid || isSaving"
             class="btn btn-primary"
