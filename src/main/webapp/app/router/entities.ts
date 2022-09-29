@@ -27,6 +27,10 @@ const GenerationProcessList = () => import('@/entities/generation-process/genera
 // prettier-ignore
 const GenerationProcessStartFormInit = () => import('@/entities/generation-process/generation-process-start-form-init.vue');
 // prettier-ignore
+const GenerationProcess_TaskGenerateDomainEntityDetails = () => import('@/entities/generation-process/task-generate-domain-entity/task-generate-domain-entity-details.vue');
+// prettier-ignore
+const GenerationProcess_TaskGenerateDomainEntityExecute = () => import('@/entities/generation-process/task-generate-domain-entity/task-generate-domain-entity-execute.vue');
+// prettier-ignore
 const GenerationProcess_TaskProvideProcessBpmnDetails = () => import('@/entities/generation-process/task-provide-process-bpmn/task-provide-process-bpmn-details.vue');
 // prettier-ignore
 const GenerationProcess_TaskProvideProcessBpmnExecute = () => import('@/entities/generation-process/task-provide-process-bpmn/task-provide-process-bpmn-execute.vue');
@@ -121,6 +125,18 @@ export default [
     path: '/process-definition/GenerationProcess/init',
     name: 'GenerationProcessStartFormInit',
     component: GenerationProcessStartFormInit,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/process-definition/GenerationProcess/task/TaskGenerateDomainEntity/:taskInstanceId/view',
+    name: 'GenerationProcess_TaskGenerateDomainEntityDetails',
+    component: GenerationProcess_TaskGenerateDomainEntityDetails,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/process-definition/GenerationProcess/task/TaskGenerateDomainEntity/:taskInstanceId/execute',
+    name: 'GenerationProcess_TaskGenerateDomainEntityExecute',
+    component: GenerationProcess_TaskGenerateDomainEntityExecute,
     meta: { authorities: [Authority.USER] },
   },
   {

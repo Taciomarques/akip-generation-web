@@ -13,7 +13,7 @@ const validations: any = {
   akipEntity: {
     name: {},
     fields: {},
-    relations: {},
+    relationships: {},
     type: {},
   },
 };

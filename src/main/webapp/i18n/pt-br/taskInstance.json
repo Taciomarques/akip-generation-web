@@ -1,0 +1,12 @@
+{
+  "akipGenerationWebApp": {
+    "taskInstance": {
+      "execute": {
+        "title": "Execução da Instância de Tarefa"
+      },
+      "details": {
+        "title": "Detalhes da Instância de Tarefa"
+      }
+    }
+  }
+}

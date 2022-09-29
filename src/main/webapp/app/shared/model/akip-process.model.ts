@@ -7,7 +7,7 @@ export interface IAkipProcess {
   name?: string | null;
   percentageExecuted?: number | null;
   status?: StatusProcess | null;
-  etities?: IAkipEntity[] | null;
+  entities?: IAkipEntity[] | null;
   application?: IAkipApplication | null;
 }
 
@@ -17,7 +17,7 @@ export class AkipProcess implements IAkipProcess {
     public name?: string | null,
     public percentageExecuted?: number | null,
     public status?: StatusProcess | null,
-    public etities?: IAkipEntity[] | null,
+    public entities?: IAkipEntity[] | null,
     public application?: IAkipApplication | null
   ) {}
 }

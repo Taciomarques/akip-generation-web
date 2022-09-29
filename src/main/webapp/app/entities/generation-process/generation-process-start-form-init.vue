@@ -3,9 +3,9 @@
     <div class="col-10">
       <form name="editForm" role="form" novalidate v-on:submit.prevent="save()">
         <h2
-          id="akipGenerationWebApp.generationProcessStartForm.home.createOrEditLabel"
-          data-cy="GenerationProcessStartFormCreateUpdateHeading"
-          v-text="$t('akipGenerationWebApp.generationProcessStartForm.home.createOrEditLabel')"
+          id="akipGenerationWebApp.generationProcessStartForm.home.title"
+          data-cy="GenerationProcessStartFormTitleHeading"
+          v-text="$t('akipGenerationWebApp.generationProcessStartForm.home.title')"
         >
           Create or edit a GenerationProcessStartForm
         </h2>
@@ -55,7 +55,6 @@
                       }"
                       v-model="generationProcess.akipProcess.application"
                     >
-                      <option v-bind:value="null"></option>
                       <option
                         v-bind:value="
                           generationProcess.akipProcess.application && ApplicationOption.id === generationProcess.akipProcess.application.id

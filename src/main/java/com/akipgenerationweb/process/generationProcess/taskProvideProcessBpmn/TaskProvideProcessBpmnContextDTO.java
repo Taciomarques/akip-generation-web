@@ -1,4 +1,4 @@
-package com.akipgenerationweb.process.generationProcess;
+package com.akipgenerationweb.process.generationProcess.taskProvideProcessBpmn;
 
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
 import org.akip.service.dto.TaskInstanceDTO;

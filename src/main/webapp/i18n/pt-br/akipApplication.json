@@ -2,28 +2,28 @@
   "akipGenerationWebApp": {
     "akipApplication": {
       "home": {
-        "title": "Applications",
+        "title": "Aplicações",
         "refreshListLabel": "Atualizar lista",
-        "createLabel": "Criar novo Application",
-        "createOrEditLabel": "Criar ou editar Application",
-        "notFound": "Nenhum Application encontrado"
+        "createLabel": "Criar novo Aplicação",
+        "createOrEditLabel": "Criar ou editar Aplicação",
+        "notFound": "Nenhuma Aplicação encontrado"
       },
-      "created": "Um novo Application foi criado com o identificador {{ param }}",
-      "updated": "Um Application foi atualizado com o identificador {{ param }}",
-      "deleted": "Um Application foi excluído com o identificador {{ param }}",
+      "created": "Uma nova Aplicação foi criada com o identificador {{ param }}",
+      "updated": "Uma Aplicação foi atualizada com o identificador {{ param }}",
+      "deleted": "Uma Aplicação foi excluída com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Application {{ id }}?"
+        "question": "Tem certeza de que deseja excluir Aplicação {{ id }}?"
       },
       "detail": {
-        "title": "Application"
+        "title": "Aplicação"
       },
       "id": "ID",
-      "name": "Name",
-      "repositoryName": "Repository Name",
-      "createDate": "Create Date",
-      "properties": "Properties",
-      "etities": "Etities",
-      "processes": "Processes"
+      "name": "Nome",
+      "repositoryName": "Nome do Repositório",
+      "createDate": "Data de Criação",
+      "properties": "Propriedades",
+      "etities": "Entidades",
+      "processes": "Processos"
     }
   }
 }

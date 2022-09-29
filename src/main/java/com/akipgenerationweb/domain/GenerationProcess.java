@@ -2,10 +2,12 @@ package com.akipgenerationweb.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashMap;
 import javax.persistence.*;
 import org.akip.domain.ProcessInstance;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 
 /**
  * A GenerationProcess.
@@ -29,6 +31,11 @@ public class GenerationProcess implements Serializable {
     @OneToOne
     @JoinColumn(name = "akip_process_id")
     private AkipProcess akipProcess;
+
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
+    @Column(name = "data")
+    private String data;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -68,6 +75,14 @@ public class GenerationProcess implements Serializable {
     public GenerationProcess Process(AkipProcess process) {
         this.setAkipProcess(process);
         return this;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

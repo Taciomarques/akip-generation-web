@@ -30,10 +30,10 @@
           <tr>
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
             <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.name')">Name</span></th>
-            <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.fields')">Fields</span></th>
-            <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.relations')">Relations</span></th>
+            <!--            <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.fields')">Fields</span></th>-->
+            <!--            <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.relationships')">Relationships</span></th>-->
             <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.type')">Type</span></th>
-            <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.process')">Process</span></th>
+            <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.processes')">Processes</span></th>
             <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.application')">Application</span></th>
             <th scope="row"></th>
           </tr>
@@ -44,20 +44,27 @@
               <router-link :to="{ name: 'AkipEntityView', params: { akipEntityId: akipEntity.id } }">{{ akipEntity.id }}</router-link>
             </td>
             <td>{{ akipEntity.name }}</td>
-            <td>{{ akipEntity.fields }}</td>
-            <td>{{ akipEntity.relations }}</td>
-            <td v-text="$t('akipGenerationWebApp.TypeEntity.' + akipEntity.type)">{{ akipEntity.type }}</td>
+            <!--            <td>{{ akipEntity.fields }}</td>-->
+            <!--            <td>{{ akipEntity.relationships }}</td>-->
             <td>
-              <div v-if="akipEntity.process">
-                <router-link :to="{ name: 'ProcessView', params: { akipProcessId: akipEntity.process.id } }">{{
-                  akipEntity.process.id
-                }}</router-link>
+              <font-awesome-icon v-if="akipEntity.type == 'SERVICE_TASK'" icon="cogs"></font-awesome-icon
+              ><font-awesome-icon v-if="akipEntity.type == 'START_FORM'" icon="forward"></font-awesome-icon
+              ><font-awesome-icon v-if="akipEntity.type == 'USER_TASK'" icon="user"></font-awesome-icon
+              ><font-awesome-icon v-if="akipEntity.type == 'PROCESS_BINDING'" icon="share"></font-awesome-icon
+              ><font-awesome-icon v-if="akipEntity.type == 'DOMAIN'" icon="file"></font-awesome-icon>&nbsp;<span
+                v-text="$t('akipGenerationWebApp.TypeEntity.' + akipEntity.type)"
+              />
+            </td>
+            <td>
+              <div v-for="process in akipEntity.processes">
+                <router-link :to="{ name: 'AkipProcessView', params: { akipProcessId: process.id } }">{{ process.name }}</router-link
+                >,
               </div>
             </td>
             <td>
               <div v-if="akipEntity.application">
                 <router-link :to="{ name: 'AkipApplicationView', params: { akipApplicationId: akipEntity.application.id } }">{{
-                  akipEntity.application.id
+                  akipEntity.application.name
                 }}</router-link>
               </div>
             </td>

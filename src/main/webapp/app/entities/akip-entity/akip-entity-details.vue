@@ -19,10 +19,10 @@
             <span>{{ akipEntity.fields }}</span>
           </dd>
           <dt>
-            <span v-text="$t('akipGenerationWebApp.akipEntity.relations')">Relations</span>
+            <span v-text="$t('akipGenerationWebApp.akipEntity.relationships')">Relationships</span>
           </dt>
           <dd>
-            <span>{{ akipEntity.relations }}</span>
+            <span>{{ akipEntity.relationships }}</span>
           </dd>
           <dt>
             <span v-text="$t('akipGenerationWebApp.akipEntity.type')">Type</span>
@@ -31,13 +31,12 @@
             <span v-text="$t('akipGenerationWebApp.TypeEntity.' + akipEntity.type)">{{ akipEntity.type }}</span>
           </dd>
           <dt>
-            <span v-text="$t('akipGenerationWebApp.akipEntity.process')">Process</span>
+            <span v-text="$t('akipGenerationWebApp.akipEntity.processes')">Process</span>
           </dt>
           <dd>
-            <div v-if="akipEntity.process">
-              <router-link :to="{ name: 'ProcessView', params: { akipProcessId: akipEntity.process.id } }">{{
-                akipEntity.process.id
-              }}</router-link>
+            <div v-for="process in akipEntity.processes">
+              <router-link :to="{ name: 'AkipProcessView', params: { akipProcessId: process.id } }">{{ process.name }}</router-link
+              >,
             </div>
           </dd>
           <dt>
@@ -46,7 +45,7 @@
           <dd>
             <div v-if="akipEntity.application">
               <router-link :to="{ name: 'ApplicationView', params: { akipApplicationId: akipEntity.application.id } }">{{
-                akipEntity.application.id
+                akipEntity.application.name
               }}</router-link>
             </div>
           </dd>

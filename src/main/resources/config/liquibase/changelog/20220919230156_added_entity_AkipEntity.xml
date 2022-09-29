@@ -17,10 +17,10 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="fields" type="varchar(255)">
+            <column name="fields" type="${clobType}">
                 <constraints nullable="true" />
             </column>
-            <column name="relations" type="varchar(255)">
+            <column name="relationships" type="${clobType}">
                 <constraints nullable="true" />
             </column>
             <column name="type" type="varchar(255)">

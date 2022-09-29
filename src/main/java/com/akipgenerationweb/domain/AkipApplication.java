@@ -36,14 +36,14 @@ public class AkipApplication implements Serializable {
     @Column(name = "properties")
     private String properties;
 
-    @OneToMany(mappedBy = "akipApplication")
+    @OneToMany(mappedBy = "application")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "process", "application" }, allowSetters = true)
-    private Set<AkipEntity> etities = new HashSet<>();
+    private Set<AkipEntity> entities = new HashSet<>();
 
-    @OneToMany(mappedBy = "akipApplication")
+    @OneToMany(mappedBy = "application")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "etities", "application" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "entities", "application" }, allowSetters = true)
     private Set<AkipProcess> processes = new HashSet<>();
 
     //    @ManyToOne
@@ -115,35 +115,35 @@ public class AkipApplication implements Serializable {
         this.properties = properties;
     }
 
-    public Set<AkipEntity> getEtities() {
-        return this.etities;
+    public Set<AkipEntity> getEntities() {
+        return this.entities;
     }
 
-    public AkipApplication etities(Set<AkipEntity> entities) {
-        this.setEtities(entities);
+    public AkipApplication entities(Set<AkipEntity> entities) {
+        this.setEntities(entities);
         return this;
     }
 
-    public AkipApplication addEtities(AkipEntity akipEntity) {
-        this.etities.add(akipEntity);
+    public AkipApplication addEntities(AkipEntity akipEntity) {
+        this.entities.add(akipEntity);
         akipEntity.setApplication(this);
         return this;
     }
 
-    public AkipApplication removeEtities(AkipEntity akipEntity) {
-        this.etities.remove(akipEntity);
+    public AkipApplication removeEntities(AkipEntity akipEntity) {
+        this.entities.remove(akipEntity);
         akipEntity.setApplication(null);
         return this;
     }
 
-    public void setEtities(Set<AkipEntity> entities) {
-        if (this.etities != null) {
-            this.etities.forEach(i -> i.setApplication(null));
+    public void setEntities(Set<AkipEntity> entities) {
+        if (this.entities != null) {
+            this.entities.forEach(i -> i.setApplication(null));
         }
         if (entities != null) {
             entities.forEach(i -> i.setApplication(this));
         }
-        this.etities = entities;
+        this.entities = entities;
     }
 
     public Set<AkipProcess> getProcesses() {

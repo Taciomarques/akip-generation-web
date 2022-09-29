@@ -7,7 +7,7 @@ export interface IAkipApplication {
   repositoryName?: string | null;
   createDate?: Date | null;
   properties?: string | null;
-  etities?: IAkipEntity[] | null;
+  entities?: IAkipEntity[] | null;
   processes?: IAkipProcess[] | null;
 }
 
@@ -18,7 +18,7 @@ export class AkipApplication implements IAkipApplication {
     public repositoryName?: string | null,
     public createDate?: Date | null,
     public properties?: string | null,
-    public etities?: IAkipEntity[] | null,
+    public entities?: IAkipEntity[] | null,
     public processes?: IAkipProcess[] | null
   ) {}
 }

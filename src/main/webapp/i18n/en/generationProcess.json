@@ -3,17 +3,9 @@
     "generationProcess": {
       "home": {
         "title": "Generation Processes",
-        "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Generation Process",
-        "createOrEditLabel": "Create or edit a Generation Process",
         "notFound": "No Generation Processes found"
       },
       "created": "A new Generation Process is created with identifier {{ param }}",
-      "updated": "A Generation Process is updated with identifier {{ param }}",
-      "deleted": "A Generation Process is deleted with identifier {{ param }}",
-      "delete": {
-        "question": "Are you sure you want to delete Generation Process {{ id }}?"
-      },
       "detail": {
         "title": "Generation Process"
       },

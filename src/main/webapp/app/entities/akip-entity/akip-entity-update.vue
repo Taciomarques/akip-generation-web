@@ -38,20 +38,20 @@
               v-model="$v.akipEntity.fields.$model"
             />
           </div>
-          <div class="form-group">
-            <label class="form-control-label" v-text="$t('akipGenerationWebApp.akipEntity.relations')" for="akipEntity-relations"
-              >Relations</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              name="relations"
-              id="akipEntity-relations"
-              data-cy="relations"
-              :class="{ valid: !$v.akipEntity.relations.$invalid, invalid: $v.akipEntity.relations.$invalid }"
-              v-model="$v.akipEntity.relations.$model"
-            />
-          </div>
+          <!--          <div class="form-group">-->
+          <!--            <label class="form-control-label" v-text="$t('akipGenerationWebApp.akipEntity.relationships')" for="akipEntity-relationships"-->
+          <!--              >Relationships</label-->
+          <!--            >-->
+          <!--            <input-->
+          <!--              type="text"-->
+          <!--              class="form-control"-->
+          <!--              name="relationships"-->
+          <!--              id="akipEntity-relationships"-->
+          <!--              data-cy="relationships"-->
+          <!--              :class="{ valid: !$v.akipEntity.relationships.$invalid, invalid: $v.akipEntity.relationships.$invalid }"-->
+          <!--              v-model="$v.akipEntity.relationships.$model"-->
+          <!--            />-->
+          <!--          </div>-->
           <div class="form-group">
             <label class="form-control-label" v-text="$t('akipGenerationWebApp.akipEntity.type')" for="akipEntity-type">Type</label>
             <select

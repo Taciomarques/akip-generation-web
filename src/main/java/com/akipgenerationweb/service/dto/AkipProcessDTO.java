@@ -22,7 +22,7 @@ public class AkipProcessDTO implements Serializable {
 
     private AkipApplicationDTO application;
 
-    private Set<AkipEntityDTO> akipEtities = new HashSet<>();
+    private Set<AkipEntityDTO> entities = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -64,12 +64,12 @@ public class AkipProcessDTO implements Serializable {
         this.application = application;
     }
 
-    public Set<AkipEntityDTO> getAkipEtities() {
-        return akipEtities;
+    public Set<AkipEntityDTO> getEntities() {
+        return entities;
     }
 
-    public void setAkipEtities(Set<AkipEntityDTO> akipEtities) {
-        this.akipEtities = akipEtities;
+    public void setEntities(Set<AkipEntityDTO> entities) {
+        this.entities = entities;
     }
 
     @Override

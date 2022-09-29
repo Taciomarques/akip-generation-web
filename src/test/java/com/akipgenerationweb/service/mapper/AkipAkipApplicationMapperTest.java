@@ -10,6 +10,6 @@ class AkipAkipApplicationMapperTest {
 
     @BeforeEach
     public void setUp() {
-        akipApplicationMapper = new ApplicationMapperImpl();
+        akipApplicationMapper = new AkipApplicationMapperImpl();
     }
 }

@@ -1,0 +1,47 @@
+{
+  "akipGenerationWebApp": {
+    "akipField": {
+      "field": "Campo #",
+      "addField": "Adicionar Campo",
+      "removeField": "Remover Campo",
+      "name": "Nome Campo",
+      "type": "Tipo Campo",
+      "enumType": "Tipo Enumeração",
+      "values": "Valores da Enumeração",
+      "fieldReadOnly": "Apenas Visualização",
+      "validations": "Validações",
+      "unique": "Unico",
+      "required": "Obrigatório",
+      "min": "Mínimo",
+      "max": "Máximo",
+      "pattern": "Padrão",
+      "fieldTypeBlobContent": "Tipo Conteúdo Blob",
+      "fieldValidateRulesMin": "Valor Mínimo",
+      "fieldValidateRulesMax": "Valor Máximo",
+      "fieldValidateRulesMinLength": "Tamanho Mínimo",
+      "fieldValidateRulesMaxLength": "Tamanho Máximo",
+      "fieldValidateRulesPattern": "Valor Padrão",
+      "fieldTypes": {
+        "String": "String",
+        "Integer": "Integer",
+        "Long": "Long",
+        "Float": "Float",
+        "Double": "Double",
+        "BigDecimal": "BigDecimal",
+        "LocalDate": "LocalDate",
+        "Instant": "Instant",
+        "ZonedDateTime": "ZonedDateTime",
+        "Duration": "Duration",
+        "Boolean": "Boolean",
+        "enum": "Enumeration (Java enum type)",
+        "byte": "Blob",
+        "UUID": "UUID"
+      },
+      "blobContentTypes": {
+        "image": "Imagem",
+        "any": "Arquivo",
+        "text": "Texto"
+      }
+    }
+  }
+}

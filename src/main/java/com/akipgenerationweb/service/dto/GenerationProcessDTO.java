@@ -1,6 +1,8 @@
 package com.akipgenerationweb.service.dto;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import org.akip.service.dto.ProcessInstanceDTO;
 
@@ -14,6 +16,8 @@ public class GenerationProcessDTO implements Serializable {
     private ProcessInstanceDTO processInstance;
 
     private AkipProcessDTO akipProcess;
+
+    private Map<String, String> data = new HashMap<>();
 
     public Long getId() {
         return id;
@@ -37,6 +41,14 @@ public class GenerationProcessDTO implements Serializable {
 
     public void setAkipProcess(AkipProcessDTO akipProcess) {
         this.akipProcess = akipProcess;
+    }
+
+    public Map<String, String> getData() {
+        return data;
+    }
+
+    public void setData(Map<String, String> data) {
+        this.data = data;
     }
 
     @Override

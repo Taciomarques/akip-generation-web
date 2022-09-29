@@ -132,6 +132,17 @@ public class AkipEntityResource {
     }
 
     /**
+     * {@code GET  /akip-entities} : get all the akipEntities by applicationId.
+     * @param applicationId the id of the application the list akipEntities.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of akipEntities in body.
+     */
+    @GetMapping("/akip-entities/findByApplication/{applicationId}")
+    public List<AkipEntityDTO> getAllAkipEntities(@PathVariable Long applicationId) {
+        log.debug("REST request to get all AkipEntities by ApplicationId {}", applicationId);
+        return akipEntityService.findByApplicationId(applicationId);
+    }
+
+    /**
      * {@code GET  /akip-entities} : get all the akipEntities.
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of akipEntities in body.

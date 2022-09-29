@@ -18,12 +18,12 @@
         "title": "Entidade"
       },
       "id": "ID",
-      "name": "Name",
-      "fields": "Fields",
-      "relations": "Relations",
-      "type": "Type",
-      "process": "Process",
-      "application": "Application"
+      "name": "Nome",
+      "fields": "Campo",
+      "relationships": "Relacionamentos",
+      "type": "Tipo",
+      "processes": "Processos",
+      "application": "Aplicação"
     }
   }
 }

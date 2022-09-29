@@ -3,7 +3,10 @@ package com.akipgenerationweb.service.dto;
 import com.akipgenerationweb.domain.AkipEntity;
 import com.akipgenerationweb.domain.enumeration.TypeEntity;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the {@link AkipEntity} entity.
@@ -14,13 +17,15 @@ public class AkipEntityDTO implements Serializable {
 
     private String name;
 
-    private String fields;
+    private List<AkipFieldDTO> fields;
 
-    private String relations;
+    private List<AkipRelationshipDTO> relationships;
 
     private TypeEntity type;
 
     private AkipApplicationDTO application;
+
+    private Set<AkipProcessDTO> processes = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -38,20 +43,20 @@ public class AkipEntityDTO implements Serializable {
         this.name = name;
     }
 
-    public String getFields() {
+    public List<AkipFieldDTO> getFields() {
         return fields;
     }
 
-    public void setFields(String fields) {
+    public void setFields(List<AkipFieldDTO> fields) {
         this.fields = fields;
     }
 
-    public String getRelations() {
-        return relations;
+    public List<AkipRelationshipDTO> getRelationships() {
+        return relationships;
     }
 
-    public void setRelations(String relations) {
-        this.relations = relations;
+    public void setRelationships(List<AkipRelationshipDTO> relationships) {
+        this.relationships = relationships;
     }
 
     public TypeEntity getType() {
@@ -68,6 +73,14 @@ public class AkipEntityDTO implements Serializable {
 
     public void setApplication(AkipApplicationDTO application) {
         this.application = application;
+    }
+
+    public Set<AkipProcessDTO> getProcesses() {
+        return processes;
+    }
+
+    public void setProcesses(Set<AkipProcessDTO> processes) {
+        this.processes = processes;
     }
 
     @Override
@@ -98,7 +111,7 @@ public class AkipEntityDTO implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", fields='" + getFields() + "'" +
-            ", relations='" + getRelations() + "'" +
+            ", relationships='" + getRelationships() + "'" +
             ", type='" + getType() + "'" +
             "}";
     }

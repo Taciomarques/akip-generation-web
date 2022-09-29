@@ -55,6 +55,15 @@ Vue.component('infinite-loading', InfiniteLoading);
 
 Vue.use(Akip);
 Vue.component('vue-markdown', VueMarkdown);
+
+import ShowAkipEntity from '@/components/show-akip-entity.vue';
+Vue.component('show-akip-entity', ShowAkipEntity);
+
+import ShowAkipField from '@/components/show-akip-field.vue';
+Vue.component('show-akip-field', ShowAkipField);
+
+import ShowAkipRelationship from '@/components/show-akip-relationship.vue';
+Vue.component('show-akip-relationship', ShowAkipRelationship);
 // jhipster-pais-needle-add-component-to-main - JHipster/Camunda will register components here
 
 const i18n = config.initI18N(Vue);

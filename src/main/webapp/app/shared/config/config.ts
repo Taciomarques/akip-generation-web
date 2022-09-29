@@ -53,6 +53,9 @@ import { faFileAlt } from '@fortawesome/free-solid-svg-icons/faFileAlt';
 import { faFileDownload } from '@fortawesome/free-solid-svg-icons/faFileDownload';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
+import { faFile } from '@fortawesome/free-solid-svg-icons/faFile';
+import { faShare } from '@fortawesome/free-solid-svg-icons/faShare';
 
 import VueCookie from 'vue-cookie';
 import Vuelidate from 'vuelidate';
@@ -61,6 +64,8 @@ import Vue2Filters from 'vue2-filters';
 import * as filters from '@/shared/date/filters';
 import { accountStore } from '@/shared/config/store/account-store';
 import { translationStore } from '@/shared/config/store/translation-store';
+import { faForward } from '@fortawesome/free-solid-svg-icons/faForward';
+import { faClone } from '@fortawesome/free-solid-svg-icons/faClone';
 
 const dateTimeFormats: DateTimeFormats = {
   en: {
@@ -174,7 +179,12 @@ export function initFortAwesome(vue) {
     faFileAlt,
     faFileDownload,
     faArrowDown,
-    faArrowUp
+    faArrowUp,
+    faArrowRight,
+    faFile,
+    faShare,
+    faForward,
+    faClone
   );
 }
 

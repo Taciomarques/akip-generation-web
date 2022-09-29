@@ -2,11 +2,11 @@
   "akipGenerationWebApp": {
     "TypeEntity": {
       "null": "",
-      "DOMAIN": "DOMAIN",
-      "PROCESS_BINDING": "PROCESS_BINDING",
-      "START_FORM": "START_FORM",
-      "USER_TASK": "USER_TASK",
-      "SERVICE_TASK": "SERVICE_TASK"
+      "DOMAIN": "Domain",
+      "PROCESS_BINDING": "Process Bingind",
+      "START_FORM": "Start Form",
+      "USER_TASK": "User Task",
+      "SERVICE_TASK": "Service Task"
     }
   }
 }

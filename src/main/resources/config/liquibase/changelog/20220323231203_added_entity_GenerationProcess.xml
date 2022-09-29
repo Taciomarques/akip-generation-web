@@ -20,6 +20,9 @@
             <column name="akip_process_id" type="bigint">
                 <constraints nullable="true" />
             </column>
+            <column name="data" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>

@@ -7,17 +7,17 @@
           <font-awesome-icon icon="sync" :spin="isFetching"></font-awesome-icon>
           <span v-text="$t('akipGenerationWebApp.akipProcess.home.refreshListLabel')">Refresh List</span>
         </button>
-        <router-link :to="{ name: 'AkipProcessCreate' }" custom v-slot="{ navigate }">
-          <button
-            @click="navigate"
-            id="jh-create-akipEntity"
-            data-cy="entityCreateButton"
-            class="btn btn-primary jh-create-akipEntity create-process mr-2"
-          >
-            <font-awesome-icon icon="plus"></font-awesome-icon>
-            <span v-text="$t('akipGenerationWebApp.akipProcess.home.createLabel')"> Create a new Process </span>
-          </button>
-        </router-link>
+        <!--        <router-link :to="{ name: 'AkipProcessCreate' }" custom v-slot="{ navigate }">-->
+        <!--          <button-->
+        <!--            @click="navigate"-->
+        <!--            id="jh-create-akipEntity"-->
+        <!--            data-cy="entityCreateButton"-->
+        <!--            class="btn btn-primary jh-create-akipEntity create-process mr-2"-->
+        <!--          >-->
+        <!--            <font-awesome-icon icon="plus"></font-awesome-icon>-->
+        <!--            <span v-text="$t('akipGenerationWebApp.akipProcess.home.createLabel')"> Create a new Process </span>-->
+        <!--          </button>-->
+        <!--        </router-link>-->
         <router-link :to="{ name: 'GenerationProcessStartFormInit' }" custom v-slot="{ navigate }">
           <button @click="navigate" id="jh-create-akipEntity" data-cy="entityCreateButton" class="btn btn-warning generation-process-init">
             <font-awesome-icon icon="play"></font-awesome-icon>
@@ -52,8 +52,8 @@
             <td v-text="$t('akipGenerationWebApp.StatusProcess.' + process.status)">{{ process.status }}</td>
             <td>
               <div v-if="process.application">
-                <router-link :to="{ name: 'AKipApplicationView', params: { akipApplicationId: process.application.id } }">{{
-                  process.application.id
+                <router-link :to="{ name: 'AkipApplicationView', params: { akipApplicationId: process.application.id } }">{{
+                  process.application.name
                 }}</router-link>
               </div>
             </td>

@@ -18,6 +18,19 @@ export default class AkipEntityService {
     });
   }
 
+  public findByApplicationId(applicationId: number): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      axios
+        .get(`${baseApiUrl}/findByApplication/${applicationId}`)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+
   public retrieve(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       axios

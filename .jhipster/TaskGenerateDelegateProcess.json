@@ -1,17 +1,11 @@
 {
   "fields": [],
   "relationships": [
-    {
-      "otherEntityName": "entidade",
-      "otherEntityRelationshipName": "process",
-      "relationshipName": "etities",
-      "relationshipType": "one-to-many"
-    }
   ],
   "entityType": "user-task-form",
   "processBpmnId": "GenerationProcess",
   "processEntityName": "GenerationProcess",
-  "taskBpmnId": "TaskProvideDomainEntities",
+  "taskBpmnId": "TaskGenerateDelegateProcess",
   "domainEntityName": "Process",
   "service": "serviceClass",
   "dto": "mapstruct",
@@ -19,5 +13,5 @@
   "readOnly": false,
   "pagination": "no",
   "skipFakeData": true,
-  "name": "TaskProvideDomainEntities"
+  "name": "TaskGenerateDelegateProcess"
 }

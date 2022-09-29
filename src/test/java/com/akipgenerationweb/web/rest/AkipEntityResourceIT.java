@@ -107,7 +107,7 @@ class AkipEntityResourceIT {
         AkipEntity testAkipEntity = akipEntityList.get(akipEntityList.size() - 1);
         assertThat(testAkipEntity.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testAkipEntity.getFields()).isEqualTo(DEFAULT_FIELDS);
-        assertThat(testAkipEntity.getRelations()).isEqualTo(DEFAULT_RELATIONS);
+        assertThat(testAkipEntity.getRelationships()).isEqualTo(DEFAULT_RELATIONS);
         assertThat(testAkipEntity.getType()).isEqualTo(DEFAULT_TYPE);
     }
 
@@ -202,7 +202,7 @@ class AkipEntityResourceIT {
         AkipEntity testAkipEntity = akipEntityList.get(akipEntityList.size() - 1);
         assertThat(testAkipEntity.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testAkipEntity.getFields()).isEqualTo(UPDATED_FIELDS);
-        assertThat(testAkipEntity.getRelations()).isEqualTo(UPDATED_RELATIONS);
+        assertThat(testAkipEntity.getRelationships()).isEqualTo(UPDATED_RELATIONS);
         assertThat(testAkipEntity.getType()).isEqualTo(UPDATED_TYPE);
     }
 
@@ -299,7 +299,7 @@ class AkipEntityResourceIT {
         AkipEntity testAkipEntity = akipEntityList.get(akipEntityList.size() - 1);
         assertThat(testAkipEntity.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testAkipEntity.getFields()).isEqualTo(DEFAULT_FIELDS);
-        assertThat(testAkipEntity.getRelations()).isEqualTo(DEFAULT_RELATIONS);
+        assertThat(testAkipEntity.getRelationships()).isEqualTo(DEFAULT_RELATIONS);
         assertThat(testAkipEntity.getType()).isEqualTo(UPDATED_TYPE);
     }
 
@@ -331,7 +331,7 @@ class AkipEntityResourceIT {
         AkipEntity testAkipEntity = akipEntityList.get(akipEntityList.size() - 1);
         assertThat(testAkipEntity.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testAkipEntity.getFields()).isEqualTo(UPDATED_FIELDS);
-        assertThat(testAkipEntity.getRelations()).isEqualTo(UPDATED_RELATIONS);
+        assertThat(testAkipEntity.getRelationships()).isEqualTo(UPDATED_RELATIONS);
         assertThat(testAkipEntity.getType()).isEqualTo(UPDATED_TYPE);
     }
 

@@ -3,9 +3,12 @@ package com.akipgenerationweb.domain;
 import com.akipgenerationweb.domain.enumeration.TypeEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 
 /**
  * A AkipEntity.
@@ -25,19 +28,29 @@ public class AkipEntity implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "fields")
     private String fields;
 
-    @Column(name = "relations")
-    private String relations;
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
+    @Column(name = "relationships")
+    private String relationships;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private TypeEntity type;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "etities", "processes" }, allowSetters = true)
-    private AkipApplication akipApplication;
+    @JoinColumn(name = "akip_application_id")
+    @JsonIgnoreProperties(value = { "entities", "processes" }, allowSetters = true)
+    private AkipApplication application;
+
+    @ManyToMany(mappedBy = "entities")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "entities", "application" }, allowSetters = true)
+    private Set<AkipProcess> processes = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -79,17 +92,17 @@ public class AkipEntity implements Serializable {
         this.fields = fields;
     }
 
-    public String getRelations() {
-        return this.relations;
+    public String getRelationships() {
+        return this.relationships;
     }
 
     public AkipEntity relations(String relations) {
-        this.relations = relations;
+        this.relationships = relations;
         return this;
     }
 
-    public void setRelations(String relations) {
-        this.relations = relations;
+    public void setRelationships(String relations) {
+        this.relationships = relations;
     }
 
     public TypeEntity getType() {
@@ -106,16 +119,24 @@ public class AkipEntity implements Serializable {
     }
 
     public AkipApplication getApplication() {
-        return this.akipApplication;
+        return this.application;
     }
 
-    public AkipEntity application(AkipApplication akipApplication) {
-        this.setApplication(akipApplication);
+    public AkipEntity application(AkipApplication application) {
+        this.setApplication(application);
         return this;
     }
 
-    public void setApplication(AkipApplication akipApplication) {
-        this.akipApplication = akipApplication;
+    public void setApplication(AkipApplication application) {
+        this.application = application;
+    }
+
+    public Set<AkipProcess> getProcesses() {
+        return processes;
+    }
+
+    public void setProcesses(Set<AkipProcess> processes) {
+        this.processes = processes;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
@@ -144,7 +165,7 @@ public class AkipEntity implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", fields='" + getFields() + "'" +
-            ", relations='" + getRelations() + "'" +
+            ", relations='" + getRelationships() + "'" +
             ", type='" + getType() + "'" +
             "}";
     }

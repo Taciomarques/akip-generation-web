@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cascade;
 
 /**
  * A AkipProcess.
@@ -34,7 +35,7 @@ public class AkipProcess implements Serializable {
     @Column(name = "status")
     private StatusProcess status;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "akip_process_akip_entity",
         joinColumns = @JoinColumn(name = "akip_process_id", referencedColumnName = "id"),
@@ -42,11 +43,12 @@ public class AkipProcess implements Serializable {
     )
     @JsonIgnoreProperties(value = { "process", "application" }, allowSetters = true)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<AkipEntity> akipEtities = new HashSet<>();
+    private Set<AkipEntity> entities = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "etities", "processes" }, allowSetters = true)
-    private AkipApplication akipApplication;
+    @JoinColumn(name = "akip_application_id")
+    @JsonIgnoreProperties(value = { "entities", "processes" }, allowSetters = true)
+    private AkipApplication application;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -101,40 +103,40 @@ public class AkipProcess implements Serializable {
         this.status = status;
     }
 
-    public Set<AkipEntity> getAkipEtities() {
-        return this.akipEtities;
+    public Set<AkipEntity> getEntities() {
+        return this.entities;
     }
 
-    public AkipProcess akipEtities(Set<AkipEntity> entities) {
-        this.setAkipEtities(entities);
+    public AkipProcess entities(Set<AkipEntity> entities) {
+        this.setEntities(entities);
         return this;
     }
 
-    public AkipProcess addAkipEtities(AkipEntity akipEntity) {
-        this.akipEtities.add(akipEntity);
+    public AkipProcess addEntities(AkipEntity entity) {
+        this.entities.add(entity);
         return this;
     }
 
-    public AkipProcess removeAkipEtities(AkipEntity akipEntity) {
-        this.akipEtities.remove(akipEntity);
+    public AkipProcess removeEntities(AkipEntity entity) {
+        this.entities.remove(entity);
         return this;
     }
 
-    public void setAkipEtities(Set<AkipEntity> entities) {
-        this.akipEtities = entities;
+    public void setEntities(Set<AkipEntity> entities) {
+        this.entities = entities;
     }
 
     public AkipApplication getApplication() {
-        return this.akipApplication;
+        return this.application;
     }
 
-    public AkipProcess application(AkipApplication akipApplication) {
-        this.setApplication(akipApplication);
+    public AkipProcess application(AkipApplication application) {
+        this.setApplication(application);
         return this;
     }
 
     public void setApplication(AkipApplication akipApplication) {
-        this.akipApplication = akipApplication;
+        this.application = akipApplication;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

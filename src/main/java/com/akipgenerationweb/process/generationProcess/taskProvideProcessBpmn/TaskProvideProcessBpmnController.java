@@ -1,4 +1,4 @@
-package com.akipgenerationweb.process.generationProcess;
+package com.akipgenerationweb.process.generationProcess.taskProvideProcessBpmn;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,14 +19,14 @@ public class TaskProvideProcessBpmnController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TaskProvideProcessBpmnContextDTO> loadContext(@PathVariable Long id) {
-        log.debug("REST request to load the context of task hotel {}", id);
+        log.debug("REST request to load the context of task TaskAnalisisDomainEntityProcess {}", id);
         TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContext = taskProvideProcessBpmnService.loadContext(id);
         return ResponseEntity.ok(taskProvideProcessBpmnContext);
     }
 
     @GetMapping("/{id}/claim")
     public ResponseEntity<TaskProvideProcessBpmnContextDTO> claim(@PathVariable Long id) {
-        log.debug("REST request to load the context of task hotel {}", id);
+        log.debug("REST request to claim of task TaskAnalisisDomainEntityProcess {}", id);
         TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContext = taskProvideProcessBpmnService.claim(id);
         return ResponseEntity.ok(taskProvideProcessBpmnContext);
     }
@@ -34,7 +34,7 @@ public class TaskProvideProcessBpmnController {
     @PostMapping("/complete")
     public ResponseEntity<Void> complete(@RequestBody TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContext) {
         log.debug(
-            "REST request to complete GenerationProcess.TaskProvideProcessBpmn {}",
+            "REST request to complete of task TaskAnalisisDomainEntityProcess {}",
             taskProvideProcessBpmnContext.getTaskInstance().getId()
         );
         taskProvideProcessBpmnService.complete(taskProvideProcessBpmnContext);

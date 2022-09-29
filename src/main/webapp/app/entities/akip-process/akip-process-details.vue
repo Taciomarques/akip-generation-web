@@ -3,7 +3,7 @@
     <div class="col-8">
       <div v-if="akipProcess">
         <h2 class="jh-entity-heading" data-cy="processDetailsHeading">
-          <span v-text="$t('akipGenerationWebApp.process.detail.title')">Process</span> {{ akipProcess.id }}
+          <span v-text="$t('akipGenerationWebApp.akipProcess.detail.title')">Process</span> {{ akipProcess.id }}
         </h2>
         <dl class="row jh-entity-details">
           <dt>
@@ -30,7 +30,7 @@
           <dd>
             <div v-if="akipProcess.application">
               <router-link :to="{ name: 'AkipApplicationView', params: { akipApplicationId: akipProcess.application.id } }">{{
-                akipProcess.application.id
+                akipProcess.application.name
               }}</router-link>
             </div>
           </dd>

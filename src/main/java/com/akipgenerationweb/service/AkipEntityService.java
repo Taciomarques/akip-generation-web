@@ -77,6 +77,21 @@ public class AkipEntityService {
     }
 
     /**
+     * Get all the akipEntities by applicationId.
+     *
+     * @return the list of entities.
+     */
+    @Transactional(readOnly = true)
+    public List<AkipEntityDTO> findByApplicationId(Long applicationId) {
+        log.debug("Request to get all AkipEntities by applicationId {}", applicationId);
+        return akipEntityRepository
+            .findAkipEntitiesByApplication_Id(applicationId)
+            .stream()
+            .map(akipEntityMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    /**
      * Get one akipEntity by id.
      *
      * @param id the id of the entity.

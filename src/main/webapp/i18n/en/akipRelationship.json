@@ -1,0 +1,19 @@
+{
+  "akipGenerationWebApp": {
+    "akipRelationship": {
+      "relationship": "Relationship #",
+      "addRelationship": "Add Relationship",
+      "removeRelationship": "Remove Relationship",
+      "relationshipName": "Name Relationship",
+      "relationshipType": "Type Relationship",
+      "otherEntityName": "Other Entity Name",
+      "otherEntityField": "Other Entity Field",
+      "types": {
+        "many-to-one": "Many to One",
+        "one-to-many": "One to Many",
+        "many-to-many": "Many to Many",
+        "one-to-one": "One to One"
+      }
+    }
+  }
+}

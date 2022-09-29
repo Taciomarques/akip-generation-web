@@ -1,10 +1,5 @@
 {
   "fields": [
-    {
-      "fieldName": "bpmn",
-      "fieldType": "byte[]",
-      "fieldTypeBlobContent": "text"
-    }
   ],
   "relationships": [],
   "entityType": "user-task-form",

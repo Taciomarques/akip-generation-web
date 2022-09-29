@@ -1,21 +1,18 @@
-package com.akipgenerationweb.process.generationProcess;
+package com.akipgenerationweb.process.generationProcess.taskProvideProcessBpmn;
 
 import com.akipgenerationweb.domain.AkipProcess;
 import com.akipgenerationweb.domain.GenerationProcess;
 import com.akipgenerationweb.service.dto.AkipProcessDTO;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
+import com.akipgenerationweb.service.mapper.AkipProcessMapper;
+import com.akipgenerationweb.service.mapper.GenerationProcessMapper;
 import org.akip.service.mapper.ProcessInstanceMapper;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = { ProcessInstanceMapper.class })
+@Mapper(componentModel = "spring", uses = { ProcessInstanceMapper.class, AkipProcessMapper.class, GenerationProcessMapper.class })
 public interface TaskProvideProcessBpmnMapper {
     @Mapping(target = "processInstance", source = "processInstance", qualifiedByName = "loadTaskContext")
     GenerationProcessDTO toGenerationProcessDTO(GenerationProcess generationProcess);
-
-    @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "id", source = "id")
-    //    @Mapping(target = "bpmn", source = "bpmn")
-    AkipProcessDTO toProcessDTO(AkipProcess process);
 }

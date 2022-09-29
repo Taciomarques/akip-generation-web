@@ -20,9 +20,9 @@
       "id": "ID",
       "name": "Name",
       "fields": "Fields",
-      "relations": "Relations",
+      "relationships": "Relationships",
       "type": "Type",
-      "process": "Process",
+      "processes": "Processes",
       "application": "Application"
     }
   }

@@ -1,0 +1,49 @@
+{
+  "akipGenerationWebApp": {
+    "akipField": {
+      "field": "Field #",
+      "addField": "Add Field",
+      "removeField": "Remove Field",
+      "name": "Name Field",
+      "type": "Type Field",
+      "enumType": "Type Enum",
+      "values": "Values Enum",
+      "fieldReadOnly": "Read Only",
+      "validations": "Validations",
+      "unique": "Unique",
+      "required": "Required",
+      "min": "Min",
+      "max": "Max",
+      "pattern": "Pattern",
+      "minLength": "Min Length",
+      "maxLength": "Max Length",
+      "fieldValidateRulesMin": "Min Value",
+      "fieldValidateRulesMax": "Max Value",
+      "fieldValidateRulesMinLength": "Min Length Value",
+      "fieldValidateRulesMaxLength": "Max Length Value",
+      "fieldValidateRulesPattern": "Pattern Value",
+      "fieldTypeBlobContent": "Type Blob Content",
+      "fieldTypes": {
+        "String": "String",
+        "Integer": "Integer",
+        "Long": "Long",
+        "Float": "Float",
+        "Double": "Double",
+        "BigDecimal": "BigDecimal",
+        "LocalDate": "LocalDate",
+        "Instant": "Instant",
+        "ZonedDateTime": "ZonedDateTime",
+        "Duration": "Duration",
+        "Boolean": "Boolean",
+        "enum": "Enumeration (Java enum type)",
+        "byte": "Blob",
+        "UUID": "UUID"
+      },
+      "blobContentTypes": {
+        "image": "Image",
+        "any": "File",
+        "text": "Text"
+      }
+    }
+  }
+}
