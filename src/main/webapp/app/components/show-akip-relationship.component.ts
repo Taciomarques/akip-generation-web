@@ -18,9 +18,9 @@ const validations: any = {
     otherEntityName: {
       required,
     },
-    otherEntityField: {
-      required,
-    },
+    otherEntityField: {},
+    relationshipValidateRules: {},
+    otherEntityRelationshipName: {},
   },
 };
 
@@ -71,5 +71,21 @@ export default class ShowAkipRelationshipComponent extends mixins(JhiDataUtils) 
       return this.otherAkipEntities.find(otherAkipEntity => otherAkipEntity.name == this.akipRelationship.otherEntityName).fields;
     }
     return null;
+  }
+
+  public changeValueInRelationshipValidateRules(value: string) {
+    if (
+      this.akipRelationship.relationshipValidateRules &&
+      this.akipRelationship.relationshipValidateRules.find(validate => validate == value)
+    ) {
+      this.akipRelationship.relationshipValidateRules = this.akipRelationship.relationshipValidateRules.filter(
+        validate => validate != value
+      );
+      return;
+    }
+    if (!this.akipRelationship.relationshipValidateRules) {
+      this.akipRelationship.relationshipValidateRules = [];
+    }
+    this.akipRelationship.relationshipValidateRules.push(value);
   }
 }

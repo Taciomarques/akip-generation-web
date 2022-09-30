@@ -8,6 +8,9 @@
       "relationshipType": "Type Relationship",
       "otherEntityName": "Other Entity Name",
       "otherEntityField": "Other Entity Field",
+      "otherEntityRelationshipName": "Other Entity Relationship Name",
+      "validations": "Validations",
+      "required": "Required",
       "types": {
         "many-to-one": "Many to One",
         "one-to-many": "One to Many",

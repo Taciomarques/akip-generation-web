@@ -14,6 +14,8 @@ public class AkipRelationshipDTO implements Serializable {
 
     private String otherEntityField;
 
+    private String[] relationshipValidateRules;
+
     public String getRelationshipName() {
         return relationshipName;
     }
@@ -54,6 +56,14 @@ public class AkipRelationshipDTO implements Serializable {
         this.otherEntityField = otherEntityField;
     }
 
+    public String[] getRelationshipValidateRules() {
+        return relationshipValidateRules;
+    }
+
+    public void setRelationshipValidateRules(String[] relationshipValidateRules) {
+        this.relationshipValidateRules = relationshipValidateRules;
+    }
+
     @Override
     public String toString() {
         return (
@@ -72,6 +82,9 @@ public class AkipRelationshipDTO implements Serializable {
             "'" +
             ", otherEntityRelationshipName='" +
             getOtherEntityRelationshipName() +
+            "'" +
+            ", relationshipValidateRules='" +
+            getRelationshipValidateRules() +
             "'" +
             "}"
         );

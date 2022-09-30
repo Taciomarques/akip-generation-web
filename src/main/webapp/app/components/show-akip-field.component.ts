@@ -157,7 +157,6 @@ export default class ShowAkipFieldComponent extends mixins(JhiDataUtils) {
       this.akipField.fieldValidateRules = [];
     }
     this.akipField.fieldValidateRules.push(value);
-    console.log(this.akipField.fieldValidateRules.toString());
   }
 
   public resetValuesInFieldValidateRules() {

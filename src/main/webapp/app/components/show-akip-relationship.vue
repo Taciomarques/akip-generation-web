@@ -92,6 +92,52 @@
               </select>
             </div>
           </div>
+          <div class="col">
+            <div class="form-group input-group-sm">
+              <label
+                class="form-control-label"
+                v-text="$t('akipGenerationWebApp.akipRelationship.otherEntityRelationshipName')"
+                for="akipRelationship-otherEntityRelationshipName"
+              ></label>
+              <input
+                type="text"
+                class="form-control"
+                name="akipOtherEntityRelationshipName"
+                id="akipRelationship-otherEntityRelationshipName"
+                data-cy="akipRelationship"
+                :readonly="readOnly"
+                :class="{ invalid: $v.akipRelationship.otherEntityRelationshipName.$invalid }"
+                v-model="$v.akipRelationship.otherEntityRelationshipName.$model"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <b><span v-text="$t('akipGenerationWebApp.akipRelationship.validations')" /></b>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <div class="custom-control custom-switch">
+                <input
+                  :readonly="readOnly"
+                  type="checkbox"
+                  @click="changeValueInRelationshipValidateRules('required')"
+                  class="custom-control-input"
+                  name="changeValueInRelationshipValidateRules"
+                  id="changeValueInRelationshipValidateRules"
+                  data-cy="changeValueInRelationshipValidateRules"
+                  v-model="akipRelationship.relationshipValidateRules && akipRelationship.relationshipValidateRules.includes('required')"
+                />
+                <label
+                  class="custom-control-label"
+                  v-text="$t('akipGenerationWebApp.akipRelationship.required')"
+                  for="changeValueInRelationshipValidateRules"
+                  >changeValueInRelationshipValidateRules</label
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

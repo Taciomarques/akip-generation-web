@@ -4,6 +4,7 @@ export interface IAkipRelationship {
   otherEntityName?: string | null;
   otherEntityRelationshipName?: string | null;
   otherEntityField?: string | null;
+  relationshipValidateRules?: string[] | null;
 }
 
 export class AkipRelationship implements IAkipRelationship {
@@ -12,6 +13,7 @@ export class AkipRelationship implements IAkipRelationship {
     public relationshipType?: string | null,
     public otherEntityName?: string | null,
     public otherEntityRelationshipName?: string | null,
-    public otherEntityField?: string | null
+    public otherEntityField?: string | null,
+    public relationshipValidateRules?: string[] | null
   ) {}
 }

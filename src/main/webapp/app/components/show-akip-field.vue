@@ -453,3 +453,9 @@
 </template>
 
 <script lang="ts" src="./show-akip-field.component.ts"></script>
+
+<style scoped>
+.form-control {
+  border-radius: 5px;
+}
+</style>
