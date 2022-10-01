@@ -4,7 +4,7 @@
       <div class="card border-primary" v-if="akipEntity">
         <div class="card-header">
           <h2 class="jh-entity-heading" data-cy="entidadeDetailsHeading">
-            <span v-text="$t('akipGenerationWebApp.akipEntity.detail.title')">Entidade</span> {{ akipEntity.id }}
+            <span v-text="$t('akipGenerationWebApp.akipEntity.detail.title')">Entidade</span> #{{ akipEntity.id }}
           </h2>
         </div>
         <div class="card-body">

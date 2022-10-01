@@ -7,7 +7,9 @@ import GenerationProcessService from './generation-process.service';
 export default class GenerationProcessDetailsComponent extends Vue {
   @Inject('generationProcessService') private generationProcessService: () => GenerationProcessService;
   public generationProcess: IGenerationProcess = {};
-
+  public collapseController: any = {
+    showAkipProcess: true,
+  };
   public isFetching: boolean = false;
 
   beforeRouteEnter(to, from, next) {
@@ -16,6 +18,10 @@ export default class GenerationProcessDetailsComponent extends Vue {
         vm.retrieveGenerationProcess(to.params.processInstanceId);
       }
     });
+  }
+
+  public collapse(collapseComponent: string): void {
+    this.collapseController[collapseComponent] = !this.collapseController[collapseComponent];
   }
 
   public retrieveGenerationProcess(generationProcessId) {

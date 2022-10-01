@@ -34,8 +34,6 @@
                 <tr>
                   <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
                   <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.name')">Name</span></th>
-                  <!--            <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.fields')">Fields</span></th>-->
-                  <!--            <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.relationships')">Relationships</span></th>-->
                   <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.type')">Type</span></th>
                   <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.processes')">Processes</span></th>
                   <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.application')">Application</span></th>
@@ -50,17 +48,14 @@
                     </router-link>
                   </td>
                   <td>{{ akipEntity.name }}</td>
-                  <!--            <td>{{ akipEntity.fields }}</td>-->
-                  <!--            <td>{{ akipEntity.relationships }}</td>-->
                   <td>
                     <show-akip-entity-type :value="akipEntity.type"></show-akip-entity-type>
                   </td>
                   <td>
                     <div v-for="process in akipEntity.processes">
                       <router-link :to="{ name: 'AkipProcessView', params: { akipProcessId: process.id } }">
-                        {{ process.name }}
+                        {{ process.name }},
                       </router-link>
-                      ,
                     </div>
                   </td>
                   <td>

@@ -45,6 +45,10 @@ export default class ShowAkipEntityComponent extends mixins(JhiDataUtils) {
 
   public relationshipsInvalid: boolean[] = [];
 
+  public collapseController: any = {
+    showAkipEntity: true,
+  };
+
   @Watch('$v.akipEntity.$invalid')
   @Watch('fieldsInvalid')
   @Watch('relationshipsInvalid')
@@ -90,6 +94,10 @@ export default class ShowAkipEntityComponent extends mixins(JhiDataUtils) {
     if (this.applicationId) {
       this.findAkipEntitiesApplicationById(this.applicationId);
     }
+  }
+
+  public collapse(collapseComponent: string): void {
+    this.collapseController[collapseComponent] = !this.collapseController[collapseComponent];
   }
 
   get isAkipEntityInvalid() {

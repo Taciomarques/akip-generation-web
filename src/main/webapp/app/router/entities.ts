@@ -11,8 +11,6 @@ const AkipApplicationDetails = () => import('@/entities/akip-application/akip-ap
 // prettier-ignore
 const AkipProcess = () => import('@/entities/akip-process/akip-process.vue');
 // prettier-ignore
-const AkipProcessUpdate = () => import('@/entities/akip-process/akip-process-update.vue');
-// prettier-ignore
 const AKipProcessDetails = () => import('@/entities/akip-process/akip-process-details.vue');
 // prettier-ignore
 const AkipEntity = () => import('@/entities/akip-entity/akip-entity.vue');
@@ -69,18 +67,6 @@ export default [
     path: '/akip-process',
     name: 'AkipProcess',
     component: AkipProcess,
-    meta: { authorities: [Authority.USER] },
-  },
-  {
-    path: '/akip-process/new',
-    name: 'AkipProcessCreate',
-    component: AkipProcessUpdate,
-    meta: { authorities: [Authority.USER] },
-  },
-  {
-    path: '/akip-process/:akipProcessId/edit',
-    name: 'AkipProcessEdit',
-    component: AkipProcessUpdate,
     meta: { authorities: [Authority.USER] },
   },
   {

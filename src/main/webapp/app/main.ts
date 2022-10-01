@@ -68,6 +68,9 @@ Vue.component('show-akip-field', ShowAkipField);
 import ShowAkipRelationship from '@/components/show-akip-relationship.vue';
 Vue.component('show-akip-relationship', ShowAkipRelationship);
 
+import ShowAkipProcess from '@/components/show-akip-process.vue';
+Vue.component('show-akip-process', ShowAkipProcess);
+
 import ShowAkipProcessStatus from '@/components/show-akip-process-status.vue';
 Vue.component('show-akip-process-status', ShowAkipProcessStatus);
 // jhipster-pais-needle-add-component-to-main - JHipster/Camunda will register components here
