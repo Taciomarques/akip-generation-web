@@ -60,11 +60,11 @@ export default class App extends Vue {
               title: 'Entity',
               icon: 'fa fa-diagram-project',
             },
-            // {
-            //   href: '/process-definition/TravelPlanProcess/instances',
-            //   title: 'Travel Plan Process',
-            //   icon: '',
-            // },
+            {
+              href: '/process-definition/GenerationProcess/instances',
+              title: 'Generation Process',
+              icon: 'fa fa-gear',
+            },
           ],
         }
       );

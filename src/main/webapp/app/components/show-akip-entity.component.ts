@@ -53,28 +53,41 @@ export default class ShowAkipEntityComponent extends mixins(JhiDataUtils) {
   }
 
   @Watch('akipEntityProp')
-  ondAkipEntityPropValueChange() {
-    this.updateAkipEntityAndFindAkipEntitiesById();
+  onAkipEntityPropValueChange() {
+    this.updateAkipEntity();
+  }
+
+  @Watch('applicationId')
+  onApplicationIdValueChange() {
+    this.findAkipEntitiesById();
   }
 
   @Watch('akipEntity.name')
   @Watch('akipEntity.fields')
   @Watch('akipEntity.relationships')
-  @Watch('akipEntity.type')
-  @Watch('akipEntity.application')
   ondAkipEntityValueChange() {
     this.$emit('update-akip-entity', this.akipEntity);
   }
 
   mounted() {
-    this.updateAkipEntityAndFindAkipEntitiesById();
+    this.updateAkipEntity();
+    this.findAkipEntitiesById();
   }
 
-  public updateAkipEntityAndFindAkipEntitiesById() {
+  public updateAkipEntity() {
     if (this.akipEntityProp) {
       this.akipEntity = this.akipEntityProp;
+      if (!this.akipEntityProp.fields) {
+        this.akipEntity.fields = [];
+      }
+      if (!this.akipEntityProp.relationships) {
+        this.akipEntity.relationships = [];
+      }
     }
-    if (!this.readOnly && this.applicationId) {
+  }
+
+  public findAkipEntitiesById() {
+    if (this.applicationId) {
       this.findAkipEntitiesApplicationById(this.applicationId);
     }
   }
@@ -82,8 +95,7 @@ export default class ShowAkipEntityComponent extends mixins(JhiDataUtils) {
   get isAkipEntityInvalid() {
     if (
       this.$v.akipEntity.$invalid ||
-      !this.akipEntity.fields ||
-      !this.akipEntity.fields.length ||
+      ((!this.akipEntity.fields || !this.akipEntity.fields.length) && this.typeEntity == 'DOMAIN') ||
       this.isAnyFieldInvalid ||
       this.isAnyRelationshipInvalid
     ) {

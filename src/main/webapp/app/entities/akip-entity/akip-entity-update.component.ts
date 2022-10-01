@@ -1,39 +1,15 @@
 import { Component, Vue, Inject } from 'vue-property-decorator';
 
-import AkipProcessService from '@/entities/akip-process/akip-process.service';
-import { IAkipProcess } from '@/shared/model/akip-process.model';
-
-import AkipApplicationService from '@/entities/akip-application/akip-application.service';
-import { IAkipApplication } from '@/shared/model/akip-application.model';
-
 import { IAkipEntity, AkipEntity } from '@/shared/model/akip-entity.model';
 import AkipEntityService from './akip-entity.service';
 
-const validations: any = {
-  akipEntity: {
-    name: {},
-    fields: {},
-    relationships: {},
-    type: {},
-  },
-};
-
-@Component({
-  validations,
-})
+@Component
 export default class AkipEntityUpdate extends Vue {
   @Inject('akipEntityService') private akipEntityService: () => AkipEntityService;
   public akipEntity: IAkipEntity = new AkipEntity();
-
-  @Inject('akipProcessService') private akipProcessService: () => AkipProcessService;
-
-  public akipProcesses: IAkipProcess[] = [];
-
-  @Inject('akipApplicationService') private akipApplicationService: () => AkipApplicationService;
-
-  public akipApplications: IAkipApplication[] = [];
   public isSaving = false;
   public currentLanguage = '';
+  public isAkipEntityInvalid = false;
 
   beforeRouteEnter(to, from, next) {
     next(vm => {
@@ -101,16 +77,5 @@ export default class AkipEntityUpdate extends Vue {
     this.$router.go(-1);
   }
 
-  public initRelationships(): void {
-    this.akipProcessService()
-      .retrieve()
-      .then(res => {
-        this.akipProcesses = res.data;
-      });
-    this.akipApplicationService()
-      .retrieve()
-      .then(res => {
-        this.akipApplications = res.data;
-      });
-  }
+  public initRelationships(): void {}
 }

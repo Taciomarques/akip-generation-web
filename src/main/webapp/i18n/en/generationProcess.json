@@ -3,13 +3,16 @@
     "generationProcess": {
       "home": {
         "title": "Generation Processes",
-        "notFound": "No Generation Processes found"
+        "notFound": "No Generation Processes found",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Process"
       },
       "created": "A new Generation Process is created with identifier {{ param }}",
       "detail": {
         "title": "Generation Process"
       },
-      "id": "ID"
+      "id": "ID",
+      "domainEntity": "Domain Entity of Process"
     }
   }
 }

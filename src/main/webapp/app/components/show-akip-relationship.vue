@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card bg-light mt-2">
+    <div class="card mt-2">
       <div class="card-body">
         <div class="d-flex justify-content-between">
           <span class="card-title" v-text="$t('akipGenerationWebApp.akipRelationship.relationship') + (index + 1)"></span>
@@ -120,19 +120,19 @@
             <div class="form-group">
               <div class="custom-control custom-switch">
                 <input
-                  :readonly="readOnly"
+                  :disabled="readOnly"
                   type="checkbox"
                   @click="changeValueInRelationshipValidateRules('required')"
                   class="custom-control-input"
                   name="changeValueInRelationshipValidateRules"
-                  id="changeValueInRelationshipValidateRules"
+                  :id="'changeValueInRelationshipValidateRules' + index"
                   data-cy="changeValueInRelationshipValidateRules"
                   v-model="akipRelationship.relationshipValidateRules && akipRelationship.relationshipValidateRules.includes('required')"
                 />
                 <label
                   class="custom-control-label"
                   v-text="$t('akipGenerationWebApp.akipRelationship.required')"
-                  for="changeValueInRelationshipValidateRules"
+                  :for="'changeValueInRelationshipValidateRules' + index"
                   >changeValueInRelationshipValidateRules</label
                 >
               </div>

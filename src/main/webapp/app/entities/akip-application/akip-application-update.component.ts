@@ -8,11 +8,12 @@ import { IAkipProcess } from '@/shared/model/akip-process.model';
 
 import { IAkipApplication, AkipApplication } from '@/shared/model/akip-application.model';
 import AkipApplicationService from './akip-application.service';
+import { required } from 'vuelidate/lib/validators';
 
 const validations: any = {
   akipApplication: {
-    name: {},
-    repositoryName: {},
+    name: { required },
+    repositoryName: { required },
     createDate: {},
     properties: {},
   },
@@ -25,13 +26,6 @@ export default class AkipApplicationUpdate extends Vue {
   @Inject('akipApplicationService') private akipApplicationService: () => AkipApplicationService;
   public akipApplication: IAkipApplication = new AkipApplication();
 
-  @Inject('akipEntityService') private akipEntityService: () => AkipEntityService;
-
-  public akipEntities: IAkipEntity[] = [];
-
-  @Inject('akipProcessService') private akipProcessService: () => AkipProcessService;
-
-  public akipProcesses: IAkipProcess[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -101,16 +95,5 @@ export default class AkipApplicationUpdate extends Vue {
     this.$router.go(-1);
   }
 
-  public initRelationships(): void {
-    this.akipEntityService()
-      .retrieve()
-      .then(res => {
-        this.akipEntities = res.data;
-      });
-    this.akipProcessService()
-      .retrieve()
-      .then(res => {
-        this.akipProcesses = res.data;
-      });
-  }
+  public initRelationships(): void {}
 }

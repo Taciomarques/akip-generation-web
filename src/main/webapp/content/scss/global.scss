@@ -38,13 +38,6 @@ a:hover {
   background-color: #373a3c;
 }
 
-.btn,
-.card,
-.alert,
-.form-control {
-  border-radius: 5px;
-}
-
 /* ==========================================================================
 Browser Upgrade Prompt
 ========================================================================== */
@@ -290,6 +283,14 @@ ui bootstrap tweaks
   position: sticky;
   right: 0;
   background: white;
+}
+
+.btn,
+.card,
+.alert,
+.form-control,
+.form-group .form-control {
+  border-radius: 5px;
 }
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */

@@ -73,4 +73,8 @@ export default class AkipApplication extends Vue {
   public closeDialog(): void {
     (<any>this.$refs.removeEntity).hide();
   }
+
+  public previousState(): void {
+    this.$router.go(-1);
+  }
 }

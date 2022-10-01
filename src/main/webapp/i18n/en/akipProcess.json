@@ -5,7 +5,6 @@
         "title": "Processes",
         "refreshListLabel": "Refresh list",
         "createLabel": "Create a new Process",
-        "initLabel": "Init a new Generation Process",
         "createOrEditLabel": "Create or edit a Process",
         "notFound": "No Processes found"
       },

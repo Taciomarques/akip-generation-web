@@ -70,11 +70,9 @@ public class TaskProvideProcessBpmnService {
     }
 
     public void save(TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContext) {
-        AkipProcessDTO akipProcessDTO = akipProcessService
-            .findOne(taskProvideProcessBpmnContext.getGenerationProcess().getAkipProcess().getId())
-            .orElseThrow();
         //        processDTO.setBpmn(taskProvideProcessBpmnContext.getGenerationProcess().getProcess().getBpmn());
-        akipProcessService.save(akipProcessDTO);
+        taskProvideProcessBpmnContext.getGenerationProcess().getAkipProcess().setPercentageExecuted(34);
+        akipProcessService.save(taskProvideProcessBpmnContext.getGenerationProcess().getAkipProcess());
     }
 
     public void complete(TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContext) {

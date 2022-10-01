@@ -34,6 +34,10 @@ const GenerationProcess_TaskGenerateDomainEntityExecute = () => import('@/entiti
 const GenerationProcess_TaskProvideProcessBpmnDetails = () => import('@/entities/generation-process/task-provide-process-bpmn/task-provide-process-bpmn-details.vue');
 // prettier-ignore
 const GenerationProcess_TaskProvideProcessBpmnExecute = () => import('@/entities/generation-process/task-provide-process-bpmn/task-provide-process-bpmn-execute.vue');
+// prettier-ignore
+const GenerationProcess_TaskGenerateProcessBindingDetails = () => import('@/entities/generation-process/task-generate-process-binding/task-generate-process-binding-details.vue');
+// prettier-ignore
+const GenerationProcess_TaskGenerateProcessBindingExecute = () => import('@/entities/generation-process/task-generate-process-binding/task-generate-process-binding-execute.vue');
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default [
@@ -149,6 +153,18 @@ export default [
     path: '/process-definition/GenerationProcess/task/TaskProvideProcessBpmn/:taskInstanceId/execute',
     name: 'GenerationProcess_TaskProvideProcessBpmnExecute',
     component: GenerationProcess_TaskProvideProcessBpmnExecute,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/process-definition/GenerationProcess/task/TaskGenerateProcessBinding/:taskInstanceId/view',
+    name: 'GenerationProcess_TaskGenerateProcessBindingDetails',
+    component: GenerationProcess_TaskGenerateProcessBindingDetails,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/process-definition/GenerationProcess/task/TaskGenerateProcessBinding/:taskInstanceId/execute',
+    name: 'GenerationProcess_TaskGenerateProcessBindingExecute',
+    component: GenerationProcess_TaskGenerateProcessBindingExecute,
     meta: { authorities: [Authority.USER] },
   },
   // jhipster-needle-add-entity-to-router - JHipster will add entities to the router here

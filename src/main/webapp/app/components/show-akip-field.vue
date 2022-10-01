@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card bg-light mt-2">
+    <div class="card mt-2">
       <div class="card-body">
         <div class="d-flex justify-content-between">
           <span class="card-title" v-text="$t('akipGenerationWebApp.akipField.field') + (index + 1)"></span>
@@ -141,19 +141,19 @@
                 <div class="form-group">
                   <div class="custom-control custom-switch">
                     <input
-                      :readonly="readOnly"
+                      :disabled="readOnly"
                       type="checkbox"
                       @click="changeValueInFieldValidateRules('required')"
                       class="custom-control-input"
                       name="addRequiredInFieldValidateRules"
-                      id="addRequiredInFieldValidateRules"
+                      :id="'addRequiredInFieldValidateRules' + index"
                       data-cy="addRequiredInFieldValidateRules"
                       v-model="akipField.fieldValidateRules && akipField.fieldValidateRules.includes('required')"
                     />
                     <label
                       class="custom-control-label"
                       v-text="$t('akipGenerationWebApp.akipField.required')"
-                      for="addRequiredInFieldValidateRules"
+                      :for="'addRequiredInFieldValidateRules' + index"
                       >addRequiredInFieldValidateRules</label
                     >
                   </div>
@@ -163,19 +163,19 @@
                 <div class="form-group">
                   <div class="custom-control custom-switch">
                     <input
-                      :readonly="readOnly"
+                      :disabled="readOnly"
                       type="checkbox"
                       @click="changeValueInFieldValidateRules('unique')"
                       class="custom-control-input"
                       name="addUniqueInFieldValidateRules"
-                      id="addUniqueInFieldValidateRules"
+                      :id="'addUniqueInFieldValidateRules' + index"
                       data-cy="addUniqueInFieldValidateRules"
                       v-model="akipField.fieldValidateRules && akipField.fieldValidateRules.includes('unique')"
                     />
                     <label
                       class="custom-control-label"
                       v-text="$t('akipGenerationWebApp.akipField.unique')"
-                      for="addUniqueInFieldValidateRules"
+                      :for="'addUniqueInFieldValidateRules' + index"
                       >addUniqueInFieldValidateRules</label
                     >
                   </div>
@@ -196,16 +196,19 @@
                 <div class="form-group">
                   <div class="custom-control custom-switch">
                     <input
-                      :readonly="readOnly"
+                      :disabled="readOnly"
                       type="checkbox"
                       @click="changeValueInFieldValidateRules('min')"
                       class="custom-control-input"
                       name="addMinInFieldValidateRules"
-                      id="addMinInFieldValidateRules"
+                      :id="'addMinInFieldValidateRules' + index"
                       data-cy="addMinInFieldValidateRules"
                       v-model="akipField.fieldValidateRules && akipField.fieldValidateRules.includes('min')"
                     />
-                    <label class="custom-control-label" v-text="$t('akipGenerationWebApp.akipField.min')" for="addMinInFieldValidateRules"
+                    <label
+                      class="custom-control-label"
+                      v-text="$t('akipGenerationWebApp.akipField.min')"
+                      :for="'addMinInFieldValidateRules' + index"
                       >addMinInFieldValidateRules</label
                     >
                   </div>
@@ -246,16 +249,19 @@
                 <div class="form-group">
                   <div class="custom-control custom-switch">
                     <input
-                      :readonly="readOnly"
+                      :disabled="readOnly"
                       type="checkbox"
                       @click="changeValueInFieldValidateRules('max')"
                       class="custom-control-input"
                       name="addMaxInFieldValidateRules"
-                      id="addMaxInFieldValidateRules"
+                      :id="'addMaxInFieldValidateRules' + index"
                       data-cy="addMaxInFieldValidateRules"
                       v-model="akipField.fieldValidateRules && akipField.fieldValidateRules.includes('max')"
                     />
-                    <label class="custom-control-label" v-text="$t('akipGenerationWebApp.akipField.max')" for="addMaxInFieldValidateRules"
+                    <label
+                      class="custom-control-label"
+                      v-text="$t('akipGenerationWebApp.akipField.max')"
+                      :for="'addMaxInFieldValidateRules' + index"
                       >addMaxInFieldValidateRules</label
                     >
                   </div>
@@ -299,19 +305,19 @@
                 <div class="form-group">
                   <div class="custom-control custom-switch">
                     <input
-                      :readonly="readOnly"
+                      :disabled="readOnly"
                       type="checkbox"
                       @click="changeValueInFieldValidateRules('minlength')"
                       class="custom-control-input"
                       name="addMinLengthInFieldValidateRules"
-                      id="addMinLengthInFieldValidateRules"
+                      :id="'addMinLengthInFieldValidateRules' + index"
                       data-cy="addMinLengthInFieldValidateRules"
                       v-model="akipField.fieldValidateRules && akipField.fieldValidateRules.includes('minlength')"
                     />
                     <label
                       class="custom-control-label"
                       v-text="$t('akipGenerationWebApp.akipField.minLength')"
-                      for="addMinLengthInFieldValidateRules"
+                      :for="'addMinLengthInFieldValidateRules' + index"
                       >addMinLengthInFieldValidateRules</label
                     >
                   </div>
@@ -347,19 +353,19 @@
                 <div class="form-group">
                   <div class="custom-control custom-switch">
                     <input
-                      :readonly="readOnly"
+                      :disabled="readOnly"
                       type="checkbox"
                       @click="changeValueInFieldValidateRules('maxlength')"
                       class="custom-control-input"
                       name="addMaxLengthInFieldValidateRules"
-                      id="addMaxLengthInFieldValidateRules"
+                      :id="'addMaxLengthInFieldValidateRules' + index"
                       data-cy="addMaxLengthInFieldValidateRules"
                       v-model="akipField.fieldValidateRules && akipField.fieldValidateRules.includes('maxlength')"
                     />
                     <label
                       class="custom-control-label"
                       v-text="$t('akipGenerationWebApp.akipField.maxLength')"
-                      for="addMaxLengthInFieldValidateRules"
+                      :for="'addMaxLengthInFieldValidateRules' + index"
                       >addMaxLengthInFieldValidateRules</label
                     >
                   </div>
@@ -400,19 +406,19 @@
                 <div class="form-group">
                   <div class="custom-control custom-switch">
                     <input
-                      :readonly="readOnly"
+                      :disabled="readOnly"
                       type="checkbox"
                       @click="changeValueInFieldValidateRules('pattern')"
                       class="custom-control-input"
                       name="addPatternInFieldValidateRules"
-                      id="addPatternInFieldValidateRules"
+                      :id="'addPatternInFieldValidateRules' + index"
                       data-cy="addPatternInFieldValidateRules"
                       v-model="akipField.fieldValidateRules && akipField.fieldValidateRules.includes('pattern')"
                     />
                     <label
                       class="custom-control-label"
                       v-text="$t('akipGenerationWebApp.akipField.pattern')"
-                      for="addPatternInFieldValidateRules"
+                      :for="'addPatternInFieldValidateRules' + index"
                       >addPatternInFieldValidateRules</label
                     >
                   </div>
@@ -453,9 +459,3 @@
 </template>
 
 <script lang="ts" src="./show-akip-field.component.ts"></script>
-
-<style scoped>
-.form-control {
-  border-radius: 5px;
-}
-</style>

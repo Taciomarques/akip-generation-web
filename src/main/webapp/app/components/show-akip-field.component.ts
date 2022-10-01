@@ -128,7 +128,9 @@ export default class ShowAkipFieldComponent extends mixins(JhiDataUtils) {
 
   @Watch('fieldTypeTemp')
   onFieldTypeTemValueChange() {
-    this.resetValuesInFieldValidateRules();
+    if (!this.readOnly) {
+      this.resetValuesInFieldValidateRules();
+    }
     if (this.fieldTypeTemp == 'enum') {
       this.akipField.fieldType = '';
       return;
@@ -145,6 +147,7 @@ export default class ShowAkipFieldComponent extends mixins(JhiDataUtils) {
   public updateAkipField() {
     if (this.akipFieldProp) {
       this.akipField = this.akipFieldProp;
+      this.fieldTypeTemp = this.akipField.fieldType;
     }
   }
 

@@ -1,6 +1,7 @@
 package com.akipgenerationweb.service;
 
 import com.akipgenerationweb.domain.GenerationProcess;
+import com.akipgenerationweb.domain.enumeration.StatusProcess;
 import com.akipgenerationweb.repository.AkipProcessRepository;
 import com.akipgenerationweb.repository.GenerationProcessRepository;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
@@ -62,6 +63,8 @@ public class GenerationProcessService {
         log.debug("Request to save GenerationProcess : {}", generationProcessDTO);
 
         GenerationProcess generationProcess = generationProcessMapper.toEntity(generationProcessDTO);
+
+        generationProcess.getAkipProcess().setStatus(StatusProcess.WAITING_GENERATE_DOMAIN_ENTITY);
 
         //Saving the domainEntity
         akipProcessRepository.save(generationProcess.getAkipProcess());

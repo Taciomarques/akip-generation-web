@@ -35,7 +35,7 @@ export default class ShowAkipRelationshipComponent extends mixins(JhiDataUtils) 
   readOnly: boolean;
 
   @Prop()
-  otherAkipEntities: Array<AkipEntity>;
+  otherAkipEntitiesProp: Array<AkipEntity>;
 
   @Prop()
   index: number;
@@ -44,10 +44,10 @@ export default class ShowAkipRelationshipComponent extends mixins(JhiDataUtils) 
   removeFunction;
 
   private akipRelationship: AkipRelationship = new AkipRelationship();
+  private otherAkipEntities: Array<AkipEntity> = new Array<AkipEntity>();
 
   @Watch('$v.akipRelationship.$invalid')
   onAkipRelationshipInvalidChanged() {
-    console.log('AQUI');
     this.$emit('is-akip-relationship-invalid', this.$v.akipRelationship.$invalid);
   }
 
@@ -56,8 +56,14 @@ export default class ShowAkipRelationshipComponent extends mixins(JhiDataUtils) 
     this.updateAkipRelationship();
   }
 
+  @Watch('otherAkipEntitiesProp')
+  onOtherAkipEntitiesPropValueChange() {
+    this.updateOtherAkipEntities();
+  }
+
   mounted() {
     this.updateAkipRelationship();
+    this.updateOtherAkipEntities();
   }
 
   public updateAkipRelationship() {
@@ -66,9 +72,21 @@ export default class ShowAkipRelationshipComponent extends mixins(JhiDataUtils) 
     }
   }
 
+  public updateOtherAkipEntities() {
+    if (this.otherAkipEntitiesProp) {
+      this.otherAkipEntities = this.otherAkipEntitiesProp;
+    }
+  }
+
   get getOtherAkipEntityFields() {
     if (this.otherAkipEntities && this.akipRelationship.otherEntityName) {
-      return this.otherAkipEntities.find(otherAkipEntity => otherAkipEntity.name == this.akipRelationship.otherEntityName).fields;
+      let otherAkipEntity: AkipEntity = this.otherAkipEntities.find(
+        otherAkipEntity => otherAkipEntity.name == this.akipRelationship.otherEntityName
+      );
+      if (!otherAkipEntity.fields) {
+        return null;
+      }
+      return otherAkipEntity.fields;
     }
     return null;
   }

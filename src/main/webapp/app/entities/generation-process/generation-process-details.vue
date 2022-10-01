@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-content-center">
-    <div class="col-10">
+    <div class="col-12">
       <div v-if="generationProcess.processInstance">
         <h2 class="jh-entity-heading" data-cy="generationProcessDetailsHeading">
           <span v-text="$t('akipGenerationWebApp.generationProcess.detail.title')">GenerationProcess</span> {{ generationProcess.id }}
@@ -16,6 +16,7 @@
               </h5>
             </div>
           </template>
+          <template v-slot:body> </template>
         </akip-show-process-instance>
         <br />
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

@@ -8,7 +8,19 @@
         <akip-show-task-instance :taskInstance="taskContext.taskInstance">
           <template v-slot:body>
             <hr />
-            <show-akip-entity :akipEntityProp="taskContext.entity" :readOnly="true" :typeEntity="'DOMAIN'"></show-akip-entity>
+            <div class="form-group input-group-sm">
+              <label class="form-control-label" v-text="$t('akipGenerationWebApp.generationProcess.domainEntity')" for="domainEntity"
+                >domainEntity</label
+              >
+              <select readonly id="domainEntity" class="form-control" v-model="getDomainEntityInAkipProcess">
+                <option v-for="entity in taskContext.entities" :value="entity" v-text="entity.name"></option>
+              </select>
+            </div>
+            <show-akip-entity
+              :akipEntityProp="getProcessBindingInAkipProcess"
+              :readOnly="true"
+              :typeEntity="'PROCESS_BINDING'"
+            ></show-akip-entity>
           </template>
         </akip-show-task-instance>
         <br />
@@ -18,7 +30,7 @@
 
         <router-link
           v-if="taskContext.taskInstance.status == 'NEW' || taskContext.taskInstance.status == 'ASSIGNED'"
-          :to="`/process-definition/GenerationProcess/task/TaskGenerateDomainEntity/${taskContext.taskInstance.id}/execute`"
+          :to="`/process-definition/GenerationProcess/task/TaskGenerateProcessBinding/${taskContext.taskInstance.id}/execute`"
           tag="button"
           class="btn btn-primary"
           data-cy="entityDetailsButton"
@@ -30,4 +42,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./task-generate-domain-entity-details.component.ts"></script>
+<script lang="ts" src="./task-generate-process-binding-details.component.ts"></script>

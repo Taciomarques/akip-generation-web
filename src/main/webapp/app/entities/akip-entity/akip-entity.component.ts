@@ -1,5 +1,3 @@
-import { mixins } from 'vue-class-component';
-
 import { Component, Vue, Inject } from 'vue-property-decorator';
 import Vue2Filters from 'vue2-filters';
 import { IAkipEntity } from '@/shared/model/akip-entity.model';
@@ -72,5 +70,9 @@ export default class AkipEntity extends Vue {
 
   public closeDialog(): void {
     (<any>this.$refs.removeEntity).hide();
+  }
+
+  public previousState(): void {
+    this.$router.go(-1);
   }
 }

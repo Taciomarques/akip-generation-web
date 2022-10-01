@@ -4,13 +4,15 @@
       "home": {
         "title": "Geração de Processos",
         "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Processo",
         "notFound": "Nenhum Processo de Geração de Processo encontrado"
       },
       "created": "Um novo Processo de Geração de Processo foi criado com o identificador {{ param }}",
       "detail": {
         "title": "Processo de Geração de Processo"
       },
-      "id": "ID"
+      "id": "ID",
+      "domainEntity": "Entidade de Domínio do Processo"
     }
   }
 }

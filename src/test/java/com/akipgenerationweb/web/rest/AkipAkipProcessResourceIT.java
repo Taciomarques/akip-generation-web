@@ -38,8 +38,8 @@ class AkipAkipProcessResourceIT {
     private static final Integer DEFAULT_PERCENTAGE_EXECUTED = 1;
     private static final Integer UPDATED_PERCENTAGE_EXECUTED = 2;
 
-    private static final StatusProcess DEFAULT_STATUS = StatusProcess.WAITING_PROVIDE_DOMAIN_ENTITIES;
-    private static final StatusProcess UPDATED_STATUS = StatusProcess.WAITING_PROVIDE_PROCESS_BINDING;
+    private static final StatusProcess DEFAULT_STATUS = StatusProcess.WAITING_GENERATE_DOMAIN_ENTITY;
+    private static final StatusProcess UPDATED_STATUS = StatusProcess.WAITING_GENERATE_PROCESS_BINDING;
 
     private static final String ENTITY_API_URL = "/api/processes";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";

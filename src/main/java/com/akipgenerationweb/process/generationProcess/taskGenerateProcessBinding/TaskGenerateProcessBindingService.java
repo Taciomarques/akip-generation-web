@@ -1,4 +1,4 @@
-package com.akipgenerationweb.process.generationProcess.taskGenerateDomainEntity;
+package com.akipgenerationweb.process.generationProcess.taskGenerateProcessBinding;
 
 import com.akipgenerationweb.domain.enumeration.TypeEntity;
 import com.akipgenerationweb.repository.GenerationProcessRepository;
@@ -6,7 +6,7 @@ import com.akipgenerationweb.service.AkipEntityService;
 import com.akipgenerationweb.service.AkipProcessService;
 import com.akipgenerationweb.service.dto.AkipEntityDTO;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
-import com.akipgenerationweb.service.mapper.GenerationProcessMapper;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.akip.repository.TaskInstanceRepository;
 import org.akip.service.TaskInstanceService;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Transactional
-public class TaskGenerateDomainEntityService {
+public class TaskGenerateProcessBindingService {
 
     private final TaskInstanceService taskInstanceService;
 
@@ -28,17 +28,17 @@ public class TaskGenerateDomainEntityService {
 
     private final TaskInstanceMapper taskInstanceMapper;
 
-    private final TaskGenerateDomainEntityMapper taskGenerateDomainEntityMapper;
+    private final TaskGenerateProcessBindingMapper taskGenerateProcessBindingMapper;
 
     private final AkipEntityService akipEntityService;
 
-    public TaskGenerateDomainEntityService(
+    public TaskGenerateProcessBindingService(
         TaskInstanceService taskInstanceService,
         AkipProcessService akipProcessService,
         TaskInstanceRepository taskInstanceRepository,
         GenerationProcessRepository generationProcessRepository,
         TaskInstanceMapper taskInstanceMapper,
-        TaskGenerateDomainEntityMapper taskGenerateDomainEntityMapper,
+        TaskGenerateProcessBindingMapper taskGenerateProcessBindingMapper,
         AkipEntityService akipEntityService
     ) {
         this.taskInstanceService = taskInstanceService;
@@ -46,11 +46,11 @@ public class TaskGenerateDomainEntityService {
         this.taskInstanceRepository = taskInstanceRepository;
         this.generationProcessRepository = generationProcessRepository;
         this.taskInstanceMapper = taskInstanceMapper;
-        this.taskGenerateDomainEntityMapper = taskGenerateDomainEntityMapper;
+        this.taskGenerateProcessBindingMapper = taskGenerateProcessBindingMapper;
         this.akipEntityService = akipEntityService;
     }
 
-    public TaskGenerateDomainEntityContextDTO loadContext(Long taskInstanceId) {
+    public TaskGenerateProcessBindingContextDTO loadContext(Long taskInstanceId) {
         TaskInstanceDTO taskInstanceDTO = taskInstanceRepository
             .findById(taskInstanceId)
             .map(taskInstanceMapper::toDTOLoadTaskContext)
@@ -58,40 +58,45 @@ public class TaskGenerateDomainEntityService {
 
         GenerationProcessDTO generationProcess = generationProcessRepository
             .findByProcessInstanceId(taskInstanceDTO.getProcessInstance().getId())
-            .map(taskGenerateDomainEntityMapper::toGenerationProcessDTO)
+            .map(taskGenerateProcessBindingMapper::toGenerationProcessDTO)
             .orElseThrow();
 
         AkipEntityDTO entity = new AkipEntityDTO();
-        entity.setType(TypeEntity.DOMAIN);
+        entity.setType(TypeEntity.PROCESS_BINDING);
         entity.setApplication(generationProcess.getAkipProcess().getApplication());
 
-        TaskGenerateDomainEntityContextDTO taskGenerateDomainEntityContextDTO = new TaskGenerateDomainEntityContextDTO();
-        taskGenerateDomainEntityContextDTO.setTaskInstance(taskInstanceDTO);
-        taskGenerateDomainEntityContextDTO.setGenerationProcess(generationProcess);
-        taskGenerateDomainEntityContextDTO.setEntity(entity);
+        List<AkipEntityDTO> entities = akipEntityService.findByApplicationId(generationProcess.getAkipProcess().getApplication().getId());
 
-        return taskGenerateDomainEntityContextDTO;
+        TaskGenerateProcessBindingContextDTO taskGenerateProcessBindingContextDTO = new TaskGenerateProcessBindingContextDTO();
+        taskGenerateProcessBindingContextDTO.setTaskInstance(taskInstanceDTO);
+        taskGenerateProcessBindingContextDTO.setGenerationProcess(generationProcess);
+        taskGenerateProcessBindingContextDTO.setEntity(entity);
+        taskGenerateProcessBindingContextDTO.setEntities(entities);
+
+        return taskGenerateProcessBindingContextDTO;
     }
 
-    public TaskGenerateDomainEntityContextDTO claim(Long taskInstanceId) {
+    public TaskGenerateProcessBindingContextDTO claim(Long taskInstanceId) {
         taskInstanceService.claim(taskInstanceId);
         return loadContext(taskInstanceId);
     }
 
-    public void save(TaskGenerateDomainEntityContextDTO taskGenerateDomainEntityContextDTO) {
-        taskGenerateDomainEntityContextDTO.getGenerationProcess().getAkipProcess().setPercentageExecuted(17);
-        akipProcessService.save(taskGenerateDomainEntityContextDTO.getGenerationProcess().getAkipProcess());
+    public void save(TaskGenerateProcessBindingContextDTO taskGenerateProcessBindingContextDTO) {
+        taskGenerateProcessBindingContextDTO
+            .getGenerationProcess()
+            .getAkipProcess()
+            .getEntities()
+            .add(taskGenerateProcessBindingContextDTO.getEntity());
+        taskGenerateProcessBindingContextDTO.getGenerationProcess().getAkipProcess().setPercentageExecuted(50);
 
-        if (!taskGenerateDomainEntityContextDTO.getGenerationProcess().getData().get("requiredGenerateOtherDomainEntity").equals("SKIP")) {
-            akipEntityService.save(taskGenerateDomainEntityContextDTO.getEntity());
-        }
+        akipProcessService.save(taskGenerateProcessBindingContextDTO.getGenerationProcess().getAkipProcess());
     }
 
-    public void complete(TaskGenerateDomainEntityContextDTO taskGenerateDomainEntityContextDTO) {
-        save(taskGenerateDomainEntityContextDTO);
+    public void complete(TaskGenerateProcessBindingContextDTO taskGenerateProcessBindingContextDTO) {
+        save(taskGenerateProcessBindingContextDTO);
         taskInstanceService.complete(
-            taskGenerateDomainEntityContextDTO.getTaskInstance(),
-            taskGenerateDomainEntityContextDTO.getGenerationProcess()
+            taskGenerateProcessBindingContextDTO.getTaskInstance(),
+            taskGenerateProcessBindingContextDTO.getGenerationProcess()
         );
     }
 }

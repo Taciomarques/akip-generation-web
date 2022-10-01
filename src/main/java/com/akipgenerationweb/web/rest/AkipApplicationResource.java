@@ -7,6 +7,7 @@ import com.akipgenerationweb.service.dto.AkipApplicationDTO;
 import com.akipgenerationweb.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -55,6 +56,7 @@ public class AkipApplicationResource {
         if (akipApplicationDTO.getId() != null) {
             throw new BadRequestAlertException("A new akipApplication cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        akipApplicationDTO.setCreateDate(LocalDate.now());
         AkipApplicationDTO result = akipApplicationService.save(akipApplicationDTO);
         return ResponseEntity
             .created(new URI("/api/applications/" + result.getId()))

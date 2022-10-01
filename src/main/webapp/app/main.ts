@@ -59,11 +59,17 @@ Vue.component('vue-markdown', VueMarkdown);
 import ShowAkipEntity from '@/components/show-akip-entity.vue';
 Vue.component('show-akip-entity', ShowAkipEntity);
 
+import ShowAkipEntityType from '@/components/show-akip-entity-type.vue';
+Vue.component('show-akip-entity-type', ShowAkipEntityType);
+
 import ShowAkipField from '@/components/show-akip-field.vue';
 Vue.component('show-akip-field', ShowAkipField);
 
 import ShowAkipRelationship from '@/components/show-akip-relationship.vue';
 Vue.component('show-akip-relationship', ShowAkipRelationship);
+
+import ShowAkipProcessStatus from '@/components/show-akip-process-status.vue';
+Vue.component('show-akip-process-status', ShowAkipProcessStatus);
 // jhipster-pais-needle-add-component-to-main - JHipster/Camunda will register components here
 
 const i18n = config.initI18N(Vue);
