@@ -66,6 +66,9 @@ import { accountStore } from '@/shared/config/store/account-store';
 import { translationStore } from '@/shared/config/store/translation-store';
 import { faForward } from '@fortawesome/free-solid-svg-icons/faForward';
 import { faClone } from '@fortawesome/free-solid-svg-icons/faClone';
+import { faFolderOpen } from '@fortawesome/free-solid-svg-icons/faFolderOpen';
+import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
+import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload';
 
 const dateTimeFormats: DateTimeFormats = {
   en: {
@@ -184,7 +187,10 @@ export function initFortAwesome(vue) {
     faFile,
     faShare,
     faForward,
-    faClone
+    faClone,
+    faFolderOpen,
+    faUpload,
+    faDownload
   );
 }
 

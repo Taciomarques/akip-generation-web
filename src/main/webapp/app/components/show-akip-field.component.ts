@@ -116,6 +116,8 @@ export default class ShowAkipFieldComponent extends mixins(JhiDataUtils) {
 
   private fieldTypeTemp: string = null;
 
+  private backupFieldValidade: any = {};
+
   @Watch('$v.akipField.$invalid', { immediate: true })
   onAkipFieldInvalidChanged() {
     this.$emit('is-akip-field-invalid', this.$v.akipField.$invalid);
@@ -128,9 +130,6 @@ export default class ShowAkipFieldComponent extends mixins(JhiDataUtils) {
 
   @Watch('fieldTypeTemp')
   onFieldTypeTemValueChange() {
-    if (!this.readOnly) {
-      this.resetValuesInFieldValidateRules();
-    }
     if (this.fieldTypeTemp == 'enum') {
       this.akipField.fieldType = '';
       return;
@@ -184,5 +183,58 @@ export default class ShowAkipFieldComponent extends mixins(JhiDataUtils) {
     }
 
     this.akipField.fieldValidateRules = [];
+  }
+
+  public backupValuesInFieldValidateRules() {
+    if (this.akipField.fieldReadOnly) {
+      if (this.akipField.fieldValidateRulesMin && this.akipField.fieldValidateRules.includes('min')) {
+        this.backupFieldValidade.fieldValidateRulesMin = this.akipField.fieldValidateRulesMin;
+        this.akipField.fieldValidateRulesMin = null;
+      }
+
+      if (this.akipField.fieldValidateRulesMax && this.akipField.fieldValidateRules.includes('max')) {
+        this.backupFieldValidade.fieldValidateRulesMax = this.akipField.fieldValidateRulesMax;
+        this.akipField.fieldValidateRulesMax = null;
+      }
+
+      if (this.akipField.fieldValidateRulesMinlength && this.akipField.fieldValidateRules.includes('minlength')) {
+        this.backupFieldValidade.fieldValidateRulesMinlength = this.akipField.fieldValidateRulesMinlength;
+        this.akipField.fieldValidateRulesMinlength = null;
+      }
+
+      if (this.akipField.fieldValidateRulesMaxlength && this.akipField.fieldValidateRules.includes('maxlength')) {
+        this.backupFieldValidade.fieldValidateRulesMaxlength = this.akipField.fieldValidateRulesMaxlength;
+        this.akipField.fieldValidateRulesMaxlength = null;
+      }
+
+      if (this.akipField.fieldValidateRulesPattern && this.akipField.fieldValidateRules.includes('pattern')) {
+        this.backupFieldValidade.fieldValidateRulesPattern = this.akipField.fieldValidateRulesPattern;
+        this.akipField.fieldValidateRulesPattern = null;
+      }
+      this.backupFieldValidade.fieldValidateRules = this.akipField.fieldValidateRules;
+      this.akipField.fieldValidateRules = [];
+      return;
+    }
+
+    if (this.backupFieldValidade.fieldValidateRulesMin && this.backupFieldValidade.fieldValidateRules.includes('min')) {
+      this.akipField.fieldValidateRulesMin = this.backupFieldValidade.fieldValidateRulesMin;
+    }
+
+    if (this.backupFieldValidade.fieldValidateRulesMax && this.backupFieldValidade.fieldValidateRules.includes('max')) {
+      this.akipField.fieldValidateRulesMax = this.backupFieldValidade.fieldValidateRulesMax;
+    }
+
+    if (this.backupFieldValidade.fieldValidateRulesMinlength && this.backupFieldValidade.fieldValidateRules.includes('minlength')) {
+      this.akipField.fieldValidateRulesMinlength = this.backupFieldValidade.fieldValidateRulesMinlength;
+    }
+
+    if (this.backupFieldValidade.fieldValidateRulesMaxlength && this.backupFieldValidade.fieldValidateRules.includes('maxlength')) {
+      this.akipField.fieldValidateRulesMaxlength = this.backupFieldValidade.fieldValidateRulesMaxlength;
+    }
+
+    if (this.backupFieldValidade.fieldValidateRulesPattern && this.backupFieldValidade.fieldValidateRules.includes('pattern')) {
+      this.akipField.fieldValidateRulesPattern = this.backupFieldValidade.fieldValidateRulesPattern;
+    }
+    this.akipField.fieldValidateRules = this.backupFieldValidade.fieldValidateRules;
   }
 }

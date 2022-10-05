@@ -6,6 +6,7 @@ import JhiDataUtils from '@/shared/data/data-utils.service';
 import { AkipRelationship } from '@/shared/model/akip-relationship.model';
 import { AkipEntity } from '@/shared/model/akip-entity.model';
 import { required } from 'vuelidate/lib/validators';
+import { TypeEntity } from '../shared/model/enumerations/type-entity.model';
 
 const validations: any = {
   akipRelationship: {
@@ -42,6 +43,9 @@ export default class ShowAkipRelationshipComponent extends mixins(JhiDataUtils) 
 
   @Prop()
   removeFunction;
+
+  @Prop()
+  typeEntity: TypeEntity;
 
   private akipRelationship: AkipRelationship = new AkipRelationship();
   private otherAkipEntities: Array<AkipEntity> = new Array<AkipEntity>();

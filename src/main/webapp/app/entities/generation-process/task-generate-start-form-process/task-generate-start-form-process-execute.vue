@@ -8,29 +8,15 @@
         <akip-show-task-instance class="border-primary" :taskInstance="taskContext.taskInstance">
           <template v-slot:body>
             <hr />
-            <div class="form-group input-group-sm">
-              <label class="form-control-label" v-text="$t('akipGenerationWebApp.generationProcess.domainEntity')" for="domainEntity"
-                >domainEntity</label
-              >
-              <select
-                id="domainEntity"
-                class="form-control"
-                @change="setProcessBindingFieldsAndRelationshipsOfAkipEntityDomain()"
-                :class="{ invalid: $v.akipEntityDomain.$invalid }"
-                v-model="akipEntityDomain"
-              >
-                <option v-for="akipEntity in taskContext.akipEntitiesDomain" :value="akipEntity" v-text="akipEntity.name"></option>
-              </select>
-            </div>
             <show-akip-entity
-              :akipEntityProp="taskContext.akipEntityProcessBinding"
-              @update-akip-entity="taskContext.akipEntityProcessBinding = $event"
+              :akipEntityProp="taskContext.akipEntityStartForm"
+              @update-akip-entity="taskContext.akipEntityStartForm = $event"
               @is-akip-entity-invalid="isAkipEntityInvalid = $event"
               :applicationId="taskContext.generationProcess.akipProcess.application.id"
-              :typeEntity="'PROCESS_BINDING'"
+              :typeEntity="'START_FORM'"
             ></show-akip-entity>
 
-            <div v-if="$v.akipEntityDomain.$invalid || isAkipEntityInvalid">
+            <div v-if="isAkipEntityInvalid">
               <div class="alert alert-dismissible alert-active border-danger mt-3">
                 <strong>
                   <b><label class="text-danger" v-text="$t('akipGenerationWebApp.generationProcess.checkMandatoryFields')"></label></b>
@@ -47,12 +33,12 @@
           <button
             type="submit"
             v-on:click.prevent="complete()"
-            :disabled="isAkipEntityInvalid || $v.akipEntityDomain.$invalid || isSaving"
+            :disabled="isAkipEntityInvalid || isSaving"
             class="btn btn-success float-right"
             data-cy="complete"
           >
             <font-awesome-icon icon="cogs"></font-awesome-icon>&nbsp;<span
-              v-text="$t('akipGenerationWebApp.taskGenerateProcessBinding.generateProcessBindingAndContinueProcess')"
+              v-text="$t('akipGenerationWebApp.taskGenerateStartFormProcess.generateStartFormProcessAndContinueProcess')"
             />&nbsp;<font-awesome-icon icon="arrow-right"></font-awesome-icon>
           </button>
         </div>
@@ -61,4 +47,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./task-generate-process-binding-execute.component.ts"></script>
+<script lang="ts" src="./task-generate-start-form-process-execute.component.ts"></script>

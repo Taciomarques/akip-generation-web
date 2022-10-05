@@ -1,6 +1,7 @@
 package com.akipgenerationweb.web.rest;
 
 import com.akipgenerationweb.domain.AkipEntity;
+import com.akipgenerationweb.domain.enumeration.TypeEntity;
 import com.akipgenerationweb.repository.AkipEntityRepository;
 import com.akipgenerationweb.service.AkipEntityService;
 import com.akipgenerationweb.service.dto.AkipEntityDTO;
@@ -136,10 +137,10 @@ public class AkipEntityResource {
      * @param applicationId the id of the application the list akipEntities.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of akipEntities in body.
      */
-    @GetMapping("/akip-entities/findByApplication/{applicationId}")
-    public List<AkipEntityDTO> getAllAkipEntities(@PathVariable Long applicationId) {
-        log.debug("REST request to get all AkipEntities by ApplicationId {}", applicationId);
-        return akipEntityService.findByApplicationId(applicationId);
+    @GetMapping("/akip-entities/findByApplicationAndTypeEntity/{applicationId}/{typeEntity}")
+    public List<AkipEntityDTO> getAllAkipEntities(@PathVariable Long applicationId, @PathVariable String typeEntity) {
+        log.debug("REST request to get all AkipEntities by ApplicationId {} and TypeEntity {}", applicationId, typeEntity);
+        return akipEntityService.findByApplicationIdAndTypeEntity(applicationId, TypeEntity.valueOf(typeEntity));
     }
 
     /**

@@ -9,7 +9,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link AkipProcess} and its DTO {@link AkipProcessDTO}.
  */
-@Mapper(componentModel = "spring", uses = { AkipApplicationMapper.class, AkipEntityMapper.class })
+@Mapper(componentModel = "spring", uses = { AkipApplicationMapper.class, AkipEntityMapper.class, AttachmentMapper.class })
 public interface AkipProcessMapper extends EntityMapper<AkipProcessDTO, AkipProcess> {
     @Mapping(target = "application", source = "application", qualifiedByName = "name")
     AkipProcessDTO toDto(AkipProcess s);

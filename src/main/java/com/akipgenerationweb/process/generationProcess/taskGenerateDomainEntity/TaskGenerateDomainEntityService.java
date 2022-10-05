@@ -1,12 +1,12 @@
 package com.akipgenerationweb.process.generationProcess.taskGenerateDomainEntity;
 
+import com.akipgenerationweb.domain.enumeration.StatusProcess;
 import com.akipgenerationweb.domain.enumeration.TypeEntity;
 import com.akipgenerationweb.repository.GenerationProcessRepository;
 import com.akipgenerationweb.service.AkipEntityService;
 import com.akipgenerationweb.service.AkipProcessService;
 import com.akipgenerationweb.service.dto.AkipEntityDTO;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
-import com.akipgenerationweb.service.mapper.GenerationProcessMapper;
 import javax.transaction.Transactional;
 import org.akip.repository.TaskInstanceRepository;
 import org.akip.service.TaskInstanceService;
@@ -61,14 +61,14 @@ public class TaskGenerateDomainEntityService {
             .map(taskGenerateDomainEntityMapper::toGenerationProcessDTO)
             .orElseThrow();
 
-        AkipEntityDTO entity = new AkipEntityDTO();
-        entity.setType(TypeEntity.DOMAIN);
-        entity.setApplication(generationProcess.getAkipProcess().getApplication());
+        AkipEntityDTO akipEntityDomain = new AkipEntityDTO();
+        akipEntityDomain.setType(TypeEntity.DOMAIN);
+        akipEntityDomain.setApplication(generationProcess.getAkipProcess().getApplication());
 
         TaskGenerateDomainEntityContextDTO taskGenerateDomainEntityContextDTO = new TaskGenerateDomainEntityContextDTO();
         taskGenerateDomainEntityContextDTO.setTaskInstance(taskInstanceDTO);
         taskGenerateDomainEntityContextDTO.setGenerationProcess(generationProcess);
-        taskGenerateDomainEntityContextDTO.setEntity(entity);
+        taskGenerateDomainEntityContextDTO.setAkipEntityDomain(akipEntityDomain);
 
         return taskGenerateDomainEntityContextDTO;
     }
@@ -79,12 +79,11 @@ public class TaskGenerateDomainEntityService {
     }
 
     public void save(TaskGenerateDomainEntityContextDTO taskGenerateDomainEntityContextDTO) {
-        taskGenerateDomainEntityContextDTO.getGenerationProcess().getAkipProcess().setPercentageExecuted(17);
-        akipProcessService.save(taskGenerateDomainEntityContextDTO.getGenerationProcess().getAkipProcess());
-
         if (!taskGenerateDomainEntityContextDTO.getGenerationProcess().getData().get("requiredGenerateOtherDomainEntity").equals("SKIP")) {
-            akipEntityService.save(taskGenerateDomainEntityContextDTO.getEntity());
+            akipEntityService.save(taskGenerateDomainEntityContextDTO.getAkipEntityDomain());
         }
+
+        akipProcessService.save(taskGenerateDomainEntityContextDTO.getGenerationProcess().getAkipProcess());
     }
 
     public void complete(TaskGenerateDomainEntityContextDTO taskGenerateDomainEntityContextDTO) {

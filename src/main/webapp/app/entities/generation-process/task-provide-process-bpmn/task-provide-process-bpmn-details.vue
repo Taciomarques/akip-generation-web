@@ -8,17 +8,41 @@
         <akip-show-task-instance :taskInstance="taskContext.taskInstance">
           <template v-slot:body>
             <hr />
-            <div class="form-group">
-              <label class="form-control-label" v-text="$t('akipGenerationWebApp.taskProvideProcessBpmn.bpmn')">bpmn</label>
-              <input
-                readonly
-                type="text"
-                class="form-control"
-                name="bpmn"
-                id="process-bpmn"
-                data-cy="bpmn"
-                v-model="taskContext.generationProcess.akipProcess.bpmn"
-              />
+            <div>
+              <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskProvideProcessBpmn.bpmn')">bpmn</label>
+              <div class="form-group input-group-sm d-flex mb-2" v-if="taskContext.generationProcess.akipProcess.bpmn">
+                <input type="text" class="form-control" :value="taskContext.generationProcess.akipProcess.bpmn.name" disabled />
+                <button
+                  type="button"
+                  v-on:click="
+                    openFile(
+                      taskContext.generationProcess.akipProcess.bpmn.specificationFileContentType,
+                      taskContext.generationProcess.akipProcess.bpmn.specificationFile
+                    )
+                  "
+                  class="btn btn-info btn-sm pull-right"
+                >
+                  <font-awesome-icon icon="folder-open"></font-awesome-icon>
+                </button>
+                <button
+                  class="btn btn-primary btn-sm pull-right"
+                  @click="
+                    downloadFile(
+                      taskContext.generationProcess.akipProcess.bpmn.specificationFileContentType,
+                      taskContext.generationProcess.akipProcess.bpmn.specificationFile,
+                      taskContext.generationProcess.akipProcess.bpmn.name
+                    )
+                  "
+                >
+                  <font-awesome-icon icon="download"></font-awesome-icon>
+                </button>
+              </div>
+              <div v-else>
+                <label for="file_bytes" class="btn btn-primary btn-sm">
+                  <font-awesome-icon icon="upload"></font-awesome-icon> {{ $t('entity.action.addblob') }}
+                </label>
+                <input type="file" style="visibility: hidden" accept=".bpmn" id="file_bytes" readonly />
+              </div>
             </div>
           </template>
         </akip-show-task-instance>

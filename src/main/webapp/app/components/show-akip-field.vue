@@ -8,7 +8,8 @@
             <div class="form-group input-group-sm">
               <div class="custom-control custom-switch">
                 <input
-                  :readonly="readOnly"
+                  :disabled="readOnly"
+                  @change="backupValuesInFieldValidateRules()"
                   type="checkbox"
                   class="custom-control-input"
                   name="akipField-fieldReadOnly"
@@ -35,7 +36,7 @@
           <input
             type="text"
             class="form-control"
-            :readonly="readOnly"
+            :readonly="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
             name="akipFieldName"
             id="akipField-fieldName"
             data-cy="akipFieldName"
@@ -52,8 +53,9 @@
               >
               <select
                 id="akipField-fieldType"
-                :disabled="readOnly"
+                :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
                 class="form-control"
+                @change="resetValuesInFieldValidateRules()"
                 :class="{ invalid: $v.fieldTypeTemp.$invalid }"
                 v-model="fieldTypeTemp"
               >
@@ -82,7 +84,7 @@
                 >
                 <input
                   id="akipField-fieldType"
-                  :disabled="readOnly"
+                  :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
                   class="form-control"
                   :class="{ invalid: $v.akipField.fieldType.$invalid }"
                   v-model="$v.akipField.fieldType.$model"
@@ -100,7 +102,7 @@
               >
               <select
                 id="akipField-fieldTypeBlobContent"
-                :disabled="readOnly"
+                :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
                 class="form-control"
                 :class="{ invalid: $v.akipField.fieldTypeBlobContent.$invalid }"
                 v-model="$v.akipField.fieldTypeBlobContent.$model"
@@ -121,7 +123,7 @@
               <textarea
                 type="text"
                 class="form-control"
-                :readonly="readOnly"
+                :readonly="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
                 name="akipFieldValues"
                 id="akipField-fieldValues"
                 data-cy="akipFieldValues"
@@ -234,7 +236,7 @@
                     </div>
                     <input
                       id="akipField-fieldValidateRulesMin"
-                      :disabled="readOnly"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
                       :placeholder="0"
                       type="number"
                       class="form-control"
@@ -286,7 +288,7 @@
                     </div>
                     <input
                       id="akipField-fieldValidateRulesMax"
-                      :disabled="readOnly"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
                       :placeholder="100"
                       type="number"
                       class="form-control"
@@ -338,7 +340,7 @@
                     </div>
                     <input
                       id="akipField-fieldValidateRulesMinLength"
-                      :disabled="readOnly"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
                       :placeholder="0"
                       type="number"
                       class="form-control"
@@ -387,7 +389,7 @@
 
                     <input
                       id="akipField-fieldValidateRulesMaxLength"
-                      :disabled="readOnly"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
                       :placeholder="20"
                       type="number"
                       class="form-control"
@@ -440,7 +442,7 @@
 
                     <input
                       id="akipField-fieldValidateRulesPattern"
-                      :disabled="readOnly"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
                       :placeholder="'^[a-zA-Z0-9]*$'"
                       type="text"
                       class="form-control"

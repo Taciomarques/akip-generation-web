@@ -7,26 +7,23 @@
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <!--
-        Added the entity AkipProcess.
-    -->
-    <changeSet id="20220919225039-1" author="jhipster">
-        <createTable tableName="akip_process">
+            Added the entity Attachment.
+        -->
+    <changeSet id="20220904000001-1" author="taciomarques">
+        <createTable tableName="attachment">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="percentage_executed" type="integer">
+            <column name="type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="status" type="varchar(255)">
+            <column name="specification_file" type="longblob">
                 <constraints nullable="true" />
             </column>
-            <column name="akip_application_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="attachment_id" type="bigint">
+            <column name="specification_file_c_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->

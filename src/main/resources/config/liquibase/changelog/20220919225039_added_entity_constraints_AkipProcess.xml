@@ -19,5 +19,11 @@
                                  constraintName="fk_akip_process_akip_application_id"
                                  referencedColumnNames="id"
                                  referencedTableName="akip_application"/>
+
+        <addForeignKeyConstraint baseColumnNames="attachment_id"
+                                 baseTableName="akip_process"
+                                 constraintName="fk_akip_process_attachment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="attachment"/>
     </changeSet>
 </databaseChangeLog>

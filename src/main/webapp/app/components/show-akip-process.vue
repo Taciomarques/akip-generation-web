@@ -19,13 +19,13 @@
         <div class="card-body">
           <div class="row">
             <div class="col">
-              <div class="form-group">
+              <div class="form-group input-group-sm">
                 <label class="form-control-label" v-text="$t('akipGenerationWebApp.akipProcess.name')" for="process-name">Name</label>
                 <input type="text" class="form-control" name="name" readonly id="process-name" data-cy="name" v-model="akipProcess.name" />
               </div>
             </div>
             <div class="col">
-              <div class="form-group">
+              <div class="form-group input-group-sm">
                 <label class="form-control-label" v-text="$t('akipGenerationWebApp.akipProcess.application')" for="akip-process-application"
                   >Application Name</label
                 >
@@ -42,8 +42,37 @@
             </div>
           </div>
 
-          <div class="mt-3" v-for="akipEntity in akipProcess.entities">
-            <show-akip-entity :akipEntityProp="akipEntity" :readOnly="true" :typeEntity="akipEntity.type"></show-akip-entity>
+          <div v-if="akipProcess.bpmn">
+            <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskProvideProcessBpmn.bpmn')">bpmn</label>
+            <div class="form-group input-group-sm d-flex mb-2" v-if="akipProcess.bpmn">
+              <input type="text" class="form-control" :value="akipProcess.bpmn.name" disabled />
+              <button
+                type="button"
+                v-on:click="openFile(akipProcess.bpmn.specificationFileContentType, akipProcess.bpmn.specificationFile)"
+                class="btn btn-info btn-sm pull-right"
+              >
+                <font-awesome-icon icon="folder-open"></font-awesome-icon>
+              </button>
+              <button
+                class="btn btn-primary btn-sm pull-right"
+                @click="
+                  downloadFile(akipProcess.bpmn.specificationFileContentType, akipProcess.bpmn.specificationFile, akipProcess.bpmn.name)
+                "
+              >
+                <font-awesome-icon icon="download"></font-awesome-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mt-3 col-6" v-for="akipEntity in akipProcess.entities">
+              <show-akip-entity
+                :akipEntityProp="akipEntity"
+                :readOnly="true"
+                :typeEntity="akipEntity.type"
+                :applicationId="akipEntity.application.id"
+              ></show-akip-entity>
+            </div>
             <hr />
           </div>
         </div>

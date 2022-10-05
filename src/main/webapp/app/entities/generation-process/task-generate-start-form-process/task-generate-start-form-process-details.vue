@@ -8,11 +8,14 @@
         <akip-show-task-instance class="border-primary" :taskInstance="taskContext.taskInstance">
           <template v-slot:body>
             <hr />
-            <show-akip-entity :akipEntityProp="taskContext.akipEntityDomain" :readOnly="true" :typeEntity="'DOMAIN'"></show-akip-entity>
+            <show-akip-entity
+              :akipEntityProp="taskContext.akipEntityStartForm"
+              :readOnly="true"
+              :typeEntity="'START_FORM'"
+            ></show-akip-entity>
           </template>
         </akip-show-task-instance>
         <br />
-
         <div class="container">
           <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
             <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span v-text="$t('entity.action.back')"> Back</span>
@@ -20,7 +23,7 @@
 
           <router-link
             v-if="taskContext.taskInstance.status == 'NEW' || taskContext.taskInstance.status == 'ASSIGNED'"
-            :to="`/process-definition/GenerationProcess/task/TaskGenerateDomainEntity/${taskContext.taskInstance.id}/execute`"
+            :to="`/process-definition/GenerationProcess/task/TaskGenerateStartFormProcess/${taskContext.taskInstance.id}/execute`"
             tag="button"
             class="btn btn-primary float-right"
             data-cy="entityDetailsButton"
@@ -33,4 +36,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./task-generate-domain-entity-details.component.ts"></script>
+<script lang="ts" src="./task-generate-start-form-process-details.component.ts"></script>

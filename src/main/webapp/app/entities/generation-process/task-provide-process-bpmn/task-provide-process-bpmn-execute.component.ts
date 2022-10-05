@@ -5,12 +5,16 @@ import JhiDataUtils from '@/shared/data/data-utils.service';
 
 import TaskProvideProcessBpmnService from './task-provide-process-bpmn.service';
 import { TaskProvideProcessBpmnContext } from './task-provide-process-bpmn.model';
+import { required } from 'vuelidate/lib/validators';
+import { Attachment, IAttachment } from '@/shared/model/attachment.model';
 
 const validations: any = {
   taskContext: {
     generationProcess: {
-      process: {
-        bpmn: {},
+      akipProcess: {
+        bpmn: {
+          required,
+        },
       },
     },
   },
@@ -49,4 +53,23 @@ export default class TaskProvideProcessBpmnExecuteComponent extends mixins(JhiDa
   }
 
   public initRelationships(): void {}
+
+  public setAttachment(event) {
+    const files = event.target.files;
+    for (const file in files) {
+      if (files[file] instanceof File) {
+        this.toBase64(files[file], base64Data => {
+          const attachment: IAttachment = new Attachment();
+          attachment.specificationFile = base64Data;
+          attachment.specificationFileContentType = files[file].type;
+          attachment.name = files[file].name;
+          this.$set(this.taskContext.generationProcess.akipProcess, 'bpmn', attachment);
+        });
+      }
+    }
+  }
+
+  public removeAttachment(): void {
+    this.taskContext.generationProcess.akipProcess.bpmn = null;
+  }
 }

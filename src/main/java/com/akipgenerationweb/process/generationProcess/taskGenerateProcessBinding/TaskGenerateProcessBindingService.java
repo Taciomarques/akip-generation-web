@@ -1,5 +1,6 @@
 package com.akipgenerationweb.process.generationProcess.taskGenerateProcessBinding;
 
+import com.akipgenerationweb.domain.enumeration.StatusProcess;
 import com.akipgenerationweb.domain.enumeration.TypeEntity;
 import com.akipgenerationweb.repository.GenerationProcessRepository;
 import com.akipgenerationweb.service.AkipEntityService;
@@ -61,17 +62,21 @@ public class TaskGenerateProcessBindingService {
             .map(taskGenerateProcessBindingMapper::toGenerationProcessDTO)
             .orElseThrow();
 
-        AkipEntityDTO entity = new AkipEntityDTO();
-        entity.setType(TypeEntity.PROCESS_BINDING);
-        entity.setApplication(generationProcess.getAkipProcess().getApplication());
+        AkipEntityDTO akipEntityProcessBinding = new AkipEntityDTO();
+        akipEntityProcessBinding.setType(TypeEntity.PROCESS_BINDING);
+        akipEntityProcessBinding.setName(generationProcess.getAkipProcess().getName());
+        akipEntityProcessBinding.setApplication(generationProcess.getAkipProcess().getApplication());
 
-        List<AkipEntityDTO> entities = akipEntityService.findByApplicationId(generationProcess.getAkipProcess().getApplication().getId());
+        List<AkipEntityDTO> akipEntitiesDomain = akipEntityService.findByApplicationIdAndTypeEntity(
+            generationProcess.getAkipProcess().getApplication().getId(),
+            TypeEntity.DOMAIN
+        );
 
         TaskGenerateProcessBindingContextDTO taskGenerateProcessBindingContextDTO = new TaskGenerateProcessBindingContextDTO();
         taskGenerateProcessBindingContextDTO.setTaskInstance(taskInstanceDTO);
         taskGenerateProcessBindingContextDTO.setGenerationProcess(generationProcess);
-        taskGenerateProcessBindingContextDTO.setEntity(entity);
-        taskGenerateProcessBindingContextDTO.setEntities(entities);
+        taskGenerateProcessBindingContextDTO.setAkipEntityProcessBinding(akipEntityProcessBinding);
+        taskGenerateProcessBindingContextDTO.setAkipEntitiesDomain(akipEntitiesDomain);
 
         return taskGenerateProcessBindingContextDTO;
     }
@@ -86,8 +91,9 @@ public class TaskGenerateProcessBindingService {
             .getGenerationProcess()
             .getAkipProcess()
             .getEntities()
-            .add(taskGenerateProcessBindingContextDTO.getEntity());
-        taskGenerateProcessBindingContextDTO.getGenerationProcess().getAkipProcess().setPercentageExecuted(50);
+            .add(taskGenerateProcessBindingContextDTO.getAkipEntityProcessBinding());
+        //        taskGenerateProcessBindingContextDTO.getGenerationProcess().getAkipProcess().setPercentageExecuted(50);
+        //        taskGenerateProcessBindingContextDTO.getGenerationProcess().getAkipProcess().setStatus(StatusProcess.WAITING_GENERATE_START_FORM);
 
         akipProcessService.save(taskGenerateProcessBindingContextDTO.getGenerationProcess().getAkipProcess());
     }

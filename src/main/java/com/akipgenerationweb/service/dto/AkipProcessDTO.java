@@ -22,6 +22,8 @@ public class AkipProcessDTO implements Serializable {
 
     private AkipApplicationDTO application;
 
+    private AttachmentDTO bpmn;
+
     private Set<AkipEntityDTO> entities = new HashSet<>();
 
     public Long getId() {
@@ -70,6 +72,14 @@ public class AkipProcessDTO implements Serializable {
 
     public void setEntities(Set<AkipEntityDTO> entities) {
         this.entities = entities;
+    }
+
+    public AttachmentDTO getBpmn() {
+        return bpmn;
+    }
+
+    public void setBpmn(AttachmentDTO bpmn) {
+        this.bpmn = bpmn;
     }
 
     @Override

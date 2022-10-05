@@ -1,9 +1,8 @@
 import { IGenerationProcess } from '@/shared/model/generation-process.model';
 import { IAkipEntity } from '@/shared/model/akip-entity.model';
 
-export class TaskGenerateProcessBindingContext {
+export class TaskGenerateStartFormProcessContext {
   taskInstance?: any = {};
   generationProcess?: IGenerationProcess = {};
-  akipEntityProcessBinding?: IAkipEntity = {};
-  akipEntitiesDomain?: IAkipEntity[] = [];
+  akipEntityStartForm?: IAkipEntity = {};
 }

@@ -1,14 +1,14 @@
-package com.akipgenerationweb.process.generationProcess.taskGenerateDomainEntity;
+package com.akipgenerationweb.process.generationProcess.taskGenerateStartFormProcess;
 
 import com.akipgenerationweb.service.dto.AkipEntityDTO;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
 import org.akip.service.dto.TaskInstanceDTO;
 
-public class TaskGenerateDomainEntityContextDTO {
+public class TaskGenerateStartFormProcessContextDTO {
 
     private GenerationProcessDTO generationProcess;
     private TaskInstanceDTO taskInstance;
-    private AkipEntityDTO akipEntityDomain;
+    private AkipEntityDTO akipEntityStartForm;
 
     public GenerationProcessDTO getGenerationProcess() {
         return generationProcess;
@@ -26,11 +26,11 @@ public class TaskGenerateDomainEntityContextDTO {
         this.taskInstance = taskInstance;
     }
 
-    public AkipEntityDTO getAkipEntityDomain() {
-        return akipEntityDomain;
+    public AkipEntityDTO getAkipEntityStartForm() {
+        return akipEntityStartForm;
     }
 
-    public void setAkipEntityDomain(AkipEntityDTO akipEntityDomain) {
-        this.akipEntityDomain = akipEntityDomain;
+    public void setAkipEntityStartForm(AkipEntityDTO akipEntityStartForm) {
+        this.akipEntityStartForm = akipEntityStartForm;
     }
 }

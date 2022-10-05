@@ -63,7 +63,7 @@ export default class ShowAkipEntityComponent extends mixins(JhiDataUtils) {
 
   @Watch('applicationId')
   onApplicationIdValueChange() {
-    this.findAkipEntitiesById();
+    this.findOtherAkipEntitiesByApplicationId(this.applicationId);
   }
 
   @Watch('akipEntity.name')
@@ -75,7 +75,7 @@ export default class ShowAkipEntityComponent extends mixins(JhiDataUtils) {
 
   mounted() {
     this.updateAkipEntity();
-    this.findAkipEntitiesById();
+    this.findOtherAkipEntitiesByApplicationId(this.applicationId);
   }
 
   public updateAkipEntity() {
@@ -87,12 +87,6 @@ export default class ShowAkipEntityComponent extends mixins(JhiDataUtils) {
       if (!this.akipEntityProp.relationships) {
         this.akipEntity.relationships = [];
       }
-    }
-  }
-
-  public findAkipEntitiesById() {
-    if (this.applicationId) {
-      this.findAkipEntitiesApplicationById(this.applicationId);
     }
   }
 
@@ -148,12 +142,14 @@ export default class ShowAkipEntityComponent extends mixins(JhiDataUtils) {
     this.relationshipsInvalid.splice(index, 1);
   }
 
-  public findAkipEntitiesApplicationById(applicationId: number) {
-    this.akipEntityService()
-      .findByApplicationId(applicationId)
-      .then(res => {
-        this.otherAkipEntities = res.data;
-        this.otherAkipEntities.filter(otherAkipEntity => otherAkipEntity.id != this.akipEntity.id);
-      });
+  public findOtherAkipEntitiesByApplicationId(applicationId: number) {
+    if (this.applicationId) {
+      this.akipEntityService()
+        .findByApplicationIdAndTypeEntity(applicationId, TypeEntity.DOMAIN)
+        .then(res => {
+          this.otherAkipEntities = res.data;
+          this.otherAkipEntities.filter(otherAkipEntity => otherAkipEntity.id != this.akipEntity.id);
+        });
+    }
   }
 }

@@ -34,7 +34,12 @@
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <b><span class="card-title" v-text="$t('akipGenerationWebApp.akipEntity.fields')"></span></b>
-                <button v-if="!readOnly" v-on:click="addField()" class="btn btn-primary" data-cy="addField">
+                <button
+                  v-if="!readOnly && typeEntity != 'START_FORM' && typeEntity != 'PROCESS_BINDING'"
+                  v-on:click="addField()"
+                  class="btn btn-primary"
+                  data-cy="addField"
+                >
                   <font-awesome-icon icon="plus"></font-awesome-icon>&nbsp;<span v-text="$t('akipGenerationWebApp.akipField.addField')" />
                 </button>
               </div>
@@ -57,7 +62,13 @@
               <div class="d-flex justify-content-between">
                 <b><span class="card-title" v-text="$t('akipGenerationWebApp.akipEntity.relationships')"></span></b>
                 <button
-                  v-if="!readOnly && otherAkipEntities && otherAkipEntities.length > 0"
+                  v-if="
+                    !readOnly &&
+                    otherAkipEntities &&
+                    otherAkipEntities.length > 0 &&
+                    typeEntity != 'START_FORM' &&
+                    typeEntity != 'PROCESS_BINDING'
+                  "
                   v-on:click="addRelationship()"
                   class="btn btn-primary"
                   data-cy="addRelationship"
@@ -68,8 +79,12 @@
                 </button>
               </div>
               <div v-if="(!otherAkipEntities || otherAkipEntities == 0) && !readOnly">
-                <div class="alert alert-warning mt-2">
-                  <span v-text="$t('akipGenerationWebApp.akipEntity.home.notFound')">No entities found</span>
+                <div class="alert alert-dismissible bg-white border-warning mt-2">
+                  <strong>
+                    <b
+                      ><label class="text-warning" v-text="$t('akipGenerationWebApp.akipEntity.home.notFound')">No entities found</label></b
+                    >
+                  </strong>
                 </div>
               </div>
               <div class="mt-2" v-for="(relationship, index) in akipEntity.relationships" :key="'relationship' + index">
@@ -77,6 +92,7 @@
                   :index="index"
                   :readOnly="readOnly"
                   :akipRelationshipProp="relationship"
+                  :typeEntity="typeEntity"
                   :otherAkipEntitiesProp="otherAkipEntities"
                   :removeFunction="removeRelationship"
                   @is-akip-relationship-invalid="updateRelationshipsInvalid(index, $event)"

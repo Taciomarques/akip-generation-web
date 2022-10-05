@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { IAkipEntity } from '@/shared/model/akip-entity.model';
+import { TypeEntity } from '@/shared/model/enumerations/type-entity.model';
 
 const baseApiUrl = 'api/akip-entities';
 
@@ -18,10 +19,10 @@ export default class AkipEntityService {
     });
   }
 
-  public findByApplicationId(applicationId: number): Promise<any> {
+  public findByApplicationIdAndTypeEntity(applicationId: number, typeEntity: TypeEntity): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       axios
-        .get(`${baseApiUrl}/findByApplication/${applicationId}`)
+        .get(`${baseApiUrl}/findByApplicationAndTypeEntity/${applicationId}/${typeEntity}`)
         .then(res => {
           resolve(res);
         })

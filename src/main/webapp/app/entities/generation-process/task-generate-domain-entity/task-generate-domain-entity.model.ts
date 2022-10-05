@@ -4,5 +4,5 @@ import { IAkipEntity } from '@/shared/model/akip-entity.model';
 export class TaskGenerateDomainEntityContext {
   taskInstance?: any = {};
   generationProcess?: IGenerationProcess = {};
-  entity?: IAkipEntity = {};
+  akipEntityDomain?: IAkipEntity = {};
 }

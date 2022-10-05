@@ -1,24 +1,7 @@
 {
   "akipGenerationWebApp": {
     "taskProvideProcessBpmn": {
-      "home": {
-        "title": "Task Provide Process Bpmns",
-        "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Task Provide Process Bpmn",
-        "createOrEditLabel": "Create or edit a Task Provide Process Bpmn",
-        "notFound": "No Task Provide Process Bpmns found"
-      },
-      "created": "A new Task Provide Process Bpmn is created with identifier {{ param }}",
-      "updated": "A Task Provide Process Bpmn is updated with identifier {{ param }}",
-      "deleted": "A Task Provide Process Bpmn is deleted with identifier {{ param }}",
-      "delete": {
-        "question": "Are you sure you want to delete Task Provide Process Bpmn {{ id }}?"
-      },
-      "detail": {
-        "title": "Task Provide Process Bpmn"
-      },
-      "id": "ID",
-      "bpmn": "Bpmn"
+      "bpmn": "Process Bpmn"
     }
   }
 }

@@ -1,6 +1,7 @@
 package com.akipgenerationweb.service;
 
 import com.akipgenerationweb.domain.AkipEntity;
+import com.akipgenerationweb.domain.enumeration.TypeEntity;
 import com.akipgenerationweb.repository.AkipEntityRepository;
 import com.akipgenerationweb.service.dto.AkipEntityDTO;
 import com.akipgenerationweb.service.mapper.AkipEntityMapper;
@@ -82,10 +83,10 @@ public class AkipEntityService {
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public List<AkipEntityDTO> findByApplicationId(Long applicationId) {
-        log.debug("Request to get all AkipEntities by applicationId {}", applicationId);
+    public List<AkipEntityDTO> findByApplicationIdAndTypeEntity(Long applicationId, TypeEntity typeEntity) {
+        log.debug("Request to get all AkipEntities by applicationId {} and TypeEntity {} ", applicationId, typeEntity);
         return akipEntityRepository
-            .findAkipEntitiesByApplication_Id(applicationId)
+            .findAkipEntitiesByApplication_IdAndType(applicationId, typeEntity)
             .stream()
             .map(akipEntityMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));

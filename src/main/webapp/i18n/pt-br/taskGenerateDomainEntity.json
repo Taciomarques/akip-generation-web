@@ -2,7 +2,7 @@
   "akipGenerationWebApp": {
     "taskGenerateDomainEntity": {
       "generateDomainEntityAndGenerateOtherDomainEntity": "Gerar esta Entidade de Domínio e Gerar outra Entidade de Domínio",
-      "generateDomainEntityAndContinueProcess": "Gerar está Entidade de Domínio e Continuar o Processo",
+      "generateDomainEntityAndContinueProcess": "Gerar esta Entidade de Domínio e Continuar o Processo",
       "skipGenerateDomainEntityAndContinueProcess": "Pular Geração desta Entidade de Domínio e Continuar o Processo"
     }
   }

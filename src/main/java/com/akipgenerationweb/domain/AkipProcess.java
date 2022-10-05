@@ -50,6 +50,10 @@ public class AkipProcess implements Serializable {
     @JsonIgnoreProperties(value = { "entities", "processes" }, allowSetters = true)
     private AkipApplication application;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "attachment_id")
+    private Attachment bpmn;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -137,6 +141,14 @@ public class AkipProcess implements Serializable {
 
     public void setApplication(AkipApplication akipApplication) {
         this.application = akipApplication;
+    }
+
+    public Attachment getBpmn() {
+        return bpmn;
+    }
+
+    public void setBpmn(Attachment bpmn) {
+        this.bpmn = bpmn;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

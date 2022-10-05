@@ -12,7 +12,8 @@
         "title": "Processo de Geração de Processo"
       },
       "id": "ID",
-      "domainEntity": "Entidade de Domínio do Processo"
+      "domainEntity": "Entidade de Domínio do Processo",
+      "checkMandatoryFields": "Verifique os campos obrigatórios."
     }
   }
 }

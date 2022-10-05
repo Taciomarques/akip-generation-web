@@ -65,6 +65,7 @@ public class GenerationProcessService {
         GenerationProcess generationProcess = generationProcessMapper.toEntity(generationProcessDTO);
 
         generationProcess.getAkipProcess().setStatus(StatusProcess.WAITING_GENERATE_DOMAIN_ENTITY);
+        generationProcess.getAkipProcess().setPercentageExecuted(10);
 
         //Saving the domainEntity
         akipProcessRepository.save(generationProcess.getAkipProcess());

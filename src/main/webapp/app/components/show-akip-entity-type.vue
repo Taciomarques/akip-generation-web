@@ -14,7 +14,7 @@
       <font-awesome-icon v-if="value == 'USER_TASK'" icon="user"></font-awesome-icon>
       <font-awesome-icon v-if="value == 'PROCESS_BINDING'" icon="share"></font-awesome-icon>
       <font-awesome-icon v-if="value == 'DOMAIN'" icon="file"></font-awesome-icon>
-      &nbsp;<span class="badge rounded-pill" v-text="$t('akipGenerationWebApp.TypeEntity.' + value)" />
+      &nbsp;<span v-text="$t('akipGenerationWebApp.TypeEntity.' + value)" />
     </span>
   </div>
 </template>

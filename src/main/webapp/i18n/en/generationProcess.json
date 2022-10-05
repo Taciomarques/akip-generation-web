@@ -12,7 +12,8 @@
         "title": "Generation Process"
       },
       "id": "ID",
-      "domainEntity": "Domain Entity of Process"
+      "domainEntity": "Domain Entity of Process",
+      "checkMandatoryFields": "Check mandatory fields."
     }
   }
 }

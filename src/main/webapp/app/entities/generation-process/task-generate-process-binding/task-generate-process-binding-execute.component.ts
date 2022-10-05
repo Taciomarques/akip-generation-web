@@ -9,7 +9,7 @@ import { AkipEntity } from '@/shared/model/akip-entity.model';
 import { required } from 'vuelidate/lib/validators';
 
 const validations = {
-  domainEntity: {
+  akipEntityDomain: {
     required,
   },
 };
@@ -20,7 +20,7 @@ export default class TaskGenerateProcessBindingExecuteComponent extends mixins(J
   private taskContext: TaskGenerateProcessBindingContext = {};
   public isSaving = false;
   public isAkipEntityInvalid = true;
-  public domainEntity: AkipEntity = {};
+  public akipEntityDomain: AkipEntity = {};
 
   beforeRouteEnter(to, from, next) {
     next(vm => {
@@ -34,7 +34,6 @@ export default class TaskGenerateProcessBindingExecuteComponent extends mixins(J
     this.isSaving = true;
     this.taskGenerateProcessBindingService.claim(taskInstanceId).then(res => {
       this.taskContext = res;
-      this.taskContext.entity.name = this.taskContext.generationProcess.akipProcess.name;
       this.isSaving = false;
     });
   }
@@ -45,7 +44,7 @@ export default class TaskGenerateProcessBindingExecuteComponent extends mixins(J
 
   public complete() {
     this.isSaving = true;
-    this.taskContext.generationProcess.akipProcess.entities.push(this.domainEntity);
+    this.taskContext.generationProcess.akipProcess.entities.push(this.akipEntityDomain);
 
     this.taskGenerateProcessBindingService.complete(this.taskContext).then(res => {
       this.isSaving = false;
@@ -54,4 +53,9 @@ export default class TaskGenerateProcessBindingExecuteComponent extends mixins(J
   }
 
   public initRelationships(): void {}
+
+  public setProcessBindingFieldsAndRelationshipsOfAkipEntityDomain() {
+    this.taskContext.akipEntityProcessBinding.fields = this.akipEntityDomain.fields;
+    this.taskContext.akipEntityProcessBinding.relationships = this.akipEntityDomain.relationships;
+  }
 }

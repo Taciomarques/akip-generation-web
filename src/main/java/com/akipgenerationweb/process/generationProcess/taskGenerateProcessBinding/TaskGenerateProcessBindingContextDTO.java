@@ -9,9 +9,9 @@ public class TaskGenerateProcessBindingContextDTO {
 
     private GenerationProcessDTO generationProcess;
     private TaskInstanceDTO taskInstance;
-    private AkipEntityDTO entity;
+    private AkipEntityDTO akipEntityProcessBinding;
 
-    private List<AkipEntityDTO> entities;
+    private List<AkipEntityDTO> akipEntitiesDomain;
 
     public GenerationProcessDTO getGenerationProcess() {
         return generationProcess;
@@ -29,19 +29,19 @@ public class TaskGenerateProcessBindingContextDTO {
         this.taskInstance = taskInstance;
     }
 
-    public AkipEntityDTO getEntity() {
-        return entity;
+    public AkipEntityDTO getAkipEntityProcessBinding() {
+        return akipEntityProcessBinding;
     }
 
-    public void setEntity(AkipEntityDTO entity) {
-        this.entity = entity;
+    public void setAkipEntityProcessBinding(AkipEntityDTO akipEntityProcessBinding) {
+        this.akipEntityProcessBinding = akipEntityProcessBinding;
     }
 
-    public List<AkipEntityDTO> getEntities() {
-        return entities;
+    public List<AkipEntityDTO> getAkipEntitiesDomain() {
+        return akipEntitiesDomain;
     }
 
-    public void setEntities(List<AkipEntityDTO> entities) {
-        this.entities = entities;
+    public void setAkipEntitiesDomain(List<AkipEntityDTO> akipEntitiesDomain) {
+        this.akipEntitiesDomain = akipEntitiesDomain;
     }
 }
