@@ -1,8 +1,9 @@
 <template>
-  <div>
-    <h2 id="configuration-page-heading" v-text="$t('configuration.title')" data-cy="configurationPageHeading">Configuration</h2>
-
-    <div v-if="allConfiguration && configuration">
+  <div class="card border-primary">
+    <div class="card-header">
+      <h2 id="configuration-page-heading" v-text="$t('configuration.title')" data-cy="configurationPageHeading">Configuration</h2>
+    </div>
+    <div class="card-body" v-if="allConfiguration && configuration">
       <span v-text="$t('configuration.filter')">Filter (by prefix)</span> <input type="text" v-model="filtered" class="form-control" />
       <h3>Spring configuration</h3>
       <table class="table table-striped table-bordered table-responsive d-table" aria-describedby="Configuration">
@@ -52,6 +53,13 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="container">
+        <button type="submit" v-on:click.prevent="$router.go(-1)" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span v-text="$t('entity.action.back')"> Back</span>
+        </button>
       </div>
     </div>
   </div>

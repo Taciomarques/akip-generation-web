@@ -115,8 +115,8 @@ public class TaskProvideProcessBpmnService {
             taskProvideProcessBpmnContextDTO
         );
 
-        taskProvideProcessBpmnContextDTO.getGenerationProcess().getAkipProcess().getEntities().addAll(akipEntitiesUserTask);
-        taskProvideProcessBpmnContextDTO.getGenerationProcess().getAkipProcess().getEntities().addAll(akipEntitiesServiceTask);
+        //        taskProvideProcessBpmnContextDTO.getGenerationProcess().getAkipProcess().getEntities().addAll(akipEntitiesUserTask);
+        //        taskProvideProcessBpmnContextDTO.getGenerationProcess().getAkipProcess().getEntities().addAll(akipEntitiesServiceTask);
 
         setVariableInCamunda(
             taskProvideProcessBpmnContextDTO.getGenerationProcess().getProcessInstance().getCamundaProcessInstanceId(),

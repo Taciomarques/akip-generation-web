@@ -80,7 +80,7 @@ Generic styles
 /* Error highlight on input fields */
 .valid[required],
 .valid.required {
-  border-left: 5px solid green;
+  border-left: 5px solid #009045;
 }
 
 .invalid:not(form) {
@@ -285,12 +285,12 @@ ui bootstrap tweaks
   background: white;
 }
 
-.btn,
-.card,
-.alert,
-.form-control,
-.form-group .form-control {
-  border-radius: 5px;
-}
+//.btn,
+//.card,
+//.alert,
+//.form-control,
+//.form-group .form-control {
+//  border-radius: 5px;
+//}
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */

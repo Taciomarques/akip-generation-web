@@ -21,7 +21,7 @@ import { Inject } from 'vue-property-decorator';
 export default class App extends Vue {
   @Inject('accountService') private accountService: () => AccountService;
 
-  private collapsed: boolean = false;
+  private collapsed: boolean = true;
   private isOnMobile: boolean = false;
   private hasAnyAuthorityValue: boolean = false;
 
@@ -91,19 +91,9 @@ export default class App extends Vue {
             icon: 'fa fa-asterisk',
           },
           {
-            href: '/email-action-config',
-            title: 'Email Config',
-            icon: 'fa fa-asterisk',
-          },
-          {
             href: '/admin/user-management',
             title: 'User management',
             icon: 'fa fa-users',
-          },
-          {
-            href: '/tenant',
-            title: 'Tenant',
-            icon: 'fa fa-asterisk',
           },
           {
             href: '/admin/metrics',

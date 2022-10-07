@@ -9,11 +9,11 @@
           <template v-slot:body>
             <hr />
             <show-akip-entity
-              :akipEntityProp="taskContext.akipEntityStartForm"
-              @update-akip-entity="taskContext.akipEntityStartForm = $event"
+              :akipEntityProp="taskContext.akipEntityUserTask"
+              @update-akip-entity="taskContext.akipEntityUserTask = $event"
               @is-akip-entity-invalid="isAkipEntityInvalid = $event"
               :applicationId="taskContext.generationProcess.akipProcess.application.id"
-              :typeEntity="'START_FORM'"
+              :typeEntity="'USER_TASK'"
             ></show-akip-entity>
 
             <div v-if="isAkipEntityInvalid">
@@ -38,7 +38,7 @@
             data-cy="complete"
           >
             <font-awesome-icon icon="cogs"></font-awesome-icon>&nbsp;<span
-              v-text="$t('akipGenerationWebApp.taskGenerateStartFormProcess.generateStartFormProcessAndContinueProcess')"
+              v-text="$t('akipGenerationWebApp.taskGenerateUserTaskProcess.generateUserTaskProcessAndContinueProcess')"
             />&nbsp;<font-awesome-icon icon="arrow-right"></font-awesome-icon>
           </button>
         </div>
@@ -47,4 +47,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./task-generate-start-form-process-execute.component.ts"></script>
+<script lang="ts" src="./task-generate-user-task-process-execute.component.ts"></script>

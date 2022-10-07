@@ -15,7 +15,7 @@
       <bpmn:extensionElements />
       <bpmn:outgoing>Flow_0d9wksf</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="TaskGenerateDomainEntity" name="Generate Domain Entity">
+    <bpmn:userTask id="TaskGenerateDomainEntity" name="Configure Domain Entity">
       <bpmn:documentation>Generate Domain Entity</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="complete">
@@ -39,12 +39,13 @@
     <bpmn:sequenceFlow id="Flow_06wf8r0" sourceRef="Gateway_0oaj187" targetRef="TaskProvideProcessBpmn">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${processInstance.data.requiredGenerateOtherDomainEntity != 'YES'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_18jn6k3" sourceRef="TaskProvideProcessBpmn" targetRef="TaskGenerateProcessBinding" />
-    <bpmn:sequenceFlow id="Flow_1fj0lkk" sourceRef="TaskGenerateProcessBinding" targetRef="TaskGenerateStartFormProcess" />
-    <bpmn:sequenceFlow id="Flow_1gdznvc" sourceRef="TaskGenerateStartFormProcess" targetRef="TaskGenerateUserTaskProcess" />
-    <bpmn:sequenceFlow id="Flow_11nfj32" sourceRef="TaskGenerateUserTaskProcess" targetRef="TaskGenerateServiceTaskProcess" />
-    <bpmn:sequenceFlow id="Flow_1yfztqa" sourceRef="TaskGenerateServiceTaskProcess" targetRef="Event_11d4ax4" />
-    <bpmn:userTask id="TaskGenerateUserTaskProcess" name="Generate Process User Task ${userTask.name}">
+    <bpmn:sequenceFlow id="Flow_18jn6k3" sourceRef="TaskProvideProcessBpmn" targetRef="TaskConfigureProcessBinding" />
+    <bpmn:sequenceFlow id="Flow_1fj0lkk" sourceRef="TaskConfigureProcessBinding" targetRef="TaskConfigureStartFormProcess" />
+    <bpmn:sequenceFlow id="Flow_1gdznvc" sourceRef="TaskConfigureStartFormProcess" targetRef="TaskConfigureUserTaskProcess" />
+    <bpmn:sequenceFlow id="Flow_11nfj32" sourceRef="TaskConfigureUserTaskProcess" targetRef="TaskConfigureServiceTaskProcess" />
+    <bpmn:sequenceFlow id="Flow_1yfztqa" sourceRef="TaskConfigureServiceTaskProcess" targetRef="TaskGenerateEntities" />
+    <bpmn:sequenceFlow id="Flow_0ogdoiy" sourceRef="TaskGenerateEntities" targetRef="Event_11d4ax4" />
+    <bpmn:userTask id="TaskConfigureUserTaskProcess" name="Configure Process User Task ${userTask.name}">
       <bpmn:documentation>Generate Process User Task</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="create">
@@ -60,7 +61,7 @@
       <bpmn:outgoing>Flow_11nfj32</bpmn:outgoing>
       <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="userTasks" camunda:elementVariable="userTask" />
     </bpmn:userTask>
-    <bpmn:userTask id="TaskGenerateStartFormProcess" name="Generate Process Start Form">
+    <bpmn:userTask id="TaskConfigureStartFormProcess" name="Configure Process Start Form">
       <bpmn:documentation>Generate Process Start Form</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="create">
@@ -90,7 +91,7 @@
       <bpmn:incoming>Flow_06wf8r0</bpmn:incoming>
       <bpmn:outgoing>Flow_18jn6k3</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="TaskGenerateProcessBinding" name="Generate Process Binding">
+    <bpmn:userTask id="TaskConfigureProcessBinding" name="Configure Process Binding">
       <bpmn:documentation>Generate Process Bind</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="create">
@@ -110,6 +111,12 @@
       <bpmn:outgoing>Flow_1en6vuu</bpmn:outgoing>
       <bpmn:outgoing>Flow_06wf8r0</bpmn:outgoing>
     </bpmn:exclusiveGateway>
+    <bpmn:userTask id="TaskConfigureServiceTaskProcess" name="Configure Process Service Task ${serviceTask.name}">
+      <bpmn:documentation>Generate Process Delegate</bpmn:documentation>
+      <bpmn:incoming>Flow_11nfj32</bpmn:incoming>
+      <bpmn:outgoing>Flow_1yfztqa</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="serviceTasks" camunda:elementVariable="serviceTask" />
+    </bpmn:userTask>
     <bpmn:endEvent id="Event_11d4ax4">
       <bpmn:extensionElements>
         <camunda:executionListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="end">
@@ -121,19 +128,17 @@
           </camunda:field>
         </camunda:executionListener>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1yfztqa</bpmn:incoming>
+      <bpmn:incoming>Flow_0ogdoiy</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="TaskGenerateServiceTaskProcess" name="Generate Process Service Task ${serviceTask.name}">
-      <bpmn:documentation>Generate Process Delegate</bpmn:documentation>
-      <bpmn:incoming>Flow_11nfj32</bpmn:incoming>
-      <bpmn:outgoing>Flow_1yfztqa</bpmn:outgoing>
-      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="serviceTasks" camunda:elementVariable="serviceTask" />
+    <bpmn:userTask id="TaskGenerateEntities" name="Generate Entities">
+      <bpmn:incoming>Flow_1yfztqa</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ogdoiy</bpmn:outgoing>
     </bpmn:userTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0gg1plc">
       <bpmndi:BPMNShape id="Participant_123vcy4_di" bpmnElement="Participant_123vcy4" isHorizontal="true">
-        <dc:Bounds x="160" y="50" width="1350" height="370" />
+        <dc:Bounds x="160" y="50" width="1490" height="370" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0bpzmxa" bpmnElement="Event_12ayvmj">
@@ -143,72 +148,81 @@
         <dc:Bounds x="350" y="210" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0hr2o94_di" bpmnElement="TaskGenerateUserTaskProcess">
-        <dc:Bounds x="1110" y="210" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_0hr2o94_di" bpmnElement="TaskConfigureUserTaskProcess">
+        <dc:Bounds x="1090" y="210" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_107wpby_di" bpmnElement="TaskGenerateStartFormProcess">
-        <dc:Bounds x="970" y="210" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_107wpby_di" bpmnElement="TaskConfigureStartFormProcess">
+        <dc:Bounds x="950" y="210" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1xzas1g" bpmnElement="TaskProvideProcessBpmn">
-        <dc:Bounds x="690" y="210" width="100" height="80" />
+        <dc:Bounds x="670" y="210" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_1nyo9ap" bpmnElement="TaskGenerateProcessBinding">
-        <dc:Bounds x="830" y="210" width="100" height="80" />
+      <bpmndi:BPMNShape id="BPMNShape_1nyo9ap" bpmnElement="TaskConfigureProcessBinding">
+        <dc:Bounds x="810" y="210" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0oaj187_di" bpmnElement="Gateway_0oaj187" isMarkerVisible="true">
-        <dc:Bounds x="555" y="225" width="50" height="50" />
+        <dc:Bounds x="535" y="225" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ehp2dt_di" bpmnElement="TaskConfigureServiceTaskProcess">
+        <dc:Bounds x="1230" y="210" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_19l7y2r" bpmnElement="Event_11d4ax4">
-        <dc:Bounds x="1392" y="232" width="36" height="36" />
+        <dc:Bounds x="1532" y="232" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0ehp2dt_di" bpmnElement="TaskGenerateServiceTaskProcess">
-        <dc:Bounds x="1250" y="210" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_1xu5u6w_di" bpmnElement="TaskGenerateEntities">
+        <dc:Bounds x="1390" y="210" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_0onv4wj" bpmnElement="Flow_0d9wksf">
         <di:waypoint x="278" y="250" />
         <di:waypoint x="350" y="250" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1en6vuu_di" bpmnElement="Flow_1en6vuu">
-        <di:waypoint x="580" y="225" />
-        <di:waypoint x="580" y="140" />
+        <di:waypoint x="560" y="225" />
+        <di:waypoint x="560" y="140" />
         <di:waypoint x="400" y="140" />
         <di:waypoint x="400" y="210" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1u5zvi7_di" bpmnElement="Flow_1u5zvi7">
         <di:waypoint x="450" y="250" />
-        <di:waypoint x="555" y="250" />
+        <di:waypoint x="535" y="250" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_06wf8r0_di" bpmnElement="Flow_06wf8r0">
-        <di:waypoint x="605" y="250" />
-        <di:waypoint x="690" y="250" />
+        <di:waypoint x="585" y="250" />
+        <di:waypoint x="670" y="250" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_18jn6k3_di" bpmnElement="Flow_18jn6k3">
-        <di:waypoint x="790" y="250" />
-        <di:waypoint x="830" y="250" />
+        <di:waypoint x="770" y="250" />
+        <di:waypoint x="810" y="250" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1fj0lkk_di" bpmnElement="Flow_1fj0lkk">
-        <di:waypoint x="930" y="250" />
-        <di:waypoint x="970" y="250" />
+        <di:waypoint x="910" y="250" />
+        <di:waypoint x="950" y="250" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1gdznvc_di" bpmnElement="Flow_1gdznvc">
-        <di:waypoint x="1070" y="250" />
-        <di:waypoint x="1110" y="250" />
+        <di:waypoint x="1050" y="250" />
+        <di:waypoint x="1090" y="250" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_11nfj32_di" bpmnElement="Flow_11nfj32">
-        <di:waypoint x="1210" y="250" />
-        <di:waypoint x="1250" y="250" />
+        <di:waypoint x="1190" y="250" />
+        <di:waypoint x="1230" y="250" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_0svrb3m" bpmnElement="Flow_1yfztqa">
-        <di:waypoint x="1350" y="250" />
-        <di:waypoint x="1392" y="250" />
+        <di:waypoint x="1330" y="250" />
+        <di:waypoint x="1390" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ogdoiy_di" bpmnElement="Flow_0ogdoiy">
+        <di:waypoint x="1490" y="250" />
+        <di:waypoint x="1532" y="250" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="BPMNShape_13gesjd" bpmnElement="Group_06p4nj2">
-        <dc:Bounds x="680" y="100" width="680" height="300" />
+        <dc:Bounds x="660" y="100" width="680" height="300" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="992" y="107" width="56" height="27" />
+          <dc:Bounds x="972" y="107" width="56" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>

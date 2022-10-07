@@ -41,8 +41,8 @@
                   <font-awesome-icon icon="times"></font-awesome-icon>
                 </button>
               </div>
-              <div v-else>
-                <label for="file_bytes" class="btn btn-primary btn-sm">
+              <div v-else class="form-group">
+                <label style="width: 40%" for="file_bytes" class="btn btn-primary btn-sm">
                   <font-awesome-icon icon="upload"></font-awesome-icon> {{ $t('entity.action.addblob') }}
                 </label>
                 <input type="file" style="visibility: hidden" accept=".bpmn" id="file_bytes" @change="setAttachment($event)" />
@@ -50,9 +50,9 @@
             </div>
 
             <div v-if="$v.taskContext.generationProcess.akipProcess.bpmn.$invalid">
-              <div class="alert alert-dismissible alert-active border-danger mt-3">
+              <div class="alert alert-dismissible alert-danger mt-3">
                 <strong>
-                  <b><label class="text-danger" v-text="$t('akipGenerationWebApp.generationProcess.checkMandatoryFields')"></label></b>
+                  <b><label v-text="$t('akipGenerationWebApp.generationProcess.checkMandatoryFields')"></label></b>
                 </strong>
               </div>
             </div>

@@ -23,7 +23,8 @@
       "relationships": "Relacionamentos",
       "type": "Tipo",
       "processes": "Processos",
-      "application": "Aplicação"
+      "application": "Aplicação",
+      "requiredField": "Obrigatório um campo."
     }
   }
 }

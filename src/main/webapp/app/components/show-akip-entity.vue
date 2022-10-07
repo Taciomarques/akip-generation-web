@@ -4,9 +4,18 @@
       <h4 class="card-header collapse-link" v-on:click="collapse('showAkipEntity')">
         <div class="d-flex">
           <div class="p-1">
-            <span class="title" v-text="$t('akipGenerationWebApp.akipEntity.detail.title')"></span>
+            <span
+              class="title"
+              v-text="
+                readOnly
+                  ? akipEntity.name
+                    ? akipEntity.name
+                    : $t('akipGenerationWebApp.akipEntity.detail.title')
+                  : $t('akipGenerationWebApp.akipEntity.detail.title')
+              "
+            ></span>
           </div>
-          <div class="ml-3 small">
+          <div class="p-1 ml-3 small">
             <show-akip-entity-type :value="typeEntity"></show-akip-entity-type>
           </div>
           <div class="p-1 ml-3">
@@ -17,14 +26,14 @@
       </h4>
       <b-collapse v-model="collapseController.showAkipEntity" id="collapse-akip-entity">
         <div class="card-body">
-          <div class="form-group input-group-sm">
+          <div class="form-group input-group-sm" v-if="!readOnly">
             <label class="form-control-label" v-text="$t('akipGenerationWebApp.akipEntity.name')" for="akipEntity-name">Name</label>
             <input
               type="text"
               class="form-control"
               name="name"
               id="akipEntity-name"
-              :readonly="readOnly"
+              :readonly="typeEntity == 'USER_TASK'"
               data-cy="name"
               :class="{ invalid: $v.akipEntity.name.$invalid && !readOnly }"
               v-model="$v.akipEntity.name.$model"
@@ -34,16 +43,18 @@
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <b><span class="card-title" v-text="$t('akipGenerationWebApp.akipEntity.fields')"></span></b>
-                <button
-                  v-if="!readOnly && typeEntity != 'START_FORM' && typeEntity != 'PROCESS_BINDING'"
-                  v-on:click="addField()"
-                  class="btn btn-primary"
-                  data-cy="addField"
-                >
+                <button v-if="!readOnly && typeEntity == 'DOMAIN'" v-on:click="addField()" class="btn btn-primary" data-cy="addField">
                   <font-awesome-icon icon="plus"></font-awesome-icon>&nbsp;<span v-text="$t('akipGenerationWebApp.akipField.addField')" />
                 </button>
               </div>
-
+              <div
+                v-if="(!akipEntity.fields || akipEntity.fields.length == 0) && !readOnly && typeEntity == 'DOMAIN'"
+                class="alert alert-dismissible alert-danger mt-4"
+              >
+                <strong>
+                  <b><label v-text="$t('akipGenerationWebApp.akipEntity.requiredField')">Required fields</label></b>
+                </strong>
+              </div>
               <div class="mt-3" v-for="(field, index) in akipEntity.fields" :key="'field' + index">
                 <show-akip-field
                   :index="index"
@@ -62,13 +73,7 @@
               <div class="d-flex justify-content-between">
                 <b><span class="card-title" v-text="$t('akipGenerationWebApp.akipEntity.relationships')"></span></b>
                 <button
-                  v-if="
-                    !readOnly &&
-                    otherAkipEntities &&
-                    otherAkipEntities.length > 0 &&
-                    typeEntity != 'START_FORM' &&
-                    typeEntity != 'PROCESS_BINDING'
-                  "
+                  v-if="!readOnly && otherAkipEntities && otherAkipEntities.length > 0 && typeEntity == 'DOMAIN'"
                   v-on:click="addRelationship()"
                   class="btn btn-primary"
                   data-cy="addRelationship"
@@ -79,11 +84,9 @@
                 </button>
               </div>
               <div v-if="(!otherAkipEntities || otherAkipEntities == 0) && !readOnly">
-                <div class="alert alert-dismissible bg-white border-warning mt-2">
+                <div class="alert alert-dismissible alert-warning mt-2">
                   <strong>
-                    <b
-                      ><label class="text-warning" v-text="$t('akipGenerationWebApp.akipEntity.home.notFound')">No entities found</label></b
-                    >
+                    <b><label v-text="$t('akipGenerationWebApp.akipEntity.home.notFound')">No entities found</label></b>
                   </strong>
                 </div>
               </div>

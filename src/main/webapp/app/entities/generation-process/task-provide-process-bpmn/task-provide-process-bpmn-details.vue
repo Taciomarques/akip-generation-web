@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-content-center">
-    <div class="col-10">
+    <div class="col-12">
       <h2 id="page-heading" data-cy="TaskInstanceHeading">
         <span v-text="$t('akipGenerationWebApp.taskInstance.details.title')" id="task-instance-heading">Task Details</span>
       </h2>
@@ -38,28 +38,29 @@
                 </button>
               </div>
               <div v-else>
-                <label for="file_bytes" class="btn btn-primary btn-sm">
+                <label disabled style="width: 40%" for="file_bytes" class="btn btn-primary btn-sm">
                   <font-awesome-icon icon="upload"></font-awesome-icon> {{ $t('entity.action.addblob') }}
                 </label>
-                <input type="file" style="visibility: hidden" accept=".bpmn" id="file_bytes" readonly />
               </div>
             </div>
           </template>
         </akip-show-task-instance>
         <br />
-        <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-          <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span v-text="$t('entity.action.back')"> Back</span>
-        </button>
+        <div class="container">
+          <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+            <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span v-text="$t('entity.action.back')"> Back</span>
+          </button>
 
-        <router-link
-          v-if="taskContext.taskInstance.status == 'NEW' || taskContext.taskInstance.status == 'ASSIGNED'"
-          :to="`/process-definition/GenerationProcess/task/TaskProvideProcessBpmn/${taskContext.taskInstance.id}/execute`"
-          tag="button"
-          class="btn btn-primary"
-          data-cy="entityDetailsButton"
-        >
-          <font-awesome-icon icon="play"></font-awesome-icon>&nbsp;Execute
-        </router-link>
+          <router-link
+            v-if="taskContext.taskInstance.status == 'NEW' || taskContext.taskInstance.status == 'ASSIGNED'"
+            :to="`/process-definition/GenerationProcess/task/TaskProvideProcessBpmn/${taskContext.taskInstance.id}/execute`"
+            tag="button"
+            class="btn btn-primary float-right"
+            data-cy="entityDetailsButton"
+          >
+            <font-awesome-icon icon="play"></font-awesome-icon>&nbsp;Execute
+          </router-link>
+        </div>
       </div>
     </div>
   </div>

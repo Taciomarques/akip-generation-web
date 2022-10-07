@@ -31,9 +31,9 @@
             ></show-akip-entity>
 
             <div v-if="$v.akipEntityDomain.$invalid || isAkipEntityInvalid">
-              <div class="alert alert-dismissible alert-active border-danger mt-3">
+              <div class="alert alert-dismissible alert-danger mt-3">
                 <strong>
-                  <b><label class="text-danger" v-text="$t('akipGenerationWebApp.generationProcess.checkMandatoryFields')"></label></b>
+                  <b><label v-text="$t('akipGenerationWebApp.generationProcess.checkMandatoryFields')"></label></b>
                 </strong>
               </div>
             </div>

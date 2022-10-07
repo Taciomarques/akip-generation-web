@@ -42,39 +42,93 @@
             </div>
           </div>
 
-          <div v-if="akipProcess.bpmn">
-            <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskProvideProcessBpmn.bpmn')">bpmn</label>
-            <div class="form-group input-group-sm d-flex mb-2" v-if="akipProcess.bpmn">
-              <input type="text" class="form-control" :value="akipProcess.bpmn.name" disabled />
-              <button
-                type="button"
-                v-on:click="openFile(akipProcess.bpmn.specificationFileContentType, akipProcess.bpmn.specificationFile)"
-                class="btn btn-info btn-sm pull-right"
+          <div class="form-group">
+            <label v-text="$t('akipGenerationWebApp.akipProcess.percentageExecuted')" />
+            <div class="progress" style="border-radius: 5px">
+              <div
+                class="progress-bar progress-bar-striped progress-bar-animated"
+                role="progressbar"
+                :aria-valuenow="akipProcess.percentageExecuted"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                :style="'width: ' + akipProcess.percentageExecuted + '%;'"
               >
-                <font-awesome-icon icon="folder-open"></font-awesome-icon>
-              </button>
-              <button
-                class="btn btn-primary btn-sm pull-right"
-                @click="
-                  downloadFile(akipProcess.bpmn.specificationFileContentType, akipProcess.bpmn.specificationFile, akipProcess.bpmn.name)
-                "
-              >
-                <font-awesome-icon icon="download"></font-awesome-icon>
-              </button>
+                {{ akipProcess.percentageExecuted ? akipProcess.percentageExecuted + '%' : '0%' }}
+              </div>
+            </div>
+            <div class="form-group" v-if="akipProcess.bpmn">
+              <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskProvideProcessBpmn.bpmn')">bpmn</label>
+              <div class="form-group input-group-sm d-flex mb-2">
+                <input type="text" class="form-control" :value="akipProcess.bpmn.name" disabled />
+                <button
+                  type="button"
+                  v-on:click="openFile(akipProcess.bpmn.specificationFileContentType, akipProcess.bpmn.specificationFile)"
+                  class="btn btn-info btn-sm pull-right"
+                >
+                  <font-awesome-icon icon="folder-open"></font-awesome-icon>
+                </button>
+                <button
+                  class="btn btn-primary btn-sm pull-right"
+                  @click="
+                    downloadFile(akipProcess.bpmn.specificationFileContentType, akipProcess.bpmn.specificationFile, akipProcess.bpmn.name)
+                  "
+                >
+                  <font-awesome-icon icon="download"></font-awesome-icon>
+                </button>
+              </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="mt-3 col-6" v-for="akipEntity in akipProcess.entities">
-              <show-akip-entity
-                :akipEntityProp="akipEntity"
-                :readOnly="true"
-                :typeEntity="akipEntity.type"
-                :applicationId="akipEntity.application.id"
-              ></show-akip-entity>
-            </div>
+          <div class="mt-3" v-if="akipEntityDomain">
             <hr />
+            <show-akip-entity
+              :akipEntityProp="akipEntityDomain"
+              :readOnly="true"
+              :typeEntity="akipEntityDomain.type"
+              :applicationId="akipEntityDomain.application.id"
+            ></show-akip-entity>
           </div>
+
+          <div class="mt-3" v-if="akipEntityProcessBinding">
+            <hr />
+            <show-akip-entity
+              :akipEntityProp="akipEntityProcessBinding"
+              :readOnly="true"
+              :typeEntity="akipEntityProcessBinding.type"
+              :applicationId="akipEntityProcessBinding.application.id"
+            ></show-akip-entity>
+          </div>
+
+          <div class="mt-3" v-if="akipEntityStartForm">
+            <hr />
+            <show-akip-entity
+              :akipEntityProp="akipEntityStartForm"
+              :readOnly="true"
+              :typeEntity="akipEntityStartForm.type"
+              :applicationId="akipEntityStartForm.application.id"
+            ></show-akip-entity>
+          </div>
+
+          <div class="mt-3" v-for="akipEntity in akipProcess.entities.filter(akipEntity => akipEntity.type == 'USER_TASK')">
+            <hr />
+            <show-akip-entity
+              :akipEntityProp="akipEntity"
+              :readOnly="true"
+              :typeEntity="akipEntity.type"
+              :applicationId="akipEntity.application.id"
+            ></show-akip-entity>
+          </div>
+
+          <hr />
+          <ul class="list-group">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+              v-for="akipEntity in akipProcess.entities.filter(akipEntity => akipEntity.type == 'SERVICE_TASK')"
+            >
+              {{ akipEntity.name }}
+              <show-akip-entity-type :value="akipEntity.type"></show-akip-entity-type>
+            </li>
+          </ul>
         </div>
       </b-collapse>
     </div>

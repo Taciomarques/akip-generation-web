@@ -10,6 +10,7 @@ eg $input-color: red;
 $blue: #4285f4 !default;
 $primary: #009045 !default;
 $warning: #ff7f08 !default;
+$secondary: rgba(203, 203, 203, 0.65) !default;
 
 $primary-color: $primary;
 $base-bg: #ffffff;
@@ -18,20 +19,20 @@ $mobile-item-color: #ffffff;
 @import '~vue-sidebar-menu/src/scss/vue-sidebar-menu.scss';
 @import '@fortawesome/fontawesome-free/css/all.css';
 
-@import '~bootswatch/dist/yeti/variables';
+@import '~bootswatch/dist/united/variables';
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-vue/src/index.scss';
-@import '~bootswatch/dist/yeti/bootswatch';
+@import '~bootswatch/dist/united/bootswatch';
 /* Dirty fix on navbar active link with bootswatch theme */
 nav li.router-link-active .navbar-dropdown-menu {
   color: $primary;
 }
 
 //Project Specific Styles
-.alert-warning {
-  //background-color: $warning;
-  color: #ffffff;
-}
+//.alert-warning {
+//  //background-color: $warning;
+//  color: #ffffff;
+//}
 
 .table-data {
   font-size: 80%;

@@ -133,7 +133,7 @@
             </div>
           </div>
         </div>
-        <div class="card">
+        <div class="card" v-if="typeEntity != 'PROCESS_BINDING'">
           <div class="card-header">
             <b><span v-text="$t('akipGenerationWebApp.akipField.validations')" /></b>
           </div>

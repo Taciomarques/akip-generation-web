@@ -40,6 +40,10 @@ const GenerationProcess_TaskGenerateProcessBindingExecute = () => import('@/enti
 const GenerationProcess_TaskGenerateStartFormProcessDetails = () => import('@/entities/generation-process/task-generate-start-form-process/task-generate-start-form-process-details.vue');
 // prettier-ignore
 const GenerationProcess_TaskGenerateStartFormProcessExecute = () => import('@/entities/generation-process/task-generate-start-form-process/task-generate-start-form-process-execute.vue');
+// prettier-ignore
+const GenerationProcess_TaskGenerateUserTaskProcessDetails = () => import('@/entities/generation-process/task-generate-user-task-process/task-generate-user-task-process-details.vue');
+// prettier-ignore
+const GenerationProcess_TaskGenerateUserTaskProcessExecute = () => import('@/entities/generation-process/task-generate-user-task-process/task-generate-user-task-process-execute.vue');
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default [
@@ -167,6 +171,18 @@ export default [
     path: '/process-definition/GenerationProcess/task/TaskGenerateStartFormProcess/:taskInstanceId/execute',
     name: 'GenerationProcess_TaskGenerateStartFormProcessExecute',
     component: GenerationProcess_TaskGenerateStartFormProcessExecute,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/process-definition/GenerationProcess/task/TaskGenerateUserTaskProcess/:taskInstanceId/view',
+    name: 'GenerationProcess_TaskGenerateUserTaskProcessDetails',
+    component: GenerationProcess_TaskGenerateUserTaskProcessDetails,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/process-definition/GenerationProcess/task/TaskGenerateUserTaskProcess/:taskInstanceId/execute',
+    name: 'GenerationProcess_TaskGenerateUserTaskProcessExecute',
+    component: GenerationProcess_TaskGenerateUserTaskProcessExecute,
     meta: { authorities: [Authority.USER] },
   },
   // jhipster-needle-add-entity-to-router - JHipster will add entities to the router here

@@ -98,6 +98,13 @@
                 v-model="$v.akipApplication.properties.$model"
               />
             </div>
+            <div v-if="$v.akipApplication.$invalid">
+              <div class="alert alert-dismissible alert-danger mt-3">
+                <strong>
+                  <b><label v-text="$t('akipGenerationWebApp.generationProcess.checkMandatoryFields')"></label></b>
+                </strong>
+              </div>
+            </div>
           </div>
           <div class="card-footer">
             <div class="container">
