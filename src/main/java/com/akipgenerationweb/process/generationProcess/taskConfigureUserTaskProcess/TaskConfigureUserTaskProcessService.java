@@ -2,6 +2,7 @@ package com.akipgenerationweb.process.generationProcess.taskConfigureUserTaskPro
 
 import com.akipgenerationweb.domain.enumeration.TypeEntity;
 import com.akipgenerationweb.repository.GenerationProcessRepository;
+import com.akipgenerationweb.service.AkipEntityService;
 import com.akipgenerationweb.service.AkipProcessService;
 import com.akipgenerationweb.service.dto.AkipEntityDTO;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
@@ -29,6 +30,8 @@ public class TaskConfigureUserTaskProcessService {
 
     private final RuntimeService runtimeService;
 
+    private final AkipEntityService akipEntityService;
+
     private final TaskConfigureUserTaskProcessMapper taskConfigureUserTaskProcessMapper;
 
     private final String USER_TASK = "userTask";
@@ -40,6 +43,7 @@ public class TaskConfigureUserTaskProcessService {
         GenerationProcessRepository generationProcessRepository,
         TaskInstanceMapper taskInstanceMapper,
         RuntimeService runtimeService,
+        AkipEntityService akipEntityService,
         TaskConfigureUserTaskProcessMapper taskConfigureUserTaskProcessMapper
     ) {
         this.taskInstanceService = taskInstanceService;
@@ -48,6 +52,7 @@ public class TaskConfigureUserTaskProcessService {
         this.generationProcessRepository = generationProcessRepository;
         this.taskInstanceMapper = taskInstanceMapper;
         this.runtimeService = runtimeService;
+        this.akipEntityService = akipEntityService;
         this.taskConfigureUserTaskProcessMapper = taskConfigureUserTaskProcessMapper;
     }
 
@@ -104,6 +109,10 @@ public class TaskConfigureUserTaskProcessService {
             .getAkipProcess()
             .getEntities()
             .add(taskConfigureUserTaskProcessContextDTO.getAkipEntityUserTask());
+
+        taskConfigureUserTaskProcessContextDTO.setAkipEntityUserTask(
+            akipEntityService.save(taskConfigureUserTaskProcessContextDTO.getAkipEntityUserTask())
+        );
 
         akipProcessService.save(taskConfigureUserTaskProcessContextDTO.getGenerationProcess().getAkipProcess());
     }

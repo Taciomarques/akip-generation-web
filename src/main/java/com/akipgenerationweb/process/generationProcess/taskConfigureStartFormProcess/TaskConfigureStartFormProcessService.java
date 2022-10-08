@@ -2,6 +2,7 @@ package com.akipgenerationweb.process.generationProcess.taskConfigureStartFormPr
 
 import com.akipgenerationweb.domain.enumeration.TypeEntity;
 import com.akipgenerationweb.repository.GenerationProcessRepository;
+import com.akipgenerationweb.service.AkipEntityService;
 import com.akipgenerationweb.service.AkipProcessService;
 import com.akipgenerationweb.service.dto.AkipEntityDTO;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
@@ -20,6 +21,8 @@ public class TaskConfigureStartFormProcessService {
 
     private final AkipProcessService akipProcessService;
 
+    private final AkipEntityService akipEntityService;
+
     private final TaskInstanceRepository taskInstanceRepository;
 
     private final GenerationProcessRepository generationProcessRepository;
@@ -33,6 +36,7 @@ public class TaskConfigureStartFormProcessService {
     public TaskConfigureStartFormProcessService(
         TaskInstanceService taskInstanceService,
         AkipProcessService akipProcessService,
+        AkipEntityService akipEntityService,
         TaskInstanceRepository taskInstanceRepository,
         GenerationProcessRepository generationProcessRepository,
         TaskInstanceMapper taskInstanceMapper,
@@ -40,6 +44,7 @@ public class TaskConfigureStartFormProcessService {
     ) {
         this.taskInstanceService = taskInstanceService;
         this.akipProcessService = akipProcessService;
+        this.akipEntityService = akipEntityService;
         this.taskInstanceRepository = taskInstanceRepository;
         this.generationProcessRepository = generationProcessRepository;
         this.taskInstanceMapper = taskInstanceMapper;
@@ -101,6 +106,10 @@ public class TaskConfigureStartFormProcessService {
             .getAkipProcess()
             .getEntities()
             .add(taskConfigureStartFormProcessContextDTO.getAkipEntityStartForm());
+
+        taskConfigureStartFormProcessContextDTO.setAkipEntityStartForm(
+            akipEntityService.save(taskConfigureStartFormProcessContextDTO.getAkipEntityStartForm())
+        );
 
         akipProcessService.save(taskConfigureStartFormProcessContextDTO.getGenerationProcess().getAkipProcess());
     }

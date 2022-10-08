@@ -8,6 +8,7 @@ import com.akipgenerationweb.service.dto.AkipEntityDTO;
 import com.akipgenerationweb.service.dto.AkipFieldDTO;
 import com.akipgenerationweb.service.dto.AkipRelationshipDTO;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
+import java.util.HashSet;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.akip.repository.TaskInstanceRepository;
@@ -90,6 +91,10 @@ public class TaskConfigureProcessBindingService {
     public void save(TaskConfigureProcessBindingContextDTO taskConfigureProcessBindingContextDTO) {
         resetAkipFieldsProperties(taskConfigureProcessBindingContextDTO.getAkipEntityProcessBinding().getFields());
         resetAkipRelationshipsProperties(taskConfigureProcessBindingContextDTO.getAkipEntityProcessBinding().getRelationships());
+
+        taskConfigureProcessBindingContextDTO.setAkipEntityProcessBinding(
+            akipEntityService.save(taskConfigureProcessBindingContextDTO.getAkipEntityProcessBinding())
+        );
 
         taskConfigureProcessBindingContextDTO
             .getGenerationProcess()
