@@ -4,7 +4,7 @@
     <bpmn:categoryValue id="CategoryValue_18o5ctu" value="Process Information" />
   </bpmn:category>
   <bpmn:category id="Category_11bgnjk">
-    <bpmn:categoryValue id="CategoryValue_0wl73yx" value="Process Information" />
+    <bpmn:categoryValue id="CategoryValue_0wl73yx" />
   </bpmn:category>
   <bpmn:collaboration id="Collaboration_0gg1plc">
     <bpmn:participant id="Participant_123vcy4" name="GenerationProcess" processRef="GenerationProcess" />
@@ -15,15 +15,15 @@
       <bpmn:extensionElements />
       <bpmn:outgoing>Flow_0d9wksf</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="TaskGenerateDomainEntity" name="Configure Domain Entity">
-      <bpmn:documentation>Generate Domain Entity</bpmn:documentation>
+    <bpmn:userTask id="TaskConfigureDomainEntity" name="Configure Domain Entity">
+      <bpmn:documentation>Configure Domain Entity</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="complete">
           <camunda:field name="percentageExecuted">
             <camunda:expression>20</camunda:expression>
           </camunda:field>
           <camunda:field name="status">
-            <camunda:expression>WAITING_GENERATE_DOMAIN_ENTITY</camunda:expression>
+            <camunda:expression>WAITING_CONFIGURE_DOMAIN_ENTITY</camunda:expression>
           </camunda:field>
         </camunda:taskListener>
       </bpmn:extensionElements>
@@ -31,45 +31,28 @@
       <bpmn:incoming>Flow_1en6vuu</bpmn:incoming>
       <bpmn:outgoing>Flow_1u5zvi7</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0d9wksf" sourceRef="Event_12ayvmj" targetRef="TaskGenerateDomainEntity" />
-    <bpmn:sequenceFlow id="Flow_1en6vuu" sourceRef="Gateway_0oaj187" targetRef="TaskGenerateDomainEntity">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${processInstance.data.requiredGenerateOtherDomainEntity == 'YES'}</bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="Flow_0d9wksf" sourceRef="Event_12ayvmj" targetRef="TaskConfigureDomainEntity" />
+    <bpmn:sequenceFlow id="Flow_1en6vuu" name="Configure other Domain Entity" sourceRef="Gateway_0oaj187" targetRef="TaskConfigureDomainEntity">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${processInstance.data.requiredConfigureOtherAkipEntityDomain == 'YES'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1u5zvi7" sourceRef="TaskGenerateDomainEntity" targetRef="Gateway_0oaj187" />
+    <bpmn:sequenceFlow id="Flow_1u5zvi7" sourceRef="TaskConfigureDomainEntity" targetRef="Gateway_0oaj187" />
     <bpmn:sequenceFlow id="Flow_06wf8r0" sourceRef="Gateway_0oaj187" targetRef="TaskProvideProcessBpmn">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${processInstance.data.requiredGenerateOtherDomainEntity != 'YES'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${processInstance.data.requiredConfigureOtherAkipEntityDomain != 'YES'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_18jn6k3" sourceRef="TaskProvideProcessBpmn" targetRef="TaskConfigureProcessBinding" />
     <bpmn:sequenceFlow id="Flow_1fj0lkk" sourceRef="TaskConfigureProcessBinding" targetRef="TaskConfigureStartFormProcess" />
-    <bpmn:sequenceFlow id="Flow_1gdznvc" sourceRef="TaskConfigureStartFormProcess" targetRef="TaskConfigureUserTaskProcess" />
     <bpmn:sequenceFlow id="Flow_11nfj32" sourceRef="TaskConfigureUserTaskProcess" targetRef="TaskConfigureServiceTaskProcess" />
     <bpmn:sequenceFlow id="Flow_1yfztqa" sourceRef="TaskConfigureServiceTaskProcess" targetRef="TaskGenerateEntities" />
     <bpmn:sequenceFlow id="Flow_0ogdoiy" sourceRef="TaskGenerateEntities" targetRef="Event_11d4ax4" />
-    <bpmn:userTask id="TaskConfigureUserTaskProcess" name="Configure Process User Task ${userTask.name}">
-      <bpmn:documentation>Generate Process User Task</bpmn:documentation>
-      <bpmn:extensionElements>
-        <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="create">
-          <camunda:field name="status">
-            <camunda:expression>WAITING_GENERATE_USERS_TASK</camunda:expression>
-          </camunda:field>
-          <camunda:field name="percentageExecuted">
-            <camunda:expression>80</camunda:expression>
-          </camunda:field>
-        </camunda:taskListener>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1gdznvc</bpmn:incoming>
-      <bpmn:outgoing>Flow_11nfj32</bpmn:outgoing>
-      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="userTasks" camunda:elementVariable="userTask" />
-    </bpmn:userTask>
     <bpmn:userTask id="TaskConfigureStartFormProcess" name="Configure Process Start Form">
-      <bpmn:documentation>Generate Process Start Form</bpmn:documentation>
+      <bpmn:documentation>Configure Process Start Form</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="create">
           <camunda:field name="status">
-            <camunda:expression>WAITING_GENERATE_START_FORM</camunda:expression>
+            <camunda:expression>WAITING_CONFIGURE_START_FORM</camunda:expression>
           </camunda:field>
           <camunda:field name="percentageExecuted">
-            <camunda:expression>70</camunda:expression>
+            <camunda:expression>60</camunda:expression>
           </camunda:field>
         </camunda:taskListener>
       </bpmn:extensionElements>
@@ -92,11 +75,11 @@
       <bpmn:outgoing>Flow_18jn6k3</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="TaskConfigureProcessBinding" name="Configure Process Binding">
-      <bpmn:documentation>Generate Process Bind</bpmn:documentation>
+      <bpmn:documentation>Configure Process Binding</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="create">
           <camunda:field name="status">
-            <camunda:expression>WAITING_GENERATE_PROCESS_BINDING</camunda:expression>
+            <camunda:expression>WAITING_CONFIGURE_PROCESS_BINDING</camunda:expression>
           </camunda:field>
           <camunda:field name="percentageExecuted">
             <camunda:expression>50</camunda:expression>
@@ -111,26 +94,55 @@
       <bpmn:outgoing>Flow_1en6vuu</bpmn:outgoing>
       <bpmn:outgoing>Flow_06wf8r0</bpmn:outgoing>
     </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1gdznvc" sourceRef="TaskConfigureStartFormProcess" targetRef="TaskConfigureUserTaskProcess" />
+    <bpmn:userTask id="TaskConfigureUserTaskProcess" name="Configure Process User Task ${userTask.name}">
+      <bpmn:documentation>Configure Process User Task</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="create">
+          <camunda:field name="status">
+            <camunda:expression>WAITING_CONFIGURE_USERS_TASK</camunda:expression>
+          </camunda:field>
+          <camunda:field name="percentageExecuted">
+            <camunda:expression>70</camunda:expression>
+          </camunda:field>
+        </camunda:taskListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1gdznvc</bpmn:incoming>
+      <bpmn:outgoing>Flow_11nfj32</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="userTasks" camunda:elementVariable="userTask" />
+    </bpmn:userTask>
     <bpmn:userTask id="TaskConfigureServiceTaskProcess" name="Configure Process Service Task ${serviceTask.name}">
-      <bpmn:documentation>Generate Process Delegate</bpmn:documentation>
+      <bpmn:documentation>Configure Sertive Task Process</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="complete">
+          <camunda:field name="status">
+            <camunda:expression>WAITING_GENERATE_ENTITIES</camunda:expression>
+          </camunda:field>
+          <camunda:field name="percentageExecuted">
+            <camunda:expression>90</camunda:expression>
+          </camunda:field>
+        </camunda:taskListener>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_11nfj32</bpmn:incoming>
       <bpmn:outgoing>Flow_1yfztqa</bpmn:outgoing>
       <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="serviceTasks" camunda:elementVariable="serviceTask" />
     </bpmn:userTask>
     <bpmn:endEvent id="Event_11d4ax4">
-      <bpmn:extensionElements>
-        <camunda:executionListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="end">
-          <camunda:field name="status">
-            <camunda:expression>FINISHED</camunda:expression>
-          </camunda:field>
-          <camunda:field name="percentageExecuted">
-            <camunda:expression>100</camunda:expression>
-          </camunda:field>
-        </camunda:executionListener>
-      </bpmn:extensionElements>
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_0ogdoiy</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:userTask id="TaskGenerateEntities" name="Generate Entities">
+      <bpmn:documentation>Generate Entities</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="complete">
+          <camunda:field name="percentageExecuted">
+            <camunda:expression>100</camunda:expression>
+          </camunda:field>
+          <camunda:field name="status">
+            <camunda:expression>FINISHED</camunda:expression>
+          </camunda:field>
+        </camunda:taskListener>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1yfztqa</bpmn:incoming>
       <bpmn:outgoing>Flow_0ogdoiy</bpmn:outgoing>
     </bpmn:userTask>
@@ -144,12 +156,8 @@
       <bpmndi:BPMNShape id="BPMNShape_0bpzmxa" bpmnElement="Event_12ayvmj">
         <dc:Bounds x="242" y="232" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0oxwhjh_di" bpmnElement="TaskGenerateDomainEntity">
+      <bpmndi:BPMNShape id="Activity_0oxwhjh_di" bpmnElement="TaskConfigureDomainEntity">
         <dc:Bounds x="350" y="210" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0hr2o94_di" bpmnElement="TaskConfigureUserTaskProcess">
-        <dc:Bounds x="1090" y="210" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_107wpby_di" bpmnElement="TaskConfigureStartFormProcess">
@@ -166,6 +174,10 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0oaj187_di" bpmnElement="Gateway_0oaj187" isMarkerVisible="true">
         <dc:Bounds x="535" y="225" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0hr2o94_di" bpmnElement="TaskConfigureUserTaskProcess">
+        <dc:Bounds x="1090" y="210" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ehp2dt_di" bpmnElement="TaskConfigureServiceTaskProcess">
         <dc:Bounds x="1230" y="210" width="100" height="80" />
@@ -186,6 +198,9 @@
         <di:waypoint x="560" y="140" />
         <di:waypoint x="400" y="140" />
         <di:waypoint x="400" y="210" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="442" y="107" width="77" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1u5zvi7_di" bpmnElement="Flow_1u5zvi7">
         <di:waypoint x="450" y="250" />
@@ -221,9 +236,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="BPMNShape_13gesjd" bpmnElement="Group_06p4nj2">
         <dc:Bounds x="660" y="100" width="680" height="300" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="972" y="107" width="56" height="27" />
-        </bpmndi:BPMNLabel>
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

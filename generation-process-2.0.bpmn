@@ -33,11 +33,11 @@
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_0d9wksf" sourceRef="Event_12ayvmj" targetRef="TaskGenerateDomainEntity" />
     <bpmn:sequenceFlow id="Flow_1en6vuu" sourceRef="Gateway_0oaj187" targetRef="TaskGenerateDomainEntity">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${processInstance.data.requiredGenerateOtherDomainEntity == 'YES'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${processInstance.data.requiredConfigureOtherAkipEntityDomain == 'YES'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1u5zvi7" sourceRef="TaskGenerateDomainEntity" targetRef="Gateway_0oaj187" />
     <bpmn:sequenceFlow id="Flow_06wf8r0" sourceRef="Gateway_0oaj187" targetRef="TaskProvideProcessBpmn">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${processInstance.data.requiredGenerateOtherDomainEntity != 'YES'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${processInstance.data.requiredConfigureOtherAkipEntityDomain != 'YES'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_18jn6k3" sourceRef="TaskProvideProcessBpmn" targetRef="TaskGenerateProcessBinding" />
     <bpmn:sequenceFlow id="Flow_1fj0lkk" sourceRef="TaskGenerateProcessBinding" targetRef="TaskGenerateStartFormProcess" />

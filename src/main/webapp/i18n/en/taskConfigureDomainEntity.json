@@ -1,0 +1,9 @@
+{
+  "akipGenerationWebApp": {
+    "taskConfigureDomainEntity": {
+      "configureDomainEntityAndConfigureOtherDomainEntity": "Configure this Domain Entity and Configure other Domain Entity",
+      "configureDomainEntityAndContinueProcess": "Configure this Domain Entity and Continue Process",
+      "skipConfigureDomainEntityAndContinueProcess": "Skip Configure this Domain Entity and Continue Process"
+    }
+  }
+}

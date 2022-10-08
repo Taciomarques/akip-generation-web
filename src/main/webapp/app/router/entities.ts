@@ -25,25 +25,25 @@ const GenerationProcessList = () => import('@/entities/generation-process/genera
 // prettier-ignore
 const GenerationProcessStartFormInit = () => import('@/entities/generation-process/generation-process-start-form-init.vue');
 // prettier-ignore
-const GenerationProcess_TaskGenerateDomainEntityDetails = () => import('@/entities/generation-process/task-generate-domain-entity/task-generate-domain-entity-details.vue');
+const GenerationProcess_TaskConfigureDomainEntityDetails = () => import('@/entities/generation-process/task-configure-domain-entity/task-configure-domain-entity-details.vue');
 // prettier-ignore
-const GenerationProcess_TaskGenerateDomainEntityExecute = () => import('@/entities/generation-process/task-generate-domain-entity/task-generate-domain-entity-execute.vue');
+const GenerationProcess_TaskConfigureDomainEntityExecute = () => import('@/entities/generation-process/task-configure-domain-entity/task-configure-domain-entity-execute.vue');
 // prettier-ignore
 const GenerationProcess_TaskProvideProcessBpmnDetails = () => import('@/entities/generation-process/task-provide-process-bpmn/task-provide-process-bpmn-details.vue');
 // prettier-ignore
 const GenerationProcess_TaskProvideProcessBpmnExecute = () => import('@/entities/generation-process/task-provide-process-bpmn/task-provide-process-bpmn-execute.vue');
 // prettier-ignore
-const GenerationProcess_TaskGenerateProcessBindingDetails = () => import('@/entities/generation-process/task-generate-process-binding/task-generate-process-binding-details.vue');
+const GenerationProcess_TaskConfigureProcessBindingDetails = () => import('@/entities/generation-process/task-configure-process-binding/task-configure-process-binding-details.vue');
 // prettier-ignore
-const GenerationProcess_TaskGenerateProcessBindingExecute = () => import('@/entities/generation-process/task-generate-process-binding/task-generate-process-binding-execute.vue');
+const GenerationProcess_TaskConfigureProcessBindingExecute = () => import('@/entities/generation-process/task-configure-process-binding/task-configure-process-binding-execute.vue');
 // prettier-ignore
-const GenerationProcess_TaskGenerateStartFormProcessDetails = () => import('@/entities/generation-process/task-generate-start-form-process/task-generate-start-form-process-details.vue');
+const GenerationProcess_TaskConfigureStartFormProcessDetails = () => import('@/entities/generation-process/task-configure-start-form-process/task-configure-start-form-process-details.vue');
 // prettier-ignore
-const GenerationProcess_TaskGenerateStartFormProcessExecute = () => import('@/entities/generation-process/task-generate-start-form-process/task-generate-start-form-process-execute.vue');
+const GenerationProcess_TaskConfigureStartFormProcessExecute = () => import('@/entities/generation-process/task-configure-start-form-process/task-configure-start-form-process-execute.vue');
 // prettier-ignore
-const GenerationProcess_TaskGenerateUserTaskProcessDetails = () => import('@/entities/generation-process/task-generate-user-task-process/task-generate-user-task-process-details.vue');
+const GenerationProcess_TaskConfigureUserTaskProcessDetails = () => import('@/entities/generation-process/task-configure-user-task-process/task-configure-user-task-process-details.vue');
 // prettier-ignore
-const GenerationProcess_TaskGenerateUserTaskProcessExecute = () => import('@/entities/generation-process/task-generate-user-task-process/task-generate-user-task-process-execute.vue');
+const GenerationProcess_TaskConfigureUserTaskProcessExecute = () => import('@/entities/generation-process/task-configure-user-task-process/task-configure-user-task-process-execute.vue');
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default [
@@ -126,15 +126,15 @@ export default [
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/process-definition/GenerationProcess/task/TaskGenerateDomainEntity/:taskInstanceId/view',
-    name: 'GenerationProcess_TaskGenerateDomainEntityDetails',
-    component: GenerationProcess_TaskGenerateDomainEntityDetails,
+    path: '/process-definition/GenerationProcess/task/TaskConfigureDomainEntity/:taskInstanceId/view',
+    name: 'GenerationProcess_TaskConfigureDomainEntityDetails',
+    component: GenerationProcess_TaskConfigureDomainEntityDetails,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/process-definition/GenerationProcess/task/TaskGenerateDomainEntity/:taskInstanceId/execute',
-    name: 'GenerationProcess_TaskGenerateDomainEntityExecute',
-    component: GenerationProcess_TaskGenerateDomainEntityExecute,
+    path: '/process-definition/GenerationProcess/task/TaskConfigureDomainEntity/:taskInstanceId/execute',
+    name: 'GenerationProcess_TaskConfigureDomainEntityExecute',
+    component: GenerationProcess_TaskConfigureDomainEntityExecute,
     meta: { authorities: [Authority.USER] },
   },
   {
@@ -150,39 +150,39 @@ export default [
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/process-definition/GenerationProcess/task/TaskGenerateProcessBinding/:taskInstanceId/view',
-    name: 'GenerationProcess_TaskGenerateProcessBindingDetails',
-    component: GenerationProcess_TaskGenerateProcessBindingDetails,
+    path: '/process-definition/GenerationProcess/task/TaskConfigureProcessBinding/:taskInstanceId/view',
+    name: 'GenerationProcess_TaskConfigureProcessBindingDetails',
+    component: GenerationProcess_TaskConfigureProcessBindingDetails,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/process-definition/GenerationProcess/task/TaskGenerateProcessBinding/:taskInstanceId/execute',
-    name: 'GenerationProcess_TaskGenerateProcessBindingExecute',
-    component: GenerationProcess_TaskGenerateProcessBindingExecute,
+    path: '/process-definition/GenerationProcess/task/TaskConfigureProcessBinding/:taskInstanceId/execute',
+    name: 'GenerationProcess_TaskConfigureProcessBindingExecute',
+    component: GenerationProcess_TaskConfigureProcessBindingExecute,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/process-definition/GenerationProcess/task/TaskGenerateStartFormProcess/:taskInstanceId/view',
-    name: 'GenerationProcess_TaskGenerateStartFormProcessDetails',
-    component: GenerationProcess_TaskGenerateStartFormProcessDetails,
+    path: '/process-definition/GenerationProcess/task/TaskConfigureStartFormProcess/:taskInstanceId/view',
+    name: 'GenerationProcess_TaskConfigureStartFormProcessDetails',
+    component: GenerationProcess_TaskConfigureStartFormProcessDetails,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/process-definition/GenerationProcess/task/TaskGenerateStartFormProcess/:taskInstanceId/execute',
-    name: 'GenerationProcess_TaskGenerateStartFormProcessExecute',
-    component: GenerationProcess_TaskGenerateStartFormProcessExecute,
+    path: '/process-definition/GenerationProcess/task/TaskConfigureStartFormProcess/:taskInstanceId/execute',
+    name: 'GenerationProcess_TaskConfigureStartFormProcessExecute',
+    component: GenerationProcess_TaskConfigureStartFormProcessExecute,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/process-definition/GenerationProcess/task/TaskGenerateUserTaskProcess/:taskInstanceId/view',
-    name: 'GenerationProcess_TaskGenerateUserTaskProcessDetails',
-    component: GenerationProcess_TaskGenerateUserTaskProcessDetails,
+    path: '/process-definition/GenerationProcess/task/TaskConfigureUserTaskProcess/:taskInstanceId/view',
+    name: 'GenerationProcess_TaskConfigureUserTaskProcessDetails',
+    component: GenerationProcess_TaskConfigureUserTaskProcessDetails,
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/process-definition/GenerationProcess/task/TaskGenerateUserTaskProcess/:taskInstanceId/execute',
-    name: 'GenerationProcess_TaskGenerateUserTaskProcessExecute',
-    component: GenerationProcess_TaskGenerateUserTaskProcessExecute,
+    path: '/process-definition/GenerationProcess/task/TaskConfigureUserTaskProcess/:taskInstanceId/execute',
+    name: 'GenerationProcess_TaskConfigureUserTaskProcessExecute',
+    component: GenerationProcess_TaskConfigureUserTaskProcessExecute,
     meta: { authorities: [Authority.USER] },
   },
   // jhipster-needle-add-entity-to-router - JHipster will add entities to the router here

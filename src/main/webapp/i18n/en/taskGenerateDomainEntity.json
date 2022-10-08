@@ -1,9 +1,0 @@
-{
-  "akipGenerationWebApp": {
-    "taskGenerateDomainEntity": {
-      "generateDomainEntityAndGenerateOtherDomainEntity": "Generate this Domain Entity and Generate other Domain Entity",
-      "generateDomainEntityAndContinueProcess": "Generate this Domain Entity and Continue Process",
-      "skipGenerateDomainEntityAndContinueProcess": "Skip Generate this Domain Entity and Continue Process"
-    }
-  }
-}

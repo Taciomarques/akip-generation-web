@@ -3,21 +3,25 @@
     <span
       :class="{
         'badge rounded-pill bg-primary': value == 'FINISHED',
+        'badge rounded-pill bg-info': value == 'WAITING_GENERATE_ENTITIES',
         'badge rounded-pill bg-warning':
-          value == 'WAITING_GENERATE_DOMAIN_ENTITY' ||
+          value == 'WAITING_CONFIGURE_DOMAIN_ENTITY' ||
           value == 'WAITING_PROVIDE_PROCESS_BPMN' ||
-          value == 'WAITING_GENERATE_PROCESS_BINDING' ||
-          value == 'WAITING_GENERATE_START_FORM' ||
-          value == 'WAITING_GENERATE_USERS_TASK' ||
-          value == 'WAITING_GENERATE_SERVICES_TASK',
+          value == 'WAITING_CONFIGURE_PROCESS_BINDING' ||
+          value == 'WAITING_CONFIGURE_START_FORM' ||
+          value == 'WAITING_CONFIGURE_USERS_TASK' ||
+          value == 'WAITING_CONFIGURE_SERVICES_TASK',
       }"
     >
-      <font-awesome-icon v-if="value == 'WAITING_GENERATE_SERVICES_TASK'" icon="cogs"></font-awesome-icon>
-      <font-awesome-icon v-if="value == 'WAITING_GENERATE_START_FORM'" icon="forward"></font-awesome-icon>
-      <font-awesome-icon v-if="value == 'WAITING_GENERATE_USERS_TASK'" icon="user"></font-awesome-icon>
-      <font-awesome-icon v-if="value == 'WAITING_GENERATE_PROCESS_BINDING'" icon="share"></font-awesome-icon>
       <font-awesome-icon
-        v-if="value == 'WAITING_GENERATE_DOMAIN_ENTITY' || value == 'WAITING_PROVIDE_PROCESS_BPMN'"
+        v-if="value == 'WAITING_CONFIGURE_SERVICES_TASK' || value == 'WAITING_GENERATE_ENTITIES'"
+        icon="cogs"
+      ></font-awesome-icon>
+      <font-awesome-icon v-if="value == 'WAITING_CONFIGURE_START_FORM'" icon="forward"></font-awesome-icon>
+      <font-awesome-icon v-if="value == 'WAITING_CONFIGURE_USERS_TASK'" icon="user"></font-awesome-icon>
+      <font-awesome-icon v-if="value == 'WAITING_CONFIGURE_PROCESS_BINDING'" icon="share"></font-awesome-icon>
+      <font-awesome-icon
+        v-if="value == 'WAITING_CONFIGURE_DOMAIN_ENTITY' || value == 'WAITING_PROVIDE_PROCESS_BPMN'"
         icon="file"
       ></font-awesome-icon>
       <font-awesome-icon v-if="value == 'FINISHED'" icon="check"></font-awesome-icon>

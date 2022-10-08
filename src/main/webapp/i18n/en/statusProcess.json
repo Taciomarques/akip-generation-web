@@ -2,12 +2,13 @@
   "akipGenerationWebApp": {
     "StatusProcess": {
       "null": "",
-      "WAITING_GENERATE_DOMAIN_ENTITY": "Waiting Generate Domain Entity",
-      "WAITING_GENERATE_PROCESS_BINDING": "Waiting Generate Process Binding",
+      "WAITING_CONFIGURE_DOMAIN_ENTITY": "Waiting Configure Domain Entity",
+      "WAITING_CONFIGURE_PROCESS_BINDING": "Waiting Configure Process Binding",
       "WAITING_PROVIDE_PROCESS_BPMN": "Waiting Provide Process BPMN",
-      "WAITING_GENERATE_START_FORM": "Waiting Generate Start Form",
-      "WAITING_GENERATE_USERS_TASK": "Waiting Generate Users Task",
-      "WAITING_GENERATE_SERVICES_TASK": "Waiting Generate Services Task",
+      "WAITING_CONFIGURE_START_FORM": "Waiting Configure Start Form",
+      "WAITING_CONFIGURE_USERS_TASK": "Waiting Configure Users Task",
+      "WAITING_CONFIGURE_SERVICES_TASK": "Waiting Configure Services Task",
+      "WAITING_GENERATE_ENTITIES": "Waiting Generate Entities",
       "FINISHED": "Finished"
     }
   }

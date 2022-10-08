@@ -47,7 +47,7 @@ public class TaskProvideProcessBpmnService {
     private final RuntimeService runtimeService;
 
     private static final String USER_TASKS = "userTasks";
-    private static final String SERVICE_TASKS = "delegates";
+    private static final String SERVICE_TASKS = "serviceTasks";
     private static final String ID = "id";
 
     public TaskProvideProcessBpmnService(
