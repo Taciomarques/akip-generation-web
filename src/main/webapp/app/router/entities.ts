@@ -44,6 +44,10 @@ const GenerationProcess_TaskConfigureStartFormProcessExecute = () => import('@/e
 const GenerationProcess_TaskConfigureUserTaskProcessDetails = () => import('@/entities/generation-process/task-configure-user-task-process/task-configure-user-task-process-details.vue');
 // prettier-ignore
 const GenerationProcess_TaskConfigureUserTaskProcessExecute = () => import('@/entities/generation-process/task-configure-user-task-process/task-configure-user-task-process-execute.vue');
+// prettier-ignore
+const GenerationProcess_TaskConfigureServiceTaskProcessDetails = () => import('@/entities/generation-process/task-configure-service-task-process/task-configure-service-task-process-details.vue');
+// prettier-ignore
+const GenerationProcess_TaskConfigureServiceTaskProcessExecute = () => import('@/entities/generation-process/task-configure-service-task-process/task-configure-service-task-process-execute.vue');
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default [
@@ -183,6 +187,19 @@ export default [
     path: '/process-definition/GenerationProcess/task/TaskConfigureUserTaskProcess/:taskInstanceId/execute',
     name: 'GenerationProcess_TaskConfigureUserTaskProcessExecute',
     component: GenerationProcess_TaskConfigureUserTaskProcessExecute,
+    meta: { authorities: [Authority.USER] },
+  },
+
+  {
+    path: '/process-definition/GenerationProcess/task/TaskConfigureServiceTaskProcess/:taskInstanceId/view',
+    name: 'GenerationProcess_TaskConfigureServiceTaskProcessDetails',
+    component: GenerationProcess_TaskConfigureServiceTaskProcessDetails,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/process-definition/GenerationProcess/task/TaskConfigureServiceTaskProcess/:taskInstanceId/execute',
+    name: 'GenerationProcess_TaskConfigureServiceTaskProcessExecute',
+    component: GenerationProcess_TaskConfigureServiceTaskProcessExecute,
     meta: { authorities: [Authority.USER] },
   },
   // jhipster-needle-add-entity-to-router - JHipster will add entities to the router here

@@ -3,14 +3,14 @@
     <span
       :class="{
         'badge rounded-pill bg-primary': value == 'FINISHED',
-        'badge rounded-pill bg-info': value == 'WAITING_GENERATE_ENTITIES',
         'badge rounded-pill bg-warning':
           value == 'WAITING_CONFIGURE_DOMAIN_ENTITY' ||
           value == 'WAITING_PROVIDE_PROCESS_BPMN' ||
           value == 'WAITING_CONFIGURE_PROCESS_BINDING' ||
           value == 'WAITING_CONFIGURE_START_FORM' ||
           value == 'WAITING_CONFIGURE_USERS_TASK' ||
-          value == 'WAITING_CONFIGURE_SERVICES_TASK',
+          value == 'WAITING_CONFIGURE_SERVICES_TASK' ||
+          value == 'WAITING_GENERATE_ENTITIES',
       }"
     >
       <font-awesome-icon

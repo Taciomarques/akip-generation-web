@@ -33,7 +33,7 @@
               class="form-control"
               name="name"
               id="akipEntity-name"
-              :readonly="typeEntity == 'USER_TASK'"
+              :readonly="typeEntity == 'USER_TASK' || typeEntity == 'SERVICE_TASK'"
               data-cy="name"
               :class="{ invalid: $v.akipEntity.name.$invalid && !readOnly }"
               v-model="$v.akipEntity.name.$model"
