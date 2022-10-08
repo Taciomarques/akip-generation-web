@@ -6,7 +6,7 @@
           <div class="p-1">
             <span class="title" v-text="$t('akipGenerationWebApp.akipProcess.detail.title')"> </span>
           </div>
-          <div class="ml-3 small">
+          <div class="p-1 ml-3 small">
             <show-akip-process-status :value="akipProcess.status"></show-akip-process-status>
           </div>
           <div class="p-1 ml-3">
@@ -46,35 +46,59 @@
             <label v-text="$t('akipGenerationWebApp.akipProcess.percentageExecuted')" />
             <div class="progress" style="border-radius: 5px">
               <div
-                class="progress-bar progress-bar-striped progress-bar-animated"
+                class="progress-bar"
+                :class="{ 'progress-bar-striped progress-bar-animated': akipProcess.status != 'FINISHED' }"
                 role="progressbar"
                 :aria-valuenow="akipProcess.percentageExecuted"
                 aria-valuemin="0"
                 aria-valuemax="100"
                 :style="'width: ' + akipProcess.percentageExecuted + '%;'"
               >
-                {{ akipProcess.percentageExecuted ? akipProcess.percentageExecuted + '%' : '0%' }}
+                {{ akipProcess.percentageExecuted + '%' }}
               </div>
             </div>
-            <div class="form-group" v-if="akipProcess.bpmn">
-              <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskProvideProcessBpmn.bpmn')">bpmn</label>
-              <div class="form-group input-group-sm d-flex mb-2">
-                <input type="text" class="form-control" :value="akipProcess.bpmn.name" disabled />
-                <button
-                  type="button"
-                  v-on:click="openFile(akipProcess.bpmn.specificationFileContentType, akipProcess.bpmn.specificationFile)"
-                  class="btn btn-info btn-sm pull-right"
-                >
-                  <font-awesome-icon icon="folder-open"></font-awesome-icon>
-                </button>
-                <button
-                  class="btn btn-primary btn-sm pull-right"
-                  @click="
-                    downloadFile(akipProcess.bpmn.specificationFileContentType, akipProcess.bpmn.specificationFile, akipProcess.bpmn.name)
-                  "
-                >
-                  <font-awesome-icon icon="download"></font-awesome-icon>
-                </button>
+
+            <div v-if="akipProcess.attachments && akipProcess.attachments.length > 0">
+              <hr />
+              <div class="card">
+                <h4 class="card-header collapse-link" v-on:click="collapse('showAttachments')">
+                  <div class="d-flex">
+                    <div class="p-1">
+                      <font-awesome-icon icon="file"></font-awesome-icon>
+                    </div>
+                    <div class="p-1">
+                      <span class="title" v-text="$t('akipGenerationWebApp.akipProcess.attachments')"> </span>
+                    </div>
+                    <div class="p-1 ml-3">
+                      <font-awesome-icon icon="compress-alt" v-if="collapseController.showAkipProcess"></font-awesome-icon>
+                      <font-awesome-icon icon="expand-alt" v-else></font-awesome-icon>
+                    </div>
+                  </div>
+                </h4>
+                <b-collapse v-model="collapseController.showAttachments" id="collapse-attachments">
+                  <div class="card-body">
+                    <ul class="list-group">
+                      <li class="list-group-item justify-content-between align-items-center" v-for="attachment in akipProcess.attachments">
+                        <div class="form-group input-group-sm d-flex mb-2">
+                          <input type="text" class="form-control" :value="attachment.name" disabled />
+                          <button
+                            type="button"
+                            v-on:click="openFile(attachment.specificationFileContentType, attachment.specificationFile)"
+                            class="btn btn-info btn-sm pull-right"
+                          >
+                            <font-awesome-icon icon="folder-open"></font-awesome-icon>
+                          </button>
+                          <button
+                            class="btn btn-primary btn-sm pull-right"
+                            @click="downloadFile(attachment.specificationFileContentType, attachment.specificationFile, attachment.name)"
+                          >
+                            <font-awesome-icon icon="download"></font-awesome-icon>
+                          </button>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </b-collapse>
               </div>
             </div>
           </div>
@@ -119,16 +143,18 @@
             ></show-akip-entity>
           </div>
 
-          <hr />
-          <ul class="list-group">
-            <li
-              class="list-group-item d-flex justify-content-between align-items-center"
-              v-for="akipEntity in akipProcess.entities.filter(akipEntity => akipEntity.type == 'SERVICE_TASK')"
-            >
-              {{ akipEntity.name }}
-              <show-akip-entity-type :value="akipEntity.type"></show-akip-entity-type>
-            </li>
-          </ul>
+          <div v-if="akipProcess.entities.filter(akipEntity => akipEntity.type == 'SERVICE_TASK').length > 0">
+            <hr />
+            <ul class="list-group">
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+                v-for="akipEntity in akipProcess.entities.filter(akipEntity => akipEntity.type == 'SERVICE_TASK')"
+              >
+                {{ akipEntity.name }}
+                <show-akip-entity-type :value="akipEntity.type"></show-akip-entity-type>
+              </li>
+            </ul>
+          </div>
         </div>
       </b-collapse>
     </div>

@@ -1,8 +1,8 @@
 import { IGenerationProcess } from '@/shared/model/generation-process.model';
-import { IAttachment } from '../../../shared/model/attachment.model';
+import { IAttachment } from '@/shared/model/attachment.model';
 
-export class TaskProvideProcessBpmnContext {
+export class TaskGenerateEntitiesContext {
   taskInstance?: any = {};
   generationProcess?: IGenerationProcess = {};
-  bpmn?: IAttachment = {};
+  metadataAkipEntityDomain?: IAttachment = {};
 }

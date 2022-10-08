@@ -92,15 +92,11 @@ public class TaskConfigureProcessBindingService {
         resetAkipFieldsProperties(taskConfigureProcessBindingContextDTO.getAkipEntityProcessBinding().getFields());
         resetAkipRelationshipsProperties(taskConfigureProcessBindingContextDTO.getAkipEntityProcessBinding().getRelationships());
 
-        taskConfigureProcessBindingContextDTO.setAkipEntityProcessBinding(
-            akipEntityService.save(taskConfigureProcessBindingContextDTO.getAkipEntityProcessBinding())
-        );
-
         taskConfigureProcessBindingContextDTO
             .getGenerationProcess()
             .getAkipProcess()
             .getEntities()
-            .add(taskConfigureProcessBindingContextDTO.getAkipEntityProcessBinding());
+            .add(akipEntityService.save(taskConfigureProcessBindingContextDTO.getAkipEntityProcessBinding()));
 
         akipProcessService.save(taskConfigureProcessBindingContextDTO.getGenerationProcess().getAkipProcess());
     }

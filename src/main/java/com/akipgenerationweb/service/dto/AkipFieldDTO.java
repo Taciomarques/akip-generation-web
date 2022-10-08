@@ -1,7 +1,9 @@
 package com.akipgenerationweb.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AkipFieldDTO implements Serializable {
 
     private String fieldName;

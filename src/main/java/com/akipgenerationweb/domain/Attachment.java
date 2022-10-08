@@ -6,7 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
@@ -36,6 +38,10 @@ public class Attachment implements Serializable {
 
     @Column(name = "specification_file_c_type")
     private String specificationFileContentType;
+
+    @ManyToOne
+    @JoinColumn(name = "akip_process_id")
+    private AkipProcess process;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -73,6 +79,14 @@ public class Attachment implements Serializable {
 
     public void setSpecificationFile(byte[] specificationFile) {
         this.specificationFile = specificationFile;
+    }
+
+    public AkipProcess getProcess() {
+        return process;
+    }
+
+    public void setProcess(AkipProcess process) {
+        this.process = process;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

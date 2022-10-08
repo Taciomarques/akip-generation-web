@@ -18,6 +18,8 @@ public class AttachmentDTO implements Serializable {
 
     private byte[] specificationFile;
 
+    private Long processId;
+
     public Long getId() {
         return id;
     }
@@ -48,6 +50,14 @@ public class AttachmentDTO implements Serializable {
 
     public void setSpecificationFile(byte[] specificationFile) {
         this.specificationFile = specificationFile;
+    }
+
+    public Long getProcessId() {
+        return processId;
+    }
+
+    public void setProcessId(Long processId) {
+        this.processId = processId;
     }
 
     @Override

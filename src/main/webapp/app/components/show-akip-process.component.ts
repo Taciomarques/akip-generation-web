@@ -21,6 +21,7 @@ export default class ShowAkipProcessComponent extends mixins(JhiDataUtils) {
 
   public collapseController: any = {
     showAkipProcess: true,
+    showAttachments: true,
   };
 
   @Watch('akipProcessProp')

@@ -10,7 +10,7 @@ export interface IAkipProcess {
   status?: StatusProcess | null;
   entities?: IAkipEntity[] | null;
   application?: IAkipApplication | null;
-  bpmn?: IAttachment | null;
+  attachments?: IAttachment[] | null;
 }
 
 export class AkipProcess implements IAkipProcess {
@@ -21,6 +21,6 @@ export class AkipProcess implements IAkipProcess {
     public status?: StatusProcess | null,
     public entities?: IAkipEntity[] | null,
     public application?: IAkipApplication | null,
-    public bpmn?: IAttachment | null
+    public attachments?: IAttachment[] | null
   ) {}
 }

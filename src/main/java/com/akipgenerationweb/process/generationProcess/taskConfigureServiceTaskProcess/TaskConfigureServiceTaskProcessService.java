@@ -98,11 +98,7 @@ public class TaskConfigureServiceTaskProcessService {
             .getGenerationProcess()
             .getAkipProcess()
             .getEntities()
-            .add(taskConfigureServiceTaskProcessContextDTO.getAkipEntityServiceTask());
-
-        taskConfigureServiceTaskProcessContextDTO.setAkipEntityServiceTask(
-            akipEntityService.save(taskConfigureServiceTaskProcessContextDTO.getAkipEntityServiceTask())
-        );
+            .add(akipEntityService.save(taskConfigureServiceTaskProcessContextDTO.getAkipEntityServiceTask()));
 
         akipProcessService.save(taskConfigureServiceTaskProcessContextDTO.getGenerationProcess().getAkipProcess());
     }

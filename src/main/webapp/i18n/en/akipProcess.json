@@ -22,7 +22,8 @@
       "percentageExecuted": "Percentage Executed",
       "status": "Status",
       "etities": "Etities",
-      "application": "Application"
+      "application": "Application",
+      "attachments": "Attachments"
     }
   }
 }

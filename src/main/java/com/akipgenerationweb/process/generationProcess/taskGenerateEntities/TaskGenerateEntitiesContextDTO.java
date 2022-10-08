@@ -1,15 +1,14 @@
-package com.akipgenerationweb.process.generationProcess.taskProvideProcessBpmn;
+package com.akipgenerationweb.process.generationProcess.taskGenerateEntities;
 
 import com.akipgenerationweb.service.dto.AttachmentDTO;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
 import org.akip.service.dto.TaskInstanceDTO;
 
-public class TaskProvideProcessBpmnContextDTO {
+public class TaskGenerateEntitiesContextDTO {
 
     private GenerationProcessDTO generationProcess;
     private TaskInstanceDTO taskInstance;
-
-    private AttachmentDTO bpmn;
+    private AttachmentDTO metadataAkipEntityDomain;
 
     public GenerationProcessDTO getGenerationProcess() {
         return generationProcess;
@@ -27,11 +26,11 @@ public class TaskProvideProcessBpmnContextDTO {
         this.taskInstance = taskInstance;
     }
 
-    public AttachmentDTO getBpmn() {
-        return bpmn;
+    public AttachmentDTO getMetadataAkipEntityDomain() {
+        return metadataAkipEntityDomain;
     }
 
-    public void setBpmn(AttachmentDTO bpmn) {
-        this.bpmn = bpmn;
+    public void setMetadataAkipEntityDomain(AttachmentDTO metadataAkipEntityDomain) {
+        this.metadataAkipEntityDomain = metadataAkipEntityDomain;
     }
 }

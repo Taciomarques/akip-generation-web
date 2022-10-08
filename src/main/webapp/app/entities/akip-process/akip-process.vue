@@ -49,14 +49,15 @@
                   <td>
                     <div class="progress" style="border-radius: 5px">
                       <div
-                        class="progress-bar progress-bar-striped progress-bar-animated"
+                        class="progress-bar"
+                        :class="{ 'progress-bar-striped progress-bar-animated': process.status != 'FINISHED' }"
                         role="progressbar"
                         :aria-valuenow="process.percentageExecuted"
                         aria-valuemin="0"
                         aria-valuemax="100"
                         :style="'width: ' + process.percentageExecuted + '%;'"
                       >
-                        {{ process.percentageExecuted ? process.percentageExecuted + '%' : '0%' }}
+                        {{ process.percentageExecuted + '%' }}
                       </div>
                     </div>
                   </td>

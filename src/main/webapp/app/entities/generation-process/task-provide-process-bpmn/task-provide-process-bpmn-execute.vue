@@ -11,16 +11,11 @@
 
             <div>
               <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskProvideProcessBpmn.bpmn')">bpmn</label>
-              <div class="form-group input-group-sm d-flex mb-2" v-if="taskContext.generationProcess.akipProcess.bpmn">
-                <input type="text" class="form-control" :value="taskContext.generationProcess.akipProcess.bpmn.name" disabled />
+              <div class="form-group input-group-sm d-flex mb-2" v-if="taskContext.bpmn">
+                <input type="text" class="form-control" :value="taskContext.bpmn.name" disabled />
                 <button
                   type="button"
-                  v-on:click="
-                    openFile(
-                      taskContext.generationProcess.akipProcess.bpmn.specificationFileContentType,
-                      taskContext.generationProcess.akipProcess.bpmn.specificationFile
-                    )
-                  "
+                  v-on:click="openFile(taskContext.bpmn.specificationFileContentType, taskContext.bpmn.specificationFile)"
                   class="btn btn-info btn-sm pull-right"
                 >
                   <font-awesome-icon icon="folder-open"></font-awesome-icon>
@@ -28,11 +23,7 @@
                 <button
                   class="btn btn-primary btn-sm pull-right"
                   @click="
-                    downloadFile(
-                      taskContext.generationProcess.akipProcess.bpmn.specificationFileContentType,
-                      taskContext.generationProcess.akipProcess.bpmn.specificationFile,
-                      taskContext.generationProcess.akipProcess.bpmn.name
-                    )
+                    downloadFile(taskContext.bpmn.specificationFileContentType, taskContext.bpmn.specificationFile, taskContext.bpmn.name)
                   "
                 >
                   <font-awesome-icon icon="download"></font-awesome-icon>
@@ -49,7 +40,7 @@
               </div>
             </div>
 
-            <div v-if="$v.taskContext.generationProcess.akipProcess.bpmn.$invalid">
+            <div v-if="$v.taskContext.bpmn.$invalid">
               <div class="alert alert-dismissible alert-danger mt-3">
                 <strong>
                   <b><label v-text="$t('akipGenerationWebApp.generationProcess.checkMandatoryFields')"></label></b>
@@ -66,7 +57,7 @@
           <button
             type="submit"
             v-on:click.prevent="complete()"
-            :disabled="$v.taskContext.generationProcess.akipProcess.bpmn.$invalid || isSaving"
+            :disabled="$v.taskContext.bpmn.$invalid || isSaving"
             class="btn btn-success float-right"
             data-cy="complete"
           >

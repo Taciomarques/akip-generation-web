@@ -4,6 +4,7 @@ import com.akipgenerationweb.domain.AkipProcess;
 import com.akipgenerationweb.domain.enumeration.StatusProcess;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class AkipProcessDTO implements Serializable {
 
     private AkipApplicationDTO application;
 
-    private AttachmentDTO bpmn;
+    private List<AttachmentDTO> attachments;
 
     private Set<AkipEntityDTO> entities = new HashSet<>();
 
@@ -74,12 +75,12 @@ public class AkipProcessDTO implements Serializable {
         this.entities = entities;
     }
 
-    public AttachmentDTO getBpmn() {
-        return bpmn;
+    public List<AttachmentDTO> getAttachments() {
+        return attachments;
     }
 
-    public void setBpmn(AttachmentDTO bpmn) {
-        this.bpmn = bpmn;
+    public void setAttachments(List<AttachmentDTO> attachments) {
+        this.attachments = attachments;
     }
 
     @Override

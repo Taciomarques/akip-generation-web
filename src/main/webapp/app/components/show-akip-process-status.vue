@@ -24,8 +24,8 @@
         v-if="value == 'WAITING_CONFIGURE_DOMAIN_ENTITY' || value == 'WAITING_PROVIDE_PROCESS_BPMN'"
         icon="file"
       ></font-awesome-icon>
-      <font-awesome-icon v-if="value == 'FINISHED'" icon="check"></font-awesome-icon>
-      &nbsp;<span class="badge rounded-pill" v-text="$t('akipGenerationWebApp.StatusProcess.' + value)" />
+      <font-awesome-icon v-if="value == 'FINISHED'" icon="check-circle"></font-awesome-icon>
+      &nbsp;<span v-text="$t('akipGenerationWebApp.StatusProcess.' + value)" />
     </span>
   </div>
 </template>

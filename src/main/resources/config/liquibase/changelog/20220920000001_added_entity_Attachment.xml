@@ -26,9 +26,19 @@
             <column name="specification_file_c_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="akip_process_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
 
+    <changeSet id="20220904000001-2" author="taciomarques">
+        <addForeignKeyConstraint baseColumnNames="akip_process_id"
+                                 baseTableName="attachment"
+                                 constraintName="fk_attachment_akip_process_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="akip_process"/>
+    </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 </databaseChangeLog>

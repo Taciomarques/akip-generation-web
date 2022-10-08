@@ -108,11 +108,7 @@ public class TaskConfigureUserTaskProcessService {
             .getGenerationProcess()
             .getAkipProcess()
             .getEntities()
-            .add(taskConfigureUserTaskProcessContextDTO.getAkipEntityUserTask());
-
-        taskConfigureUserTaskProcessContextDTO.setAkipEntityUserTask(
-            akipEntityService.save(taskConfigureUserTaskProcessContextDTO.getAkipEntityUserTask())
-        );
+            .add(akipEntityService.save(taskConfigureUserTaskProcessContextDTO.getAkipEntityUserTask()));
 
         akipProcessService.save(taskConfigureUserTaskProcessContextDTO.getGenerationProcess().getAkipProcess());
     }

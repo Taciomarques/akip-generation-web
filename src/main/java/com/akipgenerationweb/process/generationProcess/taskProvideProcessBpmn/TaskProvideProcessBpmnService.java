@@ -94,6 +94,10 @@ public class TaskProvideProcessBpmnService {
     }
 
     public void save(TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContext) {
+        taskProvideProcessBpmnContext.getBpmn().setProcessId(taskProvideProcessBpmnContext.getGenerationProcess().getAkipProcess().getId());
+
+        taskProvideProcessBpmnContext.getGenerationProcess().getAkipProcess().getAttachments().add(taskProvideProcessBpmnContext.getBpmn());
+
         akipProcessService.save(taskProvideProcessBpmnContext.getGenerationProcess().getAkipProcess());
     }
 
@@ -115,9 +119,6 @@ public class TaskProvideProcessBpmnService {
             taskProvideProcessBpmnContextDTO
         );
 
-        //        taskProvideProcessBpmnContextDTO.getGenerationProcess().getAkipProcess().getEntities().addAll(akipEntitiesUserTask);
-        //        taskProvideProcessBpmnContextDTO.getGenerationProcess().getAkipProcess().getEntities().addAll(akipEntitiesServiceTask);
-
         setVariableInCamunda(
             taskProvideProcessBpmnContextDTO.getGenerationProcess().getProcessInstance().getCamundaProcessInstanceId(),
             USER_TASKS,
@@ -134,10 +135,7 @@ public class TaskProvideProcessBpmnService {
         TypeEntity typeEntity,
         TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContextDTO
     ) {
-        Collection<ModelElementInstance> taskInstances = createTaskInstancesForBPMN(
-            taskProvideProcessBpmnContextDTO.getGenerationProcess().getAkipProcess().getBpmn(),
-            typeEntity
-        );
+        Collection<ModelElementInstance> taskInstances = createTaskInstancesForBPMN(taskProvideProcessBpmnContextDTO.getBpmn(), typeEntity);
 
         List<AkipEntityDTO> akipEntities = new ArrayList<>();
 

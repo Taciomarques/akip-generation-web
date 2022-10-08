@@ -4,6 +4,7 @@ import com.akipgenerationweb.domain.enumeration.StatusProcess;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
@@ -50,9 +51,10 @@ public class AkipProcess implements Serializable {
     @JsonIgnoreProperties(value = { "entities", "processes" }, allowSetters = true)
     private AkipApplication application;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "attachment_id")
-    private Attachment bpmn;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "process")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "process" }, allowSetters = true)
+    private List<Attachment> attachments;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -143,12 +145,12 @@ public class AkipProcess implements Serializable {
         this.application = akipApplication;
     }
 
-    public Attachment getBpmn() {
-        return bpmn;
+    public List<Attachment> getAttachments() {
+        return attachments;
     }
 
-    public void setBpmn(Attachment bpmn) {
-        this.bpmn = bpmn;
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

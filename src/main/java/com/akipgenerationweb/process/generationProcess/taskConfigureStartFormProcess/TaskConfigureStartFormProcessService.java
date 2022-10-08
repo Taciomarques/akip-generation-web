@@ -105,11 +105,7 @@ public class TaskConfigureStartFormProcessService {
             .getGenerationProcess()
             .getAkipProcess()
             .getEntities()
-            .add(taskConfigureStartFormProcessContextDTO.getAkipEntityStartForm());
-
-        taskConfigureStartFormProcessContextDTO.setAkipEntityStartForm(
-            akipEntityService.save(taskConfigureStartFormProcessContextDTO.getAkipEntityStartForm())
-        );
+            .add(akipEntityService.save(taskConfigureStartFormProcessContextDTO.getAkipEntityStartForm()));
 
         akipProcessService.save(taskConfigureStartFormProcessContextDTO.getGenerationProcess().getAkipProcess());
     }

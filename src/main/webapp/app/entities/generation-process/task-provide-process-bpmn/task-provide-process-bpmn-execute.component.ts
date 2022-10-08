@@ -10,12 +10,8 @@ import { Attachment, IAttachment } from '@/shared/model/attachment.model';
 
 const validations: any = {
   taskContext: {
-    generationProcess: {
-      akipProcess: {
-        bpmn: {
-          required,
-        },
-      },
+    bpmn: {
+      required,
     },
   },
 };
@@ -63,13 +59,13 @@ export default class TaskProvideProcessBpmnExecuteComponent extends mixins(JhiDa
           attachment.specificationFile = base64Data;
           attachment.specificationFileContentType = files[file].type;
           attachment.name = files[file].name;
-          this.$set(this.taskContext.generationProcess.akipProcess, 'bpmn', attachment);
+          this.$set(this.taskContext, 'bpmn', attachment);
         });
       }
     }
   }
 
   public removeAttachment(): void {
-    this.taskContext.generationProcess.akipProcess.bpmn = null;
+    this.taskContext.bpmn = null;
   }
 }
