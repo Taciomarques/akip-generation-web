@@ -66,7 +66,7 @@ public class TaskConfigureProcessBindingService {
 
         AkipEntityDTO akipEntityProcessBinding = new AkipEntityDTO();
         akipEntityProcessBinding.setType(TypeEntity.PROCESS_BINDING);
-        akipEntityProcessBinding.setName(generationProcess.getAkipProcess().getName());
+        akipEntityProcessBinding.setName(generationProcess.getAkipProcess().getProcessBpmnId());
         akipEntityProcessBinding.setApplication(generationProcess.getAkipProcess().getApplication());
 
         List<AkipEntityDTO> akipEntitiesDomain = akipEntityService.findByApplicationIdAndTypeEntity(

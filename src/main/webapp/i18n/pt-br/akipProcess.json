@@ -22,6 +22,7 @@
       "name": "Nome",
       "percentageExecuted": "Porcentagem Executada",
       "status": "Status",
+      "processBpmnId": "ID do Processo do BPMN",
       "etities": "Entidades",
       "application": "Aplicação",
       "attachments": "Anexos"

@@ -1,9 +1,11 @@
 package com.akipgenerationweb.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import java.util.List;
 
-public class MetadataAkipEntityDomainDTO implements Serializable {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class MetadataAkipEntityDomainDTO extends MetadataAkipEntityDTO implements Serializable {
 
     private String name;
 
@@ -13,17 +15,7 @@ public class MetadataAkipEntityDomainDTO implements Serializable {
 
     private String entityType = "domain";
 
-    private String service = "serviceClass";
-
-    private String dto = "mapstruct";
-
-    private boolean jpaMetamodelFiltering = false;
-
     private boolean readOnly = false;
-
-    private String pagination = "no";
-
-    private boolean skipFakeData = true;
 
     public String getName() {
         return name;
@@ -59,25 +51,5 @@ public class MetadataAkipEntityDomainDTO implements Serializable {
 
     public String getEntityType() {
         return entityType;
-    }
-
-    public String getService() {
-        return service;
-    }
-
-    public String getDto() {
-        return dto;
-    }
-
-    public boolean isJpaMetamodelFiltering() {
-        return jpaMetamodelFiltering;
-    }
-
-    public String getPagination() {
-        return pagination;
-    }
-
-    public boolean isSkipFakeData() {
-        return skipFakeData;
     }
 }

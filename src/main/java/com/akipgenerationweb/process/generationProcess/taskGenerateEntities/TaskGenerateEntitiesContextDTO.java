@@ -2,6 +2,7 @@ package com.akipgenerationweb.process.generationProcess.taskGenerateEntities;
 
 import com.akipgenerationweb.service.dto.AttachmentDTO;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
+import java.util.List;
 import org.akip.service.dto.TaskInstanceDTO;
 
 public class TaskGenerateEntitiesContextDTO {
@@ -9,6 +10,10 @@ public class TaskGenerateEntitiesContextDTO {
     private GenerationProcessDTO generationProcess;
     private TaskInstanceDTO taskInstance;
     private AttachmentDTO metadataAkipEntityDomain;
+    private AttachmentDTO metadataAkipEntityProcessBinding;
+    private AttachmentDTO metadataAkipEntityStartForm;
+    private List<AttachmentDTO> metadatasAkipEntitiesUserTasks;
+    private List<AttachmentDTO> metadatasAkipEntitiesServiceTasks;
 
     public GenerationProcessDTO getGenerationProcess() {
         return generationProcess;
@@ -32,5 +37,37 @@ public class TaskGenerateEntitiesContextDTO {
 
     public void setMetadataAkipEntityDomain(AttachmentDTO metadataAkipEntityDomain) {
         this.metadataAkipEntityDomain = metadataAkipEntityDomain;
+    }
+
+    public AttachmentDTO getMetadataAkipEntityProcessBinding() {
+        return metadataAkipEntityProcessBinding;
+    }
+
+    public void setMetadataAkipEntityProcessBinding(AttachmentDTO metadataAkipEntityProcessBinding) {
+        this.metadataAkipEntityProcessBinding = metadataAkipEntityProcessBinding;
+    }
+
+    public AttachmentDTO getMetadataAkipEntityStartForm() {
+        return metadataAkipEntityStartForm;
+    }
+
+    public void setMetadataAkipEntityStartForm(AttachmentDTO metadataAkipEntityStartForm) {
+        this.metadataAkipEntityStartForm = metadataAkipEntityStartForm;
+    }
+
+    public List<AttachmentDTO> getMetadatasAkipEntitiesUserTasks() {
+        return metadatasAkipEntitiesUserTasks;
+    }
+
+    public void setMetadatasAkipEntitiesUserTasks(List<AttachmentDTO> metadatasAkipEntitiesUserTasks) {
+        this.metadatasAkipEntitiesUserTasks = metadatasAkipEntitiesUserTasks;
+    }
+
+    public List<AttachmentDTO> getMetadatasAkipEntitiesServiceTasks() {
+        return metadatasAkipEntitiesServiceTasks;
+    }
+
+    public void setMetadatasAkipEntitiesServiceTasks(List<AttachmentDTO> metadatasAkipEntitiesServiceTasks) {
+        this.metadatasAkipEntitiesServiceTasks = metadatasAkipEntitiesServiceTasks;
     }
 }

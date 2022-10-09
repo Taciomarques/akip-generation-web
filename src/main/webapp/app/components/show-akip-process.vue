@@ -26,6 +26,22 @@
             </div>
             <div class="col">
               <div class="form-group input-group-sm">
+                <label class="form-control-label" v-text="$t('akipGenerationWebApp.akipProcess.processBpmnId')" for="process-processBpmnId"
+                  >processBpmnId</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="processBpmnId"
+                  readonly
+                  id="process-processBpmnId"
+                  data-cy="processBpmnId"
+                  v-model="akipProcess.processBpmnId"
+                />
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group input-group-sm">
                 <label class="form-control-label" v-text="$t('akipGenerationWebApp.akipProcess.application')" for="akip-process-application"
                   >Application Name</label
                 >

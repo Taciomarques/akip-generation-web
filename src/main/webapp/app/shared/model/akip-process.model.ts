@@ -11,6 +11,7 @@ export interface IAkipProcess {
   entities?: IAkipEntity[] | null;
   application?: IAkipApplication | null;
   attachments?: IAttachment[] | null;
+  processBpmnId?: string | null;
 }
 
 export class AkipProcess implements IAkipProcess {
@@ -21,6 +22,7 @@ export class AkipProcess implements IAkipProcess {
     public status?: StatusProcess | null,
     public entities?: IAkipEntity[] | null,
     public application?: IAkipApplication | null,
-    public attachments?: IAttachment[] | null
+    public attachments?: IAttachment[] | null,
+    public processBpmnId?: string | null
   ) {}
 }

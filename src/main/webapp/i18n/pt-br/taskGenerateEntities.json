@@ -1,7 +1,11 @@
 {
   "akipGenerationWebApp": {
     "taskGenerateEntities": {
-      "metadataDomain": "Metadata da Entidade de Domínio"
+      "metadataDomain": "Metadata da Entidade de Domínio",
+      "metadataProcessBinding": "Metadata da Entidade de Processo",
+      "metadataStartForm": "Metadata do Formulário de Start",
+      "metadatasUserTasks": "Metadatas Tarefas Humanas",
+      "metadatasServiceTasks": "Metadatas Tarefas de Serviço"
     }
   }
 }

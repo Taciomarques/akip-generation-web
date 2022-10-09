@@ -8,37 +8,182 @@
         <akip-show-task-instance :taskInstance="taskContext.taskInstance">
           <template v-slot:body>
             <hr />
+            <div class="card mb-3">
+              <div class="card-body">
+                <div>
+                  <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskGenerateEntities.metadataDomain')"
+                    >Metadata Domain Entity</label
+                  >
+                  <div class="form-group input-group-sm d-flex mb-2" v-if="taskContext.metadataAkipEntityDomain">
+                    <input type="text" class="form-control" :value="taskContext.metadataAkipEntityDomain.name" disabled />
+                    <button
+                      type="button"
+                      v-on:click="
+                        openFile(
+                          taskContext.metadataAkipEntityDomain.specificationFileContentType,
+                          taskContext.metadataAkipEntityDomain.specificationFile
+                        )
+                      "
+                      class="btn btn-info btn-sm pull-right"
+                    >
+                      <font-awesome-icon icon="folder-open"></font-awesome-icon>
+                    </button>
+                    <button
+                      class="btn btn-primary btn-sm pull-right"
+                      @click="
+                        downloadFile(
+                          taskContext.metadataAkipEntityDomain.specificationFileContentType,
+                          taskContext.metadataAkipEntityDomain.specificationFile,
+                          taskContext.metadataAkipEntityDomain.name
+                        )
+                      "
+                    >
+                      <font-awesome-icon icon="download"></font-awesome-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskGenerateEntities.metadataProcessBinding')"
+                      >Metadata Process Binding Entity</label
+                    >
+                    <div class="form-group input-group-sm d-flex mb-2" v-if="taskContext.metadataAkipEntityProcessBinding">
+                      <input type="text" class="form-control" :value="taskContext.metadataAkipEntityProcessBinding.name" disabled />
+                      <button
+                        type="button"
+                        v-on:click="
+                          openFile(
+                            taskContext.metadataAkipEntityProcessBinding.specificationFileContentType,
+                            taskContext.metadataAkipEntityProcessBinding.specificationFile
+                          )
+                        "
+                        class="btn btn-info btn-sm pull-right"
+                      >
+                        <font-awesome-icon icon="folder-open"></font-awesome-icon>
+                      </button>
+                      <button
+                        class="btn btn-primary btn-sm pull-right"
+                        @click="
+                          downloadFile(
+                            taskContext.metadataAkipEntityProcessBinding.specificationFileContentType,
+                            taskContext.metadataAkipEntityProcessBinding.specificationFile,
+                            taskContext.metadataAkipEntityProcessBinding.name
+                          )
+                        "
+                      >
+                        <font-awesome-icon icon="download"></font-awesome-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskGenerateEntities.metadataStartForm')"
+                      >Metadata Start Form Entity</label
+                    >
+                    <div class="form-group input-group-sm d-flex mb-2" v-if="taskContext.metadataAkipEntityStartForm">
+                      <input type="text" class="form-control" :value="taskContext.metadataAkipEntityStartForm.name" disabled />
+                      <button
+                        type="button"
+                        v-on:click="
+                          openFile(
+                            taskContext.metadataAkipEntityStartForm.specificationFileContentType,
+                            taskContext.metadataAkipEntityStartForm.specificationFile
+                          )
+                        "
+                        class="btn btn-info btn-sm pull-right"
+                      >
+                        <font-awesome-icon icon="folder-open"></font-awesome-icon>
+                      </button>
+                      <button
+                        class="btn btn-primary btn-sm pull-right"
+                        @click="
+                          downloadFile(
+                            taskContext.metadataAkipEntityStartForm.specificationFileContentType,
+                            taskContext.metadataAkipEntityStartForm.specificationFile,
+                            taskContext.metadataAkipEntityStartForm.name
+                          )
+                        "
+                      >
+                        <font-awesome-icon icon="download"></font-awesome-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskGenerateEntities.metadatasUserTasks')"
+                    >Metadatas User Tasks Entity</label
+                  >
+                  <ul class="list-group">
+                    <li
+                      class="list-group-item justify-content-between align-items-center"
+                      v-for="metadataAkipEntityUserTask in taskContext.metadatasAkipEntitiesUserTasks"
+                    >
+                      <div class="form-group input-group-sm d-flex mb-2">
+                        <input type="text" class="form-control" :value="metadataAkipEntityUserTask.name" disabled />
+                        <button
+                          type="button"
+                          v-on:click="
+                            openFile(metadataAkipEntityUserTask.specificationFileContentType, metadataAkipEntityUserTask.specificationFile)
+                          "
+                          class="btn btn-info btn-sm pull-right"
+                        >
+                          <font-awesome-icon icon="folder-open"></font-awesome-icon>
+                        </button>
+                        <button
+                          class="btn btn-primary btn-sm pull-right"
+                          @click="
+                            downloadFile(
+                              metadataAkipEntityUserTask.specificationFileContentType,
+                              metadataAkipEntityUserTask.specificationFile,
+                              metadataAkipEntityUserTask.name
+                            )
+                          "
+                        >
+                          <font-awesome-icon icon="download"></font-awesome-icon>
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
 
-            <div>
-              <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskGenerateEntities.metadataDomain')"
-                >Metadata Domain Entity</label
-              >
-              <div class="form-group input-group-sm d-flex mb-2" v-if="taskContext.metadataAkipEntityDomain">
-                <input type="text" class="form-control" :value="taskContext.metadataAkipEntityDomain.name" disabled />
-                <button
-                  type="button"
-                  v-on:click="
-                    openFile(
-                      taskContext.metadataAkipEntityDomain.specificationFileContentType,
-                      taskContext.metadataAkipEntityDomain.specificationFile
-                    )
-                  "
-                  class="btn btn-info btn-sm pull-right"
-                >
-                  <font-awesome-icon icon="folder-open"></font-awesome-icon>
-                </button>
-                <button
-                  class="btn btn-primary btn-sm pull-right"
-                  @click="
-                    downloadFile(
-                      taskContext.metadataAkipEntityDomain.specificationFileContentType,
-                      taskContext.metadataAkipEntityDomain.specificationFile,
-                      taskContext.metadataAkipEntityDomain.name
-                    )
-                  "
-                >
-                  <font-awesome-icon icon="download"></font-awesome-icon>
-                </button>
+                <div>
+                  <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskGenerateEntities.metadatasServiceTasks')"
+                    >Metadatas Service Tasks Entity</label
+                  >
+                  <ul class="list-group">
+                    <li
+                      class="list-group-item justify-content-between align-items-center"
+                      v-for="metadataAkipEntityServiceTask in taskContext.metadatasAkipEntitiesServiceTasks"
+                    >
+                      <div class="form-group input-group-sm d-flex mb-2">
+                        <input type="text" class="form-control" :value="metadataAkipEntityServiceTask.name" disabled />
+                        <button
+                          type="button"
+                          v-on:click="
+                            openFile(
+                              metadataAkipEntityServiceTask.specificationFileContentType,
+                              metadataAkipEntityServiceTask.specificationFile
+                            )
+                          "
+                          class="btn btn-info btn-sm pull-right"
+                        >
+                          <font-awesome-icon icon="folder-open"></font-awesome-icon>
+                        </button>
+                        <button
+                          class="btn btn-primary btn-sm pull-right"
+                          @click="
+                            downloadFile(
+                              metadataAkipEntityServiceTask.specificationFileContentType,
+                              metadataAkipEntityServiceTask.specificationFile,
+                              metadataAkipEntityServiceTask.name
+                            )
+                          "
+                        >
+                          <font-awesome-icon icon="download"></font-awesome-icon>
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </template>

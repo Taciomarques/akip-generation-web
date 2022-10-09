@@ -1,6 +1,5 @@
 package com.akipgenerationweb.process.generationProcess.taskProvideProcessBpmn;
 
-import com.akipgenerationweb.domain.enumeration.StatusProcess;
 import com.akipgenerationweb.domain.enumeration.TypeEntity;
 import com.akipgenerationweb.repository.GenerationProcessRepository;
 import com.akipgenerationweb.service.AkipProcessService;
@@ -19,6 +18,7 @@ import org.akip.service.mapper.TaskInstanceMapper;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
+import org.camunda.bpm.model.bpmn.instance.Process;
 import org.camunda.bpm.model.bpmn.instance.ServiceTask;
 import org.camunda.bpm.model.bpmn.instance.UserTask;
 import org.camunda.bpm.model.xml.instance.ModelElementInstance;
@@ -102,6 +102,7 @@ public class TaskProvideProcessBpmnService {
     }
 
     public void complete(TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContext) {
+        setProcessBpmnId(taskProvideProcessBpmnContext);
         readUserTasksAndServiceTasksForBpmn(taskProvideProcessBpmnContext);
         save(taskProvideProcessBpmnContext);
         GenerationProcessDTO generationProcess = generationProcessRepository
@@ -109,6 +110,15 @@ public class TaskProvideProcessBpmnService {
             .map(generationProcessMapper::toDto)
             .orElseThrow();
         taskInstanceService.complete(taskProvideProcessBpmnContext.getTaskInstance(), generationProcess);
+    }
+
+    private void setProcessBpmnId(TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContextDTO) {
+        BpmnModelInstance bpmnModelInstance = Bpmn.readModelFromStream(
+            new ByteArrayInputStream(taskProvideProcessBpmnContextDTO.getBpmn().getSpecificationFile())
+        );
+        ModelElementType processType = bpmnModelInstance.getModel().getType(Process.class);
+        Process process = (Process) bpmnModelInstance.getModelElementsByType(processType).iterator().next();
+        taskProvideProcessBpmnContextDTO.getGenerationProcess().getAkipProcess().setProcessBpmnId(process.getId());
     }
 
     private void readUserTasksAndServiceTasksForBpmn(TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContextDTO) {

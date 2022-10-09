@@ -27,6 +27,8 @@ public class AkipProcessDTO implements Serializable {
 
     private Set<AkipEntityDTO> entities = new HashSet<>();
 
+    private String processBpmnId;
+
     public Long getId() {
         return id;
     }
@@ -83,6 +85,14 @@ public class AkipProcessDTO implements Serializable {
         this.attachments = attachments;
     }
 
+    public String getProcessBpmnId() {
+        return processBpmnId;
+    }
+
+    public void setProcessBpmnId(String processBpmnId) {
+        this.processBpmnId = processBpmnId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -113,6 +123,7 @@ public class AkipProcessDTO implements Serializable {
             ", percentageExecuted=" + getPercentageExecuted() +
             ", status='" + getStatus() + "'" +
             ", application=" + getApplication() +
+            ", processBpmnId=" + getProcessBpmnId()+
             "}";
     }
 }

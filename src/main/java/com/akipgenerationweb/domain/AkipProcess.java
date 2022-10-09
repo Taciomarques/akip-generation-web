@@ -56,6 +56,9 @@ public class AkipProcess implements Serializable {
     @JsonIgnoreProperties(value = { "process" }, allowSetters = true)
     private List<Attachment> attachments;
 
+    @JoinColumn(name = "process_bpmn_id")
+    private String processBpmnId;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -153,6 +156,14 @@ public class AkipProcess implements Serializable {
         this.attachments = attachments;
     }
 
+    public String getProcessBpmnId() {
+        return processBpmnId;
+    }
+
+    public void setProcessBpmnId(String processBpmnId) {
+        this.processBpmnId = processBpmnId;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -180,6 +191,7 @@ public class AkipProcess implements Serializable {
             ", name='" + getName() + "'" +
             ", percentageExecuted=" + getPercentageExecuted() +
             ", status='" + getStatus() + "'" +
+            ", processBpmnId='" + getProcessBpmnId() + "'" +
             "}";
     }
 }
