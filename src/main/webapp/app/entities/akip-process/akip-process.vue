@@ -47,10 +47,10 @@
                   </td>
                   <td>{{ process.name }}</td>
                   <td>
-                    <div class="progress" style="border-radius: 5px">
+                    <div class="progress">
                       <div
                         class="progress-bar"
-                        :class="{ 'progress-bar-striped progress-bar-animated': process.status != 'FINISHED' }"
+                        :class="{ 'progress-bar-striped progress-bar-animated bg-warning': process.status != 'FINISHED' }"
                         role="progressbar"
                         :aria-valuenow="process.percentageExecuted"
                         aria-valuemin="0"

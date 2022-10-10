@@ -92,7 +92,7 @@
               </select>
             </div>
           </div>
-          <div class="col">
+          <div class="col" v-if="akipRelationship.relationshipType == 'one-to-one' || akipRelationship.relationshipType == 'one-to-many'">
             <div class="form-group input-group-sm">
               <label
                 class="form-control-label"

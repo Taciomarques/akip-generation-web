@@ -1,6 +1,7 @@
 package com.akipgenerationweb.service.dto;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -19,6 +20,8 @@ public class AttachmentDTO implements Serializable {
     private byte[] specificationFile;
 
     private Long processId;
+
+    private LocalDateTime createDateTime;
 
     public Long getId() {
         return id;
@@ -58,6 +61,14 @@ public class AttachmentDTO implements Serializable {
 
     public void setProcessId(Long processId) {
         this.processId = processId;
+    }
+
+    public LocalDateTime getCreateDateTime() {
+        return createDateTime;
+    }
+
+    public void setCreateDateTime(LocalDateTime createDateTime) {
+        this.createDateTime = createDateTime;
     }
 
     @Override

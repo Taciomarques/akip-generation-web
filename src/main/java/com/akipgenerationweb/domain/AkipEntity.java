@@ -52,6 +52,9 @@ public class AkipEntity implements Serializable {
     @JsonIgnoreProperties(value = { "entities", "application" }, allowSetters = true)
     private Set<AkipProcess> processes = new HashSet<>();
 
+    @Column(name = "readonly")
+    private boolean readOnly;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -139,6 +142,14 @@ public class AkipEntity implements Serializable {
         this.processes = processes;
     }
 
+    public boolean isReadOnly() {
+        return readOnly;
+    }
+
+    public void setReadOnly(boolean readOnly) {
+        this.readOnly = readOnly;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -167,6 +178,7 @@ public class AkipEntity implements Serializable {
             ", fields='" + getFields() + "'" +
             ", relations='" + getRelationships() + "'" +
             ", type='" + getType() + "'" +
+            ", readOnly='" + isReadOnly() + "'" +
             "}";
     }
 }

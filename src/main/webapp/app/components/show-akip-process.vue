@@ -60,10 +60,10 @@
 
           <div class="form-group">
             <label v-text="$t('akipGenerationWebApp.akipProcess.percentageExecuted')" />
-            <div class="progress" style="border-radius: 5px">
+            <div class="progress">
               <div
                 class="progress-bar"
-                :class="{ 'progress-bar-striped progress-bar-animated': akipProcess.status != 'FINISHED' }"
+                :class="{ 'progress-bar-striped progress-bar-animated bg-warning': akipProcess.status != 'FINISHED' }"
                 role="progressbar"
                 :aria-valuenow="akipProcess.percentageExecuted"
                 aria-valuemin="0"
@@ -96,7 +96,7 @@
                     <ul class="list-group">
                       <li class="list-group-item justify-content-between align-items-center" v-for="attachment in akipProcess.attachments">
                         <div class="form-group input-group-sm d-flex mb-2">
-                          <input type="text" class="form-control" :value="attachment.name" disabled />
+                          <span readonly type="text" class="form-control" v-text="attachment.name" />
                           <button
                             type="button"
                             v-on:click="openFile(attachment.specificationFileContentType, attachment.specificationFile)"
@@ -111,6 +111,14 @@
                             <font-awesome-icon icon="download"></font-awesome-icon>
                           </button>
                         </div>
+                        <span class="text-gray-700"
+                          ><i
+                            ><small
+                              ><b>{{ $t('label.created') + ': ' }}</b
+                              >{{ new Date(attachment.createDateTime) }}</small
+                            ></i
+                          ></span
+                        >
                       </li>
                     </ul>
                   </div>

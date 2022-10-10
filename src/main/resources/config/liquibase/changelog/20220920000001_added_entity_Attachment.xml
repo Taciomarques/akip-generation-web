@@ -26,6 +26,9 @@
             <column name="specification_file_c_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="create_date_time" type="timestamp">
+                <constraints nullable="true" />
+            </column>
             <column name="akip_process_id" type="bigint">
                 <constraints nullable="true" />
             </column>

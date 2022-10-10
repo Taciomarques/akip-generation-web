@@ -1,6 +1,7 @@
 package com.akipgenerationweb.domain;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,6 +43,9 @@ public class Attachment implements Serializable {
     @ManyToOne
     @JoinColumn(name = "akip_process_id")
     private AkipProcess process;
+
+    @JoinColumn(name = "create_date_time")
+    private LocalDateTime createDateTime;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -89,6 +93,14 @@ public class Attachment implements Serializable {
         this.process = process;
     }
 
+    public LocalDateTime getCreateDateTime() {
+        return createDateTime;
+    }
+
+    public void setCreateDateTime(LocalDateTime createDateTime) {
+        this.createDateTime = createDateTime;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -116,6 +128,7 @@ public class Attachment implements Serializable {
             ", name='" + getName() + "'" +
             ", specificationFile='" + getSpecificationFile() + "'" +
             ", specificationFileContentType='" + getSpecificationFileContentType() + "'" +
+            ", createDateTime='" + getCreateDateTime() + "'" +
             "}";
     }
 }

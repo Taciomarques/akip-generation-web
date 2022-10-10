@@ -65,6 +65,13 @@ export default class ShowAkipRelationshipComponent extends mixins(JhiDataUtils) 
     this.updateOtherAkipEntities();
   }
 
+  @Watch('akipRelationship.relationshipType')
+  onAkipRelationshipTypeValueChange() {
+    if (this.akipRelationship.relationshipType != 'one-to-many' && this.akipRelationship.relationshipType != 'one-to-one') {
+      this.akipRelationship.otherEntityRelationshipName = null;
+    }
+  }
+
   mounted() {
     this.updateAkipRelationship();
     this.updateOtherAkipEntities();

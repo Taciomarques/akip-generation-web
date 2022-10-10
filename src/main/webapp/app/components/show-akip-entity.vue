@@ -26,6 +26,22 @@
       </h4>
       <b-collapse v-model="collapseController.showAkipEntity" id="collapse-akip-entity">
         <div class="card-body">
+          <div class="card-title">
+            <div class="text-right form-group input-group-sm" v-if="typeEntity == 'DOMAIN'">
+              <div class="custom-control custom-switch">
+                <input
+                  :disabled="readOnly"
+                  type="checkbox"
+                  class="custom-control-input"
+                  name="readOnly"
+                  id="readOnly"
+                  data-cy="readOnly"
+                  v-model="$v.akipEntity.readOnly.$model"
+                />
+                <label class="custom-control-label" v-text="$t('akipGenerationWebApp.akipEntity.readOnly')" for="readOnly">readOnly</label>
+              </div>
+            </div>
+          </div>
           <div class="form-group input-group-sm" v-if="!readOnly">
             <label class="form-control-label" v-text="$t('akipGenerationWebApp.akipEntity.name')" for="akipEntity-name">Name</label>
             <input

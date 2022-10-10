@@ -57,7 +57,7 @@
           type="submit"
           v-on:click.prevent="complete('SKIP')"
           class="btn btn-warning float-right"
-          :disabled="isSaving"
+          :disabled="otherAkipEntitiesDomain.length == 0 || isSaving"
           data-cy="entityDetailsBackButton"
         >
           <span

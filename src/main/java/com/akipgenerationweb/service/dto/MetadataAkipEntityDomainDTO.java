@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MetadataAkipEntityDomainDTO extends MetadataAkipEntityDTO implements Serializable {
+public class MetadataAkipEntityDomainDTO implements Serializable {
 
     private String name;
 
@@ -16,6 +16,16 @@ public class MetadataAkipEntityDomainDTO extends MetadataAkipEntityDTO implement
     private String entityType = "domain";
 
     private boolean readOnly = false;
+
+    private String service = "serviceClass";
+
+    private String dto = "mapstruct";
+
+    private boolean jpaMetamodelFiltering = false;
+
+    private String pagination = "no";
+
+    private boolean skipFakeData = true;
 
     public String getName() {
         return name;
@@ -51,5 +61,25 @@ public class MetadataAkipEntityDomainDTO extends MetadataAkipEntityDTO implement
 
     public String getEntityType() {
         return entityType;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public String getDto() {
+        return dto;
+    }
+
+    public boolean isJpaMetamodelFiltering() {
+        return jpaMetamodelFiltering;
+    }
+
+    public String getPagination() {
+        return pagination;
+    }
+
+    public boolean isSkipFakeData() {
+        return skipFakeData;
     }
 }

@@ -15,6 +15,7 @@ const validations: any = {
     name: {
       required,
     },
+    readOnly: {},
   },
 };
 

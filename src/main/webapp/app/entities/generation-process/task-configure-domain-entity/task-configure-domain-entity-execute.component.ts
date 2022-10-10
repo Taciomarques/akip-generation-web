@@ -1,17 +1,24 @@
-import { Component } from 'vue-property-decorator';
+import { Component, Inject } from 'vue-property-decorator';
 
 import { mixins } from 'vue-class-component';
 import JhiDataUtils from '@/shared/data/data-utils.service';
 
 import TaskConfigureDomainEntityService from './task-configure-domain-entity.service';
 import { TaskConfigureDomainEntityContext } from './task-configure-domain-entity.model';
+import { TypeEntity } from '../../../shared/model/enumerations/type-entity.model';
+import { AkipEntity } from '../../../shared/model/akip-entity.model';
+import AkipEntityService from '../../akip-entity/akip-entity.service';
 
 @Component
 export default class TaskConfigureDomainEntityExecuteComponent extends mixins(JhiDataUtils) {
+  @Inject('akipEntityService')
+  private akipEntityService: () => AkipEntityService;
   private taskConfigureDomainEntityService: TaskConfigureDomainEntityService = new TaskConfigureDomainEntityService();
   private taskContext: TaskConfigureDomainEntityContext = {};
   public isSaving = false;
   public isAkipEntityInvalid = true;
+
+  public otherAkipEntitiesDomain: AkipEntity[] = [];
 
   beforeRouteEnter(to, from, next) {
     next(vm => {
@@ -25,6 +32,7 @@ export default class TaskConfigureDomainEntityExecuteComponent extends mixins(Jh
     this.isSaving = true;
     this.taskConfigureDomainEntityService.claim(taskInstanceId).then(res => {
       this.taskContext = res;
+      this.findOtherAkipEntitiesByApplicationId();
       this.isSaving = false;
     });
   }
@@ -44,4 +52,12 @@ export default class TaskConfigureDomainEntityExecuteComponent extends mixins(Jh
   }
 
   public initRelationships(): void {}
+
+  public findOtherAkipEntitiesByApplicationId() {
+    this.akipEntityService()
+      .findByApplicationIdAndTypeEntity(this.taskContext.generationProcess.akipProcess.application.id, TypeEntity.DOMAIN)
+      .then(res => {
+        this.otherAkipEntitiesDomain = res.data;
+      });
+  }
 }

@@ -7,6 +7,7 @@ import com.akipgenerationweb.service.dto.AkipEntityDTO;
 import com.akipgenerationweb.service.dto.AttachmentDTO;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
 import com.akipgenerationweb.service.mapper.GenerationProcessMapper;
+import com.akipgenerationweb.service.utils.DateUtils;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -95,7 +96,7 @@ public class TaskProvideProcessBpmnService {
 
     public void save(TaskProvideProcessBpmnContextDTO taskProvideProcessBpmnContext) {
         taskProvideProcessBpmnContext.getBpmn().setProcessId(taskProvideProcessBpmnContext.getGenerationProcess().getAkipProcess().getId());
-
+        taskProvideProcessBpmnContext.getBpmn().setCreateDateTime(DateUtils.getLocalDateTimeBrt());
         taskProvideProcessBpmnContext.getGenerationProcess().getAkipProcess().getAttachments().add(taskProvideProcessBpmnContext.getBpmn());
 
         akipProcessService.save(taskProvideProcessBpmnContext.getGenerationProcess().getAkipProcess());

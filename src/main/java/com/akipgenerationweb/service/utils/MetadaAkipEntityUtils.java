@@ -20,22 +20,6 @@ public class MetadaAkipEntityUtils {
     private static final String ENTITY_TYPE_USER_TASK = "user-task-form";
     private static final String ENTITY_TYPE_SERVICE_TASK = "service-task";
 
-    public static AttachmentDTO createMetadataAkipEntityDomain(AkipEntityDTO akipEntityDomain) throws JsonProcessingException {
-        MetadataAkipEntityDomainDTO metadataAkipEntityDomainDTO = new MetadataAkipEntityDomainDTO();
-        metadataAkipEntityDomainDTO.setName(akipEntityDomain.getName());
-        metadataAkipEntityDomainDTO.setFields(akipEntityDomain.getFields());
-        metadataAkipEntityDomainDTO.setRelationships(akipEntityDomain.getRelationships());
-        //        metadataAkipEntityDomainDTO.setReadOnly(akipEntityDomain.getReadOnly());
-        AttachmentDTO metadataAkipEntityDomainAttachment = new AttachmentDTO();
-        metadataAkipEntityDomainAttachment.setName(akipEntityDomain.getName().concat(JSON));
-
-        metadataAkipEntityDomainAttachment.setSpecificationFile(
-            mapper.writer(configureTabsInJson()).writeValueAsBytes(metadataAkipEntityDomainDTO)
-        );
-
-        return metadataAkipEntityDomainAttachment;
-    }
-
     private static DefaultPrettyPrinter configureTabsInJson() {
         DefaultPrettyPrinter.Indenter indenter = new DefaultIndenter("    ", DefaultIndenter.SYS_LF);
         DefaultPrettyPrinter printer = new DefaultPrettyPrinter();
@@ -114,6 +98,23 @@ public class MetadaAkipEntityUtils {
         return metadatasAkipEntitiesTask;
     }
 
+    public static AttachmentDTO createMetadataAkipEntityDomain(AkipEntityDTO akipEntityDomain) throws JsonProcessingException {
+        MetadataAkipEntityDomainDTO metadataAkipEntityDomainDTO = new MetadataAkipEntityDomainDTO();
+        metadataAkipEntityDomainDTO.setName(akipEntityDomain.getName());
+        metadataAkipEntityDomainDTO.setFields(akipEntityDomain.getFields());
+        metadataAkipEntityDomainDTO.setRelationships(akipEntityDomain.getRelationships());
+        metadataAkipEntityDomainDTO.setReadOnly(akipEntityDomain.isReadOnly());
+
+        AttachmentDTO metadataAkipEntityDomainAttachment = new AttachmentDTO();
+        metadataAkipEntityDomainAttachment.setName(akipEntityDomain.getName().concat(JSON));
+        metadataAkipEntityDomainAttachment.setSpecificationFile(
+            mapper.writer(configureTabsInJson()).writeValueAsBytes(metadataAkipEntityDomainDTO)
+        );
+        metadataAkipEntityDomainAttachment.setCreateDateTime(DateUtils.getLocalDateTimeBrt());
+
+        return metadataAkipEntityDomainAttachment;
+    }
+
     public static AttachmentDTO createMetadataAkipEntityProcess(
         AkipEntityDTO akipEntity,
         String processBpmnId,
@@ -132,10 +133,10 @@ public class MetadaAkipEntityUtils {
 
         AttachmentDTO metadataAkipEntityAttachment = new AttachmentDTO();
         metadataAkipEntityAttachment.setName(akipEntity.getName().concat(JSON));
-
         metadataAkipEntityAttachment.setSpecificationFile(
             mapper.writer(configureTabsInJson()).writeValueAsBytes(metadataAkipEntityProcessDTO)
         );
+        metadataAkipEntityAttachment.setCreateDateTime(DateUtils.getLocalDateTimeBrt());
 
         return metadataAkipEntityAttachment;
     }

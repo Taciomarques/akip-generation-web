@@ -12,6 +12,7 @@ export interface IAkipEntity {
   type?: TypeEntity | null;
   processes?: IAkipProcess[] | null;
   application?: IAkipApplication | null;
+  readOnly?: boolean | null;
 }
 
 export class AkipEntity implements IAkipEntity {
@@ -22,7 +23,8 @@ export class AkipEntity implements IAkipEntity {
     public relationships?: IAkipRelationship[] | null,
     public type?: TypeEntity | null,
     public processes?: IAkipProcess[] | null,
-    public application?: IAkipApplication | null
+    public application?: IAkipApplication | null,
+    public readOnly?: boolean | null
   ) {
     this.fields ? this.fields : (this.fields = []);
     this.relationships ? this.relationships : (this.relationships = []);

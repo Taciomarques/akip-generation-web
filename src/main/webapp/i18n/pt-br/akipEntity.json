@@ -19,6 +19,7 @@
       },
       "id": "ID",
       "name": "Nome",
+      "readOnly": "Apenas Visualização",
       "fields": "Campo",
       "relationships": "Relacionamentos",
       "type": "Tipo",

@@ -3,7 +3,7 @@
     "TypeEntity": {
       "null": "",
       "DOMAIN": "Domain",
-      "PROCESS_BINDING": "Process Bingind",
+      "PROCESS_BINDING": "Process Binding",
       "START_FORM": "Start Form",
       "USER_TASK": "User Task",
       "SERVICE_TASK": "Service Task"

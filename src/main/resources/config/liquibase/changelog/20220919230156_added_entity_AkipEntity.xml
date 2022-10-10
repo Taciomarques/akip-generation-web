@@ -26,6 +26,9 @@
             <column name="type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="readonly" type="bit">
+                <constraints nullable="true" />
+            </column>
             <column name="akip_application_id" type="bigint">
                 <constraints nullable="true" />
             </column>

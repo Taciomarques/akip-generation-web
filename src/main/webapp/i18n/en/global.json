@@ -146,5 +146,8 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
+  "label": {
+    "created": "Created"
+  },
   "footer": "This is your footer"
 }

@@ -27,6 +27,8 @@ public class AkipEntityDTO implements Serializable {
 
     private Set<AkipProcessDTO> processes = new HashSet<>();
 
+    private boolean readOnly;
+
     public Long getId() {
         return id;
     }
@@ -81,6 +83,14 @@ public class AkipEntityDTO implements Serializable {
 
     public void setProcesses(Set<AkipProcessDTO> processes) {
         this.processes = processes;
+    }
+
+    public boolean isReadOnly() {
+        return readOnly;
+    }
+
+    public void setReadOnly(boolean readOnly) {
+        this.readOnly = readOnly;
     }
 
     @Override
