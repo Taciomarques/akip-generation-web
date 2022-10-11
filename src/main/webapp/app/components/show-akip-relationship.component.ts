@@ -72,6 +72,20 @@ export default class ShowAkipRelationshipComponent extends mixins(JhiDataUtils) 
     }
   }
 
+  @Watch('akipRelationship.relationshipName')
+  onRelationshipNameValueChange() {
+    if (this.akipRelationship.relationshipName) {
+      this.akipRelationship.relationshipName = this.akipRelationship.relationshipName.trim();
+    }
+  }
+
+  @Watch('akipRelationship.otherEntityRelationshipName')
+  onOtherEntityRelationshipNameValueChange() {
+    if (this.akipRelationship.otherEntityRelationshipName) {
+      this.akipRelationship.otherEntityRelationshipName = this.akipRelationship.otherEntityRelationshipName.trim();
+    }
+  }
+
   mounted() {
     this.updateAkipRelationship();
     this.updateOtherAkipEntities();

@@ -71,6 +71,9 @@ export default class ShowAkipEntityComponent extends mixins(JhiDataUtils) {
   @Watch('akipEntity.fields')
   @Watch('akipEntity.relationships')
   ondAkipEntityValueChange() {
+    if (this.akipEntity.name) {
+      this.akipEntity.name = this.akipEntity.name.trim();
+    }
     this.$emit('update-akip-entity', this.akipEntity);
   }
 

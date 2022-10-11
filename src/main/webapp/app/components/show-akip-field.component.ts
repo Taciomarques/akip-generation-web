@@ -103,6 +103,9 @@ export default class ShowAkipFieldComponent extends mixins(JhiDataUtils) {
   @Prop({ default: false })
   readOnly: boolean;
 
+  @Prop({ default: false })
+  akipEntityReadOnly: boolean;
+
   @Prop()
   index: number;
 
@@ -123,9 +126,34 @@ export default class ShowAkipFieldComponent extends mixins(JhiDataUtils) {
     this.$emit('is-akip-field-invalid', this.$v.akipField.$invalid);
   }
 
+  @Watch('akipEntityReadOnly')
+  ondAkipEntityReadOnlyValueChange() {
+    this.resetValuesInFieldValidateRules();
+  }
   @Watch('akipFieldProp')
   ondAkipFieldPropValueChange() {
     this.updateAkipField();
+  }
+
+  @Watch('akipField.fieldName')
+  onFieldNameValueChange() {
+    if (this.akipField.fieldName) {
+      this.akipField.fieldName = this.akipField.fieldName.trim();
+    }
+  }
+
+  @Watch('akipField.fieldValues')
+  onFieldValuesValueChange() {
+    if (this.akipField.fieldValues) {
+      this.akipField.fieldValues = this.akipField.fieldValues.trim().toUpperCase();
+    }
+  }
+
+  @Watch('akipField.fieldType')
+  onFieldTypeValueChange() {
+    if (this.akipField.fieldType) {
+      this.akipField.fieldType = this.akipField.fieldType.trim();
+    }
   }
 
   @Watch('fieldTypeTemp')
@@ -134,9 +162,15 @@ export default class ShowAkipFieldComponent extends mixins(JhiDataUtils) {
       this.akipField.fieldType = '';
       return;
     }
-    this.akipField.fieldValues = null;
-    this.akipField.fieldTypeBlobContent = null;
-    this.akipField.fieldType = this.fieldTypeTemp;
+    if (this.akipField.fieldValues) {
+      this.akipField.fieldValues = null;
+    }
+    if (this.akipField.fieldTypeBlobContent) {
+      this.akipField.fieldTypeBlobContent = null;
+    }
+    if (this.fieldTypeTemp) {
+      this.akipField.fieldType = this.fieldTypeTemp;
+    }
   }
 
   mounted() {

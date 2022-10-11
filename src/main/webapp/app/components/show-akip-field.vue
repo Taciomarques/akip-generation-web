@@ -133,7 +133,7 @@
             </div>
           </div>
         </div>
-        <div class="card" v-if="typeEntity != 'PROCESS_BINDING' && !akipField.fieldReadOnly">
+        <div class="card" v-if="typeEntity != 'PROCESS_BINDING' && !akipField.fieldReadOnly && !akipEntityReadOnly">
           <div class="card-header">
             <b><span v-text="$t('akipGenerationWebApp.akipField.validations')" /></b>
           </div>
@@ -241,7 +241,7 @@
                       type="number"
                       class="form-control"
                       :class="{ invalid: $v.akipField.fieldValidateRulesMin.$invalid }"
-                      v-model="$v.akipField.fieldValidateRulesMin.$model"
+                      v-model.number="$v.akipField.fieldValidateRulesMin.$model"
                     />
                   </div>
                 </div>
@@ -293,7 +293,7 @@
                       type="number"
                       class="form-control"
                       :class="{ invalid: $v.akipField.fieldValidateRulesMax.$invalid }"
-                      v-model="$v.akipField.fieldValidateRulesMax.$model"
+                      v-model.number="$v.akipField.fieldValidateRulesMax.$model"
                     />
                   </div>
                 </div>
@@ -345,7 +345,7 @@
                       type="number"
                       class="form-control"
                       :class="{ invalid: $v.akipField.fieldValidateRulesMinlength.$invalid }"
-                      v-model="$v.akipField.fieldValidateRulesMinlength.$model"
+                      v-model.number="$v.akipField.fieldValidateRulesMinlength.$model"
                     />
                   </div>
                 </div>
@@ -394,7 +394,7 @@
                       type="number"
                       class="form-control"
                       :class="{ invalid: $v.akipField.fieldValidateRulesMaxlength.$invalid }"
-                      v-model="$v.akipField.fieldValidateRulesMaxlength.$model"
+                      v-model.number="$v.akipField.fieldValidateRulesMaxlength.$model"
                     />
                   </div>
                 </div>

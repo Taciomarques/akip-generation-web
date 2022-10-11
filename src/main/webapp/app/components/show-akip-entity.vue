@@ -77,6 +77,7 @@
                   :readOnly="readOnly"
                   :typeEntity="typeEntity"
                   :akipFieldProp="field"
+                  :akipEntityReadOnly="akipEntity.readOnly"
                   :removeFunction="removeField"
                   @is-akip-field-invalid="updateFieldsInvalid(index, $event)"
                 ></show-akip-field>
