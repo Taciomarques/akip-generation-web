@@ -64,10 +64,30 @@ public class TaskConfigureProcessBindingService {
             .map(taskConfigureProcessBindingMapper::toGenerationProcessDTO)
             .orElseThrow();
 
-        AkipEntityDTO akipEntityProcessBinding = new AkipEntityDTO();
-        akipEntityProcessBinding.setType(TypeEntity.PROCESS_BINDING);
-        akipEntityProcessBinding.setName(generationProcess.getAkipProcess().getProcessBpmnId());
-        akipEntityProcessBinding.setApplication(generationProcess.getAkipProcess().getApplication());
+        AkipEntityDTO akipEntityProcessBinding;
+        if (
+            generationProcess
+                .getAkipProcess()
+                .getEntities()
+                .stream()
+                .filter(akipEntityDTO -> akipEntityDTO.getType().equals(TypeEntity.PROCESS_BINDING))
+                .findAny()
+                .isPresent()
+        ) {
+            akipEntityProcessBinding =
+                generationProcess
+                    .getAkipProcess()
+                    .getEntities()
+                    .stream()
+                    .filter(akipEntityDTO -> akipEntityDTO.getType().equals(TypeEntity.PROCESS_BINDING))
+                    .findAny()
+                    .get();
+        } else {
+            akipEntityProcessBinding = new AkipEntityDTO();
+            akipEntityProcessBinding.setType(TypeEntity.PROCESS_BINDING);
+            akipEntityProcessBinding.setName(generationProcess.getAkipProcess().getProcessBpmnId());
+            akipEntityProcessBinding.setApplication(generationProcess.getAkipProcess().getApplication());
+        }
 
         List<AkipEntityDTO> akipEntitiesDomain = akipEntityService.findByApplicationIdAndTypeEntity(
             generationProcess.getAkipProcess().getApplication().getId(),

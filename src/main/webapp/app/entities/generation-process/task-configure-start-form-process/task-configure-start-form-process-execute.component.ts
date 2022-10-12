@@ -43,4 +43,8 @@ export default class TaskConfigureStartFormProcessExecuteComponent extends mixin
   }
 
   public initRelationships(): void {}
+
+  get akipEntityDomain() {
+    return this.taskContext.generationProcess.akipProcess.entities.find(entity => entity.type == 'DOMAIN');
+  }
 }

@@ -5,7 +5,6 @@ import JhiDataUtils from '@/shared/data/data-utils.service';
 
 import TaskGenerateEntitiesService from './task-generate-entities.service';
 import { TaskGenerateEntitiesContext } from './task-generate-entities.model';
-import { Attachment, IAttachment } from '@/shared/model/attachment.model';
 
 @Component
 export default class TaskGenerateEntitiesExecuteComponent extends mixins(JhiDataUtils) {

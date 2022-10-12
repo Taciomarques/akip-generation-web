@@ -9,7 +9,7 @@ public class TaskGenerateEntitiesContextDTO {
 
     private GenerationProcessDTO generationProcess;
     private TaskInstanceDTO taskInstance;
-    private AttachmentDTO metadataAkipEntityDomain;
+    private List<AttachmentDTO> metadatasAkipEntitiesDomain;
     private AttachmentDTO metadataAkipEntityProcessBinding;
     private AttachmentDTO metadataAkipEntityStartForm;
     private List<AttachmentDTO> metadatasAkipEntitiesUserTasks;
@@ -31,12 +31,12 @@ public class TaskGenerateEntitiesContextDTO {
         this.taskInstance = taskInstance;
     }
 
-    public AttachmentDTO getMetadataAkipEntityDomain() {
-        return metadataAkipEntityDomain;
+    public List<AttachmentDTO> getMetadatasAkipEntitiesDomain() {
+        return metadatasAkipEntitiesDomain;
     }
 
-    public void setMetadataAkipEntityDomain(AttachmentDTO metadataAkipEntityDomain) {
-        this.metadataAkipEntityDomain = metadataAkipEntityDomain;
+    public void setMetadatasAkipEntitiesDomain(List<AttachmentDTO> metadatasAkipEntitiesDomain) {
+        this.metadatasAkipEntitiesDomain = metadatasAkipEntitiesDomain;
     }
 
     public AttachmentDTO getMetadataAkipEntityProcessBinding() {

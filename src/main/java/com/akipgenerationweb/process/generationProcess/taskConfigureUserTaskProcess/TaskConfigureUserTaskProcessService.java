@@ -70,30 +70,41 @@ public class TaskConfigureUserTaskProcessService {
         TaskConfigureUserTaskProcessContextDTO taskConfigureUserTaskProcessContextDTO = new TaskConfigureUserTaskProcessContextDTO();
         taskConfigureUserTaskProcessContextDTO.setTaskInstance(taskInstanceDTO);
         taskConfigureUserTaskProcessContextDTO.setGenerationProcess(generationProcess);
-        taskConfigureUserTaskProcessContextDTO.setAkipEntityUserTask(
-            createAkipEntityUserTask(
-                generationProcess,
-                ((AkipEntityDTO) runtimeService.getVariable(taskInstanceDTO.getExecutionId(), USER_TASK)).getName()
-            )
-        );
+        String[] taskInstanceName = taskInstanceDTO.getName().split("\\s+");
+        if (
+            generationProcess
+                .getAkipProcess()
+                .getEntities()
+                .stream()
+                .filter(akipEntityDTO -> akipEntityDTO.getName().contains(taskInstanceName[taskInstanceName.length - 1]))
+                .findAny()
+                .isPresent()
+        ) {
+            taskConfigureUserTaskProcessContextDTO.setAkipEntityUserTask(
+                generationProcess
+                    .getAkipProcess()
+                    .getEntities()
+                    .stream()
+                    .filter(akipEntityDTO -> akipEntityDTO.getName().contains(taskInstanceName[taskInstanceName.length - 1]))
+                    .findAny()
+                    .get()
+            );
+        } else {
+            taskConfigureUserTaskProcessContextDTO.setAkipEntityUserTask(
+                createAkipEntityUserTask(
+                    generationProcess,
+                    ((AkipEntityDTO) runtimeService.getVariable(taskInstanceDTO.getExecutionId(), USER_TASK)).getName()
+                )
+            );
+        }
 
         return taskConfigureUserTaskProcessContextDTO;
     }
 
     private static AkipEntityDTO createAkipEntityUserTask(GenerationProcessDTO generationProcess, String akipEntityUserTaskName) {
-        AkipEntityDTO akipEntityDomain = generationProcess
-            .getAkipProcess()
-            .getEntities()
-            .stream()
-            .filter(akipEntityDTO -> akipEntityDTO.getType().equals(TypeEntity.DOMAIN))
-            .findAny()
-            .get();
-
         AkipEntityDTO akipEntityStartForm = new AkipEntityDTO();
         akipEntityStartForm.setName(akipEntityUserTaskName);
         akipEntityStartForm.setType(TypeEntity.USER_TASK);
-        akipEntityStartForm.setFields(akipEntityDomain.getFields());
-        akipEntityStartForm.setRelationships(akipEntityDomain.getRelationships());
         akipEntityStartForm.setApplication(generationProcess.getAkipProcess().getApplication());
         return akipEntityStartForm;
     }

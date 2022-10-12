@@ -5,13 +5,13 @@ import java.io.Serializable;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MetadataAkipEntityProcessDTO implements Serializable {
+public class MetadataAkipEntityDTO implements Serializable {
 
     private String name;
 
-    private List<AkipFieldDTO> fields;
+    private List<MetadataAkipFieldDTO> fields;
 
-    private List<AkipRelationshipDTO> relationships;
+    private List<MetadataAkipRelationshipDTO> relationships;
 
     private String processBpmnId;
 
@@ -40,19 +40,19 @@ public class MetadataAkipEntityProcessDTO implements Serializable {
         this.name = name;
     }
 
-    public List<AkipFieldDTO> getFields() {
+    public List<MetadataAkipFieldDTO> getFields() {
         return fields;
     }
 
-    public void setFields(List<AkipFieldDTO> fields) {
+    public void setFields(List<MetadataAkipFieldDTO> fields) {
         this.fields = fields;
     }
 
-    public List<AkipRelationshipDTO> getRelationships() {
+    public List<MetadataAkipRelationshipDTO> getRelationships() {
         return relationships;
     }
 
-    public void setRelationships(List<AkipRelationshipDTO> relationships) {
+    public void setRelationships(List<MetadataAkipRelationshipDTO> relationships) {
         this.relationships = relationships;
     }
 
@@ -82,6 +82,10 @@ public class MetadataAkipEntityProcessDTO implements Serializable {
 
     public boolean isReadOnly() {
         return readOnly;
+    }
+
+    public void setReadOnly(boolean readOnly) {
+        this.readOnly = readOnly;
     }
 
     public String getEntityType() {

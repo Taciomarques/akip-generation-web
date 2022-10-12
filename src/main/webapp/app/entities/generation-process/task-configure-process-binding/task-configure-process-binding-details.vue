@@ -8,18 +8,38 @@
         <akip-show-task-instance class="border-primary" :taskInstance="taskContext.taskInstance">
           <template v-slot:body>
             <hr />
-            <div class="form-group input-group-sm">
-              <label class="form-control-label" v-text="$t('akipGenerationWebApp.generationProcess.domainEntity')" for="domainEntity"
-                >domainEntity</label
-              >
-              <select readonly id="domainEntity" class="form-control" v-model="getDomainEntityInAkipProcess">
-                <option v-for="entity in taskContext.akipEntitiesDomain" :value="entity" v-text="entity.name"></option>
-              </select>
+            <div class="card">
+              <div class="card-body">
+                <div class="form-group input-group-sm">
+                  <label class="form-control-label" v-text="$t('akipGenerationWebApp.generationProcess.domainEntity')" for="domainEntity"
+                    >domainEntity</label
+                  >
+                  <select readonly id="domainEntity" class="form-control" v-model="getDomainEntityInAkipProcess">
+                    <option v-for="entity in taskContext.akipEntitiesDomain" :value="entity" v-text="entity.name"></option>
+                  </select>
+                </div>
+                <div v-if="getDomainEntityInAkipProcess">
+                  <show-akip-fields-select
+                    :readOnly="true"
+                    :akipFields="getDomainEntityInAkipProcess.fields"
+                    @akip-fields-selecteds="taskContext.akipEntityProcessBinding.fields = $event"
+                  ></show-akip-fields-select>
+
+                  <show-akip-relationships-select
+                    class="mt-3"
+                    :readOnly="true"
+                    :akipRelationships="getDomainEntityInAkipProcess.relationships"
+                    @akip-relationships-selecteds="taskContext.akipEntityProcessBinding.relationships = $event"
+                  ></show-akip-relationships-select>
+                </div>
+              </div>
             </div>
             <show-akip-entity
+              class="mt-3"
               :akipEntityProp="getProcessBindingInAkipProcess"
               :readOnly="true"
               :typeEntity="'PROCESS_BINDING'"
+              :applicationId="getProcessBindingInAkipProcess.application.id"
             ></show-akip-entity>
           </template>
         </akip-show-task-instance>

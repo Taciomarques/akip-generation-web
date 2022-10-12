@@ -65,8 +65,14 @@ Vue.component('show-akip-entity-type', ShowAkipEntityType);
 import ShowAkipField from '@/components/show-akip-field.vue';
 Vue.component('show-akip-field', ShowAkipField);
 
+import ShowAkipFieldsSelect from '@/components/show-akip-fields-select.vue';
+Vue.component('show-akip-fields-select', ShowAkipFieldsSelect);
+
 import ShowAkipRelationship from '@/components/show-akip-relationship.vue';
 Vue.component('show-akip-relationship', ShowAkipRelationship);
+
+import ShowAkipRelationshipsSelect from '@/components/show-akip-relationships-select.vue';
+Vue.component('show-akip-relationships-select', ShowAkipRelationshipsSelect);
 
 import ShowAkipProcess from '@/components/show-akip-process.vue';
 Vue.component('show-akip-process', ShowAkipProcess);

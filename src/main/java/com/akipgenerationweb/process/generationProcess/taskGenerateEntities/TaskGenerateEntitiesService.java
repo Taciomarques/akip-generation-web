@@ -2,6 +2,7 @@ package com.akipgenerationweb.process.generationProcess.taskGenerateEntities;
 
 import com.akipgenerationweb.domain.enumeration.TypeEntity;
 import com.akipgenerationweb.repository.GenerationProcessRepository;
+import com.akipgenerationweb.service.AkipEntityService;
 import com.akipgenerationweb.service.AkipProcessService;
 import com.akipgenerationweb.service.AttachmentService;
 import com.akipgenerationweb.service.dto.AkipEntityDTO;
@@ -35,6 +36,8 @@ public class TaskGenerateEntitiesService {
 
     private final AttachmentService attachmentService;
 
+    private final AkipEntityService akipEntityService;
+
     private final TaskGenerateEntitiesMapper taskGenerateEntitiesMapper;
 
     public TaskGenerateEntitiesService(
@@ -44,6 +47,7 @@ public class TaskGenerateEntitiesService {
         GenerationProcessRepository generationProcessRepository,
         TaskInstanceMapper taskInstanceMapper,
         AttachmentService attachmentService,
+        AkipEntityService akipEntityService,
         TaskGenerateEntitiesMapper taskGenerateEntitiesMapper
     ) {
         this.taskInstanceService = taskInstanceService;
@@ -52,6 +56,7 @@ public class TaskGenerateEntitiesService {
         this.generationProcessRepository = generationProcessRepository;
         this.taskInstanceMapper = taskInstanceMapper;
         this.attachmentService = attachmentService;
+        this.akipEntityService = akipEntityService;
         this.taskGenerateEntitiesMapper = taskGenerateEntitiesMapper;
     }
 
@@ -75,7 +80,7 @@ public class TaskGenerateEntitiesService {
         return taskGenerateEntitiesContextDTO;
     }
 
-    private static void setMetadatasInTaskGenerateEntitiesContext(
+    private void setMetadatasInTaskGenerateEntitiesContext(
         GenerationProcessDTO generationProcess,
         TaskGenerateEntitiesContextDTO taskGenerateEntitiesContextDTO
     ) throws JsonProcessingException {
@@ -95,7 +100,17 @@ public class TaskGenerateEntitiesService {
             .findAny()
             .get();
 
-        taskGenerateEntitiesContextDTO.setMetadataAkipEntityDomain(MetadaAkipEntityUtils.createMetadataAkipEntityDomain(akipEntityDomain));
+        List<AkipEntityDTO> akipEntitiesDomainNotExecuted = akipEntityService
+            .findByApplicationIdAndTypeEntity(generationProcess.getAkipProcess().getApplication().getId(), TypeEntity.DOMAIN)
+            .stream()
+            .filter(akipEntityDTO -> !akipEntityDTO.isGenerated())
+            .collect(Collectors.toList());
+
+        updateAkipEntitiesDomainExecuted(akipEntitiesDomainNotExecuted);
+
+        taskGenerateEntitiesContextDTO.setMetadatasAkipEntitiesDomain(
+            MetadaAkipEntityUtils.createMetadatasAkipEntitiesDomain(akipEntitiesDomainNotExecuted)
+        );
         taskGenerateEntitiesContextDTO.setMetadataAkipEntityProcessBinding(
             MetadaAkipEntityUtils.createMetadataAkipEntityProcessBinding(
                 akipEntityProcessBinding,
@@ -147,6 +162,13 @@ public class TaskGenerateEntitiesService {
         );
     }
 
+    private void updateAkipEntitiesDomainExecuted(List<AkipEntityDTO> akipEntitiesDomainNotExecuted) {
+        for (AkipEntityDTO akipEntity : akipEntitiesDomainNotExecuted) {
+            akipEntity.setGenerated(true);
+            akipEntityService.save(akipEntity);
+        }
+    }
+
     public TaskGenerateEntitiesContextDTO claim(Long taskInstanceId) throws JsonProcessingException {
         taskInstanceService.claim(taskInstanceId);
         return loadContext(taskInstanceId);
@@ -154,8 +176,13 @@ public class TaskGenerateEntitiesService {
 
     public void save(TaskGenerateEntitiesContextDTO taskGenerateEntitiesContextDTO) {
         taskGenerateEntitiesContextDTO
-            .getMetadataAkipEntityDomain()
-            .setProcessId(taskGenerateEntitiesContextDTO.getGenerationProcess().getAkipProcess().getId());
+            .getMetadatasAkipEntitiesDomain()
+            .stream()
+            .forEach(
+                metadataAkipEntityDomain -> {
+                    metadataAkipEntityDomain.setProcessId(taskGenerateEntitiesContextDTO.getGenerationProcess().getAkipProcess().getId());
+                }
+            );
 
         taskGenerateEntitiesContextDTO
             .getMetadataAkipEntityProcessBinding()
@@ -189,7 +216,7 @@ public class TaskGenerateEntitiesService {
             .getGenerationProcess()
             .getAkipProcess()
             .getAttachments()
-            .add(attachmentService.save(taskGenerateEntitiesContextDTO.getMetadataAkipEntityDomain()));
+            .addAll(saveMetadatasAkipEntities(taskGenerateEntitiesContextDTO.getMetadatasAkipEntitiesDomain()));
 
         taskGenerateEntitiesContextDTO
             .getGenerationProcess()

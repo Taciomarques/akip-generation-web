@@ -28,4 +28,8 @@ export default class TaskConfigureDomainEntityDetailsComponent extends mixins(Jh
   public previousState() {
     this.$router.go(-1);
   }
+
+  get akipEntityDomain() {
+    return this.taskContext.generationProcess.akipProcess.entities.find(akipEntity => akipEntity.type == 'DOMAIN');
+  }
 }

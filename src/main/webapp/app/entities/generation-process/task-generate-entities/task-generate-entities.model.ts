@@ -4,7 +4,7 @@ import { IAttachment } from '@/shared/model/attachment.model';
 export class TaskGenerateEntitiesContext {
   taskInstance?: any = {};
   generationProcess?: IGenerationProcess = {};
-  metadataAkipEntityDomain?: IAttachment = {};
+  metadatasAkipEntitiesDomain?: IAttachment[] = [];
   metadataAkipEntityProcessBinding?: IAttachment = {};
   metadataAkipEntityStartForm?: IAttachment = {};
   metadatasAkipEntitiesUserTasks?: IAttachment[] = [];

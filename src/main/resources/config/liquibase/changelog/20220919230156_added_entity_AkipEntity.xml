@@ -29,6 +29,9 @@
             <column name="readonly" type="bit">
                 <constraints nullable="true" />
             </column>
+            <column name="generated" type="bit">
+                <constraints nullable="true" />
+            </column>
             <column name="akip_application_id" type="bigint">
                 <constraints nullable="true" />
             </column>

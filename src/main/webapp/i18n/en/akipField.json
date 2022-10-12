@@ -3,6 +3,8 @@
     "akipField": {
       "field": "Field #",
       "addField": "Add Field",
+      "addFields": "Add Fields",
+      "fieldsDomain": "Fields for Domain Entity",
       "removeField": "Remove Field",
       "name": "Name Field",
       "type": "Type Field",

@@ -3,7 +3,8 @@ package com.akipgenerationweb.service.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 
-public class AkipRelationshipDTO implements Serializable {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class MetadataAkipRelationshipDTO implements Serializable {
 
     private String relationshipName;
 

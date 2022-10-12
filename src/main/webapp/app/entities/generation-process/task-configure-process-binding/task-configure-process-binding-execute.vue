@@ -8,21 +8,37 @@
         <akip-show-task-instance class="border-primary" :taskInstance="taskContext.taskInstance">
           <template v-slot:body>
             <hr />
-            <div class="form-group input-group-sm">
-              <label class="form-control-label" v-text="$t('akipGenerationWebApp.generationProcess.domainEntity')" for="domainEntity"
-                >domainEntity</label
-              >
-              <select
-                id="domainEntity"
-                class="form-control"
-                @change="setProcessBindingFieldsAndRelationshipsOfAkipEntityDomain()"
-                :class="{ invalid: $v.akipEntityDomain.$invalid }"
-                v-model="akipEntityDomain"
-              >
-                <option v-for="akipEntity in taskContext.akipEntitiesDomain" :value="akipEntity" v-text="akipEntity.name"></option>
-              </select>
+            <div class="card">
+              <div class="card-body">
+                <div class="form-group input-group-sm">
+                  <label class="form-control-label" v-text="$t('akipGenerationWebApp.generationProcess.domainEntity')" for="domainEntity"
+                    >domainEntity</label
+                  >
+                  <select
+                    id="domainEntity"
+                    class="form-control"
+                    :class="{ invalid: $v.akipEntityDomain.$invalid }"
+                    v-model="akipEntityDomain"
+                  >
+                    <option v-for="akipEntity in taskContext.akipEntitiesDomain" :value="akipEntity" v-text="akipEntity.name"></option>
+                  </select>
+                </div>
+
+                <show-akip-fields-select
+                  :akipFields="akipEntityDomain.fields"
+                  @akip-fields-selecteds="taskContext.akipEntityProcessBinding.fields = $event"
+                ></show-akip-fields-select>
+
+                <show-akip-relationships-select
+                  class="mt-3"
+                  :akipRelationships="akipEntityDomain.relationships"
+                  @akip-relationships-selecteds="taskContext.akipEntityProcessBinding.relationships = $event"
+                ></show-akip-relationships-select>
+              </div>
             </div>
+
             <show-akip-entity
+              class="mt-3"
               :akipEntityProp="taskContext.akipEntityProcessBinding"
               @update-akip-entity="taskContext.akipEntityProcessBinding = $event"
               @is-akip-entity-invalid="isAkipEntityInvalid = $event"

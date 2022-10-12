@@ -53,9 +53,4 @@ export default class TaskConfigureProcessBindingExecuteComponent extends mixins(
   }
 
   public initRelationships(): void {}
-
-  public setProcessBindingFieldsAndRelationshipsOfAkipEntityDomain() {
-    this.taskContext.akipEntityProcessBinding.fields = JSON.parse(JSON.stringify(this.akipEntityDomain.fields));
-    this.taskContext.akipEntityProcessBinding.relationships = JSON.parse(JSON.stringify(this.akipEntityDomain.relationships));
-  }
 }

@@ -28,4 +28,12 @@ export default class TaskConfigureStartFormProcessDetailsComponent extends mixin
   public previousState() {
     this.$router.go(-1);
   }
+
+  get akipEntityDomain() {
+    return this.taskContext.generationProcess.akipProcess.entities.find(entity => entity.type == 'DOMAIN');
+  }
+
+  get akipEntityStartForm() {
+    return this.taskContext.generationProcess.akipProcess.entities.find(akipEntity => akipEntity.type == 'START_FORM');
+  }
 }

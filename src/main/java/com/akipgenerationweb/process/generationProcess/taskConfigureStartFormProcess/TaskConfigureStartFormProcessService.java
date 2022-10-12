@@ -71,13 +71,6 @@ public class TaskConfigureStartFormProcessService {
     }
 
     private static AkipEntityDTO createAkipEntityStartForm(GenerationProcessDTO generationProcess) {
-        AkipEntityDTO akipEntityDomain = generationProcess
-            .getAkipProcess()
-            .getEntities()
-            .stream()
-            .filter(akipEntityDTO -> akipEntityDTO.getType().equals(TypeEntity.DOMAIN))
-            .findAny()
-            .get();
         AkipEntityDTO akipEntityProcessBinding = generationProcess
             .getAkipProcess()
             .getEntities()
@@ -89,8 +82,6 @@ public class TaskConfigureStartFormProcessService {
         AkipEntityDTO akipEntityStartForm = new AkipEntityDTO();
         akipEntityStartForm.setName(akipEntityProcessBinding.getName().concat(START_FORM));
         akipEntityStartForm.setType(TypeEntity.START_FORM);
-        akipEntityStartForm.setFields(akipEntityDomain.getFields());
-        akipEntityStartForm.setRelationships(akipEntityDomain.getRelationships());
         akipEntityStartForm.setApplication(generationProcess.getAkipProcess().getApplication());
         return akipEntityStartForm;
     }

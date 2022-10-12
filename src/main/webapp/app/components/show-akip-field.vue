@@ -13,14 +13,14 @@
                   type="checkbox"
                   class="custom-control-input"
                   name="akipField-fieldReadOnly"
-                  id="akipField-fieldReadOnly"
+                  :id="'akipField-fieldReadOnly' + index"
                   data-cy="akipField-fieldReadOnly"
                   v-model="$v.akipField.fieldReadOnly.$model"
                 />
                 <label
                   class="custom-control-label"
                   v-text="$t('akipGenerationWebApp.akipField.fieldReadOnly')"
-                  for="akipField-fieldReadOnly"
+                  :for="'akipField-fieldReadOnly' + index"
                   >fieldReadOnly</label
                 >
               </div>
@@ -36,7 +36,7 @@
           <input
             type="text"
             class="form-control"
-            :readonly="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
+            :readonly="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
             name="akipFieldName"
             id="akipField-fieldName"
             data-cy="akipFieldName"
@@ -53,11 +53,11 @@
               >
               <select
                 id="akipField-fieldType"
-                :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
+                :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                 class="form-control"
                 @change="resetValuesInFieldValidateRules()"
-                :class="{ invalid: $v.fieldTypeTemp.$invalid }"
-                v-model="fieldTypeTemp"
+                :class="{ invalid: $v.akipField.fieldType.$invalid }"
+                v-model="akipField.fieldType"
               >
                 <option value="String" v-text="$t('akipGenerationWebApp.akipField.fieldTypes.String')"></option>
                 <option value="Integer" v-text="$t('akipGenerationWebApp.akipField.fieldTypes.Integer')"></option>
@@ -76,7 +76,7 @@
               </select>
             </div>
           </div>
-          <div class="col" v-if="fieldTypeTemp == 'enum'">
+          <div class="col" v-if="akipField.fieldType == 'enum'">
             <div class="form-group input-group-sm">
               <div class="form-group input-group-sm">
                 <label class="form-control-label" v-text="$t('akipGenerationWebApp.akipField.enumType')" for="akipField-enumType"
@@ -84,15 +84,15 @@
                 >
                 <input
                   id="akipField-fieldType"
-                  :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
+                  :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                   class="form-control"
-                  :class="{ invalid: $v.akipField.fieldType.$invalid }"
-                  v-model="$v.akipField.fieldType.$model"
+                  :class="{ invalid: $v.akipField.fieldEnum.$invalid }"
+                  v-model="$v.akipField.fieldEnum.$model"
                 />
               </div>
             </div>
           </div>
-          <div class="col" v-if="fieldTypeTemp == 'byte[]'">
+          <div class="col" v-if="akipField.fieldType == 'byte[]'">
             <div class="form-group input-group-sm">
               <label
                 class="form-control-label"
@@ -102,7 +102,7 @@
               >
               <select
                 id="akipField-fieldTypeBlobContent"
-                :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
+                :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                 class="form-control"
                 :class="{ invalid: $v.akipField.fieldTypeBlobContent.$invalid }"
                 v-model="$v.akipField.fieldTypeBlobContent.$model"
@@ -114,7 +114,7 @@
             </div>
           </div>
         </div>
-        <div class="row" v-if="fieldTypeTemp == 'enum'">
+        <div class="row" v-if="akipField.fieldType == 'enum'">
           <div class="col">
             <div class="form-group input-group-sm">
               <label class="form-control-label" v-text="$t('akipGenerationWebApp.akipField.values')" for="akipField-fieldValues"
@@ -123,7 +123,7 @@
               <textarea
                 type="text"
                 class="form-control"
-                :readonly="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
+                :readonly="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                 name="akipFieldValues"
                 id="akipField-fieldValues"
                 data-cy="akipFieldValues"
@@ -198,7 +198,7 @@
                 <div class="form-group">
                   <div class="custom-control custom-switch">
                     <input
-                      :disabled="readOnly"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                       type="checkbox"
                       @click="changeValueInFieldValidateRules('min')"
                       class="custom-control-input"
@@ -236,7 +236,7 @@
                     </div>
                     <input
                       id="akipField-fieldValidateRulesMin"
-                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                       :placeholder="0"
                       type="number"
                       class="form-control"
@@ -251,7 +251,7 @@
                 <div class="form-group">
                   <div class="custom-control custom-switch">
                     <input
-                      :disabled="readOnly"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                       type="checkbox"
                       @click="changeValueInFieldValidateRules('max')"
                       class="custom-control-input"
@@ -288,7 +288,7 @@
                     </div>
                     <input
                       id="akipField-fieldValidateRulesMax"
-                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                       :placeholder="100"
                       type="number"
                       class="form-control"
@@ -307,7 +307,7 @@
                 <div class="form-group">
                   <div class="custom-control custom-switch">
                     <input
-                      :disabled="readOnly"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                       type="checkbox"
                       @click="changeValueInFieldValidateRules('minlength')"
                       class="custom-control-input"
@@ -340,7 +340,7 @@
                     </div>
                     <input
                       id="akipField-fieldValidateRulesMinLength"
-                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                       :placeholder="0"
                       type="number"
                       class="form-control"
@@ -355,7 +355,7 @@
                 <div class="form-group">
                   <div class="custom-control custom-switch">
                     <input
-                      :disabled="readOnly"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                       type="checkbox"
                       @click="changeValueInFieldValidateRules('maxlength')"
                       class="custom-control-input"
@@ -389,7 +389,7 @@
 
                     <input
                       id="akipField-fieldValidateRulesMaxLength"
-                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                       :placeholder="20"
                       type="number"
                       class="form-control"
@@ -408,7 +408,7 @@
                 <div class="form-group">
                   <div class="custom-control custom-switch">
                     <input
-                      :disabled="readOnly"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                       type="checkbox"
                       @click="changeValueInFieldValidateRules('pattern')"
                       class="custom-control-input"
@@ -442,7 +442,7 @@
 
                     <input
                       id="akipField-fieldValidateRulesPattern"
-                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING'"
+                      :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                       :placeholder="'^[a-zA-Z0-9]*$'"
                       type="text"
                       class="form-control"

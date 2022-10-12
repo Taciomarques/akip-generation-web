@@ -35,6 +35,9 @@ export default class ShowAkipRelationshipComponent extends mixins(JhiDataUtils) 
   @Prop({ default: false })
   readOnly: boolean;
 
+  @Prop({ default: false })
+  akipEntityReadOnly: boolean;
+
   @Prop()
   otherAkipEntitiesProp: Array<AkipEntity>;
 
@@ -94,6 +97,9 @@ export default class ShowAkipRelationshipComponent extends mixins(JhiDataUtils) 
   public updateAkipRelationship() {
     if (this.akipRelationshipProp) {
       this.akipRelationship = this.akipRelationshipProp;
+      if (this.typeEntity == 'PROCESS_BINDING') {
+        this.resetValuesInRelationshipValidateRules();
+      }
     }
   }
 
@@ -130,5 +136,9 @@ export default class ShowAkipRelationshipComponent extends mixins(JhiDataUtils) 
       this.akipRelationship.relationshipValidateRules = [];
     }
     this.akipRelationship.relationshipValidateRules.push(value);
+  }
+
+  public resetValuesInRelationshipValidateRules() {
+    this.akipRelationship.relationshipValidateRules = [];
   }
 }

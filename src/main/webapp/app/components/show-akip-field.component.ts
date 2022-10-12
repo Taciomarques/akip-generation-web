@@ -20,9 +20,14 @@ const validations: any = {
         return (this.typeEntity && this.typeEntity == 'USER_TASK') || (this.typeEntity && this.typeEntity == 'START_FORM');
       }),
     },
+    fieldEnum: {
+      required: requiredIf(function () {
+        return this.akipField.fieldType == 'enum';
+      }),
+    },
     fieldValues: {
       required: requiredIf(function () {
-        return this.fieldTypeTemp == 'enum';
+        return this.akipField.fieldType == 'enum';
       }),
     },
     fieldTypeBlobContent: {
@@ -88,9 +93,6 @@ const validations: any = {
     },
     fieldValidateRules: {},
   },
-  fieldTypeTemp: {
-    required,
-  },
 };
 
 @Component({
@@ -116,8 +118,6 @@ export default class ShowAkipFieldComponent extends mixins(JhiDataUtils) {
   removeFunction;
 
   private akipField: AkipField = new AkipField();
-
-  private fieldTypeTemp: string = null;
 
   private backupFieldValidade: any = {};
 
@@ -149,29 +149,15 @@ export default class ShowAkipFieldComponent extends mixins(JhiDataUtils) {
     }
   }
 
-  @Watch('akipField.fieldType')
-  onFieldTypeValueChange() {
-    if (this.akipField.fieldType) {
-      this.akipField.fieldType = this.akipField.fieldType.trim();
-    }
-  }
-
-  @Watch('fieldTypeTemp')
-  onFieldTypeTemValueChange() {
-    if (this.fieldTypeTemp == 'enum') {
-      this.akipField.fieldType = '';
-      return;
-    }
-    if (this.akipField.fieldValues) {
-      this.akipField.fieldValues = null;
-    }
-    if (this.akipField.fieldTypeBlobContent) {
-      this.akipField.fieldTypeBlobContent = null;
-    }
-    if (this.fieldTypeTemp) {
-      this.akipField.fieldType = this.fieldTypeTemp;
-    }
-  }
+  // @Watch('akipField.fieldType')
+  // onFieldTypeTemValueChange() {
+  //   if (this.akipField.fieldType == 'enum') {
+  //     this.akipField.fieldType = '';
+  //     return;
+  //   }
+  //   this.akipField.fieldValues = null;
+  //   this.akipField.fieldTypeBlobContent = null;
+  // }
 
   mounted() {
     this.updateAkipField();
@@ -180,7 +166,7 @@ export default class ShowAkipFieldComponent extends mixins(JhiDataUtils) {
   public updateAkipField() {
     if (this.akipFieldProp) {
       this.akipField = this.akipFieldProp;
-      this.fieldTypeTemp = this.akipField.fieldType;
+      // this.fieldTypeTemp = this.akipField.fieldType;
     }
   }
 

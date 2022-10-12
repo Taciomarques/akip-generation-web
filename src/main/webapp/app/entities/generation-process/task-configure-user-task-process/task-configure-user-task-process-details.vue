@@ -8,10 +8,30 @@
         <akip-show-task-instance class="border-primary" :taskInstance="taskContext.taskInstance">
           <template v-slot:body>
             <hr />
+
+            <div class="card">
+              <div class="card-body">
+                <show-akip-fields-select
+                  :readOnly="true"
+                  :akipFields="akipEntityDomain.fields"
+                  @akip-fields-selecteds="taskContext.akipEntityUserTask.fields = $event"
+                ></show-akip-fields-select>
+
+                <show-akip-relationships-select
+                  :readOnly="true"
+                  class="mt-3"
+                  :akipRelationships="akipEntityDomain.relationships"
+                  @akip-relationships-selecteds="taskContext.akipEntityUserTask.relationships = $event"
+                ></show-akip-relationships-select>
+              </div>
+            </div>
+
             <show-akip-entity
+              class="mt-3"
               :akipEntityProp="taskContext.akipEntityUserTask"
               :readOnly="true"
               :typeEntity="'USER_TASK'"
+              :applicationId="taskContext.akipEntityUserTask.application.id"
             ></show-akip-entity>
           </template>
         </akip-show-task-instance>

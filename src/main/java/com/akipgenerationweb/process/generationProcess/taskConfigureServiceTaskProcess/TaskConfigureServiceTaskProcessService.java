@@ -70,12 +70,34 @@ public class TaskConfigureServiceTaskProcessService {
         TaskConfigureServiceTaskProcessContextDTO taskConfigureServiceTaskProcessContextDTO = new TaskConfigureServiceTaskProcessContextDTO();
         taskConfigureServiceTaskProcessContextDTO.setTaskInstance(taskInstanceDTO);
         taskConfigureServiceTaskProcessContextDTO.setGenerationProcess(generationProcess);
-        taskConfigureServiceTaskProcessContextDTO.setAkipEntityServiceTask(
-            createAkipEntityServiceTask(
-                generationProcess,
-                ((AkipEntityDTO) runtimeService.getVariable(taskInstanceDTO.getExecutionId(), SERVICE_TASK)).getName()
-            )
-        );
+
+        String[] taskInstanceName = taskInstanceDTO.getName().split("\\s+");
+        if (
+            generationProcess
+                .getAkipProcess()
+                .getEntities()
+                .stream()
+                .filter(akipEntityDTO -> akipEntityDTO.getName().contains(taskInstanceName[taskInstanceName.length - 1]))
+                .findAny()
+                .isPresent()
+        ) {
+            taskConfigureServiceTaskProcessContextDTO.setAkipEntityServiceTask(
+                generationProcess
+                    .getAkipProcess()
+                    .getEntities()
+                    .stream()
+                    .filter(akipEntityDTO -> akipEntityDTO.getName().contains(taskInstanceName[taskInstanceName.length - 1]))
+                    .findAny()
+                    .get()
+            );
+        } else {
+            taskConfigureServiceTaskProcessContextDTO.setAkipEntityServiceTask(
+                createAkipEntityServiceTask(
+                    generationProcess,
+                    ((AkipEntityDTO) runtimeService.getVariable(taskInstanceDTO.getExecutionId(), SERVICE_TASK)).getName()
+                )
+            );
+        }
 
         return taskConfigureServiceTaskProcessContextDTO;
     }

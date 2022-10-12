@@ -23,7 +23,7 @@
                 name="akipRelationship"
                 id="akipRelationship-relationshipName"
                 data-cy="akipRelationship"
-                :readonly="readOnly || typeEntity == 'START_FORM'"
+                :readonly="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                 :class="{ invalid: $v.akipRelationship.relationshipName.$invalid }"
                 v-model="$v.akipRelationship.relationshipName.$model"
               />
@@ -39,7 +39,7 @@
               >
               <select
                 id="akipRelationship-relationshipType"
-                :disabled="readOnly || typeEntity == 'START_FORM'"
+                :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                 class="form-control"
                 :class="{ invalid: $v.akipRelationship.relationshipType.$invalid }"
                 v-model="$v.akipRelationship.relationshipType.$model"
@@ -64,7 +64,7 @@
               >
               <select
                 id="akipRelationship-otherEntityName"
-                :disabled="readOnly || typeEntity == 'START_FORM'"
+                :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                 class="form-control"
                 :class="{ invalid: $v.akipRelationship.otherEntityName.$invalid }"
                 v-model="$v.akipRelationship.otherEntityName.$model"
@@ -83,7 +83,7 @@
               >
               <select
                 id="akipRelationship-otherEntityField"
-                :disabled="readOnly || typeEntity == 'START_FORM'"
+                :disabled="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                 class="form-control"
                 :class="{ invalid: $v.akipRelationship.otherEntityField.$invalid }"
                 v-model="$v.akipRelationship.otherEntityField.$model"
@@ -105,14 +105,14 @@
                 name="akipOtherEntityRelationshipName"
                 id="akipRelationship-otherEntityRelationshipName"
                 data-cy="akipRelationship"
-                :readonly="readOnly || typeEntity == 'START_FORM'"
+                :readonly="readOnly || typeEntity == 'START_FORM' || typeEntity == 'PROCESS_BINDING' || typeEntity == 'USER_TASK'"
                 :class="{ invalid: $v.akipRelationship.otherEntityRelationshipName.$invalid }"
                 v-model="$v.akipRelationship.otherEntityRelationshipName.$model"
               />
             </div>
           </div>
         </div>
-        <div class="card">
+        <div class="card" v-if="typeEntity != 'PROCESS_BINDING' && !akipEntityReadOnly">
           <div class="card-header">
             <b><span v-text="$t('akipGenerationWebApp.akipRelationship.validations')" /></b>
           </div>

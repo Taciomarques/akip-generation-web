@@ -2,6 +2,8 @@
   "akipGenerationWebApp": {
     "akipRelationship": {
       "relationship": "Relationship #",
+      "addRelationships": "Add Relationships",
+      "relationshipsDomain": "Relationships for Domain Entity",
       "addRelationship": "Add Relationship",
       "removeRelationship": "Remove Relationship",
       "relationshipName": "Name Relationship",

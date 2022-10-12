@@ -1,14 +1,14 @@
 package com.akipgenerationweb.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 
-public class AkipFieldDTO implements Serializable {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class MetadataAkipFieldDTO implements Serializable {
 
     private String fieldName;
 
     private String fieldType;
-
-    private String fieldEnum;
 
     private String fieldValues;
 
@@ -42,14 +42,6 @@ public class AkipFieldDTO implements Serializable {
 
     public void setFieldType(String fieldType) {
         this.fieldType = fieldType;
-    }
-
-    public String getFieldEnum() {
-        return fieldEnum;
-    }
-
-    public void setFieldEnum(String fieldEnum) {
-        this.fieldEnum = fieldEnum;
     }
 
     public String getFieldValues() {
@@ -122,25 +114,5 @@ public class AkipFieldDTO implements Serializable {
 
     public void setFieldTypeBlobContent(String fieldTypeBlobContent) {
         this.fieldTypeBlobContent = fieldTypeBlobContent;
-    }
-
-    @Override
-    public String toString() {
-        return (
-            "{" +
-            "fieldName='" +
-            getFieldName() +
-            "'" +
-            ", fieldType='" +
-            getFieldType() +
-            "'" +
-            ", fieldValues='" +
-            getFieldValues() +
-            "'" +
-            ", fieldReadOnly='" +
-            getFieldReadOnly() +
-            "'" +
-            "}"
-        );
     }
 }

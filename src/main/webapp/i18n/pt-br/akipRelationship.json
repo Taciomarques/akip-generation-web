@@ -3,6 +3,8 @@
     "akipRelationship": {
       "relationship": "Relacionamento #",
       "addRelationship": "Adicionar Relacionamento",
+      "addRelationships": "Adicionar Relacionamentos",
+      "relationshipsDomain": "Relacionamentos da Entidade de Domínio",
       "removeRelationship": "Remover Relacionamento",
       "relationshipName": "Nome Relacionamento",
       "relationshipType": "Tipo Relacionamento",

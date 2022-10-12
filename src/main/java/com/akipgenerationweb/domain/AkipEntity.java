@@ -55,6 +55,9 @@ public class AkipEntity implements Serializable {
     @Column(name = "readonly")
     private boolean readOnly;
 
+    @Column(name = "generated")
+    private boolean generated;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -150,6 +153,14 @@ public class AkipEntity implements Serializable {
         this.readOnly = readOnly;
     }
 
+    public boolean isGenerated() {
+        return generated;
+    }
+
+    public void setGenerated(boolean generated) {
+        this.generated = generated;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -179,6 +190,7 @@ public class AkipEntity implements Serializable {
             ", relations='" + getRelationships() + "'" +
             ", type='" + getType() + "'" +
             ", readOnly='" + isReadOnly() + "'" +
+            ", generated='" + isGenerated() + "'" +
             "}";
     }
 }

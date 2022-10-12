@@ -29,6 +29,8 @@ public class AkipEntityDTO implements Serializable {
 
     private boolean readOnly;
 
+    private boolean generated;
+
     public Long getId() {
         return id;
     }
@@ -91,6 +93,14 @@ public class AkipEntityDTO implements Serializable {
 
     public void setReadOnly(boolean readOnly) {
         this.readOnly = readOnly;
+    }
+
+    public boolean isGenerated() {
+        return generated;
+    }
+
+    public void setGenerated(boolean generated) {
+        this.generated = generated;
     }
 
     @Override

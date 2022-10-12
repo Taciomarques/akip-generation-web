@@ -10,37 +10,41 @@
             <hr />
             <div class="card mb-3">
               <div class="card-body">
-                <div>
-                  <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskGenerateEntities.metadataDomain')"
+                <div v-if="taskContext.metadatasAkipEntitiesDomain && taskContext.metadatasAkipEntitiesDomain.length > 0">
+                  <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskGenerateEntities.metadatasDomain')"
                     >Metadata Domain Entity</label
                   >
-                  <div class="form-group input-group-sm d-flex mb-2" v-if="taskContext.metadataAkipEntityDomain">
-                    <input type="text" class="form-control" :value="taskContext.metadataAkipEntityDomain.name" disabled />
-                    <button
-                      type="button"
-                      v-on:click="
-                        openFile(
-                          taskContext.metadataAkipEntityDomain.specificationFileContentType,
-                          taskContext.metadataAkipEntityDomain.specificationFile
-                        )
-                      "
-                      class="btn btn-info btn-sm pull-right"
+                  <ul class="list-group">
+                    <li
+                      class="list-group-item justify-content-between align-items-center"
+                      v-for="metadataAkipEntityDomain in taskContext.metadatasAkipEntitiesDomain"
                     >
-                      <font-awesome-icon icon="folder-open"></font-awesome-icon>
-                    </button>
-                    <button
-                      class="btn btn-primary btn-sm pull-right"
-                      @click="
-                        downloadFile(
-                          taskContext.metadataAkipEntityDomain.specificationFileContentType,
-                          taskContext.metadataAkipEntityDomain.specificationFile,
-                          taskContext.metadataAkipEntityDomain.name
-                        )
-                      "
-                    >
-                      <font-awesome-icon icon="download"></font-awesome-icon>
-                    </button>
-                  </div>
+                      <div class="form-group input-group-sm d-flex mb-2" v-if="metadataAkipEntityDomain">
+                        <input type="text" class="form-control" :value="metadataAkipEntityDomain.name" disabled />
+                        <button
+                          type="button"
+                          v-on:click="
+                            openFile(metadataAkipEntityDomain.specificationFileContentType, metadataAkipEntityDomain.specificationFile)
+                          "
+                          class="btn btn-info btn-sm pull-right"
+                        >
+                          <font-awesome-icon icon="folder-open"></font-awesome-icon>
+                        </button>
+                        <button
+                          class="btn btn-primary btn-sm pull-right"
+                          @click="
+                            downloadFile(
+                              metadataAkipEntityDomain.specificationFileContentType,
+                              metadataAkipEntityDomain.specificationFile,
+                              metadataAkipEntityDomain.name
+                            )
+                          "
+                        >
+                          <font-awesome-icon icon="download"></font-awesome-icon>
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
                 <div class="row">
                   <div class="col">

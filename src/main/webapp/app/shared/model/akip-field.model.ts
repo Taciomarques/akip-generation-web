@@ -1,5 +1,6 @@
 export interface IAkipField {
   fieldName?: string | null;
+  fieldEnum?: string | null;
   fieldType?: string | null;
   fieldValues?: string | null;
   fieldReadOnly?: boolean | null;
@@ -15,6 +16,7 @@ export interface IAkipField {
 export class AkipField implements IAkipField {
   constructor(
     public fieldName?: string | null,
+    public fieldEnum?: string | null,
     public fieldType?: string | null,
     public fieldValues?: string | null,
     public fieldReadOnly?: boolean | null,

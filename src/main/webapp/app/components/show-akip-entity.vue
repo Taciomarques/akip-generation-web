@@ -113,6 +113,7 @@
                   :readOnly="readOnly"
                   :akipRelationshipProp="relationship"
                   :typeEntity="typeEntity"
+                  :akipEntityReadOnly="akipEntity.readOnly"
                   :otherAkipEntitiesProp="otherAkipEntities"
                   :removeFunction="removeRelationship"
                   @is-akip-relationship-invalid="updateRelationshipsInvalid(index, $event)"

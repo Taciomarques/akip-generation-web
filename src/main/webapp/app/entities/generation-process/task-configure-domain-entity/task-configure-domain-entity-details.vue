@@ -8,7 +8,12 @@
         <akip-show-task-instance class="border-primary" :taskInstance="taskContext.taskInstance">
           <template v-slot:body>
             <hr />
-            <show-akip-entity :akipEntityProp="taskContext.akipEntityDomain" :readOnly="true" :typeEntity="'DOMAIN'"></show-akip-entity>
+            <show-akip-entity
+              :akipEntityProp="akipEntityDomain"
+              :readOnly="true"
+              :typeEntity="'DOMAIN'"
+              :applicationId="akipEntityDomain.application.id"
+            ></show-akip-entity>
           </template>
         </akip-show-task-instance>
         <br />
