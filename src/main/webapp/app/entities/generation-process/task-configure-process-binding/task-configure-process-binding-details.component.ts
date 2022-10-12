@@ -29,11 +29,11 @@ export default class TaskConfigureProcessBindingDetailsComponent extends mixins(
     this.$router.go(-1);
   }
 
-  get getDomainEntityInAkipProcess() {
+  get akipEntityDomain() {
     return this.taskContext.generationProcess.akipProcess.entities.find(entity => entity.type == 'DOMAIN');
   }
 
-  get getProcessBindingInAkipProcess() {
+  get akipEntityProcessBinding() {
     return this.taskContext.generationProcess.akipProcess.entities.find(entity => entity.type == 'PROCESS_BINDING');
   }
 }

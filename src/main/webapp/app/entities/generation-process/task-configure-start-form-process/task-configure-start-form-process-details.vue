@@ -31,7 +31,7 @@
               :akipEntityProp="akipEntityStartForm"
               :readOnly="true"
               :typeEntity="'START_FORM'"
-              :applicationId="akipEntityStartForm.application.id"
+              :applicationId="akipEntityStartForm && akipEntityStartForm.application.id"
             ></show-akip-entity>
           </template>
         </akip-show-task-instance>

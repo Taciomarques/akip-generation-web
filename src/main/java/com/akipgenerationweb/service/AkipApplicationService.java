@@ -2,6 +2,7 @@ package com.akipgenerationweb.service;
 
 import com.akipgenerationweb.domain.AkipApplication;
 import com.akipgenerationweb.repository.AkipApplicationRepository;
+import com.akipgenerationweb.security.SecurityUtils;
 import com.akipgenerationweb.service.dto.AkipApplicationDTO;
 import com.akipgenerationweb.service.mapper.AkipApplicationMapper;
 import java.util.LinkedList;
@@ -26,9 +27,16 @@ public class AkipApplicationService {
 
     private final AkipApplicationMapper akipApplicationMapper;
 
-    public AkipApplicationService(AkipApplicationRepository akipApplicationRepository, AkipApplicationMapper akipApplicationMapper) {
+    private final UserService userService;
+
+    public AkipApplicationService(
+        AkipApplicationRepository akipApplicationRepository,
+        AkipApplicationMapper akipApplicationMapper,
+        UserService userService
+    ) {
         this.akipApplicationRepository = akipApplicationRepository;
         this.akipApplicationMapper = akipApplicationMapper;
+        this.userService = userService;
     }
 
     /**
@@ -40,6 +48,7 @@ public class AkipApplicationService {
     public AkipApplicationDTO save(AkipApplicationDTO akipApplicationDTO) {
         log.debug("Request to save AkipApplication : {}", akipApplicationDTO);
         AkipApplication akipApplication = akipApplicationMapper.toEntity(akipApplicationDTO);
+        akipApplication.setOwner(userService.getUserWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin().get()).get());
         akipApplication = akipApplicationRepository.save(akipApplication);
         return akipApplicationMapper.toDto(akipApplication);
     }
@@ -76,6 +85,13 @@ public class AkipApplicationService {
         return akipApplicationRepository
             .findAll()
             .stream()
+            .filter(
+                akipApplication ->
+                    akipApplication
+                        .getOwner()
+                        .getId()
+                        .equals(userService.getUserWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin().get()).get().getId())
+            )
             .map(akipApplicationMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }

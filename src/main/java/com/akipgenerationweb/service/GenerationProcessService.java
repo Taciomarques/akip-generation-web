@@ -4,6 +4,7 @@ import com.akipgenerationweb.domain.GenerationProcess;
 import com.akipgenerationweb.domain.enumeration.StatusProcess;
 import com.akipgenerationweb.repository.AkipProcessRepository;
 import com.akipgenerationweb.repository.GenerationProcessRepository;
+import com.akipgenerationweb.security.SecurityUtils;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
 import com.akipgenerationweb.service.mapper.GenerationProcessMapper;
 import java.util.LinkedList;
@@ -37,20 +38,25 @@ public class GenerationProcessService {
     private final GenerationProcessRepository generationProcessRepository;
 
     private final GenerationProcessMapper generationProcessMapper;
+
     private final RuntimeService runtimeService;
+
+    private final UserService userService;
 
     public GenerationProcessService(
         ProcessInstanceService processInstanceService,
         AkipProcessRepository akipProcessRepository,
         GenerationProcessRepository generationProcessRepository,
         GenerationProcessMapper generationProcessMapper,
-        RuntimeService runtimeService
+        RuntimeService runtimeService,
+        UserService userService
     ) {
         this.processInstanceService = processInstanceService;
         this.akipProcessRepository = akipProcessRepository;
         this.generationProcessRepository = generationProcessRepository;
         this.generationProcessMapper = generationProcessMapper;
         this.runtimeService = runtimeService;
+        this.userService = userService;
     }
 
     /**
@@ -101,6 +107,15 @@ public class GenerationProcessService {
         return generationProcessRepository
             .findAll()
             .stream()
+            .filter(
+                generationProcess ->
+                    generationProcess
+                        .getAkipProcess()
+                        .getApplication()
+                        .getOwner()
+                        .getId()
+                        .equals(userService.getUserWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin().get()).get().getId())
+            )
             .map(generationProcessMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }

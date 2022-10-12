@@ -2,6 +2,7 @@ package com.akipgenerationweb.service;
 
 import com.akipgenerationweb.domain.AkipProcess;
 import com.akipgenerationweb.repository.AkipProcessRepository;
+import com.akipgenerationweb.security.SecurityUtils;
 import com.akipgenerationweb.service.dto.AkipProcessDTO;
 import com.akipgenerationweb.service.mapper.AkipProcessMapper;
 import java.util.LinkedList;
@@ -26,9 +27,12 @@ public class AkipProcessService {
 
     private final AkipProcessMapper akipProcessMapper;
 
-    public AkipProcessService(AkipProcessRepository akipProcessRepository, AkipProcessMapper akipProcessMapper) {
+    private final UserService userService;
+
+    public AkipProcessService(AkipProcessRepository akipProcessRepository, AkipProcessMapper akipProcessMapper, UserService userService) {
         this.akipProcessRepository = akipProcessRepository;
         this.akipProcessMapper = akipProcessMapper;
+        this.userService = userService;
     }
 
     /**
@@ -73,7 +77,19 @@ public class AkipProcessService {
     @Transactional(readOnly = true)
     public List<AkipProcessDTO> findAll() {
         log.debug("Request to get all AkipProcess");
-        return akipProcessRepository.findAll().stream().map(akipProcessMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return akipProcessRepository
+            .findAll()
+            .stream()
+            .filter(
+                akipProcess ->
+                    akipProcess
+                        .getApplication()
+                        .getOwner()
+                        .getId()
+                        .equals(userService.getUserWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin().get()).get().getId())
+            )
+            .map(akipProcessMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**

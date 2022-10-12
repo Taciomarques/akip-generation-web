@@ -4,7 +4,7 @@
       <jhi-navbar></jhi-navbar>
     </div>
     <div>
-      <sidebar-menu :menu="calculateMenuItems" @toggle-collapse="onToggleCollapse" :collapsed="collapsed" width="300px"> </sidebar-menu>
+      <sidebar-menu :menu="calculateMenuItems" @toggle-collapse="onToggleCollapse" :collapsed="collapsed" width="300px"></sidebar-menu>
     </div>
     <div id="content" :class="[{ collapsed: collapsed }, { onmobile: isOnMobile }]">
       <div class="container-fluid">

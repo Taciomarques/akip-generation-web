@@ -25,6 +25,7 @@
       "type": "Tipo",
       "processes": "Processos",
       "application": "Aplicação",
+      "generated": "Gerado",
       "requiredField": "Obrigatório um campo."
     }
   }

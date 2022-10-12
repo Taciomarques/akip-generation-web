@@ -3,6 +3,7 @@ package com.akipgenerationweb.service;
 import com.akipgenerationweb.domain.AkipEntity;
 import com.akipgenerationweb.domain.enumeration.TypeEntity;
 import com.akipgenerationweb.repository.AkipEntityRepository;
+import com.akipgenerationweb.security.SecurityUtils;
 import com.akipgenerationweb.service.dto.AkipEntityDTO;
 import com.akipgenerationweb.service.mapper.AkipEntityMapper;
 import java.util.LinkedList;
@@ -27,9 +28,12 @@ public class AkipEntityService {
 
     private final AkipEntityMapper akipEntityMapper;
 
-    public AkipEntityService(AkipEntityRepository akipEntityRepository, AkipEntityMapper akipEntityMapper) {
+    private final UserService userService;
+
+    public AkipEntityService(AkipEntityRepository akipEntityRepository, AkipEntityMapper akipEntityMapper, UserService userService) {
         this.akipEntityRepository = akipEntityRepository;
         this.akipEntityMapper = akipEntityMapper;
+        this.userService = userService;
     }
 
     /**
@@ -74,7 +78,19 @@ public class AkipEntityService {
     @Transactional(readOnly = true)
     public List<AkipEntityDTO> findAll() {
         log.debug("Request to get all AkipEntities");
-        return akipEntityRepository.findAll().stream().map(akipEntityMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return akipEntityRepository
+            .findAll()
+            .stream()
+            .filter(
+                akipEntity ->
+                    akipEntity
+                        .getApplication()
+                        .getOwner()
+                        .getId()
+                        .equals(userService.getUserWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin().get()).get().getId())
+            )
+            .map(akipEntityMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -88,6 +104,14 @@ public class AkipEntityService {
         return akipEntityRepository
             .findAkipEntitiesByApplication_IdAndType(applicationId, typeEntity)
             .stream()
+            .filter(
+                akipEntity ->
+                    akipEntity
+                        .getApplication()
+                        .getOwner()
+                        .getId()
+                        .equals(userService.getUserWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin().get()).get().getId())
+            )
             .map(akipEntityMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }

@@ -13,14 +13,4 @@ export default class ShowAkipFieldsSelectComponent extends Vue {
   mounted() {
     this.akipFields = JSON.parse(JSON.stringify(this.akipFields));
   }
-
-  public selectAllAkipFields() {
-    this.akipFields.forEach(akipField => {
-      this.$set(akipField, 'selected', akipField['selected'] == undefined ? true : !akipField['selected']);
-    });
-  }
-
-  get selectedAllAkipFields() {
-    return this.akipFields.every(akipField => akipField['selected']);
-  }
 }

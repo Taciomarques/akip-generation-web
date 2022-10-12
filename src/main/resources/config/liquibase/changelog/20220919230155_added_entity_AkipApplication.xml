@@ -26,9 +26,20 @@
             <column name="properties" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="owner_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
 
+    <changeSet id="20220919230155-2" author="taciomarques">
+
+        <addForeignKeyConstraint baseColumnNames="owner_id"
+                                 baseTableName="akip_application"
+                                 constraintName="fk_akip_application_jhi_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+    </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 </databaseChangeLog>

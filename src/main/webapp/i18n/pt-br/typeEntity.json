@@ -4,7 +4,7 @@
       "null": "",
       "DOMAIN": "Domínio",
       "PROCESS_BINDING": "Entidade de Vinculação do Processo",
-      "START_FORM": "Formulário de Start",
+      "START_FORM": "Formulário de Início do Processo",
       "USER_TASK": "Tarefa Humana",
       "SERVICE_TASK": "Tarefa de Serviço"
     }

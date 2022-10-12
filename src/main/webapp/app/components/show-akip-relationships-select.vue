@@ -10,17 +10,7 @@
             <table class="table table-striped table-sm">
               <thead>
                 <tr>
-                  <th>
-                    <div class="form-group form-check pb-2">
-                      <input
-                        :disabled="readOnly"
-                        type="checkbox"
-                        class="form-check-input"
-                        v-on:click="selectAllAkipRelationships()"
-                        v-model="selectedAllAkipRelationships"
-                      />
-                    </div>
-                  </th>
+                  <th></th>
                   <th v-text="$t('akipGenerationWebApp.akipRelationship.relationshipName')"></th>
                   <th v-text="$t('akipGenerationWebApp.akipRelationship.relationshipType')"></th>
                 </tr>
@@ -28,9 +18,7 @@
               <tbody>
                 <tr v-for="(akipRelationship, index) in akipRelationships" :key="index">
                   <td>
-                    <div class="form-group form-check">
-                      <input :disabled="readOnly" type="checkbox" class="form-check-input" v-model="akipRelationship.selected" />
-                    </div>
+                    <b-form-checkbox :disabled="readOnly" v-model="akipRelationship.selected" />
                   </td>
                   <td>
                     <span v-text="akipRelationship.relationshipName"></span>

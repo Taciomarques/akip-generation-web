@@ -20,6 +20,8 @@ public class AkipApplicationDTO implements Serializable {
 
     private String properties;
 
+    private UserDTO owner;
+
     public Long getId() {
         return id;
     }
@@ -58,6 +60,14 @@ public class AkipApplicationDTO implements Serializable {
 
     public void setProperties(String properties) {
         this.properties = properties;
+    }
+
+    public UserDTO getOwner() {
+        return owner;
+    }
+
+    public void setOwner(UserDTO owner) {
+        this.owner = owner;
     }
 
     @Override

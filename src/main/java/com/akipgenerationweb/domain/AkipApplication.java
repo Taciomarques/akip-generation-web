@@ -46,8 +46,9 @@ public class AkipApplication implements Serializable {
     @JsonIgnoreProperties(value = { "entities", "application" }, allowSetters = true)
     private Set<AkipProcess> processes = new HashSet<>();
 
-    //    @ManyToOne
-    //    private User owner;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -175,6 +176,14 @@ public class AkipApplication implements Serializable {
             processes.forEach(i -> i.setApplication(this));
         }
         this.processes = processes;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

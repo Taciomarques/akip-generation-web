@@ -7,7 +7,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link AkipApplication} and its DTO {@link AkipApplicationDTO}.
  */
-@Mapper(componentModel = "spring", uses = { AkipEntityMapper.class })
+@Mapper(componentModel = "spring", uses = { AkipEntityMapper.class, UserMapper.class })
 public interface AkipApplicationMapper extends EntityMapper<AkipApplicationDTO, AkipApplication> {
     @Named("id")
     @BeanMapping(ignoreByDefault = true)

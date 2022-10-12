@@ -25,6 +25,7 @@
       "type": "Type",
       "processes": "Processes",
       "application": "Application",
+      "generated": "Generated",
       "requiredField": "Required Field."
     }
   }

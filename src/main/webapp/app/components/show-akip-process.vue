@@ -114,7 +114,7 @@
                         <span class="text-gray-700"
                           ><i
                             ><small
-                              ><b>{{ $t('label.created') + ': ' }}</b
+                              ><font-awesome-icon icon="clock"></font-awesome-icon>&nbsp;<b>{{ $t('label.created') + ': ' }}</b
                               >{{ new Date(attachment.createDateTime) }}</small
                             ></i
                           ></span

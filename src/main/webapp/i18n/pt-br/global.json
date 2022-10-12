@@ -142,7 +142,9 @@
     }
   },
   "label": {
-    "created": "Criado"
+    "created": "Criado",
+    "yes": "Sim",
+    "no": "Não"
   },
   "footer": "Este é o rodapé da página"
 }

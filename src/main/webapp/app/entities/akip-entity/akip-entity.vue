@@ -9,17 +9,17 @@
               <font-awesome-icon icon="sync" :spin="isFetching"></font-awesome-icon>
               <span v-text="$t('akipGenerationWebApp.akipEntity.home.refreshListLabel')">Refresh List</span>
             </button>
-            <router-link :to="{ name: 'AkipEntityCreate' }" custom v-slot="{ navigate }">
-              <button
-                @click="navigate"
-                id="jh-create-akipEntity"
-                data-cy="entityCreateButton"
-                class="btn btn-primary jh-create-akipEntity create-akipEntity"
-              >
-                <font-awesome-icon icon="plus"></font-awesome-icon>
-                <span v-text="$t('akipGenerationWebApp.akipEntity.home.createLabel')"> Create a new Entidade </span>
-              </button>
-            </router-link>
+            <!--            <router-link :to="{ name: 'AkipEntityCreate' }" custom v-slot="{ navigate }">-->
+            <!--              <button-->
+            <!--                @click="navigate"-->
+            <!--                id="jh-create-akipEntity"-->
+            <!--                data-cy="entityCreateButton"-->
+            <!--                class="btn btn-primary jh-create-akipEntity create-akipEntity"-->
+            <!--              >-->
+            <!--                <font-awesome-icon icon="plus"></font-awesome-icon>-->
+            <!--                <span v-text="$t('akipGenerationWebApp.akipEntity.home.createLabel')"> Create a new Entidade </span>-->
+            <!--              </button>-->
+            <!--            </router-link>-->
           </div>
         </h2>
       </div>
@@ -35,6 +35,7 @@
                   <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
                   <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.name')">Name</span></th>
                   <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.type')">Type</span></th>
+                  <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.generated')">Generated</span></th>
                   <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.processes')">Processes</span></th>
                   <th scope="row"><span v-text="$t('akipGenerationWebApp.akipEntity.application')">Application</span></th>
                   <th scope="row"></th>
@@ -50,6 +51,13 @@
                   <td>{{ akipEntity.name }}</td>
                   <td>
                     <show-akip-entity-type :value="akipEntity.type"></show-akip-entity-type>
+                  </td>
+                  <td>
+                    <div v-if="akipEntity.generated">
+                      <font-awesome-icon icon="check-circle"></font-awesome-icon>
+                      <span v-text="$t('label.yes')"></span>
+                    </div>
+                    <span v-else v-text="$t('label.no')"></span>
                   </td>
                   <td>
                     <div v-for="process in akipEntity.processes">
@@ -73,7 +81,12 @@
                           <span class="d-none d-md-inline" v-text="$t('entity.action.view')">View</span>
                         </button>
                       </router-link>
-                      <router-link :to="{ name: 'AkipEntityEdit', params: { akipEntityId: akipEntity.id } }" custom v-slot="{ navigate }">
+                      <router-link
+                        v-if="!akipEntity.generated"
+                        :to="{ name: 'AkipEntityEdit', params: { akipEntityId: akipEntity.id } }"
+                        custom
+                        v-slot="{ navigate }"
+                      >
                         <button @click="navigate" class="btn btn-primary btn-sm edit" data-cy="entityEditButton">
                           <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
                           <span class="d-none d-md-inline" v-text="$t('entity.action.edit')">Edit</span>

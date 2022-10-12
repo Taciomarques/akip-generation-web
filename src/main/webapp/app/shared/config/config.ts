@@ -190,7 +190,8 @@ export function initFortAwesome(vue) {
     faClone,
     faFolderOpen,
     faUpload,
-    faDownload
+    faDownload,
+    faClock
   );
 }
 

@@ -97,12 +97,12 @@ export default [
     component: AkipEntity,
     meta: { authorities: [Authority.USER] },
   },
-  {
-    path: '/akip-entity/new',
-    name: 'AkipEntityCreate',
-    component: AkipEntityUpdate,
-    meta: { authorities: [Authority.USER] },
-  },
+  // {
+  //   path: '/akip-entity/new',
+  //   name: 'AkipEntityCreate',
+  //   component: AkipEntityUpdate,
+  //   meta: { authorities: [Authority.USER] },
+  // },
   {
     path: '/akip-entity/:akipEntityId/edit',
     name: 'AkipEntityEdit',

@@ -12,7 +12,7 @@
               :akipEntityProp="akipEntityDomain"
               :readOnly="true"
               :typeEntity="'DOMAIN'"
-              :applicationId="akipEntityDomain.application.id"
+              :applicationId="akipEntityDomain && akipEntityDomain.application.id"
             ></show-akip-entity>
           </template>
         </akip-show-task-instance>
