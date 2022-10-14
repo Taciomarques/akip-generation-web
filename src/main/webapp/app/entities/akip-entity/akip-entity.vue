@@ -54,10 +54,13 @@
                   </td>
                   <td>
                     <div v-if="akipEntity.generated">
-                      <font-awesome-icon icon="check-circle"></font-awesome-icon>
+                      <font-awesome-icon icon="check-circle" style="color: #009045"></font-awesome-icon>
                       <span v-text="$t('label.yes')"></span>
                     </div>
-                    <span v-else v-text="$t('label.no')"></span>
+                    <div v-else>
+                      <font-awesome-icon icon="times" style="color: brown"></font-awesome-icon>
+                      <span v-text="$t('label.no')"></span>
+                    </div>
                   </td>
                   <td>
                     <div v-for="process in akipEntity.processes">
@@ -82,7 +85,7 @@
                         </button>
                       </router-link>
                       <router-link
-                        v-if="!akipEntity.generated"
+                        v-if="!akipEntity.generated && akipEntity.type != 'SERVICE_TASK'"
                         :to="{ name: 'AkipEntityEdit', params: { akipEntityId: akipEntity.id } }"
                         custom
                         v-slot="{ navigate }"

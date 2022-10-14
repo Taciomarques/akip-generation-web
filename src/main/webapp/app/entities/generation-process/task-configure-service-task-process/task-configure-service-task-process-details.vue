@@ -8,11 +8,10 @@
         <akip-show-task-instance class="border-primary" :taskInstance="taskContext.taskInstance">
           <template v-slot:body>
             <hr />
-            <show-akip-entity
-              :akipEntityProp="taskContext.akipEntityServiceTask"
-              :readOnly="true"
-              :typeEntity="'SERVICE_TASK'"
-            ></show-akip-entity>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ taskContext.akipEntityServiceTask.name }}
+              <show-akip-entity-type :value="taskContext.akipEntityServiceTask.type"></show-akip-entity-type>
+            </li>
           </template>
         </akip-show-task-instance>
         <br />

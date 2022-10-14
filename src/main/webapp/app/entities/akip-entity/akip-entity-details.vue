@@ -8,7 +8,14 @@
           </h2>
         </div>
         <div class="card-body">
+          <div v-if="akipEntity.type == 'SERVICE_TASK'">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ akipEntity.name }}
+              <show-akip-entity-type :value="akipEntity.type"></show-akip-entity-type>
+            </li>
+          </div>
           <show-akip-entity
+            v-else
             :akipEntityProp="akipEntity"
             :readOnly="true"
             :typeEntity="akipEntity.type"
@@ -21,7 +28,7 @@
               <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span v-text="$t('entity.action.back')"> Back</span>
             </button>
             <router-link
-              v-if="akipEntity.id"
+              v-if="akipEntity.id && !akipEntity.generated && akipEntity.type != 'SERVICE_TASK'"
               :to="{ name: 'AkipEntityEdit', params: { akipEntityId: akipEntity.id } }"
               custom
               v-slot="{ navigate }"

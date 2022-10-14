@@ -1,6 +1,7 @@
 {
   "global": {
     "title": "Akip Generation Web",
+    "welcome": "Welcome {{param}}!",
     "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
     "menu": {
       "home": "Home",
@@ -12,10 +13,10 @@
         "processInstance": "Process Instances",
         "taskInstance": "All Tasks",
         "myCandidateTasks": "My Tasks",
-        "application": "Application",
-        "process": "Process",
-        "entity": "Entity",
-        "generationProcess": "Generation Process",
+        "application": "Applications",
+        "process": "Processes",
+        "entity": "Entities",
+        "generationProcess": "Generation Processes",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

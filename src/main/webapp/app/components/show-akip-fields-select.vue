@@ -42,7 +42,7 @@
             )
           "
           :disabled="akipFields.filter(akipField => akipField.selected).length == 0 || readOnly"
-          class="btn btn-success float-right mb-3"
+          class="btn btn-success btn-sm float-right mb-3"
           data-cy="addFields"
         >
           <font-awesome-icon icon="plus"></font-awesome-icon>&nbsp;<span v-text="$t('akipGenerationWebApp.akipField.addFields')" />

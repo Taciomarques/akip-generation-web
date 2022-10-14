@@ -39,7 +39,7 @@
             $emit('akip-relationships-selecteds', JSON.parse(JSON.stringify(akipRelationships.filter(akipField => akipField.selected))))
           "
           :disabled="akipRelationships.filter(akipField => akipField.selected).length == 0 || readOnly"
-          class="btn btn-success float-right mb-3"
+          class="btn btn-success btn-sm float-right mb-3"
           data-cy="addRelationships"
         >
           <font-awesome-icon icon="plus"></font-awesome-icon>&nbsp;<span

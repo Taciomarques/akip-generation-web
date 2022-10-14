@@ -11,6 +11,7 @@ $blue: #4285f4 !default;
 $primary: #009045 !default;
 $warning: #ff7f08 !default;
 $secondary: rgba(203, 203, 203, 0.65) !default;
+$dark: gray;
 
 $primary-color: $primary;
 $base-bg: #ffffff;
@@ -28,11 +29,13 @@ nav li.router-link-active .navbar-dropdown-menu {
   color: $primary;
 }
 
-//Project Specific Styles
-//.alert-warning {
-//  //background-color: $warning;
-//  color: #ffffff;
-//}
+.bg-new {
+  background-color: $primary !important;
+}
+
+.bg-assigned {
+  background-color: $info !important;
+}
 
 .table-data {
   font-size: 80%;
@@ -110,48 +113,8 @@ nav li.router-link-active .navbar-dropdown-menu {
   color: #373a3c;
 }
 
-//.v-sidebar-menu.vsm_expanded {
-//  color: $primary;
-//
-//}
-//.v-sidebar-menu.vsm_collapsed {
-//  color: #ffffff;
-//}
-//.v-sidebar-menu.vsm_rtl {
-//  color: #ffffff;
-//
-//}
-//.v-sidebar-menu .vsm--item {
-//  color: #ffffff;
-//
-//}
-//.v-sidebar-menu .vsm--link {
-//  color: #ffffff;
-//
-//}
-//.v-sidebar-menu .vsm--link_active {
-//  color: #ffffff;
-//
-//}
-//.v-sidebar-menu .vsm--link_open {
-//  color: #ffffff;
-//
-//}
-//.v-sidebar-menu .vsm--link_mobile {
-//  color: #ffffff;
-//
-//}
-//.v-sidebar-menu .vsm--link_level-[n] {
-//  color: #ffffff;
-//
-//}
-//.v-sidebar-menu .vsm--link_disabled {
-//  color: #ffffff;
-//
-//}
-//
-.v-sidebar-menu .vsm--icon {
-  color: $primary;
+.v-sidebar-menu .vsm--link_active {
+  color: #ffffff;
 }
 
 .v-sidebar-menu .vsm--arrow {
@@ -160,22 +123,30 @@ nav li.router-link-active .navbar-dropdown-menu {
 .v-sidebar-menu .vsm--arrow_open {
   color: #ffffff;
 }
-//.v-sidebar-menu .vsm--badge {
-//
-//}
-//.v-sidebar-menu .vsm--badge_default {
-//
-//}
-//.v-sidebar-menu .vsm--header {
-//
-//}
-//.v-sidebar-menu .vsm--dropdown {
-//
-//}
-//.v-sidebar-menu .vsm--mobile-bg {
-//
-//}
+
 .v-sidebar-menu .vsm--toggle-btn {
   color: $primary;
 }
+
+.vsm--list {
+  border-radius: 0 0 5px 0;
+}
+
+.v-sidebar-menu .vsm--mobile-bg {
+  border-radius: 5px;
+}
+
+.vsm--item_open .vsm--link_level-1 .vsm--title {
+  color: white;
+}
+
+.vsm--mobile-item .vsm--item .vsm--link_mobile-item .vsm--title {
+  color: white;
+}
+
+.vsm--item .vsm--icon {
+  color: $primary !important;
+  background-color: white !important;
+}
+
 /* jhipster-needle-scss-add-vendor JHipster will add new css style */

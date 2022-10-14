@@ -6,8 +6,8 @@
       "WAITING_CONFIGURE_PROCESS_BINDING": "Aguardando Configuração da Entidade de Processo",
       "WAITING_PROVIDE_PROCESS_BPMN": "Aguardando Upload do BPMN",
       "WAITING_CONFIGURE_START_FORM": "Aguardando Configuração do Formulário de Início",
-      "WAITING_CONFIGURE_USER_TASK": "Aguardando Configuração das Tarefas Humanas",
-      "WAITING_CONFIGURE_SERVICE_TASK": "Aguardando Configuração das Tarefas de Serviço",
+      "WAITING_CONFIGURE_USERS_TASK": "Aguardando Configuração das Tarefas Humanas",
+      "WAITING_CONFIGURE_SERVICES_TASK": "Aguardando Configuração das Tarefas de Serviço",
       "WAITING_GENERATE_ENTITIES": "Aguardando Geração das Entidades",
       "FINISHED": "Finalizado"
     }

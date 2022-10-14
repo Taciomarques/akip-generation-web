@@ -8,6 +8,7 @@ import com.akipgenerationweb.service.AttachmentService;
 import com.akipgenerationweb.service.dto.AkipEntityDTO;
 import com.akipgenerationweb.service.dto.AttachmentDTO;
 import com.akipgenerationweb.service.dto.GenerationProcessDTO;
+import com.akipgenerationweb.service.dto.MetadataAkipEntityDTO;
 import com.akipgenerationweb.service.utils.MetadaAkipEntityUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.ArrayList;
@@ -75,17 +76,15 @@ public class TaskGenerateEntitiesService {
         taskGenerateEntitiesContextDTO.setTaskInstance(taskInstanceDTO);
         taskGenerateEntitiesContextDTO.setGenerationProcess(generationProcess);
 
-        setMetadatasInTaskGenerateEntitiesContextAndUpdateAkipEntitiesNotGenerated(generationProcess, taskGenerateEntitiesContextDTO);
+        setMetadatasInTaskGenerateEntitiesContext(generationProcess, taskGenerateEntitiesContextDTO);
 
         return taskGenerateEntitiesContextDTO;
     }
 
-    private void setMetadatasInTaskGenerateEntitiesContextAndUpdateAkipEntitiesNotGenerated(
+    private void setMetadatasInTaskGenerateEntitiesContext(
         GenerationProcessDTO generationProcess,
         TaskGenerateEntitiesContextDTO taskGenerateEntitiesContextDTO
     ) throws JsonProcessingException {
-        List<AkipEntityDTO> akipEntitiesNotGenerated = new ArrayList<>();
-
         AkipEntityDTO akipEntityDomain = generationProcess
             .getAkipProcess()
             .getEntities()
@@ -166,14 +165,6 @@ public class TaskGenerateEntitiesService {
                 akipEntityProcessBinding.getName()
             )
         );
-
-        akipEntitiesNotGenerated.addAll(akipEntitiesDomainNotGenerated);
-        akipEntitiesNotGenerated.add(akipEntityProcessBinding);
-        akipEntitiesNotGenerated.add(akipEntityStartForm);
-        akipEntitiesNotGenerated.addAll(akipEntitiesUserTask);
-        akipEntitiesNotGenerated.addAll(akipEntitiesServiceTask);
-
-        updateAkipEntitiesExecuted(akipEntitiesNotGenerated);
     }
 
     private void updateAkipEntitiesExecuted(List<AkipEntityDTO> akipEntities) {
@@ -189,74 +180,63 @@ public class TaskGenerateEntitiesService {
     }
 
     public void save(TaskGenerateEntitiesContextDTO taskGenerateEntitiesContextDTO) {
-        taskGenerateEntitiesContextDTO
-            .getMetadatasAkipEntitiesDomain()
-            .stream()
-            .forEach(
-                metadataAkipEntityDomain -> {
-                    metadataAkipEntityDomain.setProcessId(taskGenerateEntitiesContextDTO.getGenerationProcess().getAkipProcess().getId());
-                }
-            );
+        List<AttachmentDTO> attachmentsMetadatasAkipEntities = new ArrayList<>();
 
-        taskGenerateEntitiesContextDTO
-            .getMetadataAkipEntityProcessBinding()
-            .setProcessId(taskGenerateEntitiesContextDTO.getGenerationProcess().getAkipProcess().getId());
+        attachmentsMetadatasAkipEntities.addAll(taskGenerateEntitiesContextDTO.getMetadatasAkipEntitiesDomain());
 
-        taskGenerateEntitiesContextDTO
-            .getMetadataAkipEntityStartForm()
-            .setProcessId(taskGenerateEntitiesContextDTO.getGenerationProcess().getAkipProcess().getId());
+        attachmentsMetadatasAkipEntities.add(taskGenerateEntitiesContextDTO.getMetadataAkipEntityProcessBinding());
 
-        taskGenerateEntitiesContextDTO
-            .getMetadatasAkipEntitiesUserTasks()
-            .stream()
-            .forEach(
-                metadataAkipEntityUserTask -> {
-                    metadataAkipEntityUserTask.setProcessId(taskGenerateEntitiesContextDTO.getGenerationProcess().getAkipProcess().getId());
-                }
-            );
+        attachmentsMetadatasAkipEntities.add(taskGenerateEntitiesContextDTO.getMetadataAkipEntityStartForm());
 
-        taskGenerateEntitiesContextDTO
-            .getMetadatasAkipEntitiesServiceTasks()
-            .stream()
-            .forEach(
-                metadataAkipEntityServiceTask -> {
-                    metadataAkipEntityServiceTask.setProcessId(
-                        taskGenerateEntitiesContextDTO.getGenerationProcess().getAkipProcess().getId()
-                    );
-                }
+        attachmentsMetadatasAkipEntities.addAll(taskGenerateEntitiesContextDTO.getMetadatasAkipEntitiesUserTasks());
+
+        attachmentsMetadatasAkipEntities.addAll(taskGenerateEntitiesContextDTO.getMetadatasAkipEntitiesServiceTasks());
+
+        attachmentsMetadatasAkipEntities =
+            setProcessIdInMetadatas(
+                attachmentsMetadatasAkipEntities,
+                taskGenerateEntitiesContextDTO.getGenerationProcess().getAkipProcess().getId()
             );
 
         taskGenerateEntitiesContextDTO
             .getGenerationProcess()
             .getAkipProcess()
             .getAttachments()
-            .addAll(saveMetadatasAkipEntities(taskGenerateEntitiesContextDTO.getMetadatasAkipEntitiesDomain()));
+            .addAll(saveMetadatasAkipEntities(attachmentsMetadatasAkipEntities));
 
-        taskGenerateEntitiesContextDTO
+        List<AkipEntityDTO> entitiesNotExecuted = taskGenerateEntitiesContextDTO
             .getGenerationProcess()
             .getAkipProcess()
-            .getAttachments()
-            .add(attachmentService.save(taskGenerateEntitiesContextDTO.getMetadataAkipEntityProcessBinding()));
-
-        taskGenerateEntitiesContextDTO
-            .getGenerationProcess()
-            .getAkipProcess()
-            .getAttachments()
-            .add(attachmentService.save(taskGenerateEntitiesContextDTO.getMetadataAkipEntityStartForm()));
-
-        taskGenerateEntitiesContextDTO
-            .getGenerationProcess()
-            .getAkipProcess()
-            .getAttachments()
-            .addAll(saveMetadatasAkipEntities(taskGenerateEntitiesContextDTO.getMetadatasAkipEntitiesUserTasks()));
-
-        taskGenerateEntitiesContextDTO
-            .getGenerationProcess()
-            .getAkipProcess()
-            .getAttachments()
-            .addAll(saveMetadatasAkipEntities(taskGenerateEntitiesContextDTO.getMetadatasAkipEntitiesServiceTasks()));
+            .getEntities()
+            .stream()
+            .collect(Collectors.toList());
+        entitiesNotExecuted.addAll(
+            akipEntityService
+                .findByApplicationIdAndTypeEntity(
+                    taskGenerateEntitiesContextDTO.getGenerationProcess().getAkipProcess().getApplication().getId(),
+                    TypeEntity.DOMAIN
+                )
+                .stream()
+                .filter(akipEntityDTO -> !akipEntityDTO.isGenerated())
+                .collect(Collectors.toList())
+        );
+        updateAkipEntitiesExecuted(
+            taskGenerateEntitiesContextDTO.getGenerationProcess().getAkipProcess().getEntities().stream().collect(Collectors.toList())
+        );
 
         akipProcessService.save(taskGenerateEntitiesContextDTO.getGenerationProcess().getAkipProcess());
+    }
+
+    private List<AttachmentDTO> setProcessIdInMetadatas(List<AttachmentDTO> attachmentsMetadatasAkipEntities, Long akipProcessId) {
+        attachmentsMetadatasAkipEntities
+            .stream()
+            .forEach(
+                metadataAkipEntity -> {
+                    metadataAkipEntity.setProcessId(akipProcessId);
+                }
+            );
+
+        return attachmentsMetadatasAkipEntities;
     }
 
     public List<AttachmentDTO> saveMetadatasAkipEntities(List<AttachmentDTO> metadatasAkipEntities) {

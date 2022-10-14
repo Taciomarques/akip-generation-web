@@ -29,7 +29,7 @@ export default class App extends Vue {
     const menuItems: any = [
       {
         href: '/',
-        title: 'Home',
+        title: `${this.$t('global.menu.home')}`,
         icon: 'fa fa-home',
         class: 'rounded',
       },
@@ -39,36 +39,36 @@ export default class App extends Vue {
       menuItems.push(
         {
           href: '/my-candidate-tasks',
-          title: 'My Tasks',
+          title: `${this.$t('global.menu.entities.myCandidateTasks')}`,
           icon: 'fa fa-tasks',
           class: 'rounded',
         },
         {
-          title: 'Entities',
+          title: `${this.$t('global.menu.entities.main')}`,
           icon: 'fa fa-th-list',
           class: 'rounded',
           child: [
             {
               href: '/akip-application',
-              title: 'Appplication',
+              title: `${this.$t('global.menu.entities.application')}`,
               icon: 'fa fa-folder',
               class: 'rounded',
             },
             {
               href: '/akip-process',
-              title: 'Process',
+              title: `${this.$t('global.menu.entities.process')}`,
               icon: 'fa fa-arrows-rotate',
               class: 'rounded',
             },
             {
               href: '/akip-entity',
-              title: 'Entity',
+              title: `${this.$t('global.menu.entities.entity')}`,
               icon: 'fa fa-diagram-project',
               class: 'rounded',
             },
             {
               href: '/process-definition/GenerationProcess/instances',
-              title: 'Generation Process',
+              title: `${this.$t('global.menu.entities.generationProcess')}`,
               icon: 'fa fa-gear',
               class: 'rounded',
             },
@@ -79,68 +79,68 @@ export default class App extends Vue {
 
     if (this.hasAnyAuthority(['ROLE_ADMIN'])) {
       menuItems.push({
-        title: 'Admin',
+        title: `${this.$t('global.menu.admin.main')}`,
         icon: 'fa fa-cogs',
         class: 'rounded',
         child: [
           {
             href: '/process-definitions',
-            title: 'Process Definitions',
+            title: `${this.$t('global.menu.entities.processDefinition')}`,
             icon: 'fa fa-asterisk',
             class: 'rounded',
           },
           {
             href: '/process-instances',
-            title: 'Process Instances',
+            title: `${this.$t('global.menu.entities.processInstance')}`,
             icon: 'fa fa-asterisk',
             class: 'rounded',
           },
           {
             href: '/task-instances',
-            title: 'Task Instances',
+            title: `${this.$t('global.menu.entities.taskInstance')}`,
             icon: 'fa fa-asterisk',
             class: 'rounded',
           },
           {
             href: '/admin/user-management',
-            title: 'User management',
+            title: `${this.$t('global.menu.admin.userManagement')}`,
             icon: 'fa fa-users',
             class: 'rounded',
           },
           {
             href: '/admin/metrics',
-            title: 'Metrics',
+            title: `${this.$t('global.menu.admin.metrics')}`,
             icon: 'fa fa-tachometer-alt',
             class: 'rounded',
           },
           {
             href: '/admin/health',
-            title: 'Health',
+            title: `${this.$t('global.menu.admin.health')}`,
             icon: 'fa fa-heart',
             class: 'rounded',
           },
           {
             href: '/admin/configuration',
-            title: 'Configuration',
+            title: `${this.$t('global.menu.admin.configuration')}`,
             icon: 'fa fa-cogs',
             class: 'rounded',
           },
           {
             href: '/admin/logs',
-            title: 'Logs',
+            title: `${this.$t('global.menu.admin.logs')}`,
             icon: 'fa fa-tasks',
             class: 'rounded',
           },
           {
             href: '/admin/docs',
-            title: 'API',
+            title: `${this.$t('global.menu.admin.apidocs')}`,
             icon: 'fa fa-book',
             class: 'rounded',
           },
           {
             href: './h2-console/',
             external: true,
-            title: 'Database',
+            title: `${this.$t('global.menu.admin.database')}`,
             icon: 'fa fa-database',
             class: 'rounded',
           },
