@@ -79,6 +79,8 @@ Vue.component('show-akip-process', ShowAkipProcess);
 
 import ShowAkipProcessStatus from '@/components/show-akip-process-status.vue';
 Vue.component('show-akip-process-status', ShowAkipProcessStatus);
+
+Vue.component('show-akip-process-status', ShowAkipProcessStatus);
 // jhipster-pais-needle-add-component-to-main - JHipster/Camunda will register components here
 
 const i18n = config.initI18N(Vue);

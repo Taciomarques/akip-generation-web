@@ -1,4 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 /**
  * An utility service for data.
@@ -112,6 +114,19 @@ export default class JhiDataUtils extends Vue {
         entity[`${field}ContentType`] = file.type;
       });
     }
+  }
+
+  public donwloadZipFiles(files, zipFileName) {
+    const zip = new JSZip();
+
+    files.forEach(file => {
+      zip.file(file.name, file.specificationFile, { base64: true });
+    });
+
+    zip.generateAsync({ type: 'blob' }).then(function (content) {
+      // see FileSaver.js
+      saveAs(content, `${zipFileName}.zip`);
+    });
   }
 
   /**

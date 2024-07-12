@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1nw9sko" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.3.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:category id="Category_0md3wwk">
+    <bpmn:categoryValue id="CategoryValue_18o5ctu" value="Process Information" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collaboration_0gg1plc">
+    <bpmn:participant id="Participant_123vcy4" name="GenerationProcess" processRef="GenerationProcess" />
+  </bpmn:collaboration>
+  <bpmn:process id="GenerationProcess" name="Generation Process" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_0jvsk7s">
+      <bpmn:lane id="Lane_14vmaus" name="Structure">
+        <bpmn:flowNodeRef>Gateway_0oaj187</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>TaskConfigureDomainEntity</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_12ayvmj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ModelerProcess</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0lvr256</bpmn:flowNodeRef>
+        <bpmn:childLaneSet id="LaneSet_17wsbmx">
+          <bpmn:lane id="Lane_1eh8plf">
+            <bpmn:flowNodeRef>Gateway_0oaj187</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>TaskConfigureDomainEntity</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Event_12ayvmj</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>ModelerProcess</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Activity_0lvr256</bpmn:flowNodeRef>
+          </bpmn:lane>
+        </bpmn:childLaneSet>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_09sk7x5" name="Generate">
+        <bpmn:flowNodeRef>Gateway_00hcms1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>TaskGenerateEntities</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0qv99nl</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_11d4ax4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1hykwv4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1escegt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0ev630o</bpmn:flowNodeRef>
+        <bpmn:childLaneSet id="LaneSet_0zlmu8h">
+          <bpmn:lane id="Lane_1utanxm">
+            <bpmn:flowNodeRef>Gateway_00hcms1</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>TaskGenerateEntities</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Activity_0qv99nl</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Event_11d4ax4</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Gateway_1hykwv4</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Event_1escegt</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Event_0ev630o</bpmn:flowNodeRef>
+          </bpmn:lane>
+        </bpmn:childLaneSet>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:exclusiveGateway id="Gateway_0oaj187">
+      <bpmn:incoming>Flow_1u5zvi7</bpmn:incoming>
+      <bpmn:outgoing>Flow_1en6vuu</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1khpy1t</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="TaskConfigureDomainEntity" name="Configure Domain Entity">
+      <bpmn:documentation>Configure Domain Entity</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="complete">
+          <camunda:field name="percentageExecuted">
+            <camunda:expression>20</camunda:expression>
+          </camunda:field>
+          <camunda:field name="status">
+            <camunda:expression>WAITING_CONFIGURE_DOMAIN_ENTITY</camunda:expression>
+          </camunda:field>
+        </camunda:taskListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0d9wksf</bpmn:incoming>
+      <bpmn:incoming>Flow_1en6vuu</bpmn:incoming>
+      <bpmn:incoming>Flow_0wqzhg0</bpmn:incoming>
+      <bpmn:outgoing>Flow_1u5zvi7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:startEvent id="Event_12ayvmj">
+      <bpmn:extensionElements />
+      <bpmn:outgoing>Flow_0d9wksf</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:callActivity id="ModelerProcess" name="Modeler Process" calledElement="ModelerProcess" camunda:variableMappingDelegateExpression="${modelerProcessVarMappingDelegate}">
+      <bpmn:incoming>Flow_1khpy1t</bpmn:incoming>
+      <bpmn:outgoing>Flow_04t2w5q</bpmn:outgoing>
+      <bpmn:outgoing>Flow_04osc6m</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:inclusiveGateway id="Gateway_00hcms1">
+      <bpmn:incoming>Flow_011kfs4</bpmn:incoming>
+      <bpmn:incoming>Flow_04osc6m</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wqzhg0</bpmn:outgoing>
+    </bpmn:inclusiveGateway>
+    <bpmn:userTask id="TaskGenerateEntities" name="Generate metadatas .json Entities">
+      <bpmn:documentation>Generate Entities</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="complete">
+          <camunda:field name="percentageExecuted">
+            <camunda:expression>100</camunda:expression>
+          </camunda:field>
+          <camunda:field name="status">
+            <camunda:expression>FINISHED</camunda:expression>
+          </camunda:field>
+        </camunda:taskListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_04t2w5q</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ogdoiy</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_0qv99nl" name="Generate files of process in repository">
+      <bpmn:incoming>Flow_0ogdoiy</bpmn:incoming>
+      <bpmn:outgoing>Flow_0egl2wo</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_11d4ax4">
+      <bpmn:incoming>Flow_0egl2wo</bpmn:incoming>
+      <bpmn:terminateEventDefinition id="TerminateEventDefinition_1mmnrs6" />
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_1hykwv4" name="Ajustment Modelers">
+      <bpmn:incoming>Flow_0iisyk1</bpmn:incoming>
+      <bpmn:incoming>Flow_1i8y2vh</bpmn:incoming>
+      <bpmn:outgoing>Flow_011kfs4</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:subProcess id="Activity_0lvr256" name="Modeler Process">
+      <bpmn:userTask id="Activity_17ehb8f" name="Configure Process User Task ${userTask.name}">
+        <bpmn:documentation>Configure Process User Task</bpmn:documentation>
+        <bpmn:extensionElements>
+          <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="create">
+            <camunda:field name="status">
+              <camunda:expression>WAITING_CONFIGURE_USERS_TASK</camunda:expression>
+            </camunda:field>
+            <camunda:field name="percentageExecuted">
+              <camunda:expression>70</camunda:expression>
+            </camunda:field>
+          </camunda:taskListener>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_13vy6hz</bpmn:incoming>
+        <bpmn:outgoing>Flow_19wzcy4</bpmn:outgoing>
+        <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="userTasks" camunda:elementVariable="userTask" />
+      </bpmn:userTask>
+      <bpmn:userTask id="Activity_03mp4rh" name="Configure Process Service Task ${serviceTask.name}">
+        <bpmn:documentation>Configure Sertive Task Process</bpmn:documentation>
+        <bpmn:extensionElements>
+          <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="complete">
+            <camunda:field name="status">
+              <camunda:expression>WAITING_GENERATE_ENTITIES</camunda:expression>
+            </camunda:field>
+            <camunda:field name="percentageExecuted">
+              <camunda:expression>90</camunda:expression>
+            </camunda:field>
+          </camunda:taskListener>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0e678bj</bpmn:incoming>
+        <bpmn:outgoing>Flow_1xjd4c6</bpmn:outgoing>
+        <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="serviceTasks" camunda:elementVariable="serviceTask" />
+      </bpmn:userTask>
+      <bpmn:inclusiveGateway id="Gateway_0i6gmfb">
+        <bpmn:incoming>Flow_1ahx1th</bpmn:incoming>
+        <bpmn:outgoing>Flow_13vy6hz</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0e678bj</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0gv2ovt</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1azsly4</bpmn:outgoing>
+        <bpmn:outgoing>Flow_19q2dms</bpmn:outgoing>
+      </bpmn:inclusiveGateway>
+      <bpmn:startEvent id="Event_064tpzg">
+        <bpmn:outgoing>Flow_1ahx1th</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:inclusiveGateway id="Gateway_06vdg7f">
+        <bpmn:incoming>Flow_19wzcy4</bpmn:incoming>
+        <bpmn:incoming>Flow_1xjd4c6</bpmn:incoming>
+        <bpmn:incoming>Flow_17jgdbs</bpmn:incoming>
+        <bpmn:incoming>Flow_0u7huyg</bpmn:incoming>
+        <bpmn:incoming>Flow_1mn86b4</bpmn:incoming>
+        <bpmn:outgoing>Flow_0cftiie</bpmn:outgoing>
+      </bpmn:inclusiveGateway>
+      <bpmn:endEvent id="Event_1d7128p">
+        <bpmn:incoming>Flow_0cftiie</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:userTask id="Activity_0h56kct" name="Provide Process BPMN for generation">
+        <bpmn:documentation>Provide Process BPMN for generation</bpmn:documentation>
+        <bpmn:extensionElements>
+          <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="create">
+            <camunda:field name="status">
+              <camunda:expression>WAITING_PROVIDE_PROCESS_BPMN</camunda:expression>
+            </camunda:field>
+            <camunda:field name="percentageExecuted">
+              <camunda:expression>30</camunda:expression>
+            </camunda:field>
+          </camunda:taskListener>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0gv2ovt</bpmn:incoming>
+        <bpmn:outgoing>Flow_17jgdbs</bpmn:outgoing>
+      </bpmn:userTask>
+      <bpmn:userTask id="Activity_0zvl4co" name="Configure Process Binding">
+        <bpmn:documentation>Configure Process Binding</bpmn:documentation>
+        <bpmn:extensionElements>
+          <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="create">
+            <camunda:field name="status">
+              <camunda:expression>WAITING_CONFIGURE_PROCESS_BINDING</camunda:expression>
+            </camunda:field>
+            <camunda:field name="percentageExecuted">
+              <camunda:expression>50</camunda:expression>
+            </camunda:field>
+          </camunda:taskListener>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1azsly4</bpmn:incoming>
+        <bpmn:outgoing>Flow_0u7huyg</bpmn:outgoing>
+      </bpmn:userTask>
+      <bpmn:userTask id="Activity_0adqmcu" name="Configure Process Start Form">
+        <bpmn:documentation>Configure Process Start Form</bpmn:documentation>
+        <bpmn:extensionElements>
+          <camunda:taskListener delegateExpression="${updateStatusAndPercentageExecutedAkipProcessListener}" event="create">
+            <camunda:field name="status">
+              <camunda:expression>WAITING_CONFIGURE_START_FORM</camunda:expression>
+            </camunda:field>
+            <camunda:field name="percentageExecuted">
+              <camunda:expression>60</camunda:expression>
+            </camunda:field>
+          </camunda:taskListener>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_19q2dms</bpmn:incoming>
+        <bpmn:outgoing>Flow_1mn86b4</bpmn:outgoing>
+      </bpmn:userTask>
+      <bpmn:sequenceFlow id="Flow_13vy6hz" sourceRef="Gateway_0i6gmfb" targetRef="Activity_17ehb8f" />
+      <bpmn:sequenceFlow id="Flow_19wzcy4" sourceRef="Activity_17ehb8f" targetRef="Gateway_06vdg7f" />
+      <bpmn:sequenceFlow id="Flow_0e678bj" sourceRef="Gateway_0i6gmfb" targetRef="Activity_03mp4rh" />
+      <bpmn:sequenceFlow id="Flow_1xjd4c6" sourceRef="Activity_03mp4rh" targetRef="Gateway_06vdg7f" />
+      <bpmn:sequenceFlow id="Flow_1ahx1th" sourceRef="Event_064tpzg" targetRef="Gateway_0i6gmfb" />
+      <bpmn:sequenceFlow id="Flow_0gv2ovt" sourceRef="Gateway_0i6gmfb" targetRef="Activity_0h56kct" />
+      <bpmn:sequenceFlow id="Flow_1azsly4" sourceRef="Gateway_0i6gmfb" targetRef="Activity_0zvl4co" />
+      <bpmn:sequenceFlow id="Flow_19q2dms" sourceRef="Gateway_0i6gmfb" targetRef="Activity_0adqmcu" />
+      <bpmn:sequenceFlow id="Flow_17jgdbs" sourceRef="Activity_0h56kct" targetRef="Gateway_06vdg7f" />
+      <bpmn:sequenceFlow id="Flow_0u7huyg" sourceRef="Activity_0zvl4co" targetRef="Gateway_06vdg7f" />
+      <bpmn:sequenceFlow id="Flow_1mn86b4" sourceRef="Activity_0adqmcu" targetRef="Gateway_06vdg7f" />
+      <bpmn:sequenceFlow id="Flow_0cftiie" sourceRef="Gateway_06vdg7f" targetRef="Event_1d7128p" />
+    </bpmn:subProcess>
+    <bpmn:boundaryEvent id="Event_1escegt" attachedToRef="TaskGenerateEntities">
+      <bpmn:outgoing>Flow_1i8y2vh</bpmn:outgoing>
+      <bpmn:conditionalEventDefinition id="ConditionalEventDefinition_1kzm667">
+        <bpmn:condition xsi:type="bpmn:tFormalExpression" />
+      </bpmn:conditionalEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:boundaryEvent id="Event_0ev630o" attachedToRef="Activity_0qv99nl">
+      <bpmn:outgoing>Flow_0iisyk1</bpmn:outgoing>
+      <bpmn:conditionalEventDefinition id="ConditionalEventDefinition_18dmt8i">
+        <bpmn:condition xsi:type="bpmn:tFormalExpression" />
+      </bpmn:conditionalEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_1u5zvi7" sourceRef="TaskConfigureDomainEntity" targetRef="Gateway_0oaj187" />
+    <bpmn:sequenceFlow id="Flow_1en6vuu" name="Configure other Domain Entity" sourceRef="Gateway_0oaj187" targetRef="TaskConfigureDomainEntity">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${processInstance.data.requiredConfigureOtherAkipEntityDomain == 'YES'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1khpy1t" sourceRef="Gateway_0oaj187" targetRef="ModelerProcess">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${processInstance.data.requiredConfigureOtherAkipEntityDomain != 'YES'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0d9wksf" sourceRef="Event_12ayvmj" targetRef="TaskConfigureDomainEntity" />
+    <bpmn:sequenceFlow id="Flow_0wqzhg0" sourceRef="Gateway_00hcms1" targetRef="TaskConfigureDomainEntity" />
+    <bpmn:sequenceFlow id="Flow_04t2w5q" sourceRef="ModelerProcess" targetRef="TaskGenerateEntities" />
+    <bpmn:sequenceFlow id="Flow_04osc6m" sourceRef="ModelerProcess" targetRef="Gateway_00hcms1" />
+    <bpmn:sequenceFlow id="Flow_011kfs4" sourceRef="Gateway_1hykwv4" targetRef="Gateway_00hcms1">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${processInstance.data.taskConfigureDomainEntityReturn == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0ogdoiy" sourceRef="TaskGenerateEntities" targetRef="Activity_0qv99nl" />
+    <bpmn:sequenceFlow id="Flow_0egl2wo" sourceRef="Activity_0qv99nl" targetRef="Event_11d4ax4" />
+    <bpmn:sequenceFlow id="Flow_0iisyk1" sourceRef="Event_0ev630o" targetRef="Gateway_1hykwv4" />
+    <bpmn:sequenceFlow id="Flow_1i8y2vh" sourceRef="Event_1escegt" targetRef="Gateway_1hykwv4" />
+    <bpmn:textAnnotation id="TextAnnotation_0tb1zzl">
+      <bpmn:text>Domain Structure Data</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1a5jyq3" sourceRef="TaskConfigureDomainEntity" targetRef="TextAnnotation_0tb1zzl" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0gg1plc">
+      <bpmndi:BPMNShape id="Participant_123vcy4_di" bpmnElement="Participant_123vcy4" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="978" height="1110" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_14vmaus_di" bpmnElement="Lane_14vmaus" isHorizontal="true" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="190" y="80" width="948" height="850" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1eh8plf_di" bpmnElement="Lane_1eh8plf" isHorizontal="true" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="220" y="80" width="918" height="850" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_09sk7x5_di" bpmnElement="Lane_09sk7x5" isHorizontal="true" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="190" y="930" width="948" height="260" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1utanxm_di" bpmnElement="Lane_1utanxm" isHorizontal="true" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="220" y="930" width="918" height="260" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0tb1zzl_di" bpmnElement="TextAnnotation_0tb1zzl" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="310" y="670" width="99.99274099883856" height="40.65040650406504" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0oaj187_di" bpmnElement="Gateway_0oaj187" isMarkerVisible="true" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="495" y="835" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0oxwhjh_di" bpmnElement="TaskConfigureDomainEntity" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="350" y="820" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0bpzmxa" bpmnElement="Event_12ayvmj" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="262" y="842" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kmaca6_di" bpmnElement="ModelerProcess" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="590" y="820" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0jp0moi_di" bpmnElement="Gateway_00hcms1" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="615" y="935" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xu5u6w_di" bpmnElement="TaskGenerateEntities" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="730" y="970" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12ccazt_di" bpmnElement="Activity_0qv99nl" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="890" y="970" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_11tctjf_di" bpmnElement="Event_11d4ax4" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="1042" y="992" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0f5k4od_di" bpmnElement="Gateway_1hykwv4" isMarkerVisible="true" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="755" y="1095" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="755" y="1154.5" width="49" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1oi5tv1" bpmnElement="Activity_0lvr256" isExpanded="true">
+        <dc:Bounds x="300" y="140" width="700" height="490" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1d2b69t" bpmnElement="Activity_17ehb8f" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="601" y="440" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1x3rihh" bpmnElement="Activity_03mp4rh" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="601" y="530" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_04zk5m7" bpmnElement="Gateway_0i6gmfb" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="395" y="365" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_14e2yau" bpmnElement="Event_064tpzg" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="322" y="372" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0z5qn7o" bpmnElement="Gateway_06vdg7f" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="855" y="365" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1o1cx9g" bpmnElement="Event_1d7128p" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="942" y="372" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_07xhqu7" bpmnElement="Activity_0h56kct" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="601" y="170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_14mwj6x" bpmnElement="Activity_0zvl4co" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="601" y="260" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1b0jtrg" bpmnElement="Activity_0adqmcu" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="601" y="350" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_1vo8tg2" bpmnElement="Flow_13vy6hz" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="440" y="395" />
+        <di:waypoint x="440" y="480" />
+        <di:waypoint x="601" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1nfyl7g" bpmnElement="Flow_19wzcy4" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="701" y="480" />
+        <di:waypoint x="860" y="480" />
+        <di:waypoint x="860" y="395" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_06te7am" bpmnElement="Flow_0e678bj" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="420" y="415" />
+        <di:waypoint x="420" y="570" />
+        <di:waypoint x="601" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_15vgzw9" bpmnElement="Flow_1xjd4c6" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="701" y="570" />
+        <di:waypoint x="880" y="570" />
+        <di:waypoint x="880" y="415" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1wfilku" bpmnElement="Flow_1ahx1th" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="358" y="390" />
+        <di:waypoint x="395" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0jiu9xb" bpmnElement="Flow_0gv2ovt" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="420" y="365" />
+        <di:waypoint x="420" y="210" />
+        <di:waypoint x="601" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0hmuvyj" bpmnElement="Flow_1azsly4" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="440" y="385" />
+        <di:waypoint x="440" y="300" />
+        <di:waypoint x="601" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0gd3vwm" bpmnElement="Flow_19q2dms" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="445" y="390" />
+        <di:waypoint x="601" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0pi7n76" bpmnElement="Flow_17jgdbs" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="701" y="210" />
+        <di:waypoint x="880" y="210" />
+        <di:waypoint x="880" y="365" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0vywomk" bpmnElement="Flow_0u7huyg" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="701" y="300" />
+        <di:waypoint x="860" y="300" />
+        <di:waypoint x="860" y="385" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_06isow5" bpmnElement="Flow_1mn86b4" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="701" y="390" />
+        <di:waypoint x="855" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_17uh048" bpmnElement="Flow_0cftiie" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="905" y="390" />
+        <di:waypoint x="942" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1a5jyq3_di" bpmnElement="Association_1a5jyq3" bioc:stroke="#43a047" color:border-color="#43a047">
+        <di:waypoint x="360" y="820" />
+        <di:waypoint x="360" y="711" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1glda4b_di" bpmnElement="Event_1escegt" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="762" y="1032" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1m5pbfs_di" bpmnElement="Event_0ev630o" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="922" y="1032" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1u5zvi7_di" bpmnElement="Flow_1u5zvi7" bioc:stroke="#43a047" color:border-color="#43a047">
+        <di:waypoint x="450" y="860" />
+        <di:waypoint x="495" y="860" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1en6vuu_di" bpmnElement="Flow_1en6vuu" bioc:stroke="#43a047" color:border-color="#43a047">
+        <di:waypoint x="520" y="835" />
+        <di:waypoint x="520" y="780" />
+        <di:waypoint x="400" y="780" />
+        <di:waypoint x="400" y="820" />
+        <bpmndi:BPMNLabel color:color="#43a047">
+          <dc:Bounds x="423" y="747" width="77" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1khpy1t_di" bpmnElement="Flow_1khpy1t" bioc:stroke="#43a047" color:border-color="#43a047">
+        <di:waypoint x="545" y="860" />
+        <di:waypoint x="590" y="860" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0onv4wj" bpmnElement="Flow_0d9wksf" bioc:stroke="#43a047" color:border-color="#43a047">
+        <di:waypoint x="298" y="860" />
+        <di:waypoint x="350" y="860" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wqzhg0_di" bpmnElement="Flow_0wqzhg0" bioc:stroke="#e53935" color:border-color="#e53935">
+        <di:waypoint x="615" y="960" />
+        <di:waypoint x="400" y="960" />
+        <di:waypoint x="400" y="900" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04t2w5q_di" bpmnElement="Flow_04t2w5q" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="690" y="860" />
+        <di:waypoint x="780" y="860" />
+        <di:waypoint x="780" y="970" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04osc6m_di" bpmnElement="Flow_04osc6m" bioc:stroke="#fb8c00" color:border-color="#fb8c00">
+        <di:waypoint x="640" y="900" />
+        <di:waypoint x="640" y="935" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_011kfs4_di" bpmnElement="Flow_011kfs4" bioc:stroke="#e53935" color:border-color="#e53935">
+        <di:waypoint x="755" y="1120" />
+        <di:waypoint x="640" y="1120" />
+        <di:waypoint x="640" y="985" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ogdoiy_di" bpmnElement="Flow_0ogdoiy" bioc:stroke="#e53935" color:border-color="#e53935">
+        <di:waypoint x="830" y="1010" />
+        <di:waypoint x="890" y="1010" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0egl2wo_di" bpmnElement="Flow_0egl2wo" bioc:stroke="#e53935" color:border-color="#e53935">
+        <di:waypoint x="990" y="1010" />
+        <di:waypoint x="1042" y="1010" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0iisyk1_di" bpmnElement="Flow_0iisyk1" bioc:stroke="#e53935" color:border-color="#e53935">
+        <di:waypoint x="940" y="1068" />
+        <di:waypoint x="940" y="1120" />
+        <di:waypoint x="805" y="1120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1i8y2vh_di" bpmnElement="Flow_1i8y2vh" bioc:stroke="#e53935" color:border-color="#e53935">
+        <di:waypoint x="780" y="1068" />
+        <di:waypoint x="780" y="1095" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

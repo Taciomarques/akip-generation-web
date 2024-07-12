@@ -28,7 +28,7 @@ export default class GenerationProcessStartFormInitComponent extends Vue {
 
   private processDefinitionService: ProcessDefinitionService = new ProcessDefinitionService();
 
-  public bpmnProcessDefinitionId: string = 'GenerationProcess';
+  public bpmnProcessDefinitionId = 'GenerationProcess';
   public generationProcess: IGenerationProcess = new GenerationProcess();
 
   @Inject('akipApplicationService') private akipApplicationService: () => AkipApplicationService;

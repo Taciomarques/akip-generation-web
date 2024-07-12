@@ -11,7 +11,7 @@ export default class GenerationProcessListComponent extends Vue {
 
   private processDefinitionService: ProcessDefinitionService = new ProcessDefinitionService();
 
-  public bpmnProcessDefinitionId: string = 'GenerationProcess';
+  public bpmnProcessDefinitionId = 'GenerationProcess';
   public processDefinition: ProcessDefinition = new ProcessDefinition();
   public generationProcessList: IGenerationProcess[] = [];
 

@@ -10,6 +10,24 @@
             <hr />
             <div class="card mb-3">
               <div class="card-body">
+                <div class="card-title text-right">
+                  <button
+                    class="btn btn-primary btn-sm pull-right"
+                    @click="
+                      donwloadZipFiles(
+                        taskContext.metadatasAkipEntitiesDomain
+                          .concat(taskContext.metadataAkipEntityProcessBinding)
+                          .concat(taskContext.metadataAkipEntityStartForm)
+                          .concat(taskContext.metadatasAkipEntitiesUserTasks)
+                          .concat(taskContext.metadatasAkipEntitiesServiceTasks),
+                        'Metadatas - '.concat(taskContext.generationProcess.akipProcess.name)
+                      )
+                    "
+                  >
+                    <font-awesome-icon icon="file-zipper"></font-awesome-icon>
+                    <span v-text="$t('akipGenerationWebApp.akipProcess.downloadZipMetadatas')" />
+                  </button>
+                </div>
                 <div v-if="taskContext.metadatasAkipEntitiesDomain && taskContext.metadatasAkipEntitiesDomain.length > 0">
                   <label class="form-control-label mt-3" v-text="$t('akipGenerationWebApp.taskGenerateEntities.metadatasDomain')"
                     >Metadata Domain Entity</label

@@ -10,7 +10,7 @@ export default class GenerationProcessDetailsComponent extends Vue {
   public collapseController: any = {
     showAkipProcess: true,
   };
-  public isFetching: boolean = false;
+  public isFetching = false;
 
   beforeRouteEnter(to, from, next) {
     next(vm => {

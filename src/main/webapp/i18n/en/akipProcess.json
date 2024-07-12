@@ -24,7 +24,9 @@
       "processBpmnId": "Process BPMN ID",
       "etities": "Etities",
       "application": "Application",
-      "attachments": "Attachments"
+      "attachments": "Attachments",
+      "downloadZipMetadatas": "Download Zip Metadatas",
+      "downloadZipFiles": "Download Zip Files"
     }
   }
 }

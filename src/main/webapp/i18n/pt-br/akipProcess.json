@@ -25,7 +25,9 @@
       "processBpmnId": "ID do Processo do BPMN",
       "etities": "Entidades",
       "application": "Aplicação",
-      "attachments": "Anexos"
+      "attachments": "Anexos",
+      "downloadZipMetadatas": "Baixar Zip Metadatas",
+      "downloadZipFiles": "Baixar Zip Anexos"
     }
   }
 }

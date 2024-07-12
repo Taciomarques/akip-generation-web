@@ -21,9 +21,9 @@ import { Inject } from 'vue-property-decorator';
 export default class App extends Vue {
   @Inject('accountService') private accountService: () => AccountService;
 
-  private collapsed: boolean = true;
-  private isOnMobile: boolean = false;
-  private hasAnyAuthorityValue: boolean = false;
+  private collapsed = true;
+  private isOnMobile = false;
+  private hasAnyAuthorityValue = false;
 
   public get calculateMenuItems(): any {
     const menuItems: any = [

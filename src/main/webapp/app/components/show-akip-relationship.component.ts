@@ -111,7 +111,7 @@ export default class ShowAkipRelationshipComponent extends mixins(JhiDataUtils) 
 
   get getOtherAkipEntityFields() {
     if (this.otherAkipEntities && this.akipRelationship.otherEntityName) {
-      let otherAkipEntity: AkipEntity = this.otherAkipEntities.find(
+      const otherAkipEntity: AkipEntity = this.otherAkipEntities.find(
         otherAkipEntity => otherAkipEntity.name == this.akipRelationship.otherEntityName
       );
       if (!otherAkipEntity.fields) {

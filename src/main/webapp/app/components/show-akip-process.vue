@@ -89,6 +89,15 @@
                       <font-awesome-icon icon="compress-alt" v-if="collapseController.showAkipProcess"></font-awesome-icon>
                       <font-awesome-icon icon="expand-alt" v-else></font-awesome-icon>
                     </div>
+                    <div class="p-1 ml-auto">
+                      <button
+                        class="btn btn-primary btn-sm"
+                        @click="donwloadZipFiles(akipProcess.attachments, 'Files - '.concat(akipProcess.name))"
+                      >
+                        <font-awesome-icon icon="download"></font-awesome-icon>
+                        <span v-text="$t('akipGenerationWebApp.akipProcess.downloadZipFiles')" />
+                      </button>
+                    </div>
                   </div>
                 </h4>
                 <b-collapse v-model="collapseController.showAttachments" id="collapse-attachments">
